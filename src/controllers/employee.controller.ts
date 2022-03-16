@@ -1,9 +1,11 @@
 import HttpStatus from 'http-status-codes';
 import { Request, Response, NextFunction } from 'express';
-import { IUser } from '../interfaces/user.interface';
-import EmployeeService from '../services/employee.service';
-class EmployeeController {
-  public employeeService = new EmployeeService();
+import { IUser } from '../types/user.interface';
+import EmployeeDetailsService from '../services/employee.service';
+// import Response from '../types/Response';
+
+class EmployeeDetailsController {
+  public EmployeeDetailsService = new EmployeeDetailsService();
 
   /**
    * Controller to get all users available
@@ -11,18 +13,14 @@ class EmployeeController {
    * @param {object} Response - response object
    * @param {Function} NextFunction
    */
-  public addEmployee = async (
+  public addEmployeeDetails = async (
     req: Request,
     res: Response,
     next: NextFunction
   ): Promise<any> => {
     try {
-      const data: any = await this.employeeService.addEmployee(req.body);
-      res.status(HttpStatus.OK).json({
-        code: HttpStatus.OK,
-        data: data,
-        message: 'employee Added'
-      });
+      const data: any = await this.EmployeeDetailsService.addEmployeeDetails(req.body);
+      res.status(HttpStatus.OK).send(data);
     } catch (error) {
       next(error);
     }
@@ -34,18 +32,14 @@ class EmployeeController {
    * @param {object} Response - response object
    * @param {Function} NextFunction
    */
-  public addEmpWork = async (
+  public addEmployeeWorkDetails = async (
     req: Request,
     res: Response,
     next: NextFunction
   ): Promise<any> => {
     try {
-      const data: any = await this.employeeService.addEmpWork(req.body);
-      res.status(HttpStatus.OK).json({
-        code: HttpStatus.OK,
-        data: data,
-        message: 'employee Added'
-      });
+      const data = await this.EmployeeDetailsService.addEmployeeWorkDetails(req.body);
+      res.status(HttpStatus.OK).send(data);
     } catch (error) {
       next(error);
     }
@@ -57,18 +51,14 @@ class EmployeeController {
    * @param {object} Response - response object
    * @param {Function} NextFunction
    */
-  public getEmployee = async (
+  public getEmployeeDetails = async (
     req: Request,
     res: Response,
     next: NextFunction
   ): Promise<any> => {
     try {
-      const data: any = await this.employeeService.getEmployee();
-      res.status(HttpStatus.OK).json({
-        code: HttpStatus.OK,
-        data: data,
-        message: 'All users fetched successfully'
-      });
+      const data: any = await this.EmployeeDetailsService.getEmployeeDetails();
+      res.status(HttpStatus.OK).send(data);
     } catch (error) {
       next(error);
     }
@@ -80,18 +70,14 @@ class EmployeeController {
    * @param {object} Response - response object
    * @param {Function} NextFunction
    */
-  public getEmpWork = async (
+  public getEmployeeWorkDetails = async (
     req: Request,
     res: Response,
     next: NextFunction
   ): Promise<any> => {
     try {
-      const data: any = await this.employeeService.getEmpWork();
-      res.status(HttpStatus.OK).json({
-        code: HttpStatus.OK,
-        data: data,
-        message: 'All users fetched successfully'
-      });
+      const data: any = await this.EmployeeDetailsService.getEmployeeWorkDetails();
+      res.status(HttpStatus.OK).send(data);
     } catch (error) {
       next(error);
     }
@@ -103,20 +89,16 @@ class EmployeeController {
    * @param {object} Response - response object
    * @param {Function} NextFunction
    */
-  public deleteEmployee = async (
+  public deleteEmployeeDetails = async (
     req: Request,
     res: Response,
     next: NextFunction
   ): Promise<any> => {
     try {
-      const data: any = await this.employeeService.deleteEmployee(
+      const data: any = await this.EmployeeDetailsService.deleteEmployeeDetails(
         req.params.id
       );
-      res.status(HttpStatus.OK).json({
-        code: HttpStatus.OK,
-        data: data,
-        message: 'All users fetched successfully'
-      });
+      res.status(HttpStatus.OK).send(data);
     } catch (error) {
       next(error);
     }
@@ -128,18 +110,14 @@ class EmployeeController {
    * @param {object} Response - response object
    * @param {Function} NextFunction
    */
-  public deleteEmpWork = async (
+  public deleteEmployeeWorkDetails = async (
     req: Request,
     res: Response,
     next: NextFunction
   ): Promise<any> => {
     try {
-      const data: any = await this.employeeService.deleteEmpWork(req.params.id);
-      res.status(HttpStatus.OK).json({
-        code: HttpStatus.OK,
-        data: data,
-        message: 'All users fetched successfully'
-      });
+      const data: any = await this.EmployeeDetailsService.deleteEmployeeWorkDetails(req.params.id);
+      res.status(HttpStatus.OK).send(data);
     } catch (error) {
       next(error);
     }
@@ -151,21 +129,17 @@ class EmployeeController {
    * @param {object} Response - response object
    * @param {Function} NextFunction
    */
-  public updateEmployee = async (
+  public updateEmployeeDetails = async (
     req: Request,
     res: Response,
     next: NextFunction
   ): Promise<any> => {
     try {
-      const data: any = await this.employeeService.updateEmployee(
+      const data: any = await this.EmployeeDetailsService.updateEmployeeDetails(
         req.params.id,
         req.body
       );
-      res.status(HttpStatus.OK).json({
-        code: HttpStatus.OK,
-        data: data,
-        message: 'All users fetched successfully'
-      });
+      res.status(HttpStatus.OK).send(data);
     } catch (error) {
       next(error);
     }
@@ -177,25 +151,21 @@ class EmployeeController {
    * @param {object} Response - response object
    * @param {Function} NextFunction
    */
-  public updateEmpWork = async (
+  public updateEmployeeWorkDetails = async (
     req: Request,
     res: Response,
     next: NextFunction
   ): Promise<any> => {
     try {
-      const data: any = await this.employeeService.updateEmpWork(
+      const data: any = await this.EmployeeDetailsService.updateEmployeeWorkDetails(
         req.params.id,
         req.body
       );
-      res.status(HttpStatus.OK).json({
-        code: HttpStatus.OK,
-        data: data,
-        message: 'All users fetched successfully'
-      });
+      res.status(HttpStatus.OK).send(data);
     } catch (error) {
       next(error);
     }
   };
 }
 
-export default EmployeeController;
+export default EmployeeDetailsController;

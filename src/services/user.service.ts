@@ -1,23 +1,26 @@
-import { IUser } from '../interfaces/user.interface';
+import { IUser } from '../types/user.interface';
 import { OkPacket, RowDataPacket } from 'mysql2';
 import jwt from 'jsonwebtoken';
 import { createConnection } from 'typeorm';
-import { ILoginRes } from '../interfaces/login.interface';
-import { IEMP } from '../interfaces/employee.interface';
-import { ILoginData } from '../interfaces/login.interface';
-import { EmpWork } from '../entity/employeeWork.model';
+import Response from '../types/Response';
+import LoginRequest from '../types/loginReqType';
+import { EmployeeWorkDetails } from '../entity/employeeWork.model';
+
+let response = new Response();
 class UserService {
   /*
   login user
   */
-  public loginUser = async (body): Promise<ILoginRes> => {
-
-    let find: IEMP[] = await new Promise((resolve, reject) => {
+  public loginUser = async (body: LoginRequest): Promise<Response> => {
+    let find = await new Promise((resolve, reject) => {
       createConnection()
         .then(async (connection) => {
-          let repo = connection.getRepository(EmpWork);
+          let repo = connection.getRepository(EmployeeWorkDetails);
 
           let foundEmp = await repo.find({ email: body.email });
+
+          await connection.close();
+
           resolve(foundEmp);
         })
         .catch((error) => reject(error));
@@ -31,31 +34,28 @@ class UserService {
             'secret'
           );
 
-          let response: ILoginRes = {
-            data: {
-              employeeId: find[0].employeeId,
-              // permissionId: find[0].permissionId,
-              email: find[0].email,
-              token: token
-            },
-            message: 'Login success',
-            status: 200
+          //response object
+          response.data = {
+            employeeId: find[0].employeeId,
+            email: find[0].email,
+            token: token
           };
+          response.message = 'Login success';
+          response.status = 200;
 
+          //resolve saved data
           resolve(response);
         } else {
-          reject({
-            data: {},
-            message: 'Incorrect Password',
-            status: 401
-          });
+          response.data = {};
+          response.message = 'Incorrect Password';
+          response.status = 401;
+          reject(response);
         }
       } else {
-        reject({
-          data: {},
-          message: 'User Not Found',
-          status: 404
-        });
+        response.data = {};
+        response.message = 'User Not Found';
+        response.status = 200;
+        reject(response);
       }
     });
   };

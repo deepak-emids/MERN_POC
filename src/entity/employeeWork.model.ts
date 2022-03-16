@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class EmpWork {
+export class EmployeeWorkDetails {
   @PrimaryGeneratedColumn()
   employeeId: number;
   @Column({ type: 'varchar', length: 80 })

@@ -3,8 +3,8 @@ import HttpStatus from 'http-status-codes';
 import userService from '../services/user.service';
 
 import { Request, Response, NextFunction } from 'express';
-import { IUser } from '../interfaces/user.interface';
-import { ILoginUser } from '../interfaces/login.interface'; 
+import { IUser } from '../types/user.interface';
+import { ILoginUser } from '../types/loginReqType'; 
 class UserController {
   public UserService = new userService();
 

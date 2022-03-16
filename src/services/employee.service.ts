@@ -1,27 +1,30 @@
 import 'reflect-metadata';
 import { OkPacket, RowDataPacket } from 'mysql2';
-import { IUser } from '../interfaces/user.interface';
+import { IUser } from '../types/user.interface';
 import { User } from '../entity/User';
 import { getRepository } from 'typeorm';
 import logger from '../config/logger';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { createConnection } from 'typeorm';
-import { Employee } from '../entity/employee.model';
-import { EmpWork } from '../entity/employeeWork.model';
-import { IEMPData } from '../interfaces/employee.interface';
-import { IEmp } from '../interfaces/employee.interface';
+import { EmployeeDetails } from '../entity/employee.model';
+import { EmployeeWorkDetails } from '../entity/employeeWork.model';
+import EmployeeData from '../types/empDataType';
+import EmployeeWorkData from '../types/empWorkType';
+import Response from '../types/Response';
 
-class EmployeeService {
+let response = new Response();
+
+class EmployeeDetailsService {
   /*
   add emp
   */
-  public addEmployee = async (body): Promise<IEMPData[]> => {
+  public addEmployeeDetails = async (body: EmployeeData): Promise<Response> => {
     return new Promise((resolve, reject) => {
       createConnection()
         .then(async (connection) => {
           // create ref
-          const emp = new Employee();
+          const emp = new EmployeeDetails();
 
           //assign values
           emp.firstName = body.firstName;
@@ -36,39 +39,48 @@ class EmployeeService {
           emp.aadharId = body.aadharId;
 
           //get table
-          let repo = connection.getRepository(Employee);
+          let repo = connection.getRepository(EmployeeDetails);
 
           //save table
           await repo.save(emp);
 
           //get saved data
-          let find: IEMPData[] = await repo.find();
+          let find: EmployeeData[] = await repo.find();
 
+          //close connection
           await connection.close();
 
+          //response object
+          response.data = find;
+          response.message = 'EmployeeDetails Data Added';
+          response.status = 201;
+
           //resolve saved data
-          resolve(find);
+          resolve(response);
 
           //anohter way
           // await connection.manager.save(emp);
 
           //get saved data
-          // const users = await connection.manager.find(Employee);
+          // const users = await connection.manager.find(EmployeeDetails);
           // resolve(users)
         })
-        .catch((error) => reject(error));
+        .catch((error) => {
+          reject(error);
+        });
     });
   };
 
   /*
-  add empWork
+  add EmployeeWorkDetails
   */
-  public addEmpWork = async (body): Promise<IEMP[]> => {
+  public addEmployeeWorkDetails = async (body: EmployeeWorkData): Promise<Response> => {
+    let response = new Response();
     return new Promise((resolve, reject) => {
       createConnection()
         .then(async (connection) => {
           // create ref
-          const emp = new EmpWork();
+          const emp = new EmployeeWorkDetails();
 
           //assign values
           emp.email = body.email;
@@ -83,24 +95,30 @@ class EmployeeService {
           emp.joining = body.joining;
 
           //get table
-          let repo = connection.getRepository(EmpWork);
+          let repo = connection.getRepository(EmployeeWorkDetails);
 
           //save table
           await repo.save(emp);
 
           //get saved data
-          let find: IEMP[] = await repo.find();
+          let find: EmployeeWorkData[] = await repo.find();
 
+          //close connection
           await connection.close();
 
+          //response objecct
+          response.data = find;
+          response.message = 'EmployeeDetails Data Added';
+          response.status = 201;
+
           //resolve saved data
-          resolve(find);
+          resolve(response);
 
           //anohter way
           // await connection.manager.save(emp);
 
           //get saved data
-          // const users = await connection.manager.find(Employee);
+          // const users = await connection.manager.find(EmployeeDetails);
           // resolve(users)
         })
         .catch((error) => reject(error));
@@ -108,47 +126,103 @@ class EmployeeService {
   };
 
   /*
-  get emps
+  get EmployeeDetailss
   */
-  public getEmployee = async (): Promise<IEMPData[]> => {
+  public getEmployeeDetails = async (): Promise<Response> => {
     return new Promise((resolve, reject) => {
       createConnection()
         .then(async (connection) => {
-          let photoRepository = connection.getRepository(Employee);
+          let repo = connection.getRepository(EmployeeDetails);
 
-          let savedPhotos: IEMPData[] = await photoRepository.find();
+          let foundEmp: EmployeeData[] = await repo.find();
 
-          resolve(savedPhotos);
+          await connection.close();
+
+          response.data = foundEmp;
+          response.message = 'EmployeeDetails fetched successfully';
+          response.status = 200;
+
+          resolve(response);
         })
         .catch((error) => reject(error));
     });
   };
 
   /*
-  get empwork
+  get EmployeeDetails work details
   */
-  public getEmpWork = async (): Promise<IEMPData[]> => {
+  public getEmployeeWorkDetails = async (): Promise<Response> => {
     return new Promise((resolve, reject) => {
       createConnection()
         .then(async (connection) => {
-          let photoRepository = connection.getRepository(EmpWork);
+          let repo = connection.getRepository(EmployeeWorkDetails);
 
-          let savedPhotos: IEMPData[] = await photoRepository.find();
+          let foundEmp: EmployeeWorkData[] = await repo.find();
 
-          resolve(savedPhotos);
+          if (foundEmp.length > 0) {
+            await connection.close();
+            response.data = foundEmp;
+            response.message = 'EmployeeDetails fetched successfully';
+            response.status = 200;
+            resolve(response);
+          } else {
+            await connection.close();
+            response.data = {};
+            response.message = 'EmployeeDetailss Not Found';
+            response.status = 404;
+            resolve(response);
+          }
         })
         .catch((error) => reject(error));
     });
   };
 
   /*
-  update emp
+  update EmployeeDetails
   */
-  public updateEmployee = async (id, body) => {
+  public updateEmployeeDetails = async (id, body) => {
     return new Promise((resolve, reject) => {
       createConnection()
         .then(async (connection) => {
-          let repo = connection.getRepository(Employee);
+          let repo = connection.getRepository(EmployeeDetails);
+
+          let foundEmp = await repo.find({ employeeId: id });
+
+          if (foundEmp.length > 0) {
+            let key = body.key;
+            // `${foundEmp[0]}``${key}`  = body.value;
+
+            await repo.save(foundEmp[0]);
+
+            await connection.close();
+
+            response.data = foundEmp;
+            response.message = 'EmployeeDetails updated';
+            response.status = 200;
+
+            resolve(response);
+          } else {
+            await connection.close();
+
+            response.data = foundEmp;
+            response.message = 'EmployeeDetails Not Found';
+            response.status = 404;
+
+            reject(response);
+          }
+        })
+        .catch((error) => reject(error));
+    });
+  };
+
+  /*
+  update EmployeeDetails Work details
+  */
+  public updateEmployeeWorkDetails = async (id, body) => {
+    return new Promise((resolve, reject) => {
+      createConnection()
+        .then(async (connection) => {
+          let repo = connection.getRepository(EmployeeWorkDetails);
 
           let foundEmp = await repo.find({ employeeId: id });
 
@@ -160,12 +234,20 @@ class EmployeeService {
 
             await repo.save(foundEmp[0]);
 
-            let response = 'Employee updated';
             await connection.close();
+
+            response.data = foundEmp;
+            response.message = 'EmployeeDetails updated';
+            response.status = 200;
+
             resolve(response);
           } else {
             await connection.close();
-            let response = 'Employee Not Found';
+
+            response.data = foundEmp;
+            response.message = 'EmployeeDetails Not Found';
+            response.status = 404;
+
             reject(response);
           }
         })
@@ -174,56 +256,33 @@ class EmployeeService {
   };
 
   /*
-  update empWork
+  delete EmployeeDetails work details
   */
-  public updateEmpWork = async (id, body) => {
+  public deleteEmployeeDetails = async (id) => {
     return new Promise((resolve, reject) => {
       createConnection()
         .then(async (connection) => {
-          let repo = connection.getRepository(EmpWork);
-
-          let foundEmp = await repo.find({ employeeId: id });
-
-          if (foundEmp.length > 0) {
-            let key = body.key;
-            // `${foundEmp[0]}``${key}`  = body.value;
-
-            console.log(foundEmp[0]);
-
-            await repo.save(foundEmp[0]);
-
-            let response = 'Employee updated';
-            await connection.close();
-            resolve(response);
-          } else {
-            await connection.close();
-            let response = 'Employee Not Found';
-            reject(response);
-          }
-        })
-        .catch((error) => reject(error));
-    });
-  };
-
-  /*
-  delete emp
-  */
-  public deleteEmployee = async (id) => {
-    return new Promise((resolve, reject) => {
-      createConnection()
-        .then(async (connection) => {
-          let repo = connection.getRepository(Employee);
+          let repo = connection.getRepository(EmployeeDetails);
 
           let foundEmp = await repo.find({ employeeId: id });
 
           if (foundEmp.length > 0) {
             await repo.remove(foundEmp[0]);
-            let response = 'Employee Deleted';
+
             await connection.close();
+
+            response.data = {};
+            response.message = 'EmployeeDetails updated';
+            response.status = 200;
+
             resolve(response);
           } else {
             await connection.close();
-            let response = 'Employee Not Found';
+
+            response.data = {};
+            response.message = 'EmployeeDetails Not Found';
+            response.status = 404;
+
             reject(response);
           }
         })
@@ -232,24 +291,33 @@ class EmployeeService {
   };
 
   /*
-  delete empWork
+  delete EmployeeDetails work details
   */
-  public deleteEmpWork = async (id) => {
+  public deleteEmployeeWorkDetails = async (id) => {
     return new Promise((resolve, reject) => {
       createConnection()
         .then(async (connection) => {
-          let repo = connection.getRepository(EmpWork);
+          let repo = connection.getRepository(EmployeeWorkDetails);
 
           let foundEmp = await repo.find({ employeeId: id });
 
           if (foundEmp.length > 0) {
             await repo.remove(foundEmp[0]);
-            let response = 'Employee Deleted';
+
             await connection.close();
+
+            response.data = {};
+            response.message = 'EmployeeDetails deleted';
+            response.status = 200;
+
             resolve(response);
           } else {
             await connection.close();
-            let response = 'Employee Not Found';
+
+            response.data = {};
+            response.message = 'EmployeeDetails Not Found';
+            response.status = 404;
+
             reject(response);
           }
         })
@@ -258,4 +326,4 @@ class EmployeeService {
   };
 }
 
-export default EmployeeService;
+export default EmployeeDetailsService;
