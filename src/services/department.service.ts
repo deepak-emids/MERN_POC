@@ -1,160 +1,124 @@
 import 'reflect-metadata';
-import logger from '../config/logger';
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
-import { createConnection } from 'typeorm';
 import { Department } from '../entity/department';
-import DepartmentData from '../models/dept';
+import DepartmentData from '../models/Department.model';
+import Repository from '../repository/repository';
 import Response from '../models/Response';
 
 let response = new Response();
+let repository = new Repository();
 
 class DepartmentService {
   /*
   add emp
   */
   public addDepartment = async (body: DepartmentData): Promise<Response> => {
-    return new Promise((resolve, reject) => {
-      createConnection()
-        .then(async (connection) => {
-          // create ref
-          const emp = new Department();
+    const dept = new Department();
 
-          //assign values
-          emp.name = body.name;
-          emp.head = body.head;
+    //assign values
+    dept.departmentName = body.departmentName;
 
-          //get table
-          let repo = connection.getRepository(Department);
+    let find = await repository.add(Department, dept);
 
-          //save table
-          await repo.save(emp);
+    //response object
+    response.data = find;
+    response.message = 'Department Data Added';
+    response.status = 201;
 
-          //get saved data
-          let find: DepartmentData[] = await repo.find();
-
-          //close connection
-          await connection.close();
-
-          //response object
-          response.data = find;
-          response.message = 'Department Data Added';
-          response.status = 201;
-
-          //resolve saved data
-          resolve(response);
-
-          //anohter way
-          // await connection.manager.save(emp);
-
-          //get saved data
-          // const users = await connection.manager.find(Department);
-          // resolve(users)
-        })
-        .catch((error) => {
-          reject(error);
-        });
-    });
+    //return saved data
+    return response;
   };
 
   /*
   get Departments
   */
-  public getDepartment = async (): Promise<Response> => {
-    return new Promise((resolve, reject) => {
-      createConnection()
-        .then(async (connection) => {
-          let repo = connection.getRepository(Department);
+  public getAllDepartment = async (): Promise<Response> => {
+    let result = await repository.getAll(Department);
 
-          let foundEmp: DepartmentData[] = await repo.find();
+    if (result.length > 0) {
+      response.data = result;
+      response.message = 'Department deleted';
+      response.status = 200;
 
-          await connection.close();
+      return response;
+    } else {
+      response.data = {};
+      response.message = 'Department Not Found';
+      response.status = 404;
 
-          response.data = foundEmp;
-          response.message = 'Department fetched successfully';
-          response.status = 200;
+      return response;
+    }
+  };
 
-          resolve(response);
-        })
-        .catch((error) => reject(error));
-    });
+  /*
+  get Departments
+  */
+  public getDepartment = async (id): Promise<Response> => {
+    let result = await repository.getAll(Department, id);
+
+    if (result.length > 0) {
+      response.data = result;
+      response.message = 'Department deleted';
+      response.status = 200;
+
+      return response;
+    } else {
+      response.data = {};
+      response.message = 'Department Not Found';
+      response.status = 404;
+
+      return response;
+    }
   };
 
   /*
   update Department
   */
-  public updateDepartment = async (id, body) => {
-    return new Promise((resolve, reject) => {
-      createConnection()
-        .then(async (connection) => {
-          let repo = connection.getRepository(Department);
+  public updateDepartment = async (id: number, body: DepartmentData) => {
+    let details: DepartmentData = await repository.get(Department, id);
 
-          let found = await repo.find({ deptId: id });
+    let newData = {
+      id: id,
+      departmentName: body.departmentName
+        ? body.departmentName
+        : details.departmentName
+    };
 
-          if (found.length > 0) {
-            await repo.update(
-              { deptId: id },
-              {
-                name: body.name ? body.name : found[0].name,
-                head: body.head ? body.head : found[0].head
-              }
-            );
+    let result = await repository.update(Department, id, newData);
 
-            let updatedDept = await repo.find({ deptId: id });
-            await connection.close();
+    if (result.length > 0) {
+      response.data = result;
+      response.message = 'Department deleted';
+      response.status = 200;
 
-            response.data = updatedDept;
-            response.message = 'Department updated';
-            response.status = 200;
+      return response;
+    } else {
+      response.data = {};
+      response.message = 'Department Not Found';
+      response.status = 404;
 
-            resolve(response);
-          } else {
-            await connection.close();
-
-            response.data = found;
-            response.message = 'Department Not Found';
-            response.status = 404;
-
-            reject(response);
-          }
-        })
-        .catch((error) => reject(error));
-    });
+      return response;
+    }
   };
 
   /*
   delete Department work details
   */
   public deleteDepartment = async (id) => {
-    return new Promise((resolve, reject) => {
-      createConnection()
-        .then(async (connection) => {
-          let repo = connection.getRepository(Department);
+    let result = await repository.delete(Department, id);
 
-          let foundEmp = await repo.find({ deptId: id });
+    if (result.length > 0) {
+      response.data = result;
+      response.message = 'Department deleted';
+      response.status = 200;
 
-          if (foundEmp.length > 0) {
-            await repo.remove(foundEmp[0]);
+      return response;
+    } else {
+      response.data = {};
+      response.message = 'Department Not Found';
+      response.status = 404;
 
-            await connection.close();
-
-            response.data = {};
-            response.message = 'Department updated';
-            response.status = 200;
-
-            resolve(response);
-          } else {
-            await connection.close();
-
-            response.data = {};
-            response.message = 'Department Not Found';
-            response.status = 404;
-
-            reject(response);
-          }
-        })
-        .catch((error) => reject(error));
-    });
+      return response;
+    }
   };
 }
 

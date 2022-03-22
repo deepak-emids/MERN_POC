@@ -1,9 +1,10 @@
 import HttpStatus from 'http-status-codes';
 import { Request, Response, NextFunction } from 'express';
-import DepartmentService from '../services/department.service';
+import RoleService from '../services/role.service';
+// import Response from '../types/Response';
 
-class DepartmentController {
-  public DepartmentService = new DepartmentService();
+class RoleController {
+  public RoleService = new RoleService();
 
   /**
    * Controller to get all users available
@@ -11,13 +12,13 @@ class DepartmentController {
    * @param {object} Response - response object
    * @param {Function} NextFunction
    */
-  public addDepartment = async (
+  public addRole = async (
     req: Request,
     res: Response,
     next: NextFunction
   ): Promise<any> => {
     try {
-      const data: any = await this.DepartmentService.addDepartment(req.body);
+      const data: any = await this.RoleService.addRole(req.body);
       res.status(HttpStatus.OK).send(data);
     } catch (error) {
       next(error);
@@ -30,13 +31,13 @@ class DepartmentController {
    * @param {object} Response - response object
    * @param {Function} NextFunction
    */
-  public getAllDepartment = async (
+  public getAllRole = async (
     req: Request,
     res: Response,
     next: NextFunction
   ): Promise<any> => {
     try {
-      const data: any = await this.DepartmentService.getAllDepartment();
+      const data: any = await this.RoleService.getAllRole();
       res.status(HttpStatus.OK).send(data);
     } catch (error) {
       next(error);
@@ -49,15 +50,13 @@ class DepartmentController {
    * @param {object} Response - response object
    * @param {Function} NextFunction
    */
-  public getDepartment = async (
+  public getRole = async (
     req: Request,
     res: Response,
     next: NextFunction
   ): Promise<any> => {
     try {
-      const data: any = await this.DepartmentService.getDepartment(
-        req.params.id
-      );
+      const data: any = await this.RoleService.getRole(req.params.id);
       res.status(HttpStatus.OK).send(data);
     } catch (error) {
       next(error);
@@ -70,15 +69,13 @@ class DepartmentController {
    * @param {object} Response - response object
    * @param {Function} NextFunction
    */
-  public deleteDepartment = async (
+  public deleteRole = async (
     req: Request,
     res: Response,
     next: NextFunction
   ): Promise<any> => {
     try {
-      const data: any = await this.DepartmentService.deleteDepartment(
-        req.params.id
-      );
+      const data: any = await this.RoleService.deleteRole(req.params.id);
       res.status(HttpStatus.OK).send(data);
     } catch (error) {
       next(error);
@@ -91,13 +88,13 @@ class DepartmentController {
    * @param {object} Response - response object
    * @param {Function} NextFunction
    */
-  public updateDepartment = async (
+  public updateRole = async (
     req: Request,
     res: Response,
     next: NextFunction
   ): Promise<any> => {
     try {
-      const data: any = await this.DepartmentService.updateDepartment(
+      const data: any = await this.RoleService.updateRole(
         req.params.id,
         req.body
       );
@@ -108,4 +105,4 @@ class DepartmentController {
   };
 }
 
-export default DepartmentController;
+export default RoleController;

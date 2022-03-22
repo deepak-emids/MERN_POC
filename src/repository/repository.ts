@@ -3,18 +3,20 @@ import {
   MetadataWithSuchNameAlreadyExistsError
 } from 'typeorm';
 
-import EmployeeData from '../models/employeeDetails.model';
+// import EmployeeData from '../models/employeeDetails.model';
 
 import { loggers } from 'winston';
 
 class Repository {
   /**
-   * Controller to addEmployee
+   * Controller to add
    * @param  {object} Request - request object
    * @param {object} Response - response object
    * @param {Function} NextFunction
    */
-  public addEmployee = async (entity, object) => {
+  public add = async (entity, object) => {
+    console.log(entity, object);
+
     try {
       let result = await createConnection().then(async (connection) => {
         //get table
@@ -35,24 +37,25 @@ class Repository {
 
       return result;
     } catch (error) {
+      console.log(error);
       return error;
     }
   };
 
   /**
-   * Controller to get Employee
+   * Controller to get
    * @param  {object} Request - request object
    * @param {object} Response - response object
    * @param {Function} NextFunction
    */
-  public getAllEmployee = async (entity) => {
+  public getAll = async (entity) => {
     try {
       let result = await createConnection().then(async (connection) => {
         //get table
         let repo = connection.getRepository(entity);
 
         //get saved data
-        let find = await repo.find({ id: id });
+        let find = await repo.find();
 
         //close connection
         await connection.close();
@@ -68,12 +71,12 @@ class Repository {
   };
 
   /**
-   * Controller to get Employee
+   * Controller to get
    * @param  {object} Request - request object
    * @param {object} Response - response object
    * @param {Function} NextFunction
    */
-  public getEmployee = async (entity, id) => {
+  public get = async (entity, id) => {
     try {
       let result = await createConnection().then(async (connection) => {
         //get table
@@ -101,13 +104,13 @@ class Repository {
    * @param {object} Response - response object
    * @param {Function} NextFunction
    */
-  public deleteEmployee = async (entity, id) => {
+  public delete = async (entity, id) => {
     try {
       let result = await createConnection().then(async (connection) => {
         //get table
         let repo = connection.getRepository(entity);
 
-        //find employee
+        //find
         let foundEmp = await repo.find({ id: id });
 
         if (foundEmp.length > 0) {
@@ -137,7 +140,7 @@ class Repository {
    * @param {object} Response - response object
    * @param {Function} NextFunction
    */
-  public updateEmployee = async (entity, id: number, object: EmployeeData) => {
+  public update = async (entity, id, object) => {
     try {
       let result = await createConnection().then(async (connection) => {
         //get table

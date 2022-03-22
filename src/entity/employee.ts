@@ -12,12 +12,12 @@ export class EmployeeDetails {
   email: string;
   @Column({ type: 'varchar', length: 80 })
   password: string;
-  @Column({ type: 'varchar', length: 80 })
+  @Column({ type: 'varchar', length: 200 })
   address: string;
-  @Column({ type: 'varchar', length: 80 })
-  department_Id: string;
-  @Column({ type: 'varchar', length: 15 })
-  role_Id: string;
+  @Column({ type: 'int' })
+  department_Id: number;
+  @Column({ type: 'int' })
+  role_Id: number;
   @Column({ type: 'int' })
   mobileNo: number;
   @Column({ type: 'int' })

@@ -50,7 +50,7 @@ class EmployeeDetailsService {
   get EmployeeDetailss
   */
   public getEmployeeDetails = async (): Promise<Response> => {
-    let result = await repo.getAllEmployeeEmployee(EmployeeDetails);
+    let result = await repo.getAllEmployee(EmployeeDetails);
 
     if (result.length > 0) {
       response.data = result;

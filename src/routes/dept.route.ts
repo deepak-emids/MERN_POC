@@ -18,7 +18,9 @@ class DepartmentControllerRoute {
     */
     this.router.post('/', userAuth, this.DepartmentController.addDepartment);
 
-    this.router.get('/', userAuth, this.DepartmentController.getDepartment);
+    this.router.get('/', userAuth, this.DepartmentController.getAllDepartment);
+
+    this.router.get('/:id', userAuth, this.DepartmentController.getDepartment);
 
     this.router.delete(
       '/:id',
