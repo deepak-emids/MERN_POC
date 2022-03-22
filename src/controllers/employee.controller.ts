@@ -1,6 +1,6 @@
 import HttpStatus from 'http-status-codes';
 import { Request, Response, NextFunction } from 'express';
-import { IUser } from '../types/user.interface';
+import { IUser } from '../models/user.interface';
 import EmployeeDetailsService from '../services/employee.service';
 // import Response from '../types/Response';
 
@@ -19,7 +19,9 @@ class EmployeeDetailsController {
     next: NextFunction
   ): Promise<any> => {
     try {
-      const data: any = await this.EmployeeDetailsService.addEmployeeDetails(req.body);
+      const data: any = await this.EmployeeDetailsService.addEmployeeDetails(
+        req.body
+      );
       res.status(HttpStatus.OK).send(data);
     } catch (error) {
       next(error);
@@ -38,7 +40,9 @@ class EmployeeDetailsController {
     next: NextFunction
   ): Promise<any> => {
     try {
-      const data = await this.EmployeeDetailsService.addEmployeeWorkDetails(req.body);
+      const data = await this.EmployeeDetailsService.addEmployeeWorkDetails(
+        req.body
+      );
       res.status(HttpStatus.OK).send(data);
     } catch (error) {
       next(error);
@@ -76,7 +80,8 @@ class EmployeeDetailsController {
     next: NextFunction
   ): Promise<any> => {
     try {
-      const data: any = await this.EmployeeDetailsService.getEmployeeWorkDetails();
+      const data: any =
+        await this.EmployeeDetailsService.getEmployeeWorkDetails();
       res.status(HttpStatus.OK).send(data);
     } catch (error) {
       next(error);
@@ -116,7 +121,10 @@ class EmployeeDetailsController {
     next: NextFunction
   ): Promise<any> => {
     try {
-      const data: any = await this.EmployeeDetailsService.deleteEmployeeWorkDetails(req.params.id);
+      const data: any =
+        await this.EmployeeDetailsService.deleteEmployeeWorkDetails(
+          req.params.id
+        );
       res.status(HttpStatus.OK).send(data);
     } catch (error) {
       next(error);
@@ -157,10 +165,11 @@ class EmployeeDetailsController {
     next: NextFunction
   ): Promise<any> => {
     try {
-      const data: any = await this.EmployeeDetailsService.updateEmployeeWorkDetails(
-        req.params.id,
-        req.body
-      );
+      const data: any =
+        await this.EmployeeDetailsService.updateEmployeeWorkDetails(
+          req.params.id,
+          req.body
+        );
       res.status(HttpStatus.OK).send(data);
     } catch (error) {
       next(error);

@@ -1,8 +1,9 @@
-import employeeController from '../controllers/employee.controller';
+import EmployeeDetailsController from '../controllers/employee.controller';
 import express, { IRouter } from 'express';
+import { userAuth } from '../middlewares/auth.middleware';
 
-class EmployeeRoute {
-  private EmployeeController = new employeeController();
+class EmployeeDetailsRoute {
+  private EmployeeDetailsController = new EmployeeDetailsController();
 
   private router = express.Router();
   //   private UserValidator = new userValidator();
@@ -13,16 +14,48 @@ class EmployeeRoute {
 
   private routes = () => {
     /*
-    route to add all employee
+    route to add all EmployeeDetails
     */
-    this.router.post('/', this.EmployeeController.addEmployee);
-    this.router.post('/work', this.EmployeeController.addEmpWork);
-    this.router.get('/', this.EmployeeController.getEmployee);
-    this.router.get('/work', this.EmployeeController.getEmpWork);
-    this.router.delete('/:id', this.EmployeeController.deleteEmployee);
-    this.router.delete('/work:id', this.EmployeeController.deleteEmpWork);
-    this.router.put('/:id', this.EmployeeController.updateEmployee);
-    this.router.put('/work:id', this.EmployeeController.updateEmpWork);
+    this.router.post(
+      '/',
+      userAuth,
+      this.EmployeeDetailsController.addEmployeeDetails
+    );
+    this.router.post(
+      '/work',
+      userAuth,
+      this.EmployeeDetailsController.addEmployeeWorkDetails
+    );
+    this.router.get(
+      '/',
+      userAuth,
+      this.EmployeeDetailsController.getEmployeeDetails
+    );
+    this.router.get(
+      '/work',
+      userAuth,
+      this.EmployeeDetailsController.getEmployeeWorkDetails
+    );
+    this.router.delete(
+      '/:id',
+      userAuth,
+      this.EmployeeDetailsController.deleteEmployeeDetails
+    );
+    this.router.delete(
+      '/work/:id',
+      userAuth,
+      this.EmployeeDetailsController.deleteEmployeeWorkDetails
+    );
+    this.router.put(
+      '/:id',
+      userAuth,
+      this.EmployeeDetailsController.updateEmployeeDetails
+    );
+    this.router.put(
+      '/work/:id',
+      userAuth,
+      this.EmployeeDetailsController.updateEmployeeWorkDetails
+    );
   };
 
   public getRoutes = (): IRouter => {
@@ -30,4 +63,4 @@ class EmployeeRoute {
   };
 }
 
-export default EmployeeRoute;
+export default EmployeeDetailsRoute;

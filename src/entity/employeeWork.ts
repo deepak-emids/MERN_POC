@@ -1,27 +1,27 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class EmployeeWorkDetails {
+export class EmployeeDetails {
   @PrimaryGeneratedColumn()
-  employeeId: number;
+  id: number;
+  @Column({ type: 'varchar', length: 80 })
+  firstName: string;
+  @Column({ type: 'varchar', length: 80 })
+  lastName: string;
   @Column({ type: 'varchar', length: 80 })
   email: string;
   @Column({ type: 'varchar', length: 80 })
   password: string;
   @Column({ type: 'varchar', length: 80 })
-  education: string;
-  @Column({ type: 'int' })
-  experiance: number;
-  @Column({ type: 'varchar', length: 80 })
-  department: string;
+  department_Id: string;
   @Column({ type: 'varchar', length: 15 })
-  role: string;
+  role_Id: string;
   @Column({ type: 'varchar', length: 80 })
-  designation: string;
-  @Column({ type: 'varchar', length: 80 })
-  reporting_lead: string;
+  address: string;
   @Column({ type: 'int' })
-  package: number;
+  mobileNo: number;
+  @Column({ type: 'int' })
+  aadharId: number;
   @Column({ type: 'date' })
-  joining: Date;
+  date_Of_Joining: Date;
 }

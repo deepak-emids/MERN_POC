@@ -74,7 +74,9 @@ class EmployeeDetailsService {
   /*
   add EmployeeWorkDetails
   */
-  public addEmployeeWorkDetails = async (body: EmployeeWorkData): Promise<Response> => {
+  public addEmployeeWorkDetails = async (
+    body: EmployeeWorkData
+  ): Promise<Response> => {
     let response = new Response();
     return new Promise((resolve, reject) => {
       createConnection()
@@ -82,9 +84,11 @@ class EmployeeDetailsService {
           // create ref
           const emp = new EmployeeWorkDetails();
 
+          let hash = await bcrypt.hash(body.password, 8);
+
           //assign values
           emp.email = body.email;
-          emp.password = body.password;
+          emp.password = hash;
           emp.education = body.education;
           emp.experiance = body.experiance;
           emp.department = body.department;
@@ -315,7 +319,7 @@ class EmployeeDetailsService {
             await connection.close();
 
             response.data = {};
-            response.message = 'EmployeeDetails Not Found';
+            response.message = 'EmployeeWorkDetails Not Found';
             response.status = 404;
 
             reject(response);

@@ -14,7 +14,7 @@ class UserRoutes {
 
   private routes = () => {
     //route to get all users
-    this.router.get('/login', this.UserController.loginUser);
+    this.router.post('/login', this.UserController.loginUser);
   };
 
   public getRoutes = (): IRouter => {
