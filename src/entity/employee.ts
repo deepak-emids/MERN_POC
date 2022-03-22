@@ -13,11 +13,11 @@ export class EmployeeDetails {
   @Column({ type: 'varchar', length: 80 })
   password: string;
   @Column({ type: 'varchar', length: 80 })
+  address: string;
+  @Column({ type: 'varchar', length: 80 })
   department_Id: string;
   @Column({ type: 'varchar', length: 15 })
   role_Id: string;
-  @Column({ type: 'varchar', length: 80 })
-  address: string;
   @Column({ type: 'int' })
   mobileNo: number;
   @Column({ type: 'int' })

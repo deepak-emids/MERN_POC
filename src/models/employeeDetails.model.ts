@@ -1,16 +1,15 @@
-
 class EmployeeData {
-  employeeId: number;
+  id: number;
   firstName: string;
   lastName: string;
   email: string;
-  gender: string;
-  date_of_birth: Date;
+  password: string;
   address: string;
-  city: string;
-  country: string;
+  department_Id: number;
+  role_Id: number;
   mobileNo: number;
   aadharId: number;
+  date_Of_Joining: Date;
 }
 
-export default  EmployeeData;
+export default EmployeeData;
