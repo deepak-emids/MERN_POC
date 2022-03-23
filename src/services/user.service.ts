@@ -1,10 +1,10 @@
-import { IUser } from '../models/user.interface';
+import { IUser } from '../models/user.model';
 import { OkPacket, RowDataPacket } from 'mysql2';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import { EmployeeDetails } from '../entity/employee';
-import Response from '../models/Response';
-import LoginRequest from '../models/loginReqType';
+import Response from '../models/response.model';
+import LoginRequest from '../models/loginReq.model';
 import Repository from '../repository/repository';
 let repo = new Repository();
 

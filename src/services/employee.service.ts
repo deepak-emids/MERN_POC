@@ -3,7 +3,7 @@ import logger from '../config/logger';
 import bcrypt, { hash } from 'bcrypt';
 import { EmployeeDetails } from '../entity/employee';
 import EmployeeData from '../models/employeeDetails.model';
-import Response from '../models/Response';
+import Response from '../models/response.model';
 import Repository from '../repository/repository';
 let repo = new Repository();
 
