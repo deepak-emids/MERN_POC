@@ -25,6 +25,12 @@ class EmployeeDetailsRoute {
     this.router.get(
       '/',
       userAuth,
+      this.EmployeeDetailsController.getAllEmployeeDetails
+    );
+
+    this.router.get(
+      '/:id',
+      userAuth,
       this.EmployeeDetailsController.getEmployeeDetails
     );
 

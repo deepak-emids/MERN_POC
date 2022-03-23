@@ -76,14 +76,16 @@ class Repository {
    * @param {object} Response - response object
    * @param {Function} NextFunction
    */
-  public get = async (entity, id) => {
+  public get = async (entity, query) => {
     try {
       let result = await createConnection().then(async (connection) => {
         //get table
         let repo = connection.getRepository(entity);
 
         //get saved data
-        let find = await repo.find({ id: id });
+        let find = await repo.find(query);
+
+        console.log(find);
 
         //close connection
         await connection.close();
@@ -146,17 +148,24 @@ class Repository {
         //get table
         let repo = connection.getRepository(entity);
 
-        //update table
-        await repo.update({ id: id }, object);
+        //find
+        let foundEmp = await repo.find({ id: id });
 
-        //get saved data
-        let find = await repo.find({ id: id });
+        if (foundEmp.length > 0) {
+          //update table
+          await repo.update({ id: id }, object);
 
-        //close connection
-        await connection.close();
+          //get saved data
+          let find = await repo.find({ id: id });
 
-        //return result
-        return find;
+          await connection.close();
+
+          return find;
+        } else {
+          await connection.close();
+
+          return false;
+        }
       });
 
       return result;
