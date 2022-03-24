@@ -80,25 +80,9 @@ class EmployeeDetailsService {
   update EmployeeDetails
   */
   public updateEmployeeDetails = async (id: number, body: EmployeeData) => {
-    let details: EmployeeData = await repo.get(EmployeeDetails, id);
+    // let details = await repo.get(EmployeeDetails, id);
 
-    let newData = {
-      id: id,
-      firstName: body.firstName ? body.firstName : details.firstName,
-      lastName: body.lastName ? body.lastName : details.lastName,
-      email: body.email ? body.email : details.email,
-      password: body.password ? body.password : details.password,
-      address: body.address ? body.address : details.address,
-      department_Id: body.department_Id
-        ? body.department_Id
-        : details.department_Id,
-      role_Id: body.role_Id ? body.role_Id : details.role_Id,
-      mobileNo: body.mobileNo ? body.mobileNo : details.mobileNo,
-      aadharId: body.aadharId ? body.aadharId : details.aadharId,
-      date_Of_Joining: body.date_Of_Joining
-        ? body.date_Of_Joining
-        : details.date_Of_Joining
-    };
+    let newData = { ...body };
 
     let result = await repo.update(EmployeeDetails, id, newData);
 
