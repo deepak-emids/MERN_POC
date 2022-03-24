@@ -85,8 +85,6 @@ class Repository {
         //get saved data
         let find = await repo.find(query);
 
-        console.log(find);
-
         //close connection
         await connection.close();
 

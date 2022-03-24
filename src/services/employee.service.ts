@@ -16,21 +16,33 @@ class EmployeeDetailsService {
   public addEmployeeDetails = async (body: EmployeeData): Promise<Response> => {
     let emp = new EmployeeDetails();
 
-    const hash: string = await bcrypt.hash(body.password, 8);
+    let query = { aadharId: body.aadharId };
+    let result = await repo.get(EmployeeDetails, query);
 
-    body.password = hash;
+    if (result) {
+      //response object
+      response.data = result[0];
+      response.message = 'Employee Already Exists';
+      response.status = 201;
 
-    emp = { ...body };
+      return response;
+    } else {
+      const hash: string = await bcrypt.hash(body.password, 8);
 
-    let find = await repo.add(EmployeeDetails, emp);
+      body.password = hash;
 
-    //response object
-    response.data = find[find.length - 1];
-    response.message = 'EmployeeDetails Data Added';
-    response.status = 201;
+      emp = { ...body };
 
-    //return saved data
-    return response;
+      let find = await repo.add(EmployeeDetails, emp);
+
+      //response object
+      response.data = find[find.length - 1];
+      response.message = 'EmployeeDetails Data Added';
+      response.status = 201;
+
+      //return saved data
+      return response;
+    }
   };
 
   /*
