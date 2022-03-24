@@ -1,7 +1,9 @@
 import HttpStatus from 'http-status-codes';
 import { Request, Response, NextFunction } from 'express';
 import EmployeeDetailsService from '../services/employee.service';
-// import Response from '../types/Response';
+import { number } from '@hapi/joi';
+import Response from '../types/Response';
+import logger from '../config/logger';
 
 class EmployeeDetailsController {
   public EmployeeDetailsService = new EmployeeDetailsService();
@@ -21,8 +23,10 @@ class EmployeeDetailsController {
       const data: any = await this.EmployeeDetailsService.addEmployeeDetails(
         req.body
       );
+
       res.status(data.status).send(data);
     } catch (error) {
+      logger.logger.error(error);
       next(error);
     }
   };
@@ -43,6 +47,8 @@ class EmployeeDetailsController {
         await this.EmployeeDetailsService.getAllEmployeeDetails();
       res.status(data.status).send(data);
     } catch (error) {
+      logger.logger.error(error);
+
       next(error);
     }
   };
@@ -64,6 +70,8 @@ class EmployeeDetailsController {
       );
       res.status(data.status).send(data);
     } catch (error) {
+      logger.logger.error(error);
+
       next(error);
     }
   };
@@ -85,6 +93,8 @@ class EmployeeDetailsController {
       );
       res.status(data.status).send(data);
     } catch (error) {
+      logger.logger.error(error);
+
       next(error);
     }
   };
@@ -107,6 +117,8 @@ class EmployeeDetailsController {
       );
       res.status(data.status).send(data);
     } catch (error) {
+      logger.logger.error(error);
+
       next(error);
     }
   };

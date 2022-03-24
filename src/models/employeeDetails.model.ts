@@ -10,6 +10,10 @@ class EmployeeData {
   mobileNo: number;
   aadharId: number;
   date_Of_Joining: Date;
+  isActive: boolean;
+  isDeleted: boolean;
+  created_at: Date;
+  updated_at: Date;
 }
 
 export default EmployeeData;

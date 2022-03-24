@@ -11,7 +11,7 @@ let response = new Response();
 
 class EmployeeDetailsService {
   /*
-  add emp
+  add employee
   */
   public addEmployeeDetails = async (body: EmployeeData): Promise<Response> => {
     let emp = new EmployeeDetails();
@@ -25,7 +25,7 @@ class EmployeeDetailsService {
     let find = await repo.add(EmployeeDetails, emp);
 
     //response object
-    response.data = find;
+    response.data = find[find.length - 1];
     response.message = 'EmployeeDetails Data Added';
     response.status = 201;
 
@@ -34,7 +34,7 @@ class EmployeeDetailsService {
   };
 
   /*
-  get EmployeeDetailss
+  get All Employees
   */
   public getAllEmployeeDetails = async (): Promise<Response> => {
     let result = await repo.getAll(EmployeeDetails);
@@ -55,9 +55,9 @@ class EmployeeDetailsService {
   };
 
   /*
-  get EmployeeDetailss
+  get EmployeeDetails
   */
-  public getEmployeeDetails = async (id): Promise<Response> => {
+  public getEmployeeDetails = async (id: number): Promise<Response> => {
     let query = { id: id };
     let result = await repo.get(EmployeeDetails, query);
 
@@ -86,13 +86,13 @@ class EmployeeDetailsService {
 
     if (result.length > 0) {
       response.data = result;
-      response.message = 'EmployeeDetails deleted';
+      response.message = 'EmployeeDetails updated';
       response.status = 200;
 
       return response;
     } else {
       response.data = {};
-      response.message = 'EmployeeDetails Not Found';
+      response.message = 'Employee Not Found';
       response.status = 404;
 
       return response;
@@ -100,7 +100,7 @@ class EmployeeDetailsService {
   };
 
   /*
-  delete EmployeeDetails work details
+  delete EmployeeDetails 
   */
   public deleteEmployeeDetails = async (id) => {
     let result = await repo.delete(EmployeeDetails, id);
@@ -113,7 +113,7 @@ class EmployeeDetailsService {
       return response;
     } else {
       response.data = {};
-      response.message = 'EmployeeDetails Not Found';
+      response.message = 'Employee Not Found';
       response.status = 404;
 
       return response;
