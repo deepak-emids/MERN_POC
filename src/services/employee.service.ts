@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import logger from '../config/logger';
-import bcrypt, { hash } from 'bcrypt';
+import bcrypt from 'bcrypt';
 import { EmployeeDetails } from '../entity/employee';
 import EmployeeData from '../models/employeeDetails.model';
 import Response from '../models/response.model';
@@ -13,7 +13,7 @@ class EmployeeDetailsService {
   /*
   add emp
   */
-  public addEmployeeDetails = async (body: EmployeeData): Response => {
+  public addEmployeeDetails = async (body: EmployeeData): Promise<Response> => {
     let emp = new EmployeeDetails();
 
     const hash: string = await bcrypt.hash(body.password, 8);
@@ -61,14 +61,14 @@ class EmployeeDetailsService {
     let query = { id: id };
     let result = await repo.get(EmployeeDetails, query);
 
-    if (result.length > 0) {
+    if (result) {
       response.data = result;
       response.message = 'EmployeeDetails deleted';
       response.status = 200;
 
       return response;
     } else {
-      response.data = {};
+      response.data = result;
       response.message = 'EmployeeDetails Not Found';
       response.status = 404;
 
@@ -80,8 +80,6 @@ class EmployeeDetailsService {
   update EmployeeDetails
   */
   public updateEmployeeDetails = async (id: number, body: EmployeeData) => {
-    // let details = await repo.get(EmployeeDetails, id);
-
     let newData = { ...body };
 
     let result = await repo.update(EmployeeDetails, id, newData);
