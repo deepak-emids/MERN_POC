@@ -11,7 +11,7 @@ const header = {
 const Service = {
   //signup and signin
   Signup: (data) => {
-    return service.postMethod(`${url}/signup`, data);
+    return service.postMethod(`${url}/users/login`, data);
   },
 
   Signin: (data) => {
@@ -21,41 +21,27 @@ const Service = {
   //------------------------------------employee
 
   //new emp data
-  newEmpData: (data) => {
-    return service.postMethod(`${url}/data`, data, header);
-  },
-
-  //new work data
-  newEmpWork: (data) => {
-    return service.postMethod(`${url}/work`, data, header);
+  addEmployee: (data) => {
+    return service.postMethod(`${url}/employee`, data, header);
   },
 
   //get single emps
-  getEmpData: () => {
-    return service.getMethod(`${url}/data`, header);
-  },
-
-  //get dept emps
-  getEmpWork: () => {
-    return service.getMethod(`${url}/work`, header);
+  getAllEmployee: () => {
+    return service.getMethod(`${url}/employee`, header);
   },
 
   //get project emps
   getEmployee: (data) => {
+    console.log(data);
     return service.getMethod(`${url}/employee/${data}`, header);
   },
 
-  //get field emps
-  getEmployee: (data) => {
-    return service.getMethod(`${url}/employee/${data}`, header);
+  //update dept
+  updateEmployee: (id, data) => {
+    return service.putMethod(`${url}/employee/${id}`, data, header);
   },
 
-  //update emp
-  updateEmployee: (data) => {
-    return service.putMethod(`${url}/employee/${data}`, header);
-  },
-
-  //delete emp
+  //update dept
   deleteEmployee: (data) => {
     return service.deleteMethod(`${url}/employee/${data}`, header);
   },
@@ -63,35 +49,28 @@ const Service = {
   //------------------------------------dept
 
   //new dept
-  newDept: (data) => {
-    return service.postMethod(`${url}/dept`, data, header);
+  addDepartment: (data) => {
+    return service.postMethod(`${url}/department`, data, header);
   },
 
   //get dept
-  getDept: (data) => {
-    return service.getMethod(`${url}/dept/${data}`, header);
+  getAllDepartment: () => {
+    return service.getMethod(`${url}/department`, header);
   },
 
   //get field dept
-  getDept: (data) => {
-    return service.getMethod(`${url}/dept/${data}`, header);
+  getDepartment: (data) => {
+    return service.getMethod(`${url}/department/${data}`, header);
   },
 
   //update dept
-  updateDept: (data) => {
-    return service.putMethod(`${url}/dept/${data}`, header);
+  updateDepartment: (id, data) => {
+    return service.putMethod(`${url}/department/${id}`, header);
   },
 
   //delete dept
-  deleteDept: (data) => {
-    return service.deleteMethod(`${url}/dept/${data}`, header);
-  },
-
-  //------------------------------------per
-
-  //get permission
-  getPer: (data) => {
-    return service.getMethod(`${url}/permission/${data}`, header);
+  deleteDepartment: (data) => {
+    return service.deleteMethod(`${url}/department/${data}`, header);
   },
 };
 export default Service;

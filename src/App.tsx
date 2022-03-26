@@ -1,46 +1,32 @@
-import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
-import service from "./services/services";
-import SignupForm from "./components/addEmployeeForm/EmployeeFrom";
+import User from "./pages/user/User";
+import Dashboard from "./pages/dashboard/Dashboard";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Tables from "./components/table/Tables";
+import About from "./components/about/About";
 
 function App() {
-  <>
-    <SignupForm />
-  </>;
-  // React.useEffect(() => {
-  //   foo();
-  // }, []);
+  return (
+    <>
+      <Router>
+        <Routes>
+          <Route path="/login" element={<User />} />
+          <Route path="/table" element={<Tables />} />
 
-  // let foo = async () => {
-  //   let data = {
-  //     email: "hi@gmial",
-  //     password: "as",
-  //   };
-  //   service
-  //     .Signin(data)
-  //     .then((res) => {
-  //       console.log(res);
-  //     })
-  //     .catch((res) => {});
-  // };
+          <Route path="/" element={<Dashboard />}>
+            <Route path="/about" element={<About />} />
+            <Route path="/profile" element={<Tables />} />
+            <Route path="/employees" element={<Tables />} />
+            {/* <Route path="/addForm" element={<AddForm />} /> */}
 
-  // return (
-  //   <div className="App">
-  //     <header className="App-header">
-  //       <img src={logo} className="App-logo" alt="logo" />
-
-  //       <a
-  //         className="App-link"
-  //         href="https://reactjs.org"
-  //         target="_blank"
-  //         rel="noopener noreferrer"
-  //       >
-  //         Learn React
-  //       </a>
-  //     </header>
-  //   </div>
-  // );
+            <Route path="/department" element={<Tables />} />
+            <Route path="/project" element={<Tables />} />
+            <Route path="/logout" element={<Tables />} />
+          </Route>
+        </Routes>
+      </Router>
+    </>
+  );
 }
 
 export default App;
