@@ -21,7 +21,7 @@ class EmployeeDetailsService {
 
     if (result) {
       //response object
-      response.data = result[0];
+      response.data = result;
       response.message = 'Employee Already Exists';
       response.status = 201;
 

@@ -5,7 +5,7 @@ import userService from '../services/user.service';
 import { Request, Response, NextFunction } from 'express';
 import { IUser } from '../models/user.model';
 import { ILoginUser } from '../models/loginReq.model';
-class UserController {
+// class UserController
   public UserService = new userService();
 
   /**

@@ -1,5 +1,3 @@
-import { IUser } from '../models/user.model';
-import { OkPacket, RowDataPacket } from 'mysql2';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import { EmployeeDetails } from '../entity/employee';
@@ -16,8 +14,6 @@ class UserService {
   public loginUser = async (body: LoginRequest): Promise<Response> => {
     let query = { email: body.email };
     let find = await repo.get(EmployeeDetails, query);
-
-    console.log(find.password);
 
     if (find) {
       let checkPassword = await bcrypt.compare(body.password, find.password);

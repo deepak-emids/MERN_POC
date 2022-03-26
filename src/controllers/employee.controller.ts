@@ -2,7 +2,6 @@ import HttpStatus from 'http-status-codes';
 import { Request, Response, NextFunction } from 'express';
 import EmployeeDetailsService from '../services/employee.service';
 import { number } from '@hapi/joi';
-import Response from '../types/Response';
 import logger from '../config/logger';
 
 class EmployeeDetailsController {
