@@ -8,7 +8,7 @@ import { ILoginUser } from '../models/loginReq.model';
 // class UserController
   public UserService = new userService();
 
-  /**
+  // /** */
    * Controller to login user
    * @param  {object} Request - request object
    * @param {object} Response - response object
