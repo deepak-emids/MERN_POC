@@ -53,7 +53,7 @@ class EmployeeDetailsService {
 
     if (result.length > 0) {
       response.data = result;
-      response.message = 'EmployeeDetails deleted';
+      response.message = 'EmployeeDetails Fetched';
       response.status = 200;
 
       return response;
@@ -75,7 +75,7 @@ class EmployeeDetailsService {
 
     if (result) {
       response.data = result;
-      response.message = 'EmployeeDetails deleted';
+      response.message = 'EmployeeDetails Fetched';
       response.status = 200;
 
       return response;
