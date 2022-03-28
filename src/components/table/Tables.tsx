@@ -203,9 +203,7 @@ export default function DataGridDemo(props: any) {
         <Button
           variant="contained"
           color="primary"
-          onClick={(event) => {
-            handleDelete(event, cellValues);
-          }}
+          onClick={(event) => handleDelete(event, cellValues)}
           style={{
             color: "white",
             background: "#ff0021",

@@ -1,8 +1,16 @@
 .welcome-card {
 }
 
-.land {
+.back {
   background-size: cover;
   height: 200vh;
+  width: 100vw;
+  /* Add the blur effect */
+  // filter: blur(8px);
+  // -webkit-filter: blur(3px);
+}
+.head {
+  background-size: cover;
+  height: 15vh;
   width: 100vw;
 }

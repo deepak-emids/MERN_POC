@@ -12,6 +12,7 @@ import Welcome from "../../components/Welcome/Welcome";
 import Tables from "../../components/table/Tables";
 import About from "../../components/about/About";
 import AddForm from "../../components/AddEmployee/AddEmployee";
+import Navbar from "../../navbar/Navbar";
 
 //css
 import "./dashboard.scss";
@@ -85,12 +86,16 @@ export default function Dashboard() {
   return (
     <div className="welcome">
       <div className="card-welcome">
+        <div>
+          <Navbar />
+        </div>
         <div className="card-header">
           {" "}
           <Header handleSideBar={handleSideBar} />
         </div>
 
         <div className="tablecard">
+          s
           {table ? (
             <div className="content">
               <Routes>
@@ -136,9 +141,9 @@ export default function Dashboard() {
         </div>
       </div> */}
 
-      <div className="card-footer">
+      {/* <div className="card-footer">
         <Footer />
-      </div>
+      </div> */}
     </div>
   );
 }

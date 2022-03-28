@@ -31,9 +31,15 @@ function Header(props: any) {
         <div className="logo">
           <img className="imp"></img>
           <div className="logo-name">
-            <span className="logo-text1">CRM </span>
+            <span
+              className="logo-text1"
+              style={{ fontFamily: "Sedgwick Ave, cursive" }}
+            >
+              CRM{" "}
+            </span>
           </div>
         </div>
+
         <div className="options">
           <Button onClick={() => handleNavbar("About")} className="opt">
             About{" "}

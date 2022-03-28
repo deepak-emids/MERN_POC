@@ -1,0 +1,58 @@
+.about {
+  // position: absolute;
+  // background-color: black;
+  height: 150vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+.i1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 50px;
+  .tagline {
+    font-size: 18px;
+  }
+}
+.i2 {
+  font-family: Sedgwick Ave, cursive;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding-top: 5rem;
+
+  .vec2 {
+    height: 400px;
+    width: 400px;
+  }
+}
+.i3 {
+  font-family: Sedgwick Ave, cursive;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding-top: 5rem;
+}
+.mission {
+  font-size: 25px;
+}
+.vec1 {
+  height: 400px;
+  width: 400px;
+}
+.vec2 {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+}
+.mg {
+  display: flex;
+  flex-direction: column;
+
+  .mission {
+    font-size: 20px;
+  }
+}

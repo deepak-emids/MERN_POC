@@ -12,6 +12,9 @@ const AxiosService = {
   putMethod: (url, data, headers = false) => {
     return axios.put(url, data, headers);
   },
+  deleteMethod: (url, headers = false) => {
+    return axios.delete(url, headers);
+  },
 };
 
 export default AxiosService;
