@@ -13,7 +13,7 @@ class EmployeeDetailsService {
   /*
   add employee
   */
-  public addEmployeeDetails = async (body: EmployeeData): Promise<Response> => {
+  public async addEmployeeDetails(body: EmployeeData): Promise<Response> {
     let emp = new EmployeeDetails();
 
     let query = { aadharId: body.aadharId };
@@ -43,7 +43,7 @@ class EmployeeDetailsService {
       //return saved data
       return response;
     }
-  };
+  }
 
   /*
   get All Employees
@@ -69,7 +69,7 @@ class EmployeeDetailsService {
   /*
   get EmployeeDetails
   */
-  public getEmployeeDetails = async (id: number): Promise<Response> => {
+  public getEmployeeDetails = async (id): Promise<Response> => {
     let query = { id: id };
     let result = await repo.get(EmployeeDetails, query);
 
@@ -91,7 +91,7 @@ class EmployeeDetailsService {
   /*
   update EmployeeDetails
   */
-  public updateEmployeeDetails = async (id: number, body: EmployeeData) => {
+  public updateEmployeeDetails = async (id, body: EmployeeData) => {
     let newData = { ...body };
 
     let result = await repo.update(EmployeeDetails, id, newData);

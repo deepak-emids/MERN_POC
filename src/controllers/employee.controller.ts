@@ -1,8 +1,8 @@
 import HttpStatus from 'http-status-codes';
 import { Request, Response, NextFunction } from 'express';
 import EmployeeDetailsService from '../services/employee.service';
-import { number } from '@hapi/joi';
 import logger from '../config/logger';
+import { number } from '@hapi/joi';
 
 class EmployeeDetailsController {
   public EmployeeDetailsService = new EmployeeDetailsService();
@@ -65,7 +65,7 @@ class EmployeeDetailsController {
   ): Promise<any> => {
     try {
       const data: any = await this.EmployeeDetailsService.getEmployeeDetails(
-        req.params.id
+        req
       );
       res.status(data.status).send(data);
     } catch (error) {
@@ -88,7 +88,7 @@ class EmployeeDetailsController {
   ): Promise<any> => {
     try {
       const data: any = await this.EmployeeDetailsService.deleteEmployeeDetails(
-        req.params.id
+        req
       );
       res.status(data.status).send(data);
     } catch (error) {
@@ -111,7 +111,7 @@ class EmployeeDetailsController {
   ): Promise<any> => {
     try {
       const data: any = await this.EmployeeDetailsService.updateEmployeeDetails(
-        req.params.id,
+        req,
         req.body
       );
       res.status(data.status).send(data);

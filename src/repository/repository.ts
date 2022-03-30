@@ -3,8 +3,6 @@ import {
   MetadataWithSuchNameAlreadyExistsError
 } from 'typeorm';
 
-// import EmployeeData from '../models/employeeDetails.model';
-
 import { loggers } from 'winston';
 
 class Repository {

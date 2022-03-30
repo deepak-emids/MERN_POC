@@ -17,6 +17,7 @@
   "license": "MIT",
   "dependencies": {
     "@hapi/joi": "^17.1.1",
+    "@nestjs/testing": "^8.4.3",
     "@sendgrid/mail": "^7.2.5",
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
@@ -29,6 +30,7 @@
     "mongoose": "^5.10.2",
     "morgan": "^1.10.0",
     "mysql2": "^2.3.3",
+    "nest": "^0.1.6",
     "reflect-metadata": "^0.1.13",
     "ts-node-dev": "^1.0.0-pre.62",
     "typeorm": "^0.2.45",

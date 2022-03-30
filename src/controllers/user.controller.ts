@@ -3,17 +3,11 @@ import HttpStatus from 'http-status-codes';
 import userService from '../services/user.service';
 
 import { Request, Response, NextFunction } from 'express';
-import { IUser } from '../models/user.model';
-import { ILoginUser } from '../models/loginReq.model';
-// class UserController
+// import { IUser } from '../models/user.model';
+import ILoginUser from '../models/response.model';
+class UserController {
   public UserService = new userService();
 
-  // /** */
-   * Controller to login user
-   * @param  {object} Request - request object
-   * @param {object} Response - response object
-   * @param {Function} NextFunction
-   */
   public loginUser = async (
     req: Request,
     res: Response,
@@ -24,7 +18,7 @@ import { ILoginUser } from '../models/loginReq.model';
         req.body
       );
       res.status(200).json({
-        code: responseData.code,
+        code: responseData.status,
         data: responseData.data,
         message: responseData.message
       });

@@ -52,8 +52,10 @@ class RoleService {
   /*
   get Roles
   */
-  public getRole = async (id): Promise<Response> => {
-    let result = await repository.getAll(Role, id);
+  public getRole = async (id: number): Promise<Response> => {
+    let query = { id: id };
+
+    let result = await repository.get(Role, query);
 
     if (result.length > 0) {
       response.data = result;
@@ -101,7 +103,7 @@ class RoleService {
   /*
   delete Role work details
   */
-  public deleteRole = async (id) => {
+  public deleteRole = async (id: number) => {
     let result = await repository.delete(Role, id);
 
     if (result.length > 0) {
