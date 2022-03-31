@@ -6,9 +6,7 @@ import EmployeeService from '../services/employee.service';
 
 EmployeeService.prototype.getAllEmployeeDetails = jest
   .fn()
-  .getMockImplementation(() => {
-    return 'hi';
-  });
+  .getMockImplementation();
 
 let employeeService = new EmployeeService();
 //----------------------------------------------
@@ -39,11 +37,7 @@ describe('AppController', () => {
 
   describe('root', () => {
     it('should call test fn', () => {
-      appController.getAllEmployeeDetails(
-        mockRequest(),
-        mockResponse(),
-        mockNext()
-      );
+      appController.getAllEmployeeDetails();
       expect(employeeService.getAllEmployeeDetails).toHaveBeenCalled();
     });
   });
