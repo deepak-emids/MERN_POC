@@ -99,9 +99,9 @@ export default function Dashboard() {
   return (
     <div className="welcome">
       <div className="card-welcome">
-        <div>
+        {/* <div>
           <Navbar />
-        </div>
+        </div> */}
         <div className="card-header">
           {" "}
           <Header handleSideBar={handleSideBar} />

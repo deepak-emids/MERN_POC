@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import back from "../../assets/leaf2.jpg";
-import head from "../../assets/head-back.jpg";
+import back from "../../assets/table.jpg";
+import head from "../../assets/table.jpg";
 
 import "./welcome.scss";
 
