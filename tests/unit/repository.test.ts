@@ -2,8 +2,9 @@ import Repository from '../../src/repository/repository';
 let repo = new Repository();
 import { EmployeeDetails } from '../../src/entity/employee';
 
-describe('AppController', () => {
-  it('should create new Employee', async () => {
+describe('Repository', () => {
+  //create employee
+  it('should create new Employee and return created employee', async () => {
     // let newEmployee = {
     //   firstName: faker.name.findName(),
     //   lastName: faker.name.lastName(),
@@ -38,10 +39,18 @@ describe('AppController', () => {
     expect(createdUser).toMatchObject(newUser);
   });
 
-  it('should get all employees', async () => {
+  //get all employees
+  it('should get array of all employees to match gieven length ', async () => {
     const res = await repo.getAll(EmployeeDetails);
 
-    console.log(res.length, 'response lenth');
     expect(res.length).toBe(9);
+  });
+
+  //get single employee
+  it.only('should get single employees of given id', async () => {
+    const employeeId = 1;
+    const employee = await repo.get(EmployeeDetails, employeeId);
+
+    expect(employee.id).toBe(employeeId);
   });
 });
