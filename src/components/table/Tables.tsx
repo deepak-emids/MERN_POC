@@ -184,6 +184,7 @@ export default function DataGridDemo(props: any) {
 
   //row data
   const rows = props.data;
+  console.log(rows, "rows");
 
   //column data
   const columns: GridColDef[] = Object.keys(props.data[0]).map((key, id) => {

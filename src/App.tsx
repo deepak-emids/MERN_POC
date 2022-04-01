@@ -3,29 +3,25 @@ import User from "./pages/user/User";
 import Dashboard from "./pages/dashboard/Dashboard";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Tables from "./components/table/Tables";
-import About from "./components/about/About";
+import About from "./pages/about/About";
 import Navbar from "./navbar/Navbar";
 import Footer from "./components/footer/footer";
+import Employee from "./pages/employees/Employee";
+import Department from "./pages/deparment/Department";
 
 function App() {
   return (
     <>
       <Router>
-        {/* <Navbar /> */}
+        <Navbar />
         <Routes>
           <Route path="/login" element={<User />} />
-          <Route path="/table" element={<Tables />} />
-
-          <Route path="/" element={<Dashboard />}>
-            <Route path="/about" element={<About />} />
-            <Route path="/profile" element={<Tables />} />
-            <Route path="/employees" element={<Tables />} />
-            {/* <Route path="/addForm" element={<AddForm />} /> */}
-
-            <Route path="/department" element={<Tables />} />
-            <Route path="/project" element={<Tables />} />
-            <Route path="/logout" element={<Tables />} />
-          </Route>
+          <Route path="/about" element={<About />} />
+          <Route path="/profile" element={<Tables />} />
+          <Route path="/employee" element={<Employee />} />
+          <Route path="/department" element={<Department />} />
+          {/* <Route path="/roles" element={<Role />} /> */}
+          <Route path="/" element={<About />}></Route>
         </Routes>
         <Footer />
       </Router>

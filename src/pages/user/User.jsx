@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import logo from "../../assets/Image 11.jpg";
-import Signin from "../../components/signin/Signin";
 
 import "./user.scss";
 
@@ -27,12 +26,14 @@ function User() {
 
           <div className="formContainer">
             <div className="switch">
-              <h5 className="sign" onClick={handleSwitch} style={{ fontSize: "25px" }}>
+              <h5
+                className="sign"
+                onClick={handleSwitch}
+                style={{ fontSize: "25px" }}
+              >
                 Signin
               </h5>
-      
             </div>
-            <div className="include-form">{login ? <Signin /> : null}</div>
           </div>
         </div>
       </div>

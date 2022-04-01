@@ -1,12 +1,12 @@
 export const MenuItems = [
   {
     title: "Employees",
-    path: "/employees",
+    path: "/employee",
     cName: "dropdown-link",
   },
   {
     title: "Departments",
-    path: "/departments",
+    path: "/department",
     cName: "dropdown-link",
   },
   {
