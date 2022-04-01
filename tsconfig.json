@@ -1,18 +1,16 @@
 {
-  "type": "mysql",
-  "host": "crm.ciecfgrsarph.us-east-1.rds.amazonaws.com",
-  "port": 3306,
-  "username": "admin",
-  "password": "quovantis*5998",
-  "database": "crm",
-  "synchronize": true,
-  "logging": false,
-  "entities": ["src/entity/**/*.ts"],
-  "migrations": ["src/migration/**/*.ts"],
-  "subscribers": ["src/subscriber/**/*.ts"],
-  "cli": {
-    "entitiesDir": "src/entity",
-    "migrationsDir": "src/migration",
-    "subscribersDir": "src/subscriber"
-  }
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "experimentalDecorators": true,
+    "allowJs": true,
+    "outDir": "./build",
+    "rootDir": "./src",
+    "esModuleInterop": true,
+    "noImplicitAny": false,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "Node"
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "src/tests"]
 }

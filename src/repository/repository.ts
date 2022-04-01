@@ -33,7 +33,7 @@ class Repository {
         return find;
       });
 
-      return result;
+      return result[result.length - 1];
     } catch (error) {
       console.log(error);
       return error;

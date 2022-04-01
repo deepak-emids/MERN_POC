@@ -23,6 +23,7 @@
     "cors": "^2.8.5",
     "dotenv": "^8.6.0",
     "express": "^4.17.1",
+    "faker": "^6.6.6",
     "helmet": "^4.1.0",
     "http-status-codes": "^2.1.2",
     "jsonwebtoken": "^8.5.1",
@@ -38,10 +39,12 @@
     "winston-daily-rotate-file": "^4.5.0"
   },
   "devDependencies": {
+    "@faker-js/faker": "^6.1.1",
     "@types/bcrypt": "^3.0.0",
     "@types/chai": "^4.2.12",
     "@types/cors": "^2.8.7",
     "@types/express": "^4.17.8",
+    "@types/faker": "^6.6.9",
     "@types/hapi__joi": "^17.1.4",
     "@types/helmet": "0.0.48",
     "@types/jest": "^27.4.1",

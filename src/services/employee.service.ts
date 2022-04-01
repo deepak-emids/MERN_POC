@@ -36,8 +36,8 @@ class EmployeeDetailsService {
       let find = await repo.add(EmployeeDetails, emp);
 
       //response object
-      response.data = find[find.length - 1];
-      response.message = 'EmployeeDetails Data Added';
+      response.data = find;
+      response.message = 'Employee Details  Added';
       response.status = 201;
 
       //return saved data
