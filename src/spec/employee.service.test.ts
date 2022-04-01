@@ -47,4 +47,12 @@ describe('Service Test', () => {
 
     expect(repo.getAll).toHaveBeenCalled;
   });
+
+  //get single employee
+  it('when given employeeid should return employee details ', async () => {
+    const employeeId = 1;
+    await employeeService.getEmployeeDetails(employeeId);
+
+    expect(repo.get).toHaveBeenCalled;
+  });
 });
