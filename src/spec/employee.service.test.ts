@@ -40,4 +40,11 @@ describe('Service Test', () => {
     await employeeService.addEmployeeDetails(newUser);
     expect(repo.add).toHaveBeenCalled;
   });
+
+  //get all employees
+  it('when given employeeid should return all employees', async () => {
+    await employeeService.getAllEmployeeDetails();
+
+    expect(repo.getAll).toHaveBeenCalled;
+  });
 });
