@@ -55,4 +55,12 @@ describe('Service Test', () => {
 
     expect(repo.get).toHaveBeenCalled;
   });
+
+  //delete employee
+  it('when given employeeid ,should delete the given employee', async () => {
+    const employeeId = 1;
+    await employeeService.deleteEmployeeDetails(employeeId);
+
+    expect(repo.delete).toHaveBeenCalled;
+  });
 });
