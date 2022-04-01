@@ -28,11 +28,11 @@ export class EmployeeDetails {
   mobileNo: number;
   @Column({ type: 'int' })
   aadharId: number;
-  @Column({ type: 'date' })
+  @Column({ type: 'date', default: true })
   date_Of_Joining: Date;
   @Column({ type: 'boolean', default: true })
   isActive: boolean;
-  @Column({ type: 'boolean', default: false })
+  @Column({ type: 'boolean', default: () => 'CURRENT_TIMESTAMP(6)' })
   isDeleted: boolean;
   @CreateDateColumn({
     type: 'timestamp',

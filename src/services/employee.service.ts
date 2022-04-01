@@ -13,7 +13,7 @@ class EmployeeDetailsService {
   /*
   add employee
   */
-  public async addEmployeeDetails(body: EmployeeData): Promise<Response> {
+  public async addEmployeeDetails(body): Promise<Response> {
     let emp = new EmployeeDetails();
 
     let query = { aadharId: body.aadharId };
@@ -91,7 +91,7 @@ class EmployeeDetailsService {
   /*
   update EmployeeDetails
   */
-  public updateEmployeeDetails = async (id, body: EmployeeData) => {
+  public updateEmployeeDetails = async (id, body) => {
     let newData = { ...body };
 
     let result = await repo.update(EmployeeDetails, id, newData);
