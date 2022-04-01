@@ -1,10 +1,10 @@
-import Repository from '../../src/repository/repository';
+import Repository from '../repository/repository';
 let repo = new Repository();
-import { EmployeeDetails } from '../../src/entity/employee';
+import { EmployeeDetails } from '../entity/employee';
 
 describe('Repository', () => {
   //create employee
-  it('should create new Employee and return created employee', async () => {
+  it('when given employee details should create new employeee and return the created employee', async () => {
     // let newEmployee = {
     //   firstName: faker.name.findName(),
     //   lastName: faker.name.lastName(),
@@ -40,17 +40,26 @@ describe('Repository', () => {
   });
 
   //get all employees
-  it('should get array of all employees to match gieven length ', async () => {
+  it('when given employeeid should return all employees', async () => {
     const res = await repo.getAll(EmployeeDetails);
 
     expect(res.length).toBe(9);
   });
 
   //get single employee
-  it.only('should get single employees of given id', async () => {
+  it('when given employeeid should return employee details ', async () => {
     const employeeId = 1;
     const employee = await repo.get(EmployeeDetails, employeeId);
 
     expect(employee.id).toBe(employeeId);
+  });
+
+  //delete employee
+  it.only('when given employeeid ,should delete the given employee', async () => {
+    const employeeId = 1;
+    const deleted = await repo.delete(EmployeeDetails, employeeId);
+    const findDeleted = await repo.get(EmployeeDetails, employeeId);
+    console.log(findDeleted);
+    expect(findDeleted).toBeNull;
   });
 });
