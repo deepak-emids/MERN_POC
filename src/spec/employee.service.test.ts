@@ -63,4 +63,24 @@ describe('Service Test', () => {
 
     expect(repo.delete).toHaveBeenCalled;
   });
+
+  //update employee
+  it.only('when given employeeid and employee details,should update the given employee details', async () => {
+    const employeeId = 1;
+    let updatedDetails = {
+      firstName: 'lastone',
+      lastName: 'last foo',
+      email: 'ffoo@gmail.com',
+      password: 'pass',
+      address: 'a/p shivajinagar,mumbai,tal:mubai,dist:mumbai',
+      department_Id: 5,
+      role_Id: 2,
+      mobileNo: 122154789,
+      aadharId: 9,
+      date_Of_Joining: '2004-12-27'
+    };
+    await employeeService.updateEmployeeDetails(employeeId, updatedDetails);
+
+    expect(repo.update).toHaveBeenCalled;
+  });
 });
