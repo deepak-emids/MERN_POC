@@ -65,7 +65,7 @@ class EmployeeDetailsController {
   ): Promise<any> => {
     try {
       const data: any = await this.EmployeeDetailsService.getEmployeeDetails(
-        req
+        req.params.id
       );
       res.status(data.status).send(data);
     } catch (error) {
@@ -88,7 +88,7 @@ class EmployeeDetailsController {
   ): Promise<any> => {
     try {
       const data: any = await this.EmployeeDetailsService.deleteEmployeeDetails(
-        req
+        req.params.id
       );
       res.status(data.status).send(data);
     } catch (error) {
@@ -111,7 +111,7 @@ class EmployeeDetailsController {
   ): Promise<any> => {
     try {
       const data: any = await this.EmployeeDetailsService.updateEmployeeDetails(
-        req,
+        req.params.id,
         req.body
       );
       res.status(data.status).send(data);

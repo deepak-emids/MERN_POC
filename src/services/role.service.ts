@@ -79,15 +79,14 @@ class RoleService {
     let details: RoleData = await repository.get(Role, id);
 
     let newData = {
-      id: id,
-      RoleName: body.roleName ? body.roleName : details.roleName
+      roleName: body.roleName ? body.roleName : details.roleName
     };
 
     let result = await repository.update(Role, id, newData);
 
     if (result.length > 0) {
       response.data = result;
-      response.message = 'Role deleted';
+      response.message = 'Role updated';
       response.status = 200;
 
       return response;

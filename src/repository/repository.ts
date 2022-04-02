@@ -76,7 +76,7 @@ class Repository {
    */
   public get = async (entity, query) => {
     try {
-      let result = await createConnection().then(async (connection) => {
+      return await createConnection().then(async (connection) => {
         //get table
         let repo = connection.getRepository(entity);
 
@@ -87,10 +87,8 @@ class Repository {
         await connection.close();
 
         //return result
-        return find[0];
+        return find;
       });
-
-      return result;
     } catch (error) {
       return error;
     }
@@ -102,14 +100,14 @@ class Repository {
    * @param {object} Response - response object
    * @param {Function} NextFunction
    */
-  public delete = async (entity, id) => {
+  public delete = async (entity, query) => {
     try {
       let result = await createConnection().then(async (connection) => {
         //get table
         let repo = connection.getRepository(entity);
 
         //find
-        let foundEmp = await repo.find({ id: id });
+        let foundEmp = await repo.find(query);
 
         if (foundEmp.length > 0) {
           await repo.remove(foundEmp[0]);

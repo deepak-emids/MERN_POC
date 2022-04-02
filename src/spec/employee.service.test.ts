@@ -65,7 +65,7 @@ describe('Service Test', () => {
   });
 
   //update employee
-  it.only('when given employeeid and employee details,should update the given employee details', async () => {
+  it('when given employeeid and employee details,should update the given employee details', async () => {
     const employeeId = 1;
     let updatedDetails = {
       firstName: 'lastone',

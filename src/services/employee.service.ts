@@ -19,7 +19,8 @@ class EmployeeDetailsService {
     let query = { aadharId: body.aadharId };
     let result = await repo.get(EmployeeDetails, query);
 
-    if (result) {
+    console.log(result, 'add emp');
+    if (result.length > 0) {
       //response object
       response.data = result;
       response.message = 'Employee Already Exists';
@@ -51,7 +52,7 @@ class EmployeeDetailsService {
   public getAllEmployeeDetails = async (): Promise<Response> => {
     let result = await repo.getAll(EmployeeDetails);
 
-    if (result.length > 0) {
+    if (result) {
       response.data = result;
       response.message = 'EmployeeDetails Fetched';
       response.status = 200;
@@ -69,13 +70,15 @@ class EmployeeDetailsService {
   /*
   get EmployeeDetails
   */
-  public getEmployeeDetails = async (id): Promise<Response> => {
+  public getEmployeeDetails = async (id: any): Promise<Response> => {
     let query = { id: id };
     let result = await repo.get(EmployeeDetails, query);
 
+    console.log(JSON.stringify(result));
+
     if (result) {
       response.data = result;
-      response.message = 'EmployeeDetails Fetched';
+      response.message = 'Employee Details Fetched';
       response.status = 200;
 
       return response;
@@ -115,7 +118,9 @@ class EmployeeDetailsService {
   delete EmployeeDetails 
   */
   public deleteEmployeeDetails = async (id) => {
-    let result = await repo.delete(EmployeeDetails, id);
+    let query = { id: id };
+
+    let result = await repo.delete(EmployeeDetails, query);
 
     if (result.length > 0) {
       response.data = result;

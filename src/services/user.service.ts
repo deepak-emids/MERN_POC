@@ -15,6 +15,7 @@ class UserService {
     let query = { email: body.email };
     let find = await repo.get(EmployeeDetails, query);
 
+    console.log(find);
     if (find) {
       let checkPassword = await bcrypt.compare(body.password, find.password);
       if (checkPassword) {
