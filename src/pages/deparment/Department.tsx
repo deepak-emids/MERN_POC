@@ -34,9 +34,9 @@ function Department() {
   console.log(department, "emp in employee");
 
   return (
-    <div className="employee">
+    <div className="department">
       {department.length ? (
-        <div>
+        <div className="table">
           <Table data={department} refresh={handleGetAllDepartment} />
         </div>
       ) : null}

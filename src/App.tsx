@@ -8,6 +8,7 @@ import Navbar from "./navbar/Navbar";
 import Footer from "./components/footer/footer";
 import Employee from "./pages/employees/Employee";
 import Department from "./pages/deparment/Department";
+import Role from "./pages/roles/Roles";
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
           <Route path="/profile" element={<Tables />} />
           <Route path="/employee" element={<Employee />} />
           <Route path="/department" element={<Department />} />
-          {/* <Route path="/roles" element={<Role />} /> */}
+          <Route path="/role" element={<Role />} />
           <Route path="/" element={<About />}></Route>
         </Routes>
         <Footer />

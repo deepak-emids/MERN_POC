@@ -1,10 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-// import land from "../../assets/emdiv2.jdivg";
 import Button from "@mui/material/Button";
 import vec1 from "../../assets/vec1.jpg";
 import vec2 from "../../assets/vec2.jpg";
-import head from "../../assets/back.jpg";
 
 import "./about.scss";
 
@@ -19,7 +17,7 @@ function About() {
     <>
       {/* <img src={head} className="vec2"></img> */}
       <div
-        style={{ color: "white", fontFamily: "Inconsolata" }}
+        style={{ color: "black", fontFamily: "Inconsolata" }}
         className="about"
       >
         <div className="i1">
@@ -27,7 +25,7 @@ function About() {
           <div className="tagline">Creating your perfect world</div>
         </div>
 
-        <div className="i2" style={{ color: "white" }}>
+        <div className="i2">
           <img src={vec2} className="vec2"></img>
           <div className="founded">
             Founded in 1994 by Mike Meldman, Discovery Land Comdivany is a
@@ -65,9 +63,9 @@ function About() {
           </div>
           <img src={vec1} className="vec1"></img>
         </div>
-        <Button className="opt" onClick={handleBack}>
-          Back{" "}
-        </Button>
+        <div className="about-button">
+          <Button onClick={handleBack}>Back </Button>
+        </div>
       </div>
     </>
   );

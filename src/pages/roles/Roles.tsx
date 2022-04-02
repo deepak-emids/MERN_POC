@@ -5,35 +5,33 @@ import head from "../../assets/table.jpg";
 import service from "../../services/services";
 import Table from "../../components/table/Tables";
 
-import "./employee.scss";
+import "./roles.scss";
 
-function Employee() {
+function Roles() {
   const navigate = useNavigate();
-  const [emp, setEmp] = React.useState([]);
+  const [roles, setRoles] = React.useState([]);
 
   React.useEffect(() => {
-    handleGetAllEmployees();
+    handleGetAllRoles();
   }, []);
 
-  const handleGetAllEmployees = () => {
+  const handleGetAllRoles = () => {
     service
-      .getAllEmployee()
+      .getAllRole()
       .then((res) => {
-        console.log(res.data.data, "employee page employee in get");
-        setEmp(res.data.data);
+        console.log(res.data.data, "department in get");
+        setRoles(res.data.data);
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  console.log(emp, "emp in employee");
-
   return (
-    <div className="employee">
-      {emp.length ? (
+    <div className="role">
+      {roles.length ? (
         <div className="table">
-          <Table data={emp} refresh={handleGetAllEmployees} />
+          <Table data={roles} refresh={handleGetAllRoles} />
         </div>
       ) : null}
 
@@ -42,4 +40,4 @@ function Employee() {
   );
 }
 
-export default Employee;
+export default Roles;

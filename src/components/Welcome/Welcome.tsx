@@ -1,22 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import back from "../../assets/table.jpg";
-import head from "../../assets/table.jpg";
 
 import "./welcome.scss";
 
 function Welcome() {
-  const navigate = useNavigate();
-
-  const handleHome = () => {
-    navigate("/");
-  };
-
   return (
     <div className="welcome-card">
-      {/* <div className="welcome"> Welcome to CRM App</div> */}
-      <img className="head" src={head} alt="this is logo"></img>
-
       <img className="back" src={back} alt="this is logo"></img>
     </div>
   );

@@ -11,7 +11,7 @@ export const MenuItems = [
   },
   {
     title: "Roles",
-    path: "/roles",
+    path: "/role",
     cName: "dropdown-link",
   },
   {

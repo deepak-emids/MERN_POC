@@ -1,6 +1,4 @@
-// import React from "react";
 import Button from "@mui/material/Button";
-// import { DataGrid } from "@material-ui/data-grid";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import { useNavigate } from "react-router-dom";
 import service from "../../services/services";

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import logo from "../../assets/Image 11.jpg";
+import Signin from "../../components/signin/Signin";
 
 import "./user.scss";
 
@@ -34,6 +35,7 @@ function User() {
                 Signin
               </h5>
             </div>
+            <div className="include-form">{login ? <Signin /> : null}</div>
           </div>
         </div>
       </div>

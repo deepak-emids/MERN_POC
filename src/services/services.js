@@ -72,5 +72,31 @@ const Service = {
   deleteDepartment: (data) => {
     return service.deleteMethod(`${url}/department/${data}`, header);
   },
+  //------------------------------------roles
+
+  //new Role
+  addRole: (data) => {
+    return service.postMethod(`${url}/role`, data, header);
+  },
+
+  //get Role
+  getAllRole: () => {
+    return service.getMethod(`${url}/role`, header);
+  },
+
+  //get field Role
+  getRole: (data) => {
+    return service.getMethod(`${url}/role/${data}`, header);
+  },
+
+  //update Role
+  updateRole: (id, data) => {
+    return service.putMethod(`${url}/role/${id}`, header);
+  },
+
+  //delete Role
+  deleteRole: (data) => {
+    return service.deleteMethod(`${url}/role/${data}`, header);
+  },
 };
 export default Service;
