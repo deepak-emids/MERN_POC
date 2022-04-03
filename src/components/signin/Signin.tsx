@@ -50,12 +50,11 @@ function Signin() {
         .Signin(data)
         .then((res) => {
           console.log(res);
-          localStorage.setItem("firstName", res.data.data.firstName);
-          localStorage.setItem("lastName", res.data.data.lastName);
+
           localStorage.setItem("email", res.data.data.email);
           localStorage.setItem("token", res.data.data.token);
-          localStorage.setItem("employeeId", res.data.data.employeeId);
-          localStorage.setItem("permissionId", res.data.data.permissionId);
+          localStorage.setItem("employeeId", res.data.data.id);
+          localStorage.setItem("role_Id", res.data.data.role_Id);
 
           navigate("/");
         })

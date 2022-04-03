@@ -4,7 +4,43 @@ import service from "../../services/services";
 import TextField from "@mui/material/TextField";
 import "./profile.scss";
 
-export default function CandidateDetails(props) {
+let employeeId: any = localStorage.getItem("employeeId");
+
+export default function Profile() {
+  React.useEffect(() => {
+    getEmployee(employeeId);
+  }, []);
+
+  const [emp, setEmp] = React.useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    gender: "",
+    date_Of_Joining: "",
+    address: "",
+    mobileNo: "",
+    aadharId: "",
+    password: "",
+    department_Id: "",
+    role_Id: "",
+  });
+
+  const getEmployee = (employeeId: any) => {
+    service
+      .getEmployee(employeeId)
+      .then((res) => {
+        console.log(res);
+        setEmp(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleUpdate = (data: any) => {
+    console.log(data);
+  };
+
   const [field, setField] = React.useState({
     firstName: "",
     lastName: "",
@@ -31,7 +67,7 @@ export default function CandidateDetails(props) {
     role_IdError: false,
   });
 
-  const changeField = (e) => {
+  const changeField = (e: any) => {
     setField((previousvalues) => {
       return { ...previousvalues, [e.target.name]: e.target.value };
     });
@@ -51,7 +87,7 @@ export default function CandidateDetails(props) {
     let aadharIdError = field.aadharId === "" ? true : false;
     let role_IdError = field.role_Id === "" ? true : false;
 
-    setField((previousvalues) => {
+    setField((previousvalues: any) => {
       return {
         ...previousvalues,
         firstNameError: firstNameError,
@@ -99,8 +135,8 @@ export default function CandidateDetails(props) {
         role_Id: field.role_Id,
       };
 
-      // addCandidateDetails api
-      props.handlePost(data);
+      // addProfile api
+      handleUpdate(data);
     }
   };
 
@@ -117,6 +153,7 @@ export default function CandidateDetails(props) {
             style={{ width: "45%" }}
             id="outlined-basic"
             name="firstName"
+            value={emp.firstName}
             variant="standard"
             size="small"
             className="form-detail"
@@ -132,6 +169,7 @@ export default function CandidateDetails(props) {
             style={{ width: "45%" }}
             id="outlined-basic"
             name="lastName"
+            value={emp.lastName}
             variant="standard"
             size="small"
             className="form-detail"
@@ -152,6 +190,7 @@ export default function CandidateDetails(props) {
             style={{ width: "45%" }}
             id="outlined-basic"
             name="mobileNo"
+            value={emp.mobileNo}
             variant="standard"
             size="small"
             className="form-detail"
@@ -166,6 +205,7 @@ export default function CandidateDetails(props) {
             style={{ width: "45%" }}
             id="outlined-basic"
             name="aadharId"
+            value={emp.aadharId}
             variant="standard"
             size="small"
             className="form-detail"
@@ -186,6 +226,7 @@ export default function CandidateDetails(props) {
             style={{ width: "45%" }}
             id="outlined-basic"
             name="date_Of_Joining"
+            value={emp.date_Of_Joining}
             variant="standard"
             size="small"
             className=" "
@@ -203,6 +244,7 @@ export default function CandidateDetails(props) {
             style={{ width: "45%" }}
             id="outlined-basic"
             name="gender"
+            value={emp.gender}
             variant="standard"
             size="small"
             className="form-detail"
@@ -220,6 +262,7 @@ export default function CandidateDetails(props) {
             style={{ width: "100%" }}
             id="outlined-basic"
             name="email"
+            value={emp.email}
             variant="standard"
             size="small"
             className="form-detail"
@@ -239,6 +282,7 @@ export default function CandidateDetails(props) {
             style={{ width: "45%" }}
             id="outlined-basic"
             name="address"
+            value={emp.address}
             variant="standard"
             size="small"
             className="form-detail"
@@ -252,6 +296,7 @@ export default function CandidateDetails(props) {
             style={{ width: "45%" }}
             id="outlined-basic"
             name="password"
+            value={emp.password}
             variant="standard"
             size="small"
             className="form-detail"
@@ -267,6 +312,7 @@ export default function CandidateDetails(props) {
           style={{ width: "100%" }}
           id="outlined-basic"
           name="department_Id"
+          value={emp.department_Id}
           variant="standard"
           size="small"
           className="form-detail"
@@ -284,6 +330,7 @@ export default function CandidateDetails(props) {
           style={{ width: "100%" }}
           id="outlined-basic"
           name="role_Id"
+          value={emp.role_Id}
           variant="standard"
           size="small"
           className="form-detail"
