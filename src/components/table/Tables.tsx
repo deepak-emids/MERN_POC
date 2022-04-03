@@ -150,7 +150,7 @@ export default function DataGridDemo(props: any) {
     if (props.mode == "department") {
       deleteDepartment(cellValues.row.id);
       props.refresh();
-    } else if (props.mode == "employees") {
+    } else if (props.mode == "employee") {
       deleteEmployee(cellValues.row.id);
       props.refresh();
     } else console.log("undefined mode");
@@ -165,7 +165,7 @@ export default function DataGridDemo(props: any) {
 
     console.log(updatedData);
 
-    if (props.mode == "employees") {
+    if (props.mode == "employee") {
       updateEmployee(i.id, updatedData);
       props.refresh();
     } else if (props.mode == "department") {

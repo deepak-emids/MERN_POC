@@ -33,7 +33,7 @@ function Employee() {
     <div className="employee">
       {emp.length ? (
         <div className="table">
-          <Table data={emp} refresh={handleGetAllEmployees} />
+          <Table data={emp} refresh={handleGetAllEmployees} mode="employee" />
         </div>
       ) : null}
 

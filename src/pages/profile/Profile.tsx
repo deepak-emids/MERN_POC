@@ -45,7 +45,6 @@ export default function Profile() {
     firstName: "",
     lastName: "",
     email: "",
-    gender: "",
     date_Of_Joining: "",
     address: "",
     mobileNo: "",
@@ -57,7 +56,6 @@ export default function Profile() {
     firstNameError: false,
     lastNameError: false,
     emailError: false,
-    genderError: false,
     date_Of_JoiningError: false,
     addressError: false,
     passwordError: false,
@@ -78,7 +76,6 @@ export default function Profile() {
     let firstNameError = field.firstName === "" ? true : false;
     let lastNameError = field.lastName === "" ? true : false;
     let emailError = field.email === "" ? true : false;
-    let genderError = field.gender === "" ? true : false;
     let date_Of_JoiningError = field.date_Of_Joining === "" ? true : false;
     let addressError = field.address === "" ? true : false;
     let passwordError = field.password === "" ? true : false;
@@ -93,7 +90,7 @@ export default function Profile() {
         firstNameError: firstNameError,
         lastNameError: lastNameError,
         emailError: emailError,
-        genderError: genderError,
+
         date_Of_JoiningError: date_Of_JoiningError,
         addressError: addressError,
         passwordError: passwordError,
@@ -105,7 +102,6 @@ export default function Profile() {
     });
     return (isError =
       field.emailError ||
-      field.genderError ||
       field.firstNameError ||
       field.lastNameError ||
       field.date_Of_JoiningError ||
@@ -125,7 +121,7 @@ export default function Profile() {
         firstName: field.firstName,
         lastName: field.lastName,
         email: field.email,
-        gender: field.gender,
+
         date_Of_Joining: field.date_Of_Joining,
         address: field.address,
         department_Id: field.department_Id,
@@ -225,16 +221,15 @@ export default function Profile() {
           <TextField
             style={{ width: "45%" }}
             id="outlined-basic"
-            name="date_Of_Joining"
-            value={emp.date_Of_Joining}
+            name="department_Id"
+            value={emp.department_Id}
             variant="standard"
             size="small"
-            className=" "
-            fullWidth
+            className="form-detail"
             helperText={
-              field.date_Of_JoiningError ? " date_Of_Joining is required" : " "
+              field.department_IdError ? "department_Id is required" : " "
             }
-            error={field.date_Of_JoiningError}
+            error={field.department_IdError}
             onChange={(e) => {
               changeField(e);
             }}
@@ -243,13 +238,15 @@ export default function Profile() {
           <TextField
             style={{ width: "45%" }}
             id="outlined-basic"
-            name="gender"
-            value={emp.gender}
+            name="date_Of_Joining"
+            value={emp.date_Of_Joining}
             variant="standard"
             size="small"
-            className="form-detail"
-            helperText={field.genderError ? " gender is required" : " "}
-            error={field.genderError}
+            className=" "
+            helperText={
+              field.date_Of_JoiningError ? " date_Of_Joining is required" : " "
+            }
+            error={field.date_Of_JoiningError}
             onChange={(e) => {
               changeField(e);
             }}
@@ -272,28 +269,8 @@ export default function Profile() {
               changeField(e);
             }}
           ></TextField>
-        </div>
-
-        <div
-          className="name"
-          style={{ display: "flex", justifyContent: "space-between" }}
-        >
           <TextField
-            style={{ width: "45%" }}
-            id="outlined-basic"
-            name="address"
-            value={emp.address}
-            variant="standard"
-            size="small"
-            className="form-detail"
-            helperText={field.addressError ? " address is required" : " "}
-            error={field.addressError}
-            onChange={(e) => {
-              changeField(e);
-            }}
-          ></TextField>
-          <TextField
-            style={{ width: "45%" }}
+            style={{ width: "100%" }}
             id="outlined-basic"
             name="password"
             value={emp.password}
@@ -308,38 +285,24 @@ export default function Profile() {
           ></TextField>
         </div>
 
-        <TextField
-          style={{ width: "100%" }}
-          id="outlined-basic"
-          name="department_Id"
-          value={emp.department_Id}
-          variant="standard"
-          size="small"
-          className="form-detail"
-          helperText={
-            field.department_IdError ? "department_Id is required" : " "
-          }
-          error={field.department_IdError}
-          onChange={(e) => {
-            changeField(e);
-          }}
-          inputProps={{ readOnly: true }}
-        ></TextField>
+        <div
+          className="name"
+          style={{ display: "flex", justifyContent: "space-between" }}
+        ></div>
 
         <TextField
           style={{ width: "100%" }}
           id="outlined-basic"
-          name="role_Id"
-          value={emp.role_Id}
+          name="address"
+          value={emp.address}
           variant="standard"
           size="small"
           className="form-detail"
-          helperText={field.role_IdError ? "role_Id is required" : " "}
-          error={field.role_IdError}
+          helperText={field.addressError ? " address is required" : " "}
+          error={field.addressError}
           onChange={(e) => {
             changeField(e);
           }}
-          inputProps={{ readOnly: true }}
         ></TextField>
 
         <Button

@@ -49,7 +49,7 @@ function Signin() {
       service
         .Signin(data)
         .then((res) => {
-          console.log(res);
+          console.log(res, res.data.data.id, "insignin");
 
           localStorage.setItem("email", res.data.data.email);
           localStorage.setItem("token", res.data.data.token);
