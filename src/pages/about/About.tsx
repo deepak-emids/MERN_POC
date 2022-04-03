@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import vec1 from "../../assets/vec1.jpg";
 import vec2 from "../../assets/vec2.jpg";
+import back from "../../assets/back.jpg";
 
 import "./about.scss";
 
@@ -14,7 +15,7 @@ function About() {
   };
 
   return (
-    <>
+    <div className="about-main">
       {/* <img src={head} className="vec2"></img> */}
       <div
         style={{ color: "black", fontFamily: "Inconsolata" }}
@@ -63,11 +64,9 @@ function About() {
           </div>
           <img src={vec1} className="vec1"></img>
         </div>
-        <div className="about-button">
-          <Button onClick={handleBack}>Back </Button>
-        </div>
       </div>
-    </>
+      {/* <img className="back" src={back} alt="this is logo"></img> */}
+    </div>
   );
 }
 

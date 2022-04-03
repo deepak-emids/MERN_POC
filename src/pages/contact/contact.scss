@@ -5,6 +5,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
+}
+.contact-table {
+  position: absolute;
 }
 
 table {
@@ -13,6 +17,6 @@ table {
 }
 th,
 td {
-  border: 1px solid #dcdcdc;
+  border: 1px solid black;
   padding: 15px;
 }
