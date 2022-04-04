@@ -43,16 +43,23 @@ describe('Repository', () => {
   //get all employees
   it('should return all employees', async () => {
     const res = await repo.getAll(EmployeeDetails);
-
     expect(res.length).toBe(9);
   });
 
-  //get single employee
+  //get single employee(positive)
   it('when given employeeid should return employee details ', async () => {
-    const employeeId = 3;
-    const employee = await repo.get(EmployeeDetails, employeeId);
+    let employeeId = 5;
+    let query = { id: employeeId };
+    const employee = await repo.get(EmployeeDetails, query);
+    expect(employee.id).toBe(employeeId);
+  });
 
-    expect(employee[0].id).toBe(employeeId);
+  //get single employee(negative)
+  it('when given falsy or employeeid is not present should return employee details ', async () => {
+    let employeeId = 4;
+    let query = { id: employeeId };
+    const employee = await repo.get(EmployeeDetails, query);
+    expect(employee).toBeFalsy();
   });
 
   //delete employee
@@ -61,11 +68,20 @@ describe('Repository', () => {
     await repo.delete(EmployeeDetails, employeeId);
     const findDeleted = await repo.get(EmployeeDetails, employeeId);
 
-    expect(findDeleted.length).toBeFalsy();
+    expect(findDeleted).toBeFalsy();
+  });
+
+  //delete employee
+  it('when given employeeid not present db,should return falsy value', async () => {
+    const employeeId = 1;
+    await repo.delete(EmployeeDetails, employeeId);
+    const findDeleted = await repo.get(EmployeeDetails, employeeId);
+
+    expect(findDeleted).toBeFalsy();
   });
 
   //update employee
-  it.only('when given employeeid and employee details,should update the given employee details', async () => {
+  it('when given employeeid and employee details,should update the given employee details', async () => {
     const employeeId = 5;
     let updatedDetails = {
       firstName: 'lastone',
@@ -86,6 +102,27 @@ describe('Repository', () => {
     );
     const findUpdated = await repo.get(EmployeeDetails, employeeId);
 
-    expect(findUpdated[0]).toMatchObject(updatedDetails);
+    expect(findUpdated).toMatchObject(updatedDetails);
+  });
+
+  //update employee
+  it.only('when given incorrect employeeid,should not update the given employee details', async () => {
+    const employeeId = 1;
+    let updatedDetails = {
+      lastName: 'last foo',
+      email: 'ffoo@gmail.com',
+      password: 'pass',
+      address: 'a/p shivajinagar,mumbai,tal:mubai,dist:mumbai',
+      department_Id: 5,
+      role_Id: 2,
+      date_Of_Joining: '2004-12-27'
+    };
+    const update = await repo.update(
+      EmployeeDetails,
+      employeeId,
+      updatedDetails
+    );
+
+    expect(update).toBeFalsy();
   });
 });
