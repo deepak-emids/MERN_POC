@@ -15,18 +15,23 @@ class UserService {
     let query = { email: body.email };
     let find = await repo.get(EmployeeDetails, query);
 
-    console.log(find);
-    if (find) {
-      let checkPassword = await bcrypt.compare(body.password, find.password);
+    console.log(find[0]);
+    if (find.length > 0) {
+      let checkPassword = await bcrypt.compare(body.password, find[0].password);
       if (checkPassword) {
         const token: string = jwt.sign(
-          { email: find.email, employeeId: find.employeeId },
+          {
+            email: find[0].email,
+            id: find[0].id,
+            role_Id: find[0].role_Id
+          },
           'secret'
         );
 
         response.data = {
-          employeeId: find.id,
-          email: find.email,
+          id: find[0].id,
+          email: find[0].email,
+          role_Id: find[0].role_Id,
           token: token
         };
         response.message = 'Login success';

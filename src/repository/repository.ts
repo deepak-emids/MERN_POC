@@ -5,6 +5,8 @@ import {
 
 import { loggers } from 'winston';
 
+import { typeOrmConnection } from '../utils/typeorm.connection';
+
 class Repository {
   /**
    * Controller to add
@@ -13,8 +15,6 @@ class Repository {
    * @param {Function} NextFunction
    */
   public add = async (entity, object) => {
-    console.log(entity, object);
-
     try {
       let result = await createConnection().then(async (connection) => {
         //get table
@@ -35,7 +35,6 @@ class Repository {
 
       return result[result.length - 1];
     } catch (error) {
-      console.log(error);
       return error;
     }
   };
@@ -81,7 +80,7 @@ class Repository {
         let repo = connection.getRepository(entity);
 
         //get saved data
-        let find = await repo.find(query);
+        let find = await repo.findOne(query);
 
         //close connection
         await connection.close();
@@ -100,23 +99,24 @@ class Repository {
    * @param {object} Response - response object
    * @param {Function} NextFunction
    */
-  public delete = async (entity, query) => {
+  public delete = async (entity, id) => {
     try {
       let result = await createConnection().then(async (connection) => {
         //get table
         let repo = connection.getRepository(entity);
 
         //find
-        let foundEmp = await repo.find(query);
+        let foundEmp = await repo.find({ id: id });
 
         if (foundEmp.length > 0) {
           await repo.remove(foundEmp[0]);
 
-          let Emp = await repo.find();
+          let Emp = await repo.findOne({ id: id });
 
           await connection.close();
 
-          return Emp;
+          if (Emp) return false;
+          else return true;
         } else {
           await connection.close();
 
@@ -150,7 +150,7 @@ class Repository {
           await repo.update({ id: id }, object);
 
           //get saved data
-          let find = await repo.find({ id: id });
+          let find = await repo.findOne({ id: id });
 
           await connection.close();
 

@@ -1,6 +1,7 @@
 import Repository from '../repository/repository';
 let repo = new Repository();
 import { EmployeeDetails } from '../entity/employee';
+// import faker from 'faker';
 
 describe('Repository', () => {
   //create employee
@@ -40,7 +41,7 @@ describe('Repository', () => {
   });
 
   //get all employees
-  it('when given employeeid should return all employees', async () => {
+  it('should return all employees', async () => {
     const res = await repo.getAll(EmployeeDetails);
 
     expect(res.length).toBe(9);
@@ -48,24 +49,24 @@ describe('Repository', () => {
 
   //get single employee
   it('when given employeeid should return employee details ', async () => {
-    const employeeId = 1;
+    const employeeId = 3;
     const employee = await repo.get(EmployeeDetails, employeeId);
 
-    expect(employee.id).toBe(employeeId);
+    expect(employee[0].id).toBe(employeeId);
   });
 
   //delete employee
   it('when given employeeid ,should delete the given employee', async () => {
-    const employeeId = 1;
-    const deleted = await repo.delete(EmployeeDetails, employeeId);
+    const employeeId = 3;
+    await repo.delete(EmployeeDetails, employeeId);
     const findDeleted = await repo.get(EmployeeDetails, employeeId);
-    console.log(findDeleted);
-    expect(findDeleted).toBeNull;
+
+    expect(findDeleted.length).toBeFalsy();
   });
 
   //update employee
-  it('when given employeeid and employee details,should update the given employee details', async () => {
-    const employeeId = 1;
+  it.only('when given employeeid and employee details,should update the given employee details', async () => {
+    const employeeId = 5;
     let updatedDetails = {
       firstName: 'lastone',
       lastName: 'last foo',
@@ -75,7 +76,7 @@ describe('Repository', () => {
       department_Id: 5,
       role_Id: 2,
       mobileNo: 122154789,
-      aadharId: 9,
+      aadharId: 10,
       date_Of_Joining: '2004-12-27'
     };
     const update = await repo.update(
@@ -84,7 +85,7 @@ describe('Repository', () => {
       updatedDetails
     );
     const findUpdated = await repo.get(EmployeeDetails, employeeId);
-    console.log(findUpdated);
-    expect(findUpdated).toMatchObject(updatedDetails);
+
+    expect(findUpdated[0]).toMatchObject(updatedDetails);
   });
 });

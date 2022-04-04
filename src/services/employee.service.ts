@@ -16,15 +16,15 @@ class EmployeeDetailsService {
   public async addEmployeeDetails(body): Promise<Response> {
     let emp = new EmployeeDetails();
 
-    let query = { aadharId: body.aadharId };
+    let query: { email: string } = { email: body.email };
     let result = await repo.get(EmployeeDetails, query);
 
-    console.log(result, 'add emp');
-    if (result.length > 0) {
+    console.log(result);
+    if (result) {
       //response object
       response.data = result;
       response.message = 'Employee Already Exists';
-      response.status = 201;
+      response.status = 200;
 
       return response;
     } else {
@@ -34,10 +34,10 @@ class EmployeeDetailsService {
 
       emp = { ...body };
 
-      let find = await repo.add(EmployeeDetails, emp);
+      let addedEmployee = await repo.add(EmployeeDetails, emp);
 
       //response object
-      response.data = find;
+      response.data = addedEmployee;
       response.message = 'Employee Details  Added';
       response.status = 201;
 
@@ -72,10 +72,8 @@ class EmployeeDetailsService {
   */
   public getEmployeeDetails = async (id: any): Promise<Response> => {
     let query = { id: id };
+
     let result = await repo.get(EmployeeDetails, query);
-
-    console.log(JSON.stringify(result));
-
     if (result) {
       response.data = result;
       response.message = 'Employee Details Fetched';
@@ -83,7 +81,7 @@ class EmployeeDetailsService {
 
       return response;
     } else {
-      response.data = result;
+      response.data = {};
       response.message = 'EmployeeDetails Not Found';
       response.status = 404;
 
@@ -99,7 +97,7 @@ class EmployeeDetailsService {
 
     let result = await repo.update(EmployeeDetails, id, newData);
 
-    if (result.length > 0) {
+    if (result) {
       response.data = result;
       response.message = 'EmployeeDetails updated';
       response.status = 200;
@@ -118,12 +116,10 @@ class EmployeeDetailsService {
   delete EmployeeDetails 
   */
   public deleteEmployeeDetails = async (id) => {
-    let query = { id: id };
+    let result = await repo.delete(EmployeeDetails, id);
 
-    let result = await repo.delete(EmployeeDetails, query);
-
-    if (result.length > 0) {
-      response.data = result;
+    if (result) {
+      response.data = {};
       response.message = 'EmployeeDetails deleted';
       response.status = 200;
 

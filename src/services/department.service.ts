@@ -21,7 +21,7 @@ class DepartmentService {
 
     //response object
     response.data = find;
-    response.message = 'Department Data Added';
+    response.message = 'Department Added';
     response.status = 201;
 
     //return saved data
@@ -36,7 +36,7 @@ class DepartmentService {
 
     if (result.length > 0) {
       response.data = result;
-      response.message = 'Department deleted';
+      response.message = 'Departments Fetched';
       response.status = 200;
 
       return response;
@@ -59,7 +59,7 @@ class DepartmentService {
 
     if (result.length > 0) {
       response.data = result;
-      response.message = 'Department deleted';
+      response.message = 'Department Fetched';
       response.status = 200;
 
       return response;
