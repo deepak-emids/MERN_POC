@@ -21,3 +21,9 @@ it("when render the profile page should contain img profile1", () => {
   const img = screen.getByTestId("profile1");
   expect(img).toBeInTheDocument();
 });
+
+// it.only("when render the profile page should contain given element", () => {
+//   render(<Profile />);
+//   const element = screen.getAllByLabelText("firstName");
+//   expect(element).toBeInTheDocument();
+// });
