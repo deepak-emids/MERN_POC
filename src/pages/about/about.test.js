@@ -13,3 +13,9 @@ it("when render the abuout page should contain title", () => {
 //   const text = screen.getByText("Hello-Testing");
 //   expect(text).not.toBeInTheDocument();
 // });
+
+it("when render the abuout page should contaion tagline", () => {
+  render(<About />);
+  const text = screen.getByText("Creating your perfect world");
+  expect(text).toBeInTheDocument();
+});
