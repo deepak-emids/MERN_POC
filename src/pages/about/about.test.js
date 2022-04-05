@@ -25,3 +25,9 @@ it("when render the abuout page should contain vec image 1", () => {
   const img = screen.getByTestId("vec1");
   expect(img).toBeInTheDocument();
 });
+
+it("when render the abuout page should contain vec image 2", () => {
+  render(<About />);
+  const img = screen.getByTestId("vec2");
+  expect(img).toBeInTheDocument();
+});
