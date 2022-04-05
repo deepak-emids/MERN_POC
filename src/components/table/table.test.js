@@ -9,3 +9,17 @@ it("when render the Tables page should enable the add button", () => {
   userEvent.click(buttonElement);
   expect(buttonElement).toBeEnabled();
 });
+
+it("when render the Tables page should enable the delete button", () => {
+  render(<Tables />);
+  const buttonElement = screen.getByRole("button", { name: /DELETE/i });
+  userEvent.click(buttonElement);
+  expect(buttonElement).toBeEnabled();
+});
+
+it("when render the Tables page should enable the back button", () => {
+  render(<Tables />);
+  const buttonElement = screen.getByRole("button", { name: /BACK/i });
+  userEvent.click(buttonElement);
+  expect(buttonElement).toBeEnabled();
+});
