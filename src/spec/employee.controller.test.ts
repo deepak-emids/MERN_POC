@@ -21,12 +21,10 @@ beforeEach(() => {
 });
 
 it.only('should return array of all employee', async () => {
-  employeeService.getAllEmployeeDetails = jest.fn().mockResolvedValue([]);
   employeeService.getAllEmployeeDetails = jest
     .fn()
     .mockImplementation(() => '');
 
-  employeeService.getAllEmployeeDetails.mockImplementation(()=>)
   await employee.getAllEmployeeDetails(req, res, next);
 
   expect(employeeService.getAllEmployeeDetails).toHaveBeenCalled();
