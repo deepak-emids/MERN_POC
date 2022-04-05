@@ -19,3 +19,9 @@ it("when render the abuout page should contaion tagline", () => {
   const text = screen.getByText("Creating your perfect world");
   expect(text).toBeInTheDocument();
 });
+
+it("when render the abuout page should contain vec image 1", () => {
+  render(<About />);
+  const img = screen.getByTestId("vec1");
+  expect(img).toBeInTheDocument();
+});
