@@ -30,7 +30,6 @@ export default function Profile() {
     service
       .getEmployee(employeeId)
       .then((res) => {
-        console.log(res);
         setEmp(res.data.data);
       })
       .catch((err) => {
@@ -49,10 +48,8 @@ export default function Profile() {
     password: "",
 
     emailError: false,
-
     addressError: false,
     passwordError: false,
-
     mobileNoError: false,
   });
 
@@ -67,14 +64,12 @@ export default function Profile() {
     let emailError = field.email === "" ? true : false;
     let addressError = field.address === "" ? true : false;
     let passwordError = field.password === "" ? true : false;
-
     let mobileNoError = field.mobileNo === "" ? true : false;
 
     setField((previousvalues: any) => {
       return {
         ...previousvalues,
         emailError: emailError,
-
         addressError: addressError,
         passwordError: passwordError,
         mobileNoError: mobileNoError,
@@ -93,7 +88,6 @@ export default function Profile() {
       let data = {
         employeeId: null,
         email: field.email,
-
         address: field.address,
         password: field.password,
         mobileNo: field.mobileNo,
@@ -259,7 +253,12 @@ export default function Profile() {
           Edit
         </Button>
       </form>
-      <img className="back" src={back} alt="this is logo"></img>
+      <img
+        className="back"
+        src={back}
+        alt="this is logo"
+        data-testid="profile1"
+      ></img>
     </div>
   );
 }

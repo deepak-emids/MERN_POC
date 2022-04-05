@@ -8,12 +8,6 @@ import back from "../../assets/back.jpg";
 import "./about.scss";
 
 function About() {
-  const navigate = useNavigate();
-
-  const handleBack = () => {
-    navigate("/");
-  };
-
   return (
     <div className="about-main">
       {/* <img src={head} className="vec2"></img> */}
@@ -27,7 +21,7 @@ function About() {
         </div>
 
         <div className="i2">
-          <img src={vec2} className="vec2"></img>
+          <img src={vec2} className="vec2" data-testid="vec2"></img>
           <div className="founded">
             Founded in 1994 by Mike Meldman, Discovery Land Comdivany is a
             <br></br>
@@ -62,7 +56,7 @@ function About() {
               highest of service standards to enrich your experience. <br></br>
             </p>
           </div>
-          <img src={vec1} className="vec1"></img>
+          <img src={vec1} className="vec1" data-testid="vec1"></img>
         </div>
       </div>
       {/* <img className="back" src={back} alt="this is logo"></img> */}

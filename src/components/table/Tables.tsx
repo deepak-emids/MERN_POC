@@ -135,10 +135,10 @@ export default function DataGridDemo(props: any) {
   }, []);
 
   //Methods
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const handleBack = () => {
-    navigate("/");
+    // navigate("/");
   };
 
   const handleDelete = (
@@ -208,7 +208,7 @@ export default function DataGridDemo(props: any) {
             background: "#ff0021",
           }}
         >
-          Delete
+          DELETE
         </Button>
       );
     },
@@ -225,7 +225,7 @@ export default function DataGridDemo(props: any) {
           background: "#5cdb5c",
         }}
       >
-        Add
+        ADD
       </Button>
 
       <Button
@@ -236,7 +236,7 @@ export default function DataGridDemo(props: any) {
           background: "#1a73e8",
         }}
       >
-        Back To Dashboard
+        BACK
       </Button>
       <DataGrid
         style={{ backgroundColor: "white", height: 550 }}
@@ -251,6 +251,7 @@ export default function DataGridDemo(props: any) {
         rowsPerPageOptions={[5]}
         onCellClick={handleCellClick}
         onRowClick={handleRowClick}
+        data-testid="datagrid"
       />
     </div>
   );

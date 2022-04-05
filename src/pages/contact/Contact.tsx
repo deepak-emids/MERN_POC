@@ -6,14 +6,14 @@ import back from "../../assets/back.jpg";
 import "./contact.scss";
 
 function Contact() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   return (
     <div className="Contact-area">
       <div className="contact-table">
         <div className="Contact-placed">Reach Us Here</div>
 
-        <div>
+        <div data-testid="table1">
           <table>
             <tr>
               <th>Email Us</th>
@@ -28,7 +28,12 @@ function Contact() {
           </table>
         </div>
       </div>
-      <img className="back" src={back} alt="this is logo"></img>
+      <img
+        className="back"
+        src={back}
+        alt="this is logo"
+        data-testid="contact1"
+      ></img>
     </div>
   );
 }

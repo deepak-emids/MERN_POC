@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Tables from "./components/table/Tables";
 import About from "./pages/about/About";
 import Navbar from "./navbar/Navbar";
-import Footer from "./components/footer/footer";
+import Footer from "./components/footer/Footer";
 import Employee from "./pages/employees/Employee";
 import Department from "./pages/deparment/Department";
 import Role from "./pages/roles/Roles";
