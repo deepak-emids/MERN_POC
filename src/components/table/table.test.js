@@ -23,3 +23,9 @@ it("when render the Tables page should enable the back button", () => {
   userEvent.click(buttonElement);
   expect(buttonElement).toBeEnabled();
 });
+
+it("when render the Tables page should contain datagrid", () => {
+  render(<Tables />);
+  const table = screen.getByTestId("datagrid");
+  expect(table).toBeInTheDocument();
+});
