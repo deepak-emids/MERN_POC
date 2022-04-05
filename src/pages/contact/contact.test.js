@@ -7,3 +7,9 @@ it("when render the contact page should contain title", () => {
   const text = screen.getByText("Reach Us Here");
   expect(text).toBeInTheDocument();
 });
+
+it("when render the contact page should contaion tagline", () => {
+  render(<Contact />);
+  const img = screen.getByTestId("table1");
+  expect(img).toBeInTheDocument();
+});
