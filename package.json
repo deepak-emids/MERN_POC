@@ -32,6 +32,7 @@
     "morgan": "^1.10.0",
     "mysql2": "^2.3.3",
     "nest": "^0.1.6",
+    "node-mocks-http": "^1.11.0",
     "reflect-metadata": "^0.1.13",
     "ts-node-dev": "^1.0.0-pre.62",
     "typeorm": "^0.2.45",
