@@ -15,3 +15,9 @@ it("when render the profile page should enable the edit button", () => {
   userEvent.click(buttonElement);
   expect(buttonElement).toBeEnabled();
 });
+
+it("when render the profile page should contain img profile1", () => {
+  render(<Profile />);
+  const img = screen.getByTestId("profile1");
+  expect(img).toBeInTheDocument();
+});
