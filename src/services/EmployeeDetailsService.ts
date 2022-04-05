@@ -1,8 +1,7 @@
 import 'reflect-metadata';
-import logger from '../config/logger';
 import bcrypt from 'bcrypt';
 import { EmployeeDetails } from '../entity/employee';
-import EmployeeData from '../models/employeeDetails.model';
+import EmployeeData from '../models/EmployeeData';
 import Response from '../models/response.model';
 import Repository from '../repository/repository';
 let repo = new Repository();
@@ -10,10 +9,7 @@ let repo = new Repository();
 let response = new Response();
 
 class EmployeeDetailsService {
-  /*
-  add employee
-  */
-  public async addEmployeeDetails(body): Promise<Response> {
+  public async addEmployeeDetails(body: EmployeeData): Promise<Response> {
     let emp = new EmployeeDetails();
 
     let query: { email: string } = { email: body.email };
@@ -21,7 +17,6 @@ class EmployeeDetailsService {
 
     console.log(result);
     if (result) {
-      //response object
       response.data = result;
       response.message = 'Employee Already Exists';
       response.status = 200;
@@ -36,19 +31,14 @@ class EmployeeDetailsService {
 
       let addedEmployee = await repo.add(EmployeeDetails, emp);
 
-      //response object
       response.data = addedEmployee;
       response.message = 'Employee Details  Added';
       response.status = 201;
 
-      //return saved data
       return response;
     }
   }
 
-  /*
-  get All Employees
-  */
   public getAllEmployeeDetails = async (): Promise<Response> => {
     let result = await repo.getAll(EmployeeDetails);
 
@@ -67,9 +57,6 @@ class EmployeeDetailsService {
     }
   };
 
-  /*
-  get EmployeeDetails
-  */
   public getEmployeeDetails = async (id: any): Promise<Response> => {
     let query = { id: id };
 
@@ -89,9 +76,6 @@ class EmployeeDetailsService {
     }
   };
 
-  /*
-  update EmployeeDetails
-  */
   public updateEmployeeDetails = async (id, body) => {
     let newData = { ...body };
 
@@ -112,9 +96,6 @@ class EmployeeDetailsService {
     }
   };
 
-  /*
-  delete EmployeeDetails 
-  */
   public deleteEmployeeDetails = async (id) => {
     let result = await repo.delete(EmployeeDetails, id);
 

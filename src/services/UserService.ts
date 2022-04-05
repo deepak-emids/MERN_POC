@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import { EmployeeDetails } from '../entity/employee';
 import Response from '../models/response.model';
-import LoginRequest from '../models/loginReq.model';
+import LoginRequest from '../models/LoginRequest';
 import Repository from '../repository/repository';
 let repo = new Repository();
 

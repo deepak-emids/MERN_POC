@@ -1,7 +1,6 @@
 import express, { IRouter } from 'express';
-import userController from '../controllers/user.controller';
-import userValidator from '../validators/user.validator';
-import { userAuth } from '../middlewares/auth.middleware';
+import userController from '../controllers/UserController';
+import userValidator from '../validators/UserValidator';
 
 class UserRoutes {
   private UserController = new userController();

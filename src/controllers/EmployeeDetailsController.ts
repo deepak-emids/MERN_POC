@@ -1,18 +1,10 @@
-import HttpStatus from 'http-status-codes';
 import { Request, Response, NextFunction } from 'express';
-import EmployeeDetailsService from '../services/employee.service';
+import EmployeeDetailsService from '../services/EmployeeDetailsService';
 import logger from '../config/logger';
-import { number } from '@hapi/joi';
 
 class EmployeeDetailsController {
   public EmployeeDetailsService = new EmployeeDetailsService();
 
-  /**
-   * Controller to get all users available
-   * @param  {object} Request - request object
-   * @param {object} Response - response object
-   * @param {Function} NextFunction
-   */
   public addEmployeeDetails = async (
     req: Request,
     res: Response,
@@ -30,12 +22,6 @@ class EmployeeDetailsController {
     }
   };
 
-  /**
-   * Controller to get all users available
-   * @param  {object} Request - request object
-   * @param {object} Response - response object
-   * @param {Function} NextFunction
-   */
   public getAllEmployeeDetails = async (
     req: Request,
     res: Response,
@@ -52,12 +38,6 @@ class EmployeeDetailsController {
     }
   };
 
-  /**
-   * Controller to get all users available
-   * @param  {object} Request - request object
-   * @param {object} Response - response object
-   * @param {Function} NextFunction
-   */
   public getEmployeeDetails = async (
     req: Request,
     res: Response,
@@ -75,12 +55,6 @@ class EmployeeDetailsController {
     }
   };
 
-  /**
-   * Controller to get all users available
-   * @param  {object} Request - request object
-   * @param {object} Response - response object
-   * @param {Function} NextFunction
-   */
   public deleteEmployeeDetails = async (
     req: Request,
     res: Response,
@@ -98,12 +72,6 @@ class EmployeeDetailsController {
     }
   };
 
-  /**
-   * Controller to get all users available
-   * @param  {object} Request - request object
-   * @param {object} Response - response object
-   * @param {Function} NextFunction
-   */
   public updateEmployeeDetails = async (
     req: Request,
     res: Response,

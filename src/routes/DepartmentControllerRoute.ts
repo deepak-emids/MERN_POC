@@ -1,4 +1,4 @@
-import DepartmentController from '../controllers/department.controller';
+import DepartmentController from '../controllers/DepartmentController';
 import express, { IRouter } from 'express';
 import { userAuth } from '../middlewares/auth.middleware';
 

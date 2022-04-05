@@ -1,4 +1,4 @@
-import EmployeeDetailsController from '../controllers/employee.controller';
+import EmployeeDetailsController from '../controllers/EmployeeDetailsController';
 import express, { IRouter } from 'express';
 import { userAuth } from '../middlewares/auth.middleware';
 

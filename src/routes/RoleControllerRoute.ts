@@ -1,4 +1,4 @@
-import RoleController from '../controllers/role.controller';
+import RoleController from '../controllers/RoleController';
 import express, { IRouter } from 'express';
 import { userAuth } from '../middlewares/auth.middleware';
 

@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import { Role } from '../entity/role';
-import RoleData from '../models/role.model';
+import RoleData from '../models/RoleDetails';
 import Repository from '../repository/repository';
 import Response from '../models/response.model';
 

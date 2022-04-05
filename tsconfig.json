@@ -11,6 +11,6 @@
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "Node"
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "../tes.controller.spec.ts"],
   "exclude": ["node_modules", "src/tests"]
 }

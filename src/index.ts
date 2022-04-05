@@ -6,8 +6,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 
 import routes from './routes';
-// import con from './config/database';
-import ErrorHandler from './middlewares/error.middleware';
+import ErrorHandler from './middlewares/ErrorMiddleware';
 import Logger from './config/logger';
 
 import morgan from 'morgan';
@@ -18,7 +17,6 @@ class App {
   public port: string | number;
   public api_version: string | number;
   public env: boolean;
-  // private db = new Database();
   private logStream = Logger.logStream;
   private logger = Logger.logger;
   public errorHandler = new ErrorHandler();
@@ -31,7 +29,6 @@ class App {
 
     this.initializeMiddleWares();
     this.initializeRoutes();
-    // this.initializeDatabase();
     this.initializeErrorHandlers();
     this.startApp();
   }
@@ -43,10 +40,6 @@ class App {
     this.app.use(express.json());
     this.app.use(morgan('combined', { stream: this.logStream }));
   }
-
-  // public initializeDatabase(): void {
-  //   this.db.initializeDatabase();
-  // }
 
   public initializeRoutes(): void {
     this.app.use(`/`, routes());
@@ -60,9 +53,7 @@ class App {
 
   public startApp(): void {
     this.app.listen(this.port, () => {
-      this.logger.info(
-        `Server started at ${this.host}:${this.port}`
-      );
+      this.logger.info(`Server started at ${this.host}:${this.port}`);
     });
   }
 

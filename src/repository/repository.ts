@@ -1,35 +1,17 @@
-import {
-  createConnection,
-  MetadataWithSuchNameAlreadyExistsError
-} from 'typeorm';
-
-import { loggers } from 'winston';
-
-import { typeOrmConnection } from '../utils/typeorm.connection';
+import { createConnection } from 'typeorm';
 
 class Repository {
-  /**
-   * Controller to add
-   * @param  {object} Request - request object
-   * @param {object} Response - response object
-   * @param {Function} NextFunction
-   */
   public add = async (entity, object) => {
     try {
       let result = await createConnection().then(async (connection) => {
-        //get table
         let repo = connection.getRepository(entity);
 
-        //save table
         await repo.save(object);
 
-        //get saved data
         let find = await repo.find();
 
-        //close connection
         await connection.close();
 
-        //return result
         return find;
       });
 
@@ -39,53 +21,31 @@ class Repository {
     }
   };
 
-  /**
-   * Controller to get
-   * @param  {object} Request - request object
-   * @param {object} Response - response object
-   * @param {Function} NextFunction
-   */
   public getAll = async (entity) => {
     try {
-      let result = await createConnection().then(async (connection) => {
-        //get table
+      return await createConnection().then(async (connection) => {
         let repo = connection.getRepository(entity);
 
-        //get saved data
         let find = await repo.find();
 
-        //close connection
         await connection.close();
 
-        //return result
         return find;
       });
-
-      return result;
     } catch (error) {
       return error;
     }
   };
 
-  /**
-   * Controller to get
-   * @param  {object} Request - request object
-   * @param {object} Response - response object
-   * @param {Function} NextFunction
-   */
   public get = async (entity, query) => {
     try {
       return await createConnection().then(async (connection) => {
-        //get table
         let repo = connection.getRepository(entity);
 
-        //get saved data
         let find = await repo.findOne(query);
 
-        //close connection
         await connection.close();
 
-        //return result
         return find;
       });
     } catch (error) {
@@ -93,19 +53,11 @@ class Repository {
     }
   };
 
-  /**
-   * Controller to get all users available
-   * @param  {object} Request - request object
-   * @param {object} Response - response object
-   * @param {Function} NextFunction
-   */
   public delete = async (entity, id) => {
     try {
-      let result = await createConnection().then(async (connection) => {
-        //get table
+      return await createConnection().then(async (connection) => {
         let repo = connection.getRepository(entity);
 
-        //find
         let foundEmp = await repo.find({ id: id });
 
         if (foundEmp.length > 0) {
@@ -123,33 +75,21 @@ class Repository {
           return false;
         }
       });
-
-      return result;
     } catch (error) {
       return error;
     }
   };
 
-  /**
-   * Controller to get all users available
-   * @param  {object} Request - request object
-   * @param {object} Response - response object
-   * @param {Function} NextFunction
-   */
   public update = async (entity, id, object) => {
     try {
-      let result = await createConnection().then(async (connection) => {
-        //get table
+      return await createConnection().then(async (connection) => {
         let repo = connection.getRepository(entity);
 
-        //find
         let foundEmp = await repo.find({ id: id });
 
         if (foundEmp.length > 0) {
-          //update table
           await repo.update({ id: id }, object);
 
-          //get saved data
           let find = await repo.findOne({ id: id });
 
           await connection.close();
@@ -161,8 +101,6 @@ class Repository {
           return false;
         }
       });
-
-      return result;
     } catch (error) {
       return error;
     }

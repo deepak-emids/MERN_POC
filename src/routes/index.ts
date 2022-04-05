@@ -1,10 +1,10 @@
 import express, { IRouter } from 'express';
 const router = express.Router();
 
-import userRoute from './user.route';
-import EmployeeRoute from '../routes/employee.route';
-import deptRoute from '../routes/dept.route';
-import roleRoute from '../routes/role.route';
+import userRoute from './UserRoutes';
+import EmployeeRoute from './EmployeeDetailsRoute';
+import deptRoute from './DepartmentControllerRoute';
+import roleRoute from './RoleControllerRoute';
 
 /**
  * Function contains Application routes

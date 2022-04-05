@@ -1,12 +1,16 @@
 import httpMock from 'node-mocks-http';
 
-import EmployeeDetailsController from '../controllers/employee.controller';
+import EmployeeDetailsController from '../controllers/EmployeeDetailsController';
 let employee = new EmployeeDetailsController();
 
-import EmployeeService from '../services/employee.service';
+import EmployeeService from '../services/EmployeeDetailsService';
 let employeeService = new EmployeeService();
 
-employeeService.getAllEmployeeDetails = jest.fn().mockResolvedValue([]);
+jest.mock('../services/employee.service', () => {
+  return {
+    getAllEmployeeDetails: jest.fn()
+  };
+});
 
 let req, res, next;
 
@@ -16,8 +20,13 @@ beforeEach(() => {
   next = null;
 });
 
-//get all employee
 it.only('should return array of all employee', async () => {
+  employeeService.getAllEmployeeDetails = jest.fn().mockResolvedValue([]);
+  employeeService.getAllEmployeeDetails = jest
+    .fn()
+    .mockImplementation(() => '');
+
+  employeeService.getAllEmployeeDetails.mockImplementation(()=>)
   await employee.getAllEmployeeDetails(req, res, next);
 
   expect(employeeService.getAllEmployeeDetails).toHaveBeenCalled();

@@ -1,16 +1,10 @@
 import HttpStatus from 'http-status-codes';
 import { Request, Response, NextFunction } from 'express';
-import DepartmentService from '../services/department.service';
+import DepartmentService from '../services/DepartmentService';
 
 class DepartmentController {
   public DepartmentService = new DepartmentService();
 
-  /**
-   * Controller to get all users available
-   * @param  {object} Request - request object
-   * @param {object} Response - response object
-   * @param {Function} NextFunction
-   */
   public addDepartment = async (
     req: Request,
     res: Response,
@@ -24,12 +18,6 @@ class DepartmentController {
     }
   };
 
-  /**
-   * Controller to get all users available
-   * @param  {object} Request - request object
-   * @param {object} Response - response object
-   * @param {Function} NextFunction
-   */
   public getAllDepartment = async (
     req: Request,
     res: Response,
@@ -43,12 +31,6 @@ class DepartmentController {
     }
   };
 
-  /**
-   * Controller to get all users available
-   * @param  {object} Request - request object
-   * @param {object} Response - response object
-   * @param {Function} NextFunction
-   */
   public getDepartment = async (
     req: Request,
     res: Response,
@@ -64,12 +46,6 @@ class DepartmentController {
     }
   };
 
-  /**
-   * Controller to get all users available
-   * @param  {object} Request - request object
-   * @param {object} Response - response object
-   * @param {Function} NextFunction
-   */
   public deleteDepartment = async (
     req: Request,
     res: Response,
@@ -85,12 +61,6 @@ class DepartmentController {
     }
   };
 
-  /**
-   * Controller to get all users available
-   * @param  {object} Request - request object
-   * @param {object} Response - response object
-   * @param {Function} NextFunction
-   */
   public updateDepartment = async (
     req: Request,
     res: Response,

@@ -1,17 +1,10 @@
 import HttpStatus from 'http-status-codes';
 import { Request, Response, NextFunction } from 'express';
-import RoleService from '../services/role.service';
-// import Response from '../types/Response';
+import RoleService from '../services/RoleService';
 
 class RoleController {
   public RoleService = new RoleService();
 
-  /**
-   * Controller to get all users available
-   * @param  {object} Request - request object
-   * @param {object} Response - response object
-   * @param {Function} NextFunction
-   */
   public addRole = async (
     req: Request,
     res: Response,
@@ -25,12 +18,6 @@ class RoleController {
     }
   };
 
-  /**
-   * Controller to get all users available
-   * @param  {object} Request - request object
-   * @param {object} Response - response object
-   * @param {Function} NextFunction
-   */
   public getAllRole = async (
     req: Request,
     res: Response,
@@ -44,12 +31,6 @@ class RoleController {
     }
   };
 
-  /**
-   * Controller to get all users available
-   * @param  {object} Request - request object
-   * @param {object} Response - response object
-   * @param {Function} NextFunction
-   */
   public getRole = async (
     req: Request,
     res: Response,
@@ -63,12 +44,6 @@ class RoleController {
     }
   };
 
-  /**
-   * Controller to get all users available
-   * @param  {object} Request - request object
-   * @param {object} Response - response object
-   * @param {Function} NextFunction
-   */
   public deleteRole = async (
     req: Request,
     res: Response,
@@ -82,12 +57,6 @@ class RoleController {
     }
   };
 
-  /**
-   * Controller to get all users available
-   * @param  {object} Request - request object
-   * @param {object} Response - response object
-   * @param {Function} NextFunction
-   */
   public updateRole = async (
     req: Request,
     res: Response,

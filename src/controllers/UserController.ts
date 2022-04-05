@@ -1,10 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import HttpStatus from 'http-status-codes';
-import userService from '../services/user.service';
-
+import userService from '../services/UserService';
 import { Request, Response, NextFunction } from 'express';
-// import { IUser } from '../models/user.model';
 import ILoginUser from '../models/response.model';
+
 class UserController {
   public UserService = new userService();
 
