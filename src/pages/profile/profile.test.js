@@ -8,3 +8,10 @@ it("when render the profile page should contain title", () => {
   const text = screen.getByText("Employee Basic Details");
   expect(text).toBeInTheDocument();
 });
+
+it("when render the profile page should enable the edit button", () => {
+  render(<Profile />);
+  const buttonElement = screen.getByRole("button", { name: /EDIT/i });
+  userEvent.click(buttonElement);
+  expect(buttonElement).toBeEnabled();
+});
