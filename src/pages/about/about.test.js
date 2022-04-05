@@ -31,3 +31,9 @@ it("when render the abuout page should contain vec image 2", () => {
   const img = screen.getByTestId("vec2");
   expect(img).toBeInTheDocument();
 });
+
+it("when render the abuout page should contain mission title", () => {
+  render(<About />);
+  const text = screen.getByText("Our Mission");
+  expect(text).toBeInTheDocument();
+});
