@@ -1,56 +1,40 @@
 import Repository from '../repository/repository';
 let repo = new Repository();
 import { EmployeeDetails } from '../entity/employee';
-import * as faker from 'faker';
+import faker from 'faker';
 
 describe('Repository', () => {
   it('when given employee details should create new employeee and return the created employee', async () => {
-    
     let newUser = {
-      firstName: 'last',
-      lastName: 'last foo',
-      email: 'ffoo@gmail.com',
-      password: 'pass',
-      address: 'a/p shivajinagar,mumbai,tal:mubai,dist:mumbai',
-      department_Id: 5,
-      role_Id: 2,
-      mobileNo: 122154789,
-      aadharId: 9,
-      date_Of_Joining: '2004-12-27'
-    };
-
-    const createdUser = await repo.add(EmployeeDetails, newUser);
-
-    expect(createdUser).toMatchObject(newUser);
-  });
-
-  create employee
-  it.only('when given incorrect employee details should not create new employeee', async () => {
-    let newEmployee = {
       firstName: faker.name.findName(),
       lastName: faker.name.lastName(),
       email: faker.internet.email(),
       password: faker.internet.password(),
       address: faker.address.streetAddress(),
-      department_Id: faker.random.number(),
-      role_Id: faker.random.number(),
-      date_of_birth: faker.date.past(2),
-      city: faker.address.city(),
-      country: faker.address.country(),
-      mobileNo: faker.phone.phoneNumber(),
-      aadharId: faker.random.number(100),
-      date_Of_Joining: faker.date.past(2)
+      department_Id: faker.datatype.number(),
+      role_Id: faker.datatype.number(),
+      mobileNo: faker.datatype.number(),
+      // mobileNo: faker.phone.phoneNumber(),
+      aadharId: faker.datatype.number(100),
+      date_Of_Joining: '2004-12-27'
     };
 
-    let newUser = {
-      lastName: 'last foo',
-      email: 'ffoo@gmail.com',
-      password: 'pass',
-      address: 'a/p shivajinagar,mumbai,tal:mubai,dist:mumbai',
+    console.log(newUser, 'sent');
+    const createdUser = await repo.add(EmployeeDetails, newUser);
+    console.log(createdUser, 'creataed');
+    expect(createdUser).toMatchObject(newUser);
+  });
 
-      role_Id: 2,
-      mobileNo: '122154789',
-      aadharId: 9,
+  it.only('when given incorrect employee details should not create new employeee', async () => {
+    let newUser = {
+      firstName: faker.name.findName(),
+      email: faker.internet.email(),
+      password: faker.internet.password(),
+      address: faker.address.streetAddress(),
+      department_Id: faker.datatype.number(),
+      role_Id: faker.datatype.number(),
+      mobileNo: 123456789,
+      aadharId: faker.datatype.number(100),
       date_Of_Joining: '2004-12-27'
     };
 
@@ -96,23 +80,8 @@ describe('Repository', () => {
 
   it('when given employeeid and employee details,should update the given employee details', async () => {
     const employeeId = 5;
-    let updatedDetails = {
-      firstName: 'lastone',
-      lastName: 'last foo',
-      email: 'ffoo@gmail.com',
-      password: 'pass',
-      address: 'a/p shivajinagar,mumbai,tal:mubai,dist:mumbai',
-      department_Id: 5,
-      role_Id: 2,
-      mobileNo: 122154789,
-      aadharId: 10,
-      date_Of_Joining: '2004-12-27'
-    };
-    const update = await repo.update(
-      EmployeeDetails,
-      employeeId,
-      updatedDetails
-    );
+    let updatedDetails = {};
+    await repo.update(EmployeeDetails, employeeId, updatedDetails);
     const findUpdated = await repo.get(EmployeeDetails, employeeId);
 
     expect(findUpdated).toMatchObject(updatedDetails);
@@ -121,12 +90,15 @@ describe('Repository', () => {
   it('when given incorrect employeeid,should not update the given employee details', async () => {
     const employeeId = 1;
     let updatedDetails = {
-      lastName: 'last foo',
-      email: 'ffoo@gmail.com',
-      password: 'pass',
-      address: 'a/p shivajinagar,mumbai,tal:mubai,dist:mumbai',
-      department_Id: 5,
-      role_Id: 2,
+      firstName: faker.name.findName(),
+      lastName: faker.name.lastName(),
+      email: faker.internet.email(),
+      password: faker.internet.password(),
+      address: faker.address.streetAddress(),
+      department_Id: faker.datatype.number(),
+      role_Id: faker.datatype.number(),
+      mobileNo: faker.datatype.number(),
+      aadharId: faker.datatype.number(100),
       date_Of_Joining: '2004-12-27'
     };
     const update = await repo.update(

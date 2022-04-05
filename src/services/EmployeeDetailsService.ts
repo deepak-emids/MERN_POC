@@ -9,7 +9,7 @@ let repo = new Repository();
 let response = new Response();
 
 class EmployeeDetailsService {
-  public async addEmployeeDetails(body: EmployeeData): Promise<Response> {
+  public async addEmployeeDetails(body): Promise<Response> {
     let emp = new EmployeeDetails();
 
     let query: { email: string } = { email: body.email };

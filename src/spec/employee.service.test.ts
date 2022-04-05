@@ -8,7 +8,7 @@ let employeeService = new EmployeeService();
 import EmployeeData from '../models/EmployeeData';
 
 describe('Service Test', () => {
-  it.only('when given employee details should call add method from repository', async () => {
+  it.('when given employee details should call add method from repository', async () => {
     let newUser = {
       firstName: 'last',
       lastName: 'last foo',

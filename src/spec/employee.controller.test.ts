@@ -20,7 +20,7 @@ beforeEach(() => {
   next = null;
 });
 
-it.only('should return array of all employee', async () => {
+it('should return array of all employee', async () => {
   employeeService.getAllEmployeeDetails = jest
     .fn()
     .mockImplementation(() => '');
