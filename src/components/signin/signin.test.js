@@ -20,3 +20,11 @@ it("when clicked on login button should call the next function", () => {
   userEvent.click(buttonElement);
   expect(foo.next).toHaveBeenCalled();
 });
+
+it("when ", () => {
+  render(<Signin />);
+
+  const buttonElement = screen.getByRole("button", { name: /LOGIN/i });
+  userEvent.click(buttonElement);
+  expect(buttonElement).toBeEnabled();
+});
