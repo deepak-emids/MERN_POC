@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">28% </span>
+                <span class="strong">25.33% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>21/75</span>
+                <span class='fraction'>19/75</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">20% </span>
+                <span class="strong">30% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/10</span>
+                <span class='fraction'>3/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">29.57% </span>
+                <span class="strong">25.35% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>21/71</span>
+                <span class='fraction'>18/71</span>
             </div>
         
             
@@ -193,7 +193,34 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -202,35 +229,8 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -310,20 +310,20 @@ let repo = new Repository();
 let response = new Response();
 &nbsp;
 class EmployeeDetailsService {
-  public async addEmployeeDetails(body): Promise&lt;Response&gt; {
-    let emp = new EmployeeDetails();
+  public async <span class="fstat-no" title="function not covered" >addEmployeeDetails(</span>body): Promise&lt;Response&gt; {
+    let emp = <span class="cstat-no" title="statement not covered" >new EmployeeDetails();</span>
 &nbsp;
-    let query: { email: string } = { email: body.email };
-    let result = await repo.get(EmployeeDetails, query);
+    let query: { email: string } = <span class="cstat-no" title="statement not covered" >{ email: body.email };</span>
+    let result = <span class="cstat-no" title="statement not covered" >await repo.get(EmployeeDetails, query);</span>
 &nbsp;
-    console.log(result);
-    if (result) {
-      response.data = result;
-      response.message = 'Employee Already Exists';
-      response.status = 200;
+<span class="cstat-no" title="statement not covered" >    console.log(result);</span>
+<span class="cstat-no" title="statement not covered" >    if (result) {</span>
+<span class="cstat-no" title="statement not covered" >      response.data = result;</span>
+<span class="cstat-no" title="statement not covered" >      response.message = 'Employee Already Exists';</span>
+<span class="cstat-no" title="statement not covered" >      response.status = 200;</span>
 &nbsp;
-      return response;
-    } else <span class="missing-if-branch" title="else path not taken" >E</span>{
+<span class="cstat-no" title="statement not covered" >      return response;</span>
+    } else {
       const hash: string = <span class="cstat-no" title="statement not covered" >await bcrypt.hash(body.password, 8);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >      body.password = hash;</span>
@@ -340,16 +340,16 @@ class EmployeeDetailsService {
     }
   }
 &nbsp;
-  public getAllEmployeeDetails = <span class="fstat-no" title="function not covered" >async (): Promise&lt;Response&gt; =</span>&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" > {</span></span>
-    let result = <span class="cstat-no" title="statement not covered" >await repo.getAll(EmployeeDetails);</span>
+  public getAllEmployeeDetails = async (): Promise&lt;Response&gt; =&gt; {
+    let result = await repo.getAll(EmployeeDetails);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    if (result) {</span>
-<span class="cstat-no" title="statement not covered" >      response.data = result;</span>
-<span class="cstat-no" title="statement not covered" >      response.message = 'EmployeeDetails Fetched';</span>
-<span class="cstat-no" title="statement not covered" >      response.status = 200;</span>
+    if (result) {
+      response.data = result;
+      response.message = 'EmployeeDetails Fetched';
+      response.status = 200;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >      return response;</span>
-    } else {
+      return response;
+    } else <span class="missing-if-branch" title="else path not taken" >E</span>{
 <span class="cstat-no" title="statement not covered" >      response.data = {};</span>
 <span class="cstat-no" title="statement not covered" >      response.message = 'EmployeeDetails Not Found';</span>
 <span class="cstat-no" title="statement not covered" >      response.status = 404;</span>
@@ -424,7 +424,7 @@ export default EmployeeDetailsService;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Tue Apr 05 2022 20:14:20 GMT+0530 (India Standard Time)
+                at Wed Apr 06 2022 08:52:32 GMT+0530 (India Standard Time)
             </div>
         <script src="../prettify.js"></script>
         <script>

@@ -15,7 +15,6 @@ class EmployeeDetailsService {
     let query: { email: string } = { email: body.email };
     let result = await repo.get(EmployeeDetails, query);
 
-    console.log(result);
     if (result) {
       response.data = result;
       response.message = 'Employee Already Exists';

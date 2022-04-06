@@ -1,6 +1,6 @@
 import { createConnection } from 'typeorm';
 
-class Repository {
+export default class Repository {
   public add = async (entity, object) => {
     try {
       let result = await createConnection().then(async (connection) => {
@@ -21,7 +21,7 @@ class Repository {
     }
   };
 
-  public getAll = async (entity) => {
+  public async getAll(entity) {
     try {
       return await createConnection().then(async (connection) => {
         let repo = connection.getRepository(entity);
@@ -35,7 +35,7 @@ class Repository {
     } catch (error) {
       return error;
     }
-  };
+  }
 
   public get = async (entity, query) => {
     try {
@@ -106,5 +106,3 @@ class Repository {
     }
   };
 }
-
-export default Repository;

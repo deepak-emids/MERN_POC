@@ -57,7 +57,7 @@ class DepartmentService {
 
     let result = await repository.get(Department, query);
 
-    if (result.length > 0) {
+    if (result) {
       response.data = result;
       response.message = 'Department Fetched';
       response.status = 200;
@@ -87,9 +87,9 @@ class DepartmentService {
 
     let result = await repository.update(Department, id, newData);
 
-    if (result.length > 0) {
+    if (result) {
       response.data = result;
-      response.message = 'Department deleted';
+      response.message = 'Department Updated';
       response.status = 200;
 
       return response;
@@ -108,7 +108,7 @@ class DepartmentService {
   public deleteDepartment = async (id) => {
     let result = await repository.delete(Department, id);
 
-    if (result.length > 0) {
+    if (result) {
       response.data = result;
       response.message = 'Department deleted';
       response.status = 200;

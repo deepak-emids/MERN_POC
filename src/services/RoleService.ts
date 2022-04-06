@@ -36,7 +36,7 @@ class RoleService {
 
     if (result.length > 0) {
       response.data = result;
-      response.message = 'Role deleted';
+      response.message = 'Roles Fetched';
       response.status = 200;
 
       return response;
@@ -57,7 +57,7 @@ class RoleService {
 
     let result = await repository.get(Role, query);
 
-    if (result.length > 0) {
+    if (result) {
       response.data = result;
       response.message = 'Role deleted';
       response.status = 200;
@@ -84,7 +84,7 @@ class RoleService {
 
     let result = await repository.update(Role, id, newData);
 
-    if (result.length > 0) {
+    if (result) {
       response.data = result;
       response.message = 'Role updated';
       response.status = 200;
@@ -105,7 +105,7 @@ class RoleService {
   public deleteRole = async (id: number) => {
     let result = await repository.delete(Role, id);
 
-    if (result.length > 0) {
+    if (result) {
       response.data = result;
       response.message = 'Role deleted';
       response.status = 200;
