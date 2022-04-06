@@ -4,10 +4,13 @@ import back from "../../assets/back.jpg";
 import head from "../../assets/table.jpg";
 import service from "../../services/services";
 import Table from "../../components/table/Tables";
+import { useSelector, useDispatch } from "react-redux";
 
 import "./employee.scss";
 
 function Employee() {
+  const employee = useSelector((state) => console.log(state, "redux state"));
+
   const navigate = useNavigate();
   const [emp, setEmp] = React.useState([]);
 

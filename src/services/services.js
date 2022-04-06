@@ -32,7 +32,6 @@ const Service = {
 
   //get project emps
   getEmployee: (data) => {
-    console.log(data);
     return service.getMethod(`${url}/employee/${data}`, header);
   },
 

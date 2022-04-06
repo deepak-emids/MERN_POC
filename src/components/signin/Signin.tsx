@@ -9,7 +9,8 @@ import IconButton from "@mui/material/IconButton";
 import "./signin.scss";
 
 function Signin() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
+
   const [field, setField] = useState({
     email: "",
     password: "",
@@ -54,7 +55,7 @@ function Signin() {
           localStorage.setItem("employeeId", res.data.data.id);
           localStorage.setItem("role_Id", res.data.data.role_Id);
 
-          // navigate("/");
+          navigate("/");
         })
         .catch((res) => {});
     }

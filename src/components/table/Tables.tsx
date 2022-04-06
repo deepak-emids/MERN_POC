@@ -40,17 +40,6 @@ const getEmployee = (id: number) => {
     });
 };
 
-const updateEmployee = (id: number, data: {}) => {
-  service
-    .updateEmployee(id, data)
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
-
 const deleteEmployee = (id: number) => {
   service
     .deleteEmployee(id)
@@ -121,6 +110,18 @@ const handleRowClick = (param: any, event: any) => {
 };
 
 export default function DataGridDemo(props: any) {
+  const updateEmployee = (id: number, data: {}) => {
+    service
+      .updateEmployee(id, data)
+      .then((res) => {
+        console.log(res);
+        props.refresh();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const classes = useStyles();
 
   React.useEffect(() => {
@@ -147,7 +148,7 @@ export default function DataGridDemo(props: any) {
     } else console.log("undefined mode");
   };
 
-  const handleCommit = (i: any) => {
+  const handleCommit = async (i: any) => {
     let updatedData: {} = {
       [i.field]: i.value,
     };

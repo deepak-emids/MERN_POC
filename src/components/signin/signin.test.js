@@ -5,7 +5,7 @@ import * as foo from "./Signin";
 
 import userEvent from "@testing-library/user-event";
 
-foo.next = jest.fn().mockResolvedValue("");
+// foo.next = jest.fn().mockResolvedValue("");
 // jest.mock("./Signin", () => ({ next: jest.fn() }));
 
 // jest.mock("./Signin", () => ({
@@ -13,7 +13,15 @@ foo.next = jest.fn().mockResolvedValue("");
 //   next: jest.fn(),
 // }));
 
+// test('does not drink something octopus-flavoured', () => {
+//   const drink = jest.fn();
+//   drinkAll(drink, 'octopus');
+//   expect(drink).not.toHaveBeenCalled();
+// });
+
 it("when clicked on login button should call the next function", () => {
+  foo.next = jest.fn();
+
   render(<Signin />);
 
   const buttonElement = screen.getByRole("button", { name: /LOGIN/i });
