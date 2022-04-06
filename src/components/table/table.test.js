@@ -29,3 +29,9 @@ it("when render the Tables page should contain datagrid", () => {
   const table = screen.getByTestId("datagrid");
   expect(table).toBeInTheDocument();
 });
+
+// it("when given array of objects is passed to table component,length of coloumns in not null", () => {
+//   render(<Tables />);
+//   const rows = screen.getByTestId("datagrid");
+//   expect(table).toBeInTheDocument();
+// });

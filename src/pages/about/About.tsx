@@ -11,10 +11,7 @@ function About() {
   return (
     <div className="about-main">
       {/* <img src={head} className="vec2"></img> */}
-      <div
-        style={{ color: "black", fontFamily: "Inconsolata" }}
-        className="about"
-      >
+      <div className="about">
         <div className="i1">
           <div className="header">CRM</div>
           <div className="tagline">Creating your perfect world</div>

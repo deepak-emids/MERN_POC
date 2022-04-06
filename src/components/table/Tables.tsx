@@ -111,13 +111,6 @@ const deleteDepartment = (id: number) => {
 
 //------------------------------------------------Methods
 
-const handleProfile = (
-  event: any,
-  cellValues: { row: { id: number; field: string; value: any } }
-) => {
-  console.log(cellValues.row);
-};
-
 //default methods
 const handleCellClick = (param: any, event: any) => {
   event.stopPropagation();
@@ -145,8 +138,6 @@ export default function DataGridDemo(props: any) {
     event: any,
     cellValues: { row: { id: number; field: string; value: any } }
   ) => {
-    console.log(cellValues.row);
-
     if (props.mode == "department") {
       deleteDepartment(cellValues.row.id);
       props.refresh();
@@ -157,13 +148,9 @@ export default function DataGridDemo(props: any) {
   };
 
   const handleCommit = (i: any) => {
-    console.log(i);
-
     let updatedData: {} = {
       [i.field]: i.value,
     };
-
-    console.log(updatedData);
 
     if (props.mode == "employee") {
       updateEmployee(i.id, updatedData);
@@ -177,12 +164,11 @@ export default function DataGridDemo(props: any) {
   };
 
   const handleAdd = () => {
-    navigate("/addForm");
+    // navigate("/addForm");
   };
 
   //row data
   const rows = props.data;
-  console.log(rows, "rows");
 
   //column data
   const columns: GridColDef[] = Object.keys(props.data[0]).map((key, id) => {
@@ -238,6 +224,7 @@ export default function DataGridDemo(props: any) {
       >
         BACK
       </Button>
+
       <DataGrid
         style={{ backgroundColor: "white", height: 550 }}
         onCellEditCommit={(e) => handleCommit(e)}

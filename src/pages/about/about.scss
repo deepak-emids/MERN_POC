@@ -1,13 +1,18 @@
 .about {
   // position: absolute;
   // background-color: black;
-  margin-top: 5rem;
+  color: black;
+  font-family: Inconsolata;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+
   height: 150vh;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
 }
 .i1 {
+  height: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,11 +27,11 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  padding-top: 5rem;
+  padding-top: 1rem;
 
   .vec2 {
-    height: 400px;
-    width: 400px;
+    height: 500px;
+    width: 500px;
   }
 }
 .i3 {
@@ -35,14 +40,14 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  padding-top: 5rem;
+  padding-top: 2rem;
 }
 .mission {
   font-size: 25px;
 }
 .vec1 {
-  height: 400px;
-  width: 400px;
+  height: 500px;
+  width: 500px;
 }
 .vec2 {
   position: relative;
@@ -56,12 +61,4 @@
   .mission {
     font-size: 20px;
   }
-}
-
-.about-button {
-  background-color: blue;
-  color: wheat;
-  width: 5rem;
-  margin: 0rem 0rem 5rem 9rem;
-  // padding-left: 5rem;
 }

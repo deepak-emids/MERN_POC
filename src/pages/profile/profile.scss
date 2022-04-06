@@ -19,7 +19,7 @@
 
   .emp-form {
     position: absolute;
-    height: 70vh;
+    height: 80vh;
     width: 35vw;
     margin-bottom: 5rem;
     display: flex;
@@ -29,10 +29,17 @@
     // border: 0.01rem solid #dadce0;
   }
   .emp-form {
-    padding: 2rem;
+    padding: 1rem;
   }
   .name {
     display: flex;
     justify-content: space-between;
   }
+}
+h3,
+h6 {
+  height: 0.01rem;
+}
+.note {
+  font-size: 12px;
 }

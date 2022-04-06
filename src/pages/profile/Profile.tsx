@@ -37,72 +37,44 @@ export default function Profile() {
       });
   };
 
-  const handleUpdate = (data: any) => {
-    console.log(data);
+  const updateEmployee = (id: any, data: {}) => {
+    service
+      .updateEmployee(id, data)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
-
-  const [field, setField] = React.useState({
-    email: "",
-    address: "",
-    mobileNo: "",
-    password: "",
-
-    emailError: false,
-    addressError: false,
-    passwordError: false,
-    mobileNoError: false,
-  });
 
   const changeField = (e: any) => {
-    setField((previousvalues) => {
-      return { ...previousvalues, [e.target.name]: e.target.value };
-    });
-  };
-
-  const validation = () => {
-    let isError = false;
-    let emailError = field.email === "" ? true : false;
-    let addressError = field.address === "" ? true : false;
-    let passwordError = field.password === "" ? true : false;
-    let mobileNoError = field.mobileNo === "" ? true : false;
-
-    setField((previousvalues: any) => {
-      return {
-        ...previousvalues,
-        emailError: emailError,
-        addressError: addressError,
-        passwordError: passwordError,
-        mobileNoError: mobileNoError,
-      };
-    });
-    return (isError =
-      field.emailError ||
-      field.addressError ||
-      field.passwordError ||
-      field.mobileNoError);
+    setEmp((previousstate) => ({
+      ...previousstate,
+      [e.target.name]: e.target.value,
+    }));
   };
 
   const next = () => {
-    let validated = validation();
-    if (!validated) {
-      let data = {
-        employeeId: null,
-        email: field.email,
-        address: field.address,
-        password: field.password,
-        mobileNo: field.mobileNo,
-      };
+    let data = {
+      email: emp.email,
+      address: emp.address,
+      password: emp.password,
+      mobileNo: emp.mobileNo,
+    };
+    let id = localStorage.getItem("employeeId");
 
-      // addProfile api
-      handleUpdate(data);
-    }
+    updateEmployee(id, data);
   };
 
   return (
     <div className="emp-details">
       <form className="emp-form">
-        <div>Employee Basic Details</div>
-        <br></br>
+        <h3>Employee Basic Details</h3>
+        <div className="note">
+          *Only Phone,Address,Email And Password Is Editable
+        </div>
+
         <div
           className="name"
           style={{ display: "flex", justifyContent: "space-between" }}
@@ -144,8 +116,6 @@ export default function Profile() {
             variant="standard"
             size="small"
             className="form-detail"
-            helperText={field.mobileNoError ? "mobileNo is required" : " "}
-            error={field.mobileNoError}
             onChange={(e) => {
               changeField(e);
             }}
@@ -201,8 +171,6 @@ export default function Profile() {
             variant="standard"
             size="small"
             className="form-detail"
-            helperText={field.emailError ? "email is required" : " "}
-            error={field.emailError}
             onChange={(e) => {
               changeField(e);
             }}
@@ -217,18 +185,11 @@ export default function Profile() {
             variant="standard"
             size="small"
             className="form-detail"
-            helperText={field.passwordError ? "password is required" : " "}
-            error={field.passwordError}
             onChange={(e) => {
               changeField(e);
             }}
           ></TextField>
         </div>
-
-        <div
-          className="name"
-          style={{ display: "flex", justifyContent: "space-between" }}
-        ></div>
 
         <TextField
           style={{ width: "100%" }}
@@ -239,8 +200,6 @@ export default function Profile() {
           variant="standard"
           size="small"
           className="form-detail"
-          helperText={field.addressError ? " address is required" : " "}
-          error={field.addressError}
           onChange={(e) => {
             changeField(e);
           }}
@@ -250,7 +209,7 @@ export default function Profile() {
           onClick={next}
           style={{ backgroundColor: "#3371B5", color: "white" }}
         >
-          Edit
+          SAVE
         </Button>
       </form>
       <img

@@ -72,6 +72,7 @@ const Service = {
   deleteDepartment: (data) => {
     return service.deleteMethod(`${url}/department/${data}`, header);
   },
+
   //------------------------------------roles
 
   //new Role

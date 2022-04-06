@@ -19,21 +19,23 @@ function Employee() {
     service
       .getAllEmployee()
       .then((res) => {
-        console.log(res.data.data, "employee page employee in get");
         setEmp(res.data.data);
+        console.log("refresh");
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  console.log(emp, "emp in employee");
-
   return (
     <div className="employee">
       {emp.length ? (
         <div className="table">
-          <Table data={emp} refresh={handleGetAllEmployees} mode="employee" />
+          <Table
+            data={emp}
+            refresh={() => handleGetAllEmployees()}
+            mode="employee"
+          />
         </div>
       ) : null}
 
