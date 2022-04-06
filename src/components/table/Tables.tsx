@@ -129,7 +129,7 @@ export default function DataGridDemo(props: any) {
   }, []);
 
   //Methods
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleBack = () => {
     // navigate("/");
@@ -165,7 +165,7 @@ export default function DataGridDemo(props: any) {
   };
 
   const handleAdd = () => {
-    // navigate("/addForm");
+    navigate("/addEmployee");
   };
 
   //row data

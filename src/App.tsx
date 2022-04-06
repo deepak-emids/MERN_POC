@@ -11,6 +11,7 @@ import Department from "./pages/deparment/Department";
 import Role from "./pages/roles/Roles";
 import Contact from "./pages/contact/Contact";
 import Profile from "./pages/profile/Profile";
+import EmployeeForm from "./components/empForm/EmployeeForm";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
+          <Route path="/addEmployee" element={<EmployeeForm />} />
           <Route path="/login" element={<User />} />
           <Route path="/about" element={<About />} />
           <Route path="/profile" element={<Profile />} />
