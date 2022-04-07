@@ -41,18 +41,6 @@ const deleteEmployee = (id: number) => {
 
 //department Methods
 
-const addDepartment = (details: {}) => {
-  console.log(details);
-  service
-    .addDepartment(details)
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
-
 const getDepartment = (id: number) => {
   service
     .getDepartment(id)
@@ -150,7 +138,15 @@ export default function DataGridDemo(props: any) {
   };
 
   const handleAdd = () => {
-    navigate("/addEmployee");
+    if (props.mode == "employee") {
+      navigate("/addEmployee");
+    } else if (props.mode == "department") {
+      navigate("/departmentForm");
+    } else if (props.mode == "role") {
+      navigate("/roleForm");
+    } else {
+      console.log("mode undefined");
+    }
   };
 
   //row data
@@ -188,17 +184,20 @@ export default function DataGridDemo(props: any) {
 
   return (
     <div className="grid">
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={() => handleAdd()}
-        style={{
-          color: "white",
-          background: "#5cdb5c",
-        }}
-      >
-        ADD
-      </Button>
+      <div className="table-button">
+        <Button
+          className="table-button1"
+          variant="contained"
+          color="primary"
+          onClick={() => handleAdd()}
+          style={{
+            color: "white",
+            background: "#5cdb5c",
+          }}
+        >
+          ADD
+        </Button>
+      </div>
 
       <DataGrid
         style={{ backgroundColor: "white", height: 550 }}

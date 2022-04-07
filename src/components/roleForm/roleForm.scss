@@ -1,4 +1,4 @@
-.dept-details {
+.role-details {
   position: relative;
   width: 100vw;
   display: flex;
@@ -6,7 +6,7 @@
   align-items: start;
 }
 
-.dept-form {
+.role-form {
   padding: 2rem;
   position: absolute;
   height: 20vh;
@@ -21,5 +21,5 @@
 .form-button {
   display: flex;
   justify-content: space-between;
-  width: 15rem;
+  width: 100%;
 }

@@ -3,16 +3,13 @@ import Button from "@mui/material/Button";
 import service from "../../services/services";
 import TextField from "@mui/material/TextField";
 import back from "../../assets/back.jpg";
-import { useNavigate } from "react-router-dom";
 
-import "./departmentForm.scss";
+import "./roleForm.scss";
 
-export default function DepartmentForm() {
-  const navigate = useNavigate();
-
+export default function RoleForm() {
   const [field, setField] = React.useState({
-    departmentName: "",
-    departmentNameError: false,
+    roleName: "",
+    roleNameError: false,
   });
 
   const changeField = (e: any) => {
@@ -23,27 +20,27 @@ export default function DepartmentForm() {
 
   const validation = () => {
     let isError = false;
-    let departmentNameError = field.departmentName === "" ? true : false;
+    let roleNameError = field.roleName === "" ? true : false;
 
     setField((previousvalues) => {
       return {
         ...previousvalues,
-        departmentNameError: departmentNameError,
+        roleNameError: roleNameError,
       };
     });
 
-    return (isError = field.departmentNameError);
+    return (isError = field.roleNameError);
   };
 
   const next = () => {
     let validated = validation();
     if (!validated) {
       let data = {
-        departmentName: field.departmentName,
+        roleName: field.roleName,
       };
 
       service
-        .addDepartment(data)
+        .addRole(data)
         .then((res) => {
           console.log(res);
         })
@@ -53,27 +50,23 @@ export default function DepartmentForm() {
     }
   };
 
-  const handelBack = () => {
-    navigate("/department");
-  };
+  const handelCancel = () => {};
 
   return (
-    <div className="dept-details">
-      <form className="dept-form">
-        <div>Enter Department Name</div>
+    <div className="role-details">
+      <form className="role-form">
+        <div>Enter Role Name</div>
 
         <TextField
           style={{ width: "45%" }}
           id="outlined-basic"
-          name="departmentName"
-          label="Department Name"
+          name="roleName"
+          label="Role Name"
           variant="outlined"
           size="small"
           className="form-detail"
-          helperText={
-            field.departmentNameError ? " departmentName is required" : " "
-          }
-          error={field.departmentNameError}
+          helperText={field.roleNameError ? " roleName is required" : " "}
+          error={field.roleNameError}
           onChange={(e) => {
             changeField(e);
           }}
@@ -84,13 +77,13 @@ export default function DepartmentForm() {
             onClick={next}
             style={{ backgroundColor: "#3371B5", color: "white" }}
           >
-            Save
+            Continue
           </Button>
           <Button
-            onClick={handelBack}
+            onClick={handelCancel}
             style={{ backgroundColor: "white", color: "grey" }}
           >
-            Back
+            Cancel
           </Button>
         </div>
       </form>

@@ -27,7 +27,11 @@ function Department() {
     <div className="department">
       {department.length ? (
         <div className="table">
-          <Table data={department} refresh={handleGetAllDepartment} />
+          <Table
+            data={department}
+            refresh={handleGetAllDepartment}
+            mode="department"
+          />
         </div>
       ) : null}
 

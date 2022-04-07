@@ -28,7 +28,9 @@ function Roles() {
     <div className="role">
       {roles.length ? (
         <div className="table">
-          <Table data={roles} refresh={() => handleGetAllRoles()} />
+          
+            
+          <Table data={roles} refresh={() => handleGetAllRoles()}   mode="role" />
         </div>
       ) : null}
 

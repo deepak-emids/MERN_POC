@@ -14,6 +14,8 @@ import Role from "../roles/Roles";
 import Department from "../deparment/Department";
 import EmployeeForm from "../../components/employeeForm/EmployeeForm";
 import Employee from "../employees/Employee";
+import DepartmentForm from "../../components/departmentForm/DepartmentForm";
+import RoleForm from "../../components/roleForm/RoleForm";
 
 //css
 import "./dashboard.scss";
@@ -72,6 +74,8 @@ export default function Dashboard() {
                 <Route path="/about" element={<About />} />
                 <Route path="/employee" element={<Employee />} />
                 <Route path="/addEmployee" element={<EmployeeForm />} />
+                <Route path="/departmentForm" element={<DepartmentForm />} />
+                <Route path="/roleForm" element={<RoleForm />} />
                 <Route path="/department" element={<Department />} />
                 <Route path="/role" element={<Role />} />
                 <Route path="/profile" element={<Profile />} />
