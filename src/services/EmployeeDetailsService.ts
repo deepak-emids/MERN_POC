@@ -1,7 +1,6 @@
 import 'reflect-metadata';
 import bcrypt from 'bcrypt';
 import { EmployeeDetails } from '../entity/employee';
-import EmployeeData from '../models/EmployeeData';
 import Response from '../models/response.model';
 import Repository from '../repository/repository';
 let repo = new Repository();
