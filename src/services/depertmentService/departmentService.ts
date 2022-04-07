@@ -25,8 +25,9 @@ const Service = {
   },
 
   //update dept
-  updateDepartment: (id: number, data: { departmentName: string }) => {
-    return service.putMethod(`${url}/department/${id}`, header);
+  updateDepartment: (id: number, data: any) => {
+    console.log(id, data);
+    return service.putMethod(`${url}/department/${id}`, data, header);
   },
 
   //delete dept

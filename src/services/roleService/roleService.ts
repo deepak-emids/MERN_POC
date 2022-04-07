@@ -26,7 +26,7 @@ const Service = {
 
   //update Role
   updateRole: (id: number, data: { roleName: string }) => {
-    return service.putMethod(`${url}/role/${id}`, header);
+    return service.putMethod(`${url}/role/${id}`, data, header);
   },
 
   //delete Role

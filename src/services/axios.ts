@@ -1,5 +1,4 @@
 import axios from "axios";
-import * as model from "../models/model";
 
 const AxiosService = {
   postMethod: (url: string, data: any, headers: any = false) => {
