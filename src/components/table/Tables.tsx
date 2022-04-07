@@ -29,14 +29,13 @@ export default function DataGridDemo(props: any) {
   //------------------------------------------------Methods
 
   //Employee Methods
-
-  const getEmployee = (id: number) => {
+  const updateEmployee = (id: number, data: {}) => {
     employeeService
-      .getEmployee(id)
-      .then((res: {}) => {
-        console.log(res);
+      .updateEmployee(id, data)
+      .then((res) => {
+        props.refresh();
       })
-      .catch((err: any) => {
+      .catch((err) => {
         console.log(err);
       });
   };
@@ -45,7 +44,7 @@ export default function DataGridDemo(props: any) {
     employeeService
       .deleteEmployee(id)
       .then((res: {}) => {
-        console.log(res);
+        props.refresh();
       })
       .catch((err: {}) => {
         console.log(err);
@@ -53,23 +52,11 @@ export default function DataGridDemo(props: any) {
   };
 
   //department Methods
-
-  const getDepartment = (id: number) => {
-    departmentService
-      .getDepartment(id)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
   const updateDepartment = (id: number, data: { departmentName: string }) => {
     departmentService
       .updateDepartment(id, data)
       .then((res) => {
-        console.log(res);
+        props.refresh();
       })
       .catch((err) => {
         console.log(err);
@@ -80,22 +67,32 @@ export default function DataGridDemo(props: any) {
     departmentService
       .deleteDepartment(id)
       .then((res: {}) => {
-        console.log(res);
+        props.refresh();
       })
       .catch((err: {}) => {
         console.log(err);
       });
   };
 
-  const updateEmployee = (id: number, data: {}) => {
-    console.log(data);
-    employeeService
-      .updateEmployee(id, data)
+  //role Methods
+  const updateRole = (id: number, data: { roleName: string }) => {
+    roleService
+      .updateRole(id, data)
       .then((res) => {
-        console.log(res);
         props.refresh();
       })
       .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const deleteRole = (id: number) => {
+    roleService
+      .deleteRole(id)
+      .then((res: {}) => {
+        props.refresh();
+      })
+      .catch((err: {}) => {
         console.log(err);
       });
   };
@@ -115,10 +112,10 @@ export default function DataGridDemo(props: any) {
   ) => {
     if (props.mode == "department") {
       deleteDepartment(cellValues.row.id);
-      props.refresh();
     } else if (props.mode == "employee") {
       deleteEmployee(cellValues.row.id);
-      props.refresh();
+    } else if (props.mode == "role") {
+      deleteRole(cellValues.row.id);
     } else console.log("undefined mode");
   };
 
@@ -126,13 +123,12 @@ export default function DataGridDemo(props: any) {
     let updatedData: any = {
       [i.field]: i.value,
     };
-
     if (props.mode == "employee") {
       updateEmployee(i.id, updatedData);
-      props.refresh();
     } else if (props.mode == "department") {
       updateDepartment(i.id, updatedData);
-      props.refresh();
+    } else if (props.mode == "role") {
+      updateRole(i.id, updatedData);
     } else {
       console.log("mode undefined");
     }
