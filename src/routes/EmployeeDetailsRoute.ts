@@ -1,9 +1,11 @@
 import EmployeeDetailsController from '../controllers/EmployeeDetailsController';
 import express, { IRouter } from 'express';
 import { userAuth } from '../middlewares/auth.middleware';
+import UserValidator from '../validators/UserValidator';
 
 class EmployeeDetailsRoute {
   private EmployeeDetailsController = new EmployeeDetailsController();
+  private validator = new UserValidator();
 
   private router = express.Router();
   //   private UserValidator = new userValidator();
@@ -18,6 +20,7 @@ class EmployeeDetailsRoute {
     */
     this.router.post(
       '/',
+      this.validator.newUser,
       userAuth,
       this.EmployeeDetailsController.addEmployeeDetails
     );

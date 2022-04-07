@@ -27,6 +27,7 @@ describe('testing employee controller', () => {
     employeeService.getAllEmployeeDetails = jest
       .fn()
       .mockImplementation(() => {});
+
     await employeeController.getAllEmployeeDetails(req, res, next);
 
     expect(employeeService.getAllEmployeeDetails).toHaveBeenCalled();

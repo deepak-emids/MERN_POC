@@ -1,11 +1,11 @@
 import express, { IRouter } from 'express';
 import userController from '../controllers/UserController';
-import userValidator from '../validators/UserValidator';
+import UserValidator from '../validators/UserValidator';
 
 class UserRoutes {
   private UserController = new userController();
   private router = express.Router();
-  private UserValidator = new userValidator();
+  private validator = new UserValidator();
 
   constructor() {
     this.routes();
@@ -13,7 +13,11 @@ class UserRoutes {
 
   private routes = () => {
     //route to get all users
-    this.router.post('/login', this.UserController.loginUser);
+    this.router.post(
+      '/login',
+      this.validator.loginUser,
+      this.UserController.loginUser
+    );
   };
 
   public getRoutes = (): IRouter => {

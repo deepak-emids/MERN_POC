@@ -18,13 +18,13 @@ export class EmployeeDetails {
   email: string;
   @Column({ type: 'varchar', length: 80 })
   password: string;
-  @Column({ type: 'varchar', length: 200 })
+  @Column({ type: 'varchar', length: 200, default: '' })
   address: string;
   @Column({ type: 'int' })
   department_Id: number;
   @Column({ type: 'int' })
   role_Id: number;
-  @Column({ type: 'int' })
+  @Column({ type: 'int', default: null })
   mobileNo: number;
   @Column({ type: 'int' })
   aadharId: number;
