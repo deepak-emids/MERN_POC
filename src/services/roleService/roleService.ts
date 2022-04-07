@@ -1,6 +1,6 @@
 import service from "../axios";
 
-let url = "http://localhost:9000";
+let url = "http://34.228.170.203:9000";
 
 const header = {
   headers: {

@@ -1,15 +1,12 @@
 import service from "../axios";
-// import { fetchEmployeeDetails } from "../../store/actions";
-// import { useSelector, useDispatch } from "react-redux";
 import * as model from "../../models/model";
-let url = "http://localhost:9000";
+let url = "http://34.228.170.203:9000";
 
 const header: any = {
   headers: {
     token: localStorage.getItem("token"),
   },
 };
-// const dispatch = useDispatch();
 
 const Service = {
   //new emp data
