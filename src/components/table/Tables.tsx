@@ -1,7 +1,10 @@
 import Button from "@mui/material/Button";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import { useNavigate } from "react-router-dom";
-import service from "../../services/services";
+import employeeService from "../../services/employeeService/employeeService";
+import departmentService from "../../services/depertmentService/departmentService";
+import roleService from "../../services/roleService/roleService";
+
 import "./tables.scss";
 
 import * as React from "react";
@@ -13,69 +16,6 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-//------------------------------------------------Methods
-
-//Employee Methods
-
-const getEmployee = (id: number) => {
-  service
-    .getEmployee(id)
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
-
-const deleteEmployee = (id: number) => {
-  service
-    .deleteEmployee(id)
-    .then((res: {}) => {
-      console.log(res);
-    })
-    .catch((err: {}) => {
-      console.log(err);
-    });
-};
-
-//department Methods
-
-const getDepartment = (id: number) => {
-  service
-    .getDepartment(id)
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
-
-const updateDepartment = (id: number, data: {}) => {
-  service
-    .updateDepartment(id, data)
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
-
-const deleteDepartment = (id: number) => {
-  service
-    .deleteDepartment(id)
-    .then((res: {}) => {
-      console.log(res);
-    })
-    .catch((err: {}) => {
-      console.log(err);
-    });
-};
-
-//------------------------------------------------Methods
-
 //default methods
 const handleCellClick = (param: any, event: any) => {
   event.stopPropagation();
@@ -86,9 +26,70 @@ const handleRowClick = (param: any, event: any) => {
 };
 
 export default function DataGridDemo(props: any) {
+  //------------------------------------------------Methods
+
+  //Employee Methods
+
+  const getEmployee = (id: number) => {
+    employeeService
+      .getEmployee(id)
+      .then((res: {}) => {
+        console.log(res);
+      })
+      .catch((err: any) => {
+        console.log(err);
+      });
+  };
+
+  const deleteEmployee = (id: number) => {
+    employeeService
+      .deleteEmployee(id)
+      .then((res: {}) => {
+        console.log(res);
+      })
+      .catch((err: {}) => {
+        console.log(err);
+      });
+  };
+
+  //department Methods
+
+  const getDepartment = (id: number) => {
+    departmentService
+      .getDepartment(id)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const updateDepartment = (id: number, data: { departmentName: string }) => {
+    departmentService
+      .updateDepartment(id, data)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const deleteDepartment = (id: number) => {
+    departmentService
+      .deleteDepartment(id)
+      .then((res: {}) => {
+        console.log(res);
+      })
+      .catch((err: {}) => {
+        console.log(err);
+      });
+  };
+
   const updateEmployee = (id: number, data: {}) => {
     console.log(data);
-    service
+    employeeService
       .updateEmployee(id, data)
       .then((res) => {
         console.log(res);
@@ -122,7 +123,7 @@ export default function DataGridDemo(props: any) {
   };
 
   const handleCommit = async (i: any) => {
-    let updatedData: {} = {
+    let updatedData: any = {
       [i.field]: i.value,
     };
 

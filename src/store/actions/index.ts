@@ -1,3 +1,10 @@
+export const fetchEmployeeDetails = (employee_details: {}) => {
+  return {
+    type: "GET_EMPLOYEE_DETAILS",
+    payload: employee_details,
+  };
+};
+
 export const fetchEmployee = (employee: []) => {
   return {
     type: "GET_EMPLOYEE",

@@ -1,10 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import back from "../../assets/back.jpg";
-import head from "../../assets/table.jpg";
-import service from "../../services/services";
+import service from "../../services/employeeService/employeeService";
 import Table from "../../components/table/Tables";
 import { useSelector, useDispatch } from "react-redux";
+import { EmployeeData } from "../../models/model";
 
 import "./employee.scss";
 import getEmployee from "../../store/reducer/getEmployee";

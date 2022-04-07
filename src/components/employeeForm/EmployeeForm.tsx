@@ -1,9 +1,10 @@
 import React from "react";
 import Button from "@mui/material/Button";
-import service from "../../services/services";
+import service from "../../services/employeeService/employeeService";
 import TextField from "@mui/material/TextField";
 import back from "../../assets/back.jpg";
 import { useNavigate } from "react-router-dom";
+import { EmployeeData } from "../../models/model";
 
 import "./employeeForm.scss";
 import { Navigate } from "react-router";
@@ -35,7 +36,7 @@ let value = {
 export default function EmployeeForm() {
   const navigate = useNavigate();
 
-  const addEmployee = (data: object) => {
+  const addEmployee = (data: EmployeeData) => {
     service
       .addEmployee(data)
       .then((res) => {

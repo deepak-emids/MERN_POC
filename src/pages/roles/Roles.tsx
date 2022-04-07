@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import back from "../../assets/back.jpg";
-import service from "../../services/services";
+import service from "../../services/roleService/roleService";
 import Table from "../../components/table/Tables";
 
 import "./roles.scss";
@@ -28,9 +28,7 @@ function Roles() {
     <div className="role">
       {roles.length ? (
         <div className="table">
-          
-            
-          <Table data={roles} refresh={() => handleGetAllRoles()}   mode="role" />
+          <Table data={roles} refresh={() => handleGetAllRoles()} mode="role" />
         </div>
       ) : null}
 

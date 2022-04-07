@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "@mui/material/Button";
-import service from "../../services/services";
+import service from "../../services/depertmentService/departmentService";
 import TextField from "@mui/material/TextField";
 import back from "../../assets/back.jpg";
 import { useNavigate } from "react-router-dom";

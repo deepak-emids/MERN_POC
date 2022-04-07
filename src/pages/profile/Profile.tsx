@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "@mui/material/Button";
-import service from "../../services/services";
+import service from "../../services/employeeService/employeeService";
 import TextField from "@mui/material/TextField";
 import back from "../../assets/back.jpg";
 
@@ -181,6 +181,7 @@ export default function Profile() {
             name="password"
             label="Password"
             type="password"
+            value={emp.password}
             variant="standard"
             size="small"
             className="form-detail"

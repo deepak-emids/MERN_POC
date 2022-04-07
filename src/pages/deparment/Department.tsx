@@ -1,6 +1,6 @@
 import React from "react";
 import back from "../../assets/back.jpg";
-import service from "../../services/services";
+import service from "../../services/depertmentService/departmentService";
 import Table from "../../components/table/Tables";
 
 import "./department.scss";

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import service from "../../services/services";
+import service from "../../services/user/userService";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import IconButton from "@mui/material/IconButton";
