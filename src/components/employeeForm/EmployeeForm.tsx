@@ -3,33 +3,51 @@ import Button from "@mui/material/Button";
 import service from "../../services/services";
 import TextField from "@mui/material/TextField";
 import back from "../../assets/back.jpg";
+import { useNavigate } from "react-router-dom";
 
 import "./employeeForm.scss";
+import { Navigate } from "react-router";
 
-export default function CandidateDetails() {
-  const [field, setField] = React.useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    department_Id: "",
-    date_Of_Joining: "",
-    address: "",
-    role_Id: "",
-    password: "",
-    mobileNo: "",
-    aadharId: "",
+let value = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  department_Id: "",
+  date_Of_Joining: "",
+  address: "",
+  role_Id: "",
+  password: "",
+  mobileNo: "",
+  aadharId: "",
 
-    firstNameError: false,
-    lastNameError: false,
-    emailError: false,
-    department_IdError: false,
-    date_Of_JoiningError: false,
-    addressError: false,
-    role_IdError: false,
-    passwordError: false,
-    mobileNoError: false,
-    aadharIdError: false,
-  });
+  firstNameError: false,
+  lastNameError: false,
+  emailError: false,
+  department_IdError: false,
+  date_Of_JoiningError: false,
+  addressError: false,
+  role_IdError: false,
+  passwordError: false,
+  mobileNoError: false,
+  aadharIdError: false,
+};
+
+export default function EmployeeForm() {
+  const navigate = useNavigate();
+
+  const addEmployee = (data: object) => {
+    service
+      .addEmployee(data)
+      .then((res) => {
+        console.log(res);
+        setField(value);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const [field, setField] = React.useState(value);
 
   const changeField = (e: any) => {
     setField((previousvalues) => {
@@ -94,12 +112,13 @@ export default function CandidateDetails() {
         aadharId: field.aadharId,
       };
 
-      console.log(data, "data");
-      // addCandidateDetails api
+      addEmployee(data);
     }
   };
 
-  const handelCancel = () => {};
+  const handelCancel = () => {
+    navigate("/employee");
+  };
 
   return (
     <div className="emp-details">
@@ -119,6 +138,7 @@ export default function CandidateDetails() {
             size="small"
             className="form-detail"
             autoFocus
+            value={field.firstName}
             helperText={field.firstNameError ? "firstName is required" : " "}
             error={field.firstNameError}
             onChange={(e) => {
@@ -133,6 +153,7 @@ export default function CandidateDetails() {
             variant="outlined"
             size="small"
             className="form-detail"
+            value={field.lastName}
             helperText={field.lastNameError ? "lastName is required" : " "}
             error={field.lastNameError}
             onChange={(e) => {
@@ -153,7 +174,7 @@ export default function CandidateDetails() {
             variant="outlined"
             size="small"
             className="form-detail"
-            autoFocus
+            value={field.mobileNo}
             helperText={field.mobileNoError ? "mobileNo is required" : " "}
             error={field.mobileNoError}
             onChange={(e) => {
@@ -168,6 +189,7 @@ export default function CandidateDetails() {
             variant="outlined"
             size="small"
             className="form-detail"
+            value={field.aadharId}
             helperText={field.aadharIdError ? "aadharId is required" : " "}
             error={field.aadharIdError}
             onChange={(e) => {
@@ -189,6 +211,7 @@ export default function CandidateDetails() {
             size="small"
             className=" "
             fullWidth
+            value={field.date_Of_Joining}
             helperText={
               field.date_Of_JoiningError ? " date_Of_Joining is required" : " "
             }
@@ -205,6 +228,7 @@ export default function CandidateDetails() {
             variant="outlined"
             size="small"
             className="form-detail"
+            value={field.department_Id}
             helperText={
               field.department_IdError ? " department_Id is required" : " "
             }
@@ -224,6 +248,7 @@ export default function CandidateDetails() {
             variant="outlined"
             size="small"
             className="form-detail"
+            value={field.email}
             helperText={field.emailError ? "email is required" : " "}
             error={field.emailError}
             onChange={(e) => {
@@ -244,6 +269,7 @@ export default function CandidateDetails() {
             variant="outlined"
             size="small"
             className="form-detail"
+            value={field.address}
             helperText={field.addressError ? " address is required" : " "}
             error={field.addressError}
             onChange={(e) => {
@@ -258,6 +284,7 @@ export default function CandidateDetails() {
             variant="outlined"
             size="small"
             className="form-detail"
+            value={field.role_Id}
             helperText={field.role_IdError ? "role_Id is required" : " "}
             error={field.role_IdError}
             onChange={(e) => {
@@ -274,6 +301,7 @@ export default function CandidateDetails() {
           variant="outlined"
           size="small"
           className="form-detail"
+          value={field.password}
           helperText={field.passwordError ? "password is required" : " "}
           error={field.passwordError}
           onChange={(e) => {
@@ -285,13 +313,13 @@ export default function CandidateDetails() {
           onClick={next}
           style={{ backgroundColor: "#3371B5", color: "white" }}
         >
-          Continue
+          Save
         </Button>
         <Button
           onClick={handelCancel}
           style={{ backgroundColor: "white", color: "grey" }}
         >
-          Cancel
+          Back
         </Button>
       </form>
       <img

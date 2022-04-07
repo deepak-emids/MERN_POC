@@ -1,18 +1,18 @@
-export const getEmployee = (employee: []) => {
+export const fetchEmployee = (employee: []) => {
   return {
     type: "GET_EMPLOYEE",
     payload: employee,
   };
 };
 
-export const getDepartment = (department: []) => {
+export const fetchDepartment = (department: []) => {
   return {
     type: "GET_DEPARTMENT",
     payload: department,
   };
 };
 
-export const getRole = (role: []) => {
+export const fetchRole = (role: []) => {
   return {
     type: "GET_ROLE",
     payload: role,

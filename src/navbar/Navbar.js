@@ -11,6 +11,8 @@ function Navbar() {
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
 
+  let roleId = localStorage.getItem("roleId");
+
   const onMouseEnter = () => {
     if (window.innerWidth < 960) {
       setDropdown(false);
@@ -43,16 +45,20 @@ function Navbar() {
               About
             </Link>
           </li>
-          <li
-            className="nav-item"
-            onMouseEnter={onMouseEnter}
-            onMouseLeave={onMouseLeave}
-          >
-            <div className="nav-links" onClick={closeMobileMenu}>
-              Services <i className="fas fa-caret-down" />
-            </div>
-            {dropdown && <Dropdown />}
-          </li>
+
+          {roleId == 1 ? (
+            <li
+              className="nav-item"
+              onMouseEnter={onMouseEnter}
+              onMouseLeave={onMouseLeave}
+            >
+              <div className="nav-links" onClick={closeMobileMenu}>
+                Services <i className="fas fa-caret-down" />
+              </div>
+              {dropdown && <Dropdown />}
+            </li>
+          ) : null}
+
           <li className="nav-item">
             <Link to="/profile" className="nav-links" onClick={closeMobileMenu}>
               Profile

@@ -17,18 +17,6 @@ const useStyles = makeStyles((theme) =>
 
 //Employee Methods
 
-const addEmployee = (details: object) => {
-  console.log(details);
-  service
-    .addEmployee(details)
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
-
 const getEmployee = (id: number) => {
   service
     .getEmployee(id)

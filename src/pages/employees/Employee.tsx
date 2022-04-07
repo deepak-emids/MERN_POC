@@ -7,12 +7,14 @@ import Table from "../../components/table/Tables";
 import { useSelector, useDispatch } from "react-redux";
 
 import "./employee.scss";
+import getEmployee from "../../store/reducer/getEmployee";
+import { fetchEmployee } from "../../store/actions";
 
 function Employee() {
-  const employee = useSelector((state) => console.log(state, "redux state"));
+  const employee = useSelector((state: any) => state.getEmployee.employee);
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
-  const [emp, setEmp] = React.useState([]);
 
   React.useEffect(() => {
     handleGetAllEmployees();
@@ -22,8 +24,7 @@ function Employee() {
     service
       .getAllEmployee()
       .then((res) => {
-        setEmp(res.data.data);
-        console.log("refresh");
+        dispatch(fetchEmployee(res.data.data));
       })
       .catch((err) => {
         console.log(err);
@@ -32,10 +33,10 @@ function Employee() {
 
   return (
     <div className="employee">
-      {emp.length ? (
+      {employee.length ? (
         <div className="table">
           <Table
-            data={emp}
+            data={employee}
             refresh={() => handleGetAllEmployees()}
             mode="employee"
           />

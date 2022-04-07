@@ -22,7 +22,7 @@ function User() {
               alt="this is logo"
               style={{ width: "245px", height: "245px" }}
             ></img>
-            <h3 style={{ paddingLeft: "6rem", paddingTop: "0rem" }}>Emids</h3>
+            <h3>CRM</h3>
           </div>
 
           <div className="formContainer">

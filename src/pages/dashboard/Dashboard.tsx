@@ -1,5 +1,4 @@
 import * as React from "react";
-import service from "../../services/services";
 import { useNavigate } from "react-router-dom";
 import { Routes, Route, Link } from "react-router-dom";
 import Welcome from "../../components/Welcome/Welcome";
@@ -7,6 +6,15 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import About from "../about/About";
+import Navbar from "../../navbar/Navbar";
+import Footer from "../../components/footer/Footer";
+import Contact from "../contact/Contact";
+import Profile from "../profile/Profile";
+import Role from "../roles/Roles";
+import Department from "../deparment/Department";
+import EmployeeForm from "../../components/employeeForm/EmployeeForm";
+import Employee from "../employees/Employee";
 
 //css
 import "./dashboard.scss";
@@ -26,14 +34,22 @@ export default function Dashboard() {
     boxShadow: 24,
     p: 4,
   };
+
   const [open, setOpen] = React.useState(true);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-  //modal
+
+  const handleOpen = () => {
+    setOpen(false);
+    navigate("/profile");
+  };
+  const handleClose = () => {
+    setOpen(false);
+    navigate("/about");
+  };
 
   return (
-    <div className="welcome">
-      <div className="card-welcome">
+    <div className="main-dashboard">
+      <Navbar />
+      <div className="modal-content">
         <Modal
           open={open}
           onClose={handleClose}
@@ -44,13 +60,28 @@ export default function Dashboard() {
             <Typography id="modal-modal-title" variant="h6" component="h2">
               Update Your profile
             </Typography>
-            <Button onClick={handleClose}>Yes</Button>
+            <Button onClick={handleOpen}>Yes</Button>
             <Button onClick={handleClose}>Cancel</Button>
           </Box>
         </Modal>
 
-        {/* <Welcome /> */}
+        <div className="page-content">
+          {open ? null : (
+            <div className="pages">
+              <Routes>
+                <Route path="/about" element={<About />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/addEmployee" element={<EmployeeForm />} />
+                <Route path="/employee" element={<Employee />} />
+                <Route path="/department" element={<Department />} />
+                <Route path="/role" element={<Role />} />
+              </Routes>
+            </div>
+          )}
+        </div>
       </div>
+      <Footer />
     </div>
   );
 }

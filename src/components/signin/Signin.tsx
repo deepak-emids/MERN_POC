@@ -53,7 +53,7 @@ function Signin() {
           localStorage.setItem("email", res.data.data.email);
           localStorage.setItem("token", res.data.data.token);
           localStorage.setItem("employeeId", res.data.data.id);
-          localStorage.setItem("role_Id", res.data.data.role_Id);
+          localStorage.setItem("roleId", res.data.data.role_Id);
 
           navigate("/");
         })
