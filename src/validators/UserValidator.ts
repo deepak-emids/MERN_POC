@@ -18,14 +18,15 @@ class UserValidator {
       department_Id: Joi.number().required(),
       role_Id: Joi.number().required(),
       mobileNo: Joi.number().optional(),
-      aadharId: Joi.number().required(),
+      aadharId: Joi.number().integer().required(),
       date_Of_Joining: Joi.date().required()
     });
     const { error } = schema.validate(req.body);
     if (error) {
       next(error);
+    } else {
+      next();
     }
-    next();
   };
 
   public loginUser = (
@@ -45,8 +46,41 @@ class UserValidator {
     const { error } = schema.validate(req.body);
     if (error) {
       next(error);
+    } else {
+      next();
     }
-    next();
+  };
+
+  public roleValidator = (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): void => {
+    const schema = Joi.object({
+      roleName: Joi.string().alphanum().min(2).max(20).required()
+    });
+    const { error } = schema.validate(req.body);
+    if (error) {
+      next(error);
+    } else {
+      next();
+    }
+  };
+
+  public departmentValidator = (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): void => {
+    const schema = Joi.object({
+      departmentName: Joi.string().alphanum().min(2).max(20).required()
+    });
+    const { error } = schema.validate(req.body);
+    if (error) {
+      next(error);
+    } else {
+      next();
+    }
   };
 }
 

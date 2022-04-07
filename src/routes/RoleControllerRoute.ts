@@ -1,12 +1,13 @@
 import RoleController from '../controllers/RoleController';
 import express, { IRouter } from 'express';
 import { userAuth } from '../middlewares/auth.middleware';
+import UserValidator from '../validators/UserValidator';
 
 class RoleControllerRoute {
   private RoleController = new RoleController();
 
   private router = express.Router();
-  //   private UserValidator = new userValidator();
+  private validator = new UserValidator();
 
   constructor() {
     this.routes();
@@ -16,7 +17,12 @@ class RoleControllerRoute {
     /*
     route to add all RoleController
     */
-    this.router.post('/', userAuth, this.RoleController.addRole);
+    this.router.post(
+      '/',
+      userAuth,
+      this.validator.roleValidator,
+      this.RoleController.addRole
+    );
 
     this.router.get('/', userAuth, this.RoleController.getAllRole);
 
@@ -24,7 +30,12 @@ class RoleControllerRoute {
 
     this.router.delete('/:id', userAuth, this.RoleController.deleteRole);
 
-    this.router.put('/:id', userAuth, this.RoleController.updateRole);
+    this.router.put(
+      '/:id',
+      this.validator.roleValidator,
+      userAuth,
+      this.RoleController.updateRole
+    );
   };
 
   public getRoutes = (): IRouter => {

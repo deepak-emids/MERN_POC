@@ -1,12 +1,13 @@
 import DepartmentController from '../controllers/DepartmentController';
 import express, { IRouter } from 'express';
 import { userAuth } from '../middlewares/auth.middleware';
+import UserValidator from '../validators/UserValidator';
 
 class DepartmentControllerRoute {
   private DepartmentController = new DepartmentController();
 
   private router = express.Router();
-  //   private UserValidator = new userValidator();
+  private validator = new UserValidator();
 
   constructor() {
     this.routes();
@@ -16,7 +17,12 @@ class DepartmentControllerRoute {
     /*
     route to add all DepartmentController
     */
-    this.router.post('/', userAuth, this.DepartmentController.addDepartment);
+    this.router.post(
+      '/',
+      userAuth,
+      this.validator.departmentValidator,
+      this.DepartmentController.addDepartment
+    );
 
     this.router.get('/', userAuth, this.DepartmentController.getAllDepartment);
 
@@ -31,6 +37,7 @@ class DepartmentControllerRoute {
     this.router.put(
       '/:id',
       userAuth,
+      this.validator.departmentValidator,
       this.DepartmentController.updateDepartment
     );
   };
