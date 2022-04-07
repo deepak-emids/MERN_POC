@@ -16,20 +16,18 @@ import EmployeeForm from "./components/employeeForm/EmployeeForm";
 function App() {
   return (
     <>
-      <Router>
-        <Routes>
-          <Route path="/login" element={<User />} />
-          <Route path="/" element={<Dashboard />}>
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/addEmployee" element={<EmployeeForm />} />
-            <Route path="/employee" element={<Employee />} />
-            <Route path="/department" element={<Department />} />
-            <Route path="/role" element={<Role />} />
-          </Route>
-        </Routes>
-      </Router>
+      <Routes>
+        <Route path="/login" element={<User />} />
+        <Route path="/" element={<Dashboard />}>
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/addEmployee" element={<EmployeeForm />} />
+          <Route path="/employee" element={<Employee />} />
+          <Route path="/department" element={<Department />} />
+          <Route path="/role" element={<Role />} />
+        </Route>
+      </Routes>
     </>
   );
 }

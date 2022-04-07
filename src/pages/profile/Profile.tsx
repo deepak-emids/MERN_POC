@@ -181,7 +181,6 @@ export default function Profile() {
             name="password"
             label="Password"
             type="password"
-            value={emp.password}
             variant="standard"
             size="small"
             className="form-detail"

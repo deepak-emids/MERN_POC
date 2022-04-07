@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import { Routes, Route, Link } from "react-router-dom";
-import Welcome from "../../components/Welcome/Welcome";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
@@ -41,6 +40,7 @@ export default function Dashboard() {
     setOpen(false);
     navigate("/profile");
   };
+
   const handleClose = () => {
     setOpen(false);
     navigate("/about");
@@ -70,12 +70,12 @@ export default function Dashboard() {
             <div className="pages">
               <Routes>
                 <Route path="/about" element={<About />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/profile" element={<Profile />} />
-                <Route path="/addEmployee" element={<EmployeeForm />} />
                 <Route path="/employee" element={<Employee />} />
+                <Route path="/addEmployee" element={<EmployeeForm />} />
                 <Route path="/department" element={<Department />} />
                 <Route path="/role" element={<Role />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/contact" element={<Contact />} />
               </Routes>
             </div>
           )}

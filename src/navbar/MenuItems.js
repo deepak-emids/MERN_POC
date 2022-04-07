@@ -14,9 +14,4 @@ export const MenuItems = [
     path: "/role",
     cName: "dropdown-link",
   },
-  {
-    title: "Extras",
-    path: "/extras",
-    cName: "dropdown-link",
-  },
 ];

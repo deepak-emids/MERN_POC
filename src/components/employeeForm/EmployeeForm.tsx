@@ -213,7 +213,9 @@ export default function EmployeeForm() {
             fullWidth
             value={field.date_Of_Joining}
             helperText={
-              field.date_Of_JoiningError ? " date_Of_Joining is required" : " "
+              field.date_Of_JoiningError
+                ? " date_Of_Joining is required"
+                : "*eg:2010-10-10"
             }
             error={field.date_Of_JoiningError}
             onChange={(e) => {
@@ -302,7 +304,11 @@ export default function EmployeeForm() {
           size="small"
           className="form-detail"
           value={field.password}
-          helperText={field.passwordError ? "password is required" : " "}
+          helperText={
+            field.passwordError
+              ? "password is required"
+              : "*password size must be greater than 4 and has atleast one number"
+          }
           error={field.passwordError}
           onChange={(e) => {
             changeField(e);

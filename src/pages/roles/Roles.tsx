@@ -1,14 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import back from "../../assets/back.jpg";
-import head from "../../assets/table.jpg";
 import service from "../../services/services";
 import Table from "../../components/table/Tables";
 
 import "./roles.scss";
 
 function Roles() {
-  const navigate = useNavigate();
   const [roles, setRoles] = React.useState([]);
 
   React.useEffect(() => {
@@ -19,7 +17,6 @@ function Roles() {
     service
       .getAllRole()
       .then((res) => {
-        console.log(res.data.data, "department in get");
         setRoles(res.data.data);
       })
       .catch((err) => {

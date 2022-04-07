@@ -99,6 +99,7 @@ const handleRowClick = (param: any, event: any) => {
 
 export default function DataGridDemo(props: any) {
   const updateEmployee = (id: number, data: {}) => {
+    console.log(data);
     service
       .updateEmployee(id, data)
       .then((res) => {
@@ -118,10 +119,6 @@ export default function DataGridDemo(props: any) {
 
   //Methods
   const navigate = useNavigate();
-
-  const handleBack = () => {
-    // navigate("/");
-  };
 
   const handleDelete = (
     event: any,
@@ -203,17 +200,6 @@ export default function DataGridDemo(props: any) {
         ADD
       </Button>
 
-      <Button
-        className="dataButton"
-        onClick={() => handleBack()}
-        style={{
-          color: "white",
-          background: "#1a73e8",
-        }}
-      >
-        BACK
-      </Button>
-
       <DataGrid
         style={{ backgroundColor: "white", height: 550 }}
         onCellEditCommit={(e) => handleCommit(e)}
@@ -223,7 +209,6 @@ export default function DataGridDemo(props: any) {
         getRowId={(row) => row.id}
         columns={columns}
         pageSize={8}
-        // checkboxSelection
         rowsPerPageOptions={[5]}
         onCellClick={handleCellClick}
         onRowClick={handleRowClick}

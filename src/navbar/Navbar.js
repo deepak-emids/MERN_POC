@@ -9,7 +9,14 @@ function Navbar() {
   const [dropdown, setDropdown] = useState(false);
 
   const handleClick = () => setClick(!click);
-  const closeMobileMenu = () => setClick(false);
+
+  const closeMobileMenu = () => {
+    setClick(false);
+  };
+
+  const handleLogout = () => {
+    localStorage.clear();
+  };
 
   let roleId = localStorage.getItem("roleId");
 
@@ -32,7 +39,7 @@ function Navbar() {
   return (
     <>
       <nav className="navbar">
-        <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
+        <Link to="/about" className="navbar-logo" onClick={closeMobileMenu}>
           CRM
           <i class="fab fa-firstdraft" />
         </Link>
@@ -71,9 +78,9 @@ function Navbar() {
           </li>
           <li>
             <Link
+              onClick={handleLogout}
               to="/login"
               className="nav-links-mobile"
-              onClick={closeMobileMenu}
             >
               Logout
             </Link>
