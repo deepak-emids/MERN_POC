@@ -1,8 +1,8 @@
 import 'reflect-metadata';
 import { Role } from '../entity/role';
 import RoleData from '../models/RoleDetails';
-import Repository from '../repository/repository';
-import Response from '../models/response.model';
+import Repository from '../repository/Repository';
+import Response from '../models/Response.model';
 
 let response = new Response();
 let repository = new Repository();

@@ -1,9 +1,9 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import { EmployeeDetails } from '../entity/employee';
-import Response from '../models/response.model';
+import Response from '../models/Response.model';
 import LoginRequest from '../models/LoginRequest';
-import Repository from '../repository/repository';
+import Repository from '../repository/Repository';
 let repo = new Repository();
 
 let response = new Response();

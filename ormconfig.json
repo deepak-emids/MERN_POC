@@ -1,9 +1,9 @@
 {
   "type": "mysql",
-  "host": "crm.ciecfgrsarph.us-east-1.rds.amazonaws.com",
+  "host": "localhost",
   "port": 3306,
-  "username": "admin",
-  "password": "quovantis*5998",
+  "username": "root",
+  "password": "7275",
   "database": "crm",
   "synchronize": true,
   "logging": false,

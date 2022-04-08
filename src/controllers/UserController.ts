@@ -1,6 +1,6 @@
 import userService from '../services/UserService';
 import { Request, Response, NextFunction } from 'express';
-import ILoginUser from '../models/response.model';
+import ILoginUser from '../models/Response.model';
 
 class UserController {
   public UserService = new userService();
