@@ -68,8 +68,8 @@ export default function Profile() {
   };
 
   return (
-    <div className="emp-details">
-      <form className="emp-form">
+    <div className="empl-details">
+      <form className="empl-form">
         <h3>Employee Basic Details</h3>
         <div className="note">
           *Only Phone,Address,Email And Password Is Editable

@@ -5,6 +5,11 @@ import TextField from "@mui/material/TextField";
 import back from "../../assets/back.jpg";
 import { useNavigate } from "react-router-dom";
 import { EmployeeData } from "../../models/model";
+import Dropdown from "../../navbar/Dropdown";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 
 import "./employeeForm.scss";
 import { Navigate } from "react-router";
@@ -34,6 +39,14 @@ let value = {
 };
 
 export default function EmployeeForm() {
+  //Dropdown
+  const [age, setAge] = React.useState("");
+
+  const handleChange = (event: SelectChangeEvent) => {
+    console.log(event.target.value);
+    setAge(event.target.value);
+  };
+
   const navigate = useNavigate();
 
   const addEmployee = (data: EmployeeData) => {
@@ -47,6 +60,14 @@ export default function EmployeeForm() {
         console.log(err);
       });
   };
+
+  let departmentList: [{ id: number; departmentName: string }] = [
+    { id: 5, departmentName: "hi" },
+  ];
+
+  let roleList: [{ id: number; roleName: string }] = [
+    { id: 5, roleName: "hi" },
+  ];
 
   const [field, setField] = React.useState(value);
 
@@ -226,20 +247,60 @@ export default function EmployeeForm() {
           <TextField
             style={{ width: "45%" }}
             id="outlined-basic"
-            name="department_Id"
-            label="department_Id"
+            name="password"
+            label="password"
             variant="outlined"
             size="small"
             className="form-detail"
-            value={field.department_Id}
+            value={field.password}
             helperText={
-              field.department_IdError ? " department_Id is required" : " "
+              field.passwordError
+                ? "password is required"
+                : "*password size must be greater than 4 and has atleast one number"
             }
-            error={field.department_IdError}
+            error={field.passwordError}
             onChange={(e) => {
               changeField(e);
             }}
           ></TextField>
+        </div>
+
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <FormControl variant="standard" sx={{ m: 1, minWidth: 150 }}>
+            <InputLabel id="demo-simple-select-standard-label">
+              Department
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-standard-label"
+              id="demo-simple-select-standard"
+              onChange={handleChange}
+              label="Department"
+            >
+              {departmentList.map(
+                (key: { id: number; departmentName: string }, index: any) => (
+                  <MenuItem value={key.departmentName}>
+                    {key.departmentName}
+                  </MenuItem>
+                )
+              )}
+            </Select>
+          </FormControl>
+
+          <FormControl variant="standard" sx={{ m: 1, minWidth: 150 }}>
+            <InputLabel id="demo-simple-select-standard-label">Role</InputLabel>
+            <Select
+              labelId="demo-simple-select-standard-label"
+              id="demo-simple-select-standard"
+              onChange={handleChange}
+              label="Department"
+            >
+              {roleList.map(
+                (key: { id: number; roleName: string }, index: any) => (
+                  <MenuItem value={key.roleName}>{key.roleName}</MenuItem>
+                )
+              )}
+            </Select>
+          </FormControl>
         </div>
 
         <div>
@@ -260,57 +321,17 @@ export default function EmployeeForm() {
           ></TextField>
         </div>
 
-        <div
-          className="name"
-          style={{ display: "flex", justifyContent: "space-between" }}
-        >
-          <TextField
-            style={{ width: "45%" }}
-            id="outlined-basic"
-            name="address"
-            label="address"
-            variant="outlined"
-            size="small"
-            className="form-detail"
-            value={field.address}
-            helperText={field.addressError ? " address is required" : " "}
-            error={field.addressError}
-            onChange={(e) => {
-              changeField(e);
-            }}
-          ></TextField>
-          <TextField
-            style={{ width: "45%" }}
-            id="outlined-basic"
-            name="role_Id"
-            label="role_Id"
-            variant="outlined"
-            size="small"
-            className="form-detail"
-            value={field.role_Id}
-            helperText={field.role_IdError ? "role_Id is required" : " "}
-            error={field.role_IdError}
-            onChange={(e) => {
-              changeField(e);
-            }}
-          ></TextField>
-        </div>
-
         <TextField
-          style={{ width: "100%" }}
           id="outlined-basic"
-          name="password"
-          label="password"
+          name="address"
+          label="address"
           variant="outlined"
           size="small"
+          fullWidth
           className="form-detail"
-          value={field.password}
-          helperText={
-            field.passwordError
-              ? "password is required"
-              : "*password size must be greater than 4 and has atleast one number"
-          }
-          error={field.passwordError}
+          value={field.address}
+          helperText={field.addressError ? " address is required" : " "}
+          error={field.addressError}
           onChange={(e) => {
             changeField(e);
           }}

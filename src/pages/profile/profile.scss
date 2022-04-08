@@ -1,4 +1,4 @@
-.emp-details {
+.empl-details {
   min-height: 100vh;
   width: 100vw;
   display: flex;
@@ -17,18 +17,16 @@
     }
   }
 
-  .emp-form {
+  .empl-form {
     position: absolute;
     height: 80vh;
-    width: 35vw;
-    margin-bottom: 5rem;
+    width: 30vw;
+    margin-bottom: 8rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    // border-radius: 0.6rem;
-    // border: 0.01rem solid #dadce0;
   }
-  .emp-form {
+  .empl-form {
     padding: 1rem;
   }
   .name {

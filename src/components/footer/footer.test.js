@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import Footer from "./Footer1";
+import Footer from "./Footer";
 import userEvent from "@testing-library/user-event";
 
 it("when render the Footer page should contain title", () => {
