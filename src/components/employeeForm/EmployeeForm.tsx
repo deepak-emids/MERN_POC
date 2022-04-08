@@ -10,6 +10,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
+import { useSelector, useDispatch } from "react-redux";
 
 import "./employeeForm.scss";
 import { Navigate } from "react-router";
@@ -39,13 +40,13 @@ let value = {
 };
 
 export default function EmployeeForm() {
-  //Dropdown
-  const [age, setAge] = React.useState("");
+  let departmentList: [{ id: number; departmentName: string }] = useSelector(
+    (state: any) => state.getDepartment.department
+  );
 
-  const handleChange = (event: SelectChangeEvent) => {
-    console.log(event.target.value);
-    setAge(event.target.value);
-  };
+  let roleList: [{ id: number; roleName: string }] = useSelector(
+    (state: any) => state.getRole.role
+  );
 
   const navigate = useNavigate();
 
@@ -60,14 +61,6 @@ export default function EmployeeForm() {
         console.log(err);
       });
   };
-
-  let departmentList: [{ id: number; departmentName: string }] = [
-    { id: 5, departmentName: "hi" },
-  ];
-
-  let roleList: [{ id: number; roleName: string }] = [
-    { id: 5, roleName: "hi" },
-  ];
 
   const [field, setField] = React.useState(value);
 
@@ -273,14 +266,15 @@ export default function EmployeeForm() {
             <Select
               labelId="demo-simple-select-standard-label"
               id="demo-simple-select-standard"
-              onChange={handleChange}
+              name="department_Id"
               label="Department"
+              onChange={(e) => {
+                changeField(e);
+              }}
             >
               {departmentList.map(
                 (key: { id: number; departmentName: string }, index: any) => (
-                  <MenuItem value={key.departmentName}>
-                    {key.departmentName}
-                  </MenuItem>
+                  <MenuItem value={key.id}>{key.departmentName}</MenuItem>
                 )
               )}
             </Select>
@@ -291,12 +285,15 @@ export default function EmployeeForm() {
             <Select
               labelId="demo-simple-select-standard-label"
               id="demo-simple-select-standard"
-              onChange={handleChange}
-              label="Department"
+              name="role_Id"
+              label="Role"
+              onChange={(e) => {
+                changeField(e);
+              }}
             >
               {roleList.map(
                 (key: { id: number; roleName: string }, index: any) => (
-                  <MenuItem value={key.roleName}>{key.roleName}</MenuItem>
+                  <MenuItem value={key.id}>{key.roleName}</MenuItem>
                 )
               )}
             </Select>

@@ -3,10 +3,14 @@ import { useNavigate } from "react-router-dom";
 import back from "../../assets/back.jpg";
 import service from "../../services/roleService/roleService";
 import Table from "../../components/table/Tables";
+import { useSelector, useDispatch } from "react-redux";
 
 import "./roles.scss";
+import { fetchRole } from "../../store/actions";
 
 function Roles() {
+  const dispatch = useDispatch();
+
   const [roles, setRoles] = React.useState([]);
 
   React.useEffect(() => {
@@ -18,6 +22,7 @@ function Roles() {
       .getAllRole()
       .then((res) => {
         setRoles(res.data.data);
+        dispatch(fetchRole(res.data.data));
       })
       .catch((err) => {
         console.log(err);
