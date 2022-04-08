@@ -59,7 +59,7 @@ class RoleService {
 
     if (result) {
       response.data = result;
-      response.message = 'Role deleted';
+      response.message = 'Role Fetched';
       response.status = 200;
 
       return response;
@@ -86,7 +86,7 @@ class RoleService {
 
     if (result) {
       response.data = result;
-      response.message = 'Role updated';
+      response.message = 'Role Updated';
       response.status = 200;
 
       return response;
@@ -107,7 +107,7 @@ class RoleService {
 
     if (result) {
       response.data = result;
-      response.message = 'Role deleted';
+      response.message = 'Role Deleted';
       response.status = 200;
 
       return response;
