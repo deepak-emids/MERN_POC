@@ -21,7 +21,7 @@ class EmployeeDetailsRoute {
     this.router.post(
       '/',
       userAuth,
-      this.validator.newUser,
+      this.validator.newEmployee,
       this.EmployeeDetailsController.addEmployeeDetails
     );
 
@@ -46,7 +46,7 @@ class EmployeeDetailsRoute {
     this.router.put(
       '/:id',
       userAuth,
-      this.validator.newUser,
+      this.validator.updateEmployee,
       this.EmployeeDetailsController.updateEmployeeDetails
     );
   };

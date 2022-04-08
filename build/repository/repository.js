@@ -12,130 +12,66 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
 class Repository {
     constructor() {
-        /**
-         * Controller to add
-         * @param  {object} Request - request object
-         * @param {object} Response - response object
-         * @param {Function} NextFunction
-         */
         this.add = (entity, object) => __awaiter(this, void 0, void 0, function* () {
-            console.log(entity, object);
             try {
                 let result = yield (0, typeorm_1.createConnection)().then((connection) => __awaiter(this, void 0, void 0, function* () {
-                    //get table
                     let repo = connection.getRepository(entity);
-                    //save table
                     yield repo.save(object);
-                    //get saved data
                     let find = yield repo.find();
-                    //close connection
                     yield connection.close();
-                    //return result
                     return find;
                 }));
-                return result;
-            }
-            catch (error) {
-                console.log(error);
-                return error;
-            }
-        });
-        /**
-         * Controller to get
-         * @param  {object} Request - request object
-         * @param {object} Response - response object
-         * @param {Function} NextFunction
-         */
-        this.getAll = (entity) => __awaiter(this, void 0, void 0, function* () {
-            try {
-                let result = yield (0, typeorm_1.createConnection)().then((connection) => __awaiter(this, void 0, void 0, function* () {
-                    //get table
-                    let repo = connection.getRepository(entity);
-                    //get saved data
-                    let find = yield repo.find();
-                    //close connection
-                    yield connection.close();
-                    //return result
-                    return find;
-                }));
-                return result;
+                return result[result.length - 1];
             }
             catch (error) {
                 return error;
             }
         });
-        /**
-         * Controller to get
-         * @param  {object} Request - request object
-         * @param {object} Response - response object
-         * @param {Function} NextFunction
-         */
         this.get = (entity, query) => __awaiter(this, void 0, void 0, function* () {
             try {
-                let result = yield (0, typeorm_1.createConnection)().then((connection) => __awaiter(this, void 0, void 0, function* () {
-                    //get table
+                return yield (0, typeorm_1.createConnection)().then((connection) => __awaiter(this, void 0, void 0, function* () {
                     let repo = connection.getRepository(entity);
-                    //get saved data
-                    let find = yield repo.find(query);
-                    //close connection
+                    let find = yield repo.findOne(query);
                     yield connection.close();
-                    //return result
-                    return find[0];
+                    return find;
                 }));
-                return result;
             }
             catch (error) {
                 return error;
             }
         });
-        /**
-         * Controller to get all users available
-         * @param  {object} Request - request object
-         * @param {object} Response - response object
-         * @param {Function} NextFunction
-         */
         this.delete = (entity, id) => __awaiter(this, void 0, void 0, function* () {
             try {
-                let result = yield (0, typeorm_1.createConnection)().then((connection) => __awaiter(this, void 0, void 0, function* () {
-                    //get table
+                return yield (0, typeorm_1.createConnection)().then((connection) => __awaiter(this, void 0, void 0, function* () {
                     let repo = connection.getRepository(entity);
-                    //find
                     let foundEmp = yield repo.find({ id: id });
                     if (foundEmp.length > 0) {
                         yield repo.remove(foundEmp[0]);
-                        let Emp = yield repo.find();
+                        let Emp = yield repo.findOne({ id: id });
                         yield connection.close();
-                        return Emp;
+                        if (Emp)
+                            return false;
+                        else
+                            return true;
                     }
                     else {
                         yield connection.close();
                         return false;
                     }
                 }));
-                return result;
             }
             catch (error) {
                 return error;
             }
         });
-        /**
-         * Controller to get all users available
-         * @param  {object} Request - request object
-         * @param {object} Response - response object
-         * @param {Function} NextFunction
-         */
         this.update = (entity, id, object) => __awaiter(this, void 0, void 0, function* () {
             try {
-                let result = yield (0, typeorm_1.createConnection)().then((connection) => __awaiter(this, void 0, void 0, function* () {
-                    //get table
+                return yield (0, typeorm_1.createConnection)().then((connection) => __awaiter(this, void 0, void 0, function* () {
                     let repo = connection.getRepository(entity);
-                    //find
                     let foundEmp = yield repo.find({ id: id });
                     if (foundEmp.length > 0) {
-                        //update table
                         yield repo.update({ id: id }, object);
-                        //get saved data
-                        let find = yield repo.find({ id: id });
+                        let find = yield repo.findOne({ id: id });
                         yield connection.close();
                         return find;
                     }
@@ -144,7 +80,21 @@ class Repository {
                         return false;
                     }
                 }));
-                return result;
+            }
+            catch (error) {
+                return error;
+            }
+        });
+    }
+    getAll(entity) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                return yield (0, typeorm_1.createConnection)().then((connection) => __awaiter(this, void 0, void 0, function* () {
+                    let repo = connection.getRepository(entity);
+                    let find = yield repo.find();
+                    yield connection.close();
+                    return find;
+                }));
             }
             catch (error) {
                 return error;

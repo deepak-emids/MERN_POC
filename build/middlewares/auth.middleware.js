@@ -32,7 +32,6 @@ const userAuth = (req, res, next) => __awaiter(void 0, void 0, void 0, function*
                 code: http_status_codes_1.default.BAD_REQUEST,
                 message: 'Authorization token is required'
             };
-        // bearerToken = bearerToken.split(' ')[1];
         const user = yield jsonwebtoken_1.default.verify(bearerToken, 'secret');
         res.locals.user = user;
         res.locals.token = bearerToken;

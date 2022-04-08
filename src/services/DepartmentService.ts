@@ -106,6 +106,7 @@ class DepartmentService {
   delete Department work details
   */
   public deleteDepartment = async (id) => {
+    s;
     let result = await repository.delete(Department, id);
 
     if (result) {

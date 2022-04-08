@@ -14,7 +14,7 @@ class UserController {
       const responseData: ILoginUser = await this.UserService.loginUser(
         req.body
       );
-      res.status(200).json({
+      res.status(responseData.status).json({
         code: responseData.status,
         data: responseData.data,
         message: responseData.message

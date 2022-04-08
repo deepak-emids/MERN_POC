@@ -26,7 +26,7 @@ __decorate([
     (0, typeorm_1.Column)({ type: 'varchar', length: 80 })
 ], EmployeeDetails.prototype, "password", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'varchar', length: 200 })
+    (0, typeorm_1.Column)({ type: 'varchar', length: 200, default: '' })
 ], EmployeeDetails.prototype, "address", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'int' })
@@ -35,7 +35,7 @@ __decorate([
     (0, typeorm_1.Column)({ type: 'int' })
 ], EmployeeDetails.prototype, "role_Id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'int' })
+    (0, typeorm_1.Column)({ type: 'int', default: null })
 ], EmployeeDetails.prototype, "mobileNo", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'int' })

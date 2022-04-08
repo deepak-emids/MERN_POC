@@ -32,7 +32,7 @@ class RoleControllerRoute {
 
     this.router.put(
       '/:id',
-      this.validator.roleValidator,
+      this.validator.updateRole,
       userAuth,
       this.RoleController.updateRole
     );

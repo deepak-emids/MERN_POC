@@ -37,7 +37,7 @@ class DepartmentControllerRoute {
     this.router.put(
       '/:id',
       userAuth,
-      this.validator.departmentValidator,
+      this.validator.updateDepartment,
       this.DepartmentController.updateDepartment
     );
   };

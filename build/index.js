@@ -9,23 +9,20 @@ const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const helmet_1 = __importDefault(require("helmet"));
 const routes_1 = __importDefault(require("./routes"));
-// import con from './config/database';
-const error_middleware_1 = __importDefault(require("./middlewares/error.middleware"));
+const ErrorMiddleware_1 = __importDefault(require("./middlewares/ErrorMiddleware"));
 const logger_1 = __importDefault(require("./config/logger"));
 const morgan_1 = __importDefault(require("morgan"));
 class App {
     constructor() {
-        // private db = new Database();
         this.logStream = logger_1.default.logStream;
         this.logger = logger_1.default.logger;
-        this.errorHandler = new error_middleware_1.default();
+        this.errorHandler = new ErrorMiddleware_1.default();
         this.app = (0, express_1.default)();
         this.host = process.env.APP_HOST;
         this.port = process.env.APP_PORT;
         this.api_version = process.env.API_VERSION;
         this.initializeMiddleWares();
         this.initializeRoutes();
-        // this.initializeDatabase();
         this.initializeErrorHandlers();
         this.startApp();
     }
@@ -36,9 +33,6 @@ class App {
         this.app.use(express_1.default.json());
         this.app.use((0, morgan_1.default)('combined', { stream: this.logStream }));
     }
-    // public initializeDatabase(): void {
-    //   this.db.initializeDatabase();
-    // }
     initializeRoutes() {
         this.app.use(`/`, (0, routes_1.default)());
     }
