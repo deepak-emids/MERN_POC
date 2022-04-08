@@ -273,7 +273,7 @@ export default function EmployeeForm() {
               }}
             >
               {departmentList.map(
-                (key: { id: number; departmentName: string }, index: any) => (
+                (key: { id: number; departmentName: string }) => (
                   <MenuItem value={key.id}>{key.departmentName}</MenuItem>
                 )
               )}
@@ -291,11 +291,9 @@ export default function EmployeeForm() {
                 changeField(e);
               }}
             >
-              {roleList.map(
-                (key: { id: number; roleName: string }, index: any) => (
-                  <MenuItem value={key.id}>{key.roleName}</MenuItem>
-                )
-              )}
+              {roleList.map((key: { id: number; roleName: string }) => (
+                <MenuItem value={key.id}>{key.roleName}</MenuItem>
+              ))}
             </Select>
           </FormControl>
         </div>
