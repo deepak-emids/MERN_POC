@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import EmployeeDetailsService from '../services/EmployeeDetailsService';
 import logger from '../config/logger';
+import EmployeeData from '../models/EmployeeData';
 
 class EmployeeDetailsController {
   public EmployeeDetailsService = new EmployeeDetailsService();
@@ -33,7 +34,6 @@ class EmployeeDetailsController {
       res.status(data.status).send(data);
     } catch (error) {
       logger.logger.error(error);
-
       next(error);
     }
   };

@@ -1,23 +1,28 @@
 import 'reflect-metadata';
 import { Department } from '../entity/department';
 import DepartmentData from '../models/Department.model';
-import Repository from '../repository/Repository';
+import DepartmentRepository from '../repository/DepartmentRepository';
 import Response from '../models/Response.model';
 
-let response = new Response();
-let repository = new Repository();
+let repo = new DepartmentRepository();
 
 class DepartmentService {
+  // private departmentService;
+  // constructor() {
+  //   this.departmentService = new DepartmentService();
+  // }
   /*
   add emp
   */
   public addDepartment = async (body: DepartmentData): Promise<Response> => {
+    let response = new Response();
+
     const dept = new Department();
 
     //assign values
     dept.departmentName = body.departmentName;
 
-    let find = await repository.add(Department, dept);
+    let find = await repo.add(dept);
 
     //response object
     response.data = find;
@@ -32,7 +37,9 @@ class DepartmentService {
   get Departments
   */
   public getAllDepartment = async (): Promise<Response> => {
-    let result = await repository.getAll(Department);
+    let response = new Response();
+
+    let result = await repo.getAll();
 
     if (result.length > 0) {
       response.data = result;
@@ -53,9 +60,11 @@ class DepartmentService {
   get Departments
   */
   public getDepartment = async (id: number): Promise<Response> => {
+    let response = new Response();
+
     let query = { id: id };
 
-    let result = await repository.get(Department, query);
+    let result = await repo.get(query);
 
     if (result) {
       response.data = result;
@@ -69,6 +78,7 @@ class DepartmentService {
       response.status = 404;
 
       return response;
+      // new Response({}, 'department not found', 404);
     }
   };
 
@@ -76,7 +86,9 @@ class DepartmentService {
   update Department
   */
   public updateDepartment = async (id: number, body: DepartmentData) => {
-    let details: DepartmentData = await repository.get(Department, id);
+    let response = new Response();
+
+    let details: DepartmentData = await repo.get(id);
 
     let newData = {
       id: id,
@@ -85,7 +97,7 @@ class DepartmentService {
         : details.departmentName
     };
 
-    let result = await repository.update(Department, id, newData);
+    let result = await repository.update(id, newData);
 
     if (result) {
       response.data = result;
@@ -105,8 +117,10 @@ class DepartmentService {
   /*
   delete Department work details
   */
-  public deleteDepartment = async (id) => {
-    let result = await repository.delete(Department, id);
+  public deleteDepartment = async (id: number) => {
+    let response = new Response();
+
+    let result = await repo.delete(id);
 
     if (result) {
       response.data = result;

@@ -1,8 +1,9 @@
 import { createConnection } from 'typeorm';
 import { EmployeeDetails } from '../entity/employee';
+import EmployeeData from '../models/EmployeeData';
 
 export default class EmployeeRepository {
-  public add = async (object) => {
+  public add = async (object: EmployeeData) => {
     try {
       let result = await createConnection().then(async (connection) => {
         let repo = connection.getRepository(EmployeeDetails);
@@ -38,7 +39,7 @@ export default class EmployeeRepository {
     }
   }
 
-  public get = async (query) => {
+  public get = async (query: {}) => {
     try {
       return await createConnection().then(async (connection) => {
         let repo = connection.getRepository(EmployeeDetails);
@@ -54,7 +55,7 @@ export default class EmployeeRepository {
     }
   };
 
-  public delete = async (id) => {
+  public delete = async (id: number) => {
     try {
       return await createConnection().then(async (connection) => {
         let repo = connection.getRepository(EmployeeDetails);
@@ -81,7 +82,7 @@ export default class EmployeeRepository {
     }
   };
 
-  public update = async (id, object) => {
+  public update = async (id: number, object) => {
     try {
       return await createConnection().then(async (connection) => {
         let repo = connection.getRepository(EmployeeDetails);

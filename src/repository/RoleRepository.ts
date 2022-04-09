@@ -1,8 +1,9 @@
 import { createConnection } from 'typeorm';
 import { Role } from '../entity/role';
+import RoleDetails from '../models/RoleDetails';
 
 export default class RoleRepository {
-  public add = async (object) => {
+  public add = async (object: RoleDetails) => {
     try {
       let result = await createConnection().then(async (connection) => {
         let repo = connection.getRepository(Role);
@@ -38,7 +39,7 @@ export default class RoleRepository {
     }
   }
 
-  public get = async (query) => {
+  public get = async (query: {}) => {
     try {
       return await createConnection().then(async (connection) => {
         let repo = connection.getRepository(Role);
@@ -54,7 +55,7 @@ export default class RoleRepository {
     }
   };
 
-  public delete = async (id) => {
+  public delete = async (id: number) => {
     try {
       return await createConnection().then(async (connection) => {
         let repo = connection.getRepository(Role);
@@ -81,7 +82,7 @@ export default class RoleRepository {
     }
   };
 
-  public update = async (id, object) => {
+  public update = async (id: number, object: RoleDetails) => {
     try {
       return await createConnection().then(async (connection) => {
         let repo = connection.getRepository(Role);

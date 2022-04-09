@@ -3,4 +3,4 @@ class RoleDetails {
   roleName: string;
 }
 
-export default roleDetails;
+export default RoleDetails;

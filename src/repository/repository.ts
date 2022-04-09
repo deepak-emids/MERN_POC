@@ -1,7 +1,11 @@
 import { createConnection } from 'typeorm';
+import EmployeeData from '../models/EmployeeData';
+import { EmployeeDetails } from '../entity/employee';
+import { Department } from '../entity/department';
+import { Role } from '../entity/role';
 
 export default class Repository {
-  public add = async (entity, object) => {
+  public add = async (entity, object: EmployeeData) => {
     try {
       let result = await createConnection().then(async (connection) => {
         let repo = connection.getRepository(entity);

@@ -46,7 +46,6 @@ class UserValidator {
         .alphanum()
         .min(3)
         .max(20)
-
         .pattern(new RegExp('^[a-zA-Z0-9]{6,30}$')),
 
       address: Joi.string().min(3).max(100).optional(),

@@ -1,23 +1,24 @@
 import 'reflect-metadata';
 import { Role } from '../entity/role';
 import RoleData from '../models/RoleDetails';
-import Repository from '../repository/Repository';
+import RoleRepository from '../repository/RoleRepository';
 import Response from '../models/Response.model';
 
-let response = new Response();
-let repository = new Repository();
+let repo = new RoleRepository();
 
 class RoleService {
   /*
   add emp
   */
   public addRole = async (body: RoleData): Promise<Response> => {
+    let response = new Response();
+
     const role = new Role();
 
     //assign values
     role.roleName = body.roleName;
 
-    let find = await repository.add(Role, role);
+    let find = await repo.add(role);
 
     //response object
     response.data = find;
@@ -32,7 +33,9 @@ class RoleService {
   get Roles
   */
   public getAllRole = async (): Promise<Response> => {
-    let result = await repository.getAll(Role);
+    let response = new Response();
+
+    let result = await repo.getAll();
 
     if (result.length > 0) {
       response.data = result;
@@ -53,9 +56,11 @@ class RoleService {
   get Roles
   */
   public getRole = async (id: number): Promise<Response> => {
+    let response = new Response();
+
     let query = { id: id };
 
-    let result = await repository.get(Role, query);
+    let result = await repo.get(query);
 
     if (result) {
       response.data = result;
@@ -76,13 +81,15 @@ class RoleService {
   update Role
   */
   public updateRole = async (id: number, body: RoleData) => {
-    let details: RoleData = await repository.get(Role, id);
+    let response = new Response();
+
+    let details: RoleData = await repo.get(id);
 
     let newData = {
       roleName: body.roleName ? body.roleName : details.roleName
     };
 
-    let result = await repository.update(Role, id, newData);
+    let result = await repo.update(Role, id, newData);
 
     if (result) {
       response.data = result;
@@ -103,7 +110,9 @@ class RoleService {
   delete Role work details
   */
   public deleteRole = async (id: number) => {
-    let result = await repository.delete(Role, id);
+    let response = new Response();
+
+    let result = await repo.delete(id);
 
     if (result) {
       response.data = result;

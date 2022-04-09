@@ -1,18 +1,19 @@
 import 'reflect-metadata';
 import bcrypt from 'bcrypt';
 import { EmployeeDetails } from '../entity/employee';
+import EmployeeData from '../models/EmployeeData';
 import Response from '../models/Response.model';
-import Repository from '../repository/Repository';
-let repo = new Repository();
-
-let response = new Response();
+import EmployeeRepository from '../repository/EmployeeRepository';
+let repo = new EmployeeRepository();
 
 class EmployeeDetailsService {
-  public async addEmployeeDetails(body): Promise<Response> {
+  public async addEmployeeDetails(body: EmployeeData): Promise<Response> {
+    let response = new Response();
+
     let emp = new EmployeeDetails();
 
     let query: { email: string } = { email: body.email };
-    let result = await repo.get(EmployeeDetails, query);
+    let result = await repo.get(query);
 
     if (result) {
       response.data = result;
@@ -27,7 +28,7 @@ class EmployeeDetailsService {
 
       emp = { ...body };
 
-      let addedEmployee = await repo.add(EmployeeDetails, emp);
+      let addedEmployee = await repo.add(emp);
 
       response.data = addedEmployee;
       response.message = 'Employee Details  Added';
@@ -38,7 +39,9 @@ class EmployeeDetailsService {
   }
 
   public getAllEmployeeDetails = async (): Promise<Response> => {
-    let result = await repo.getAll(EmployeeDetails);
+    let response = new Response();
+
+    let result = await repo.getAll();
 
     if (result) {
       response.data = result;
@@ -55,10 +58,12 @@ class EmployeeDetailsService {
     }
   };
 
-  public getEmployeeDetails = async (id: any): Promise<Response> => {
+  public getEmployeeDetails = async (id: number): Promise<Response> => {
+    let response = new Response();
+
     let query = { id: id };
 
-    let result = await repo.get(EmployeeDetails, query);
+    let result = await repo.get(query);
     if (result) {
       response.data = result;
       response.message = 'Employee Details Fetched';
@@ -74,10 +79,12 @@ class EmployeeDetailsService {
     }
   };
 
-  public updateEmployeeDetails = async (id, body) => {
+  public updateEmployeeDetails = async (id: number, body) => {
+    let response = new Response();
+
     let newData = { ...body };
 
-    let result = await repo.update(EmployeeDetails, id, newData);
+    let result = await repo.update(id, newData);
 
     if (result) {
       response.data = result;
@@ -94,8 +101,10 @@ class EmployeeDetailsService {
     }
   };
 
-  public deleteEmployeeDetails = async (id) => {
-    let result = await repo.delete(EmployeeDetails, id);
+  public deleteEmployeeDetails = async (id: number) => {
+    let response = new Response();
+
+    let result = await repo.delete(id);
 
     if (result) {
       response.data = {};
