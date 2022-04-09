@@ -1,6 +1,6 @@
 import userService from '../services/UserService';
 import { Request, Response, NextFunction } from 'express';
-import ILoginUser from '../models/Response.model';
+import ResponseModel from '../models/Response.model';
 
 class UserController {
   public UserService = new userService();
@@ -11,14 +11,8 @@ class UserController {
     next: NextFunction
   ): Promise<any> => {
     try {
-      const responseData: ILoginUser = await this.UserService.loginUser(
-        req.body
-      );
-      res.status(responseData.status).json({
-        code: responseData.status,
-        data: responseData.data,
-        message: responseData.message
-      });
+      const data: ResponseModel = await this.UserService.loginUser(req.body);
+      res.status(data.status).send(data);
     } catch (error) {
       next(error);
     }

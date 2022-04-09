@@ -1,6 +1,8 @@
 import HttpStatus from 'http-status-codes';
 import { Request, Response, NextFunction } from 'express';
 import RoleService from '../services/RoleService';
+import logger from '../config/logger';
+import ResponseModel from '../models/Response.model';
 
 class RoleController {
   public RoleService = new RoleService();
@@ -11,9 +13,10 @@ class RoleController {
     next: NextFunction
   ): Promise<any> => {
     try {
-      const data: any = await this.RoleService.addRole(req.body);
-      res.status(HttpStatus.OK).send(data);
+      const data: ResponseModel = await this.RoleService.addRole(req.body);
+      res.status(data.status).send(data);
     } catch (error) {
+      logger.logger.error(error);
       next(error);
     }
   };
@@ -24,9 +27,10 @@ class RoleController {
     next: NextFunction
   ): Promise<any> => {
     try {
-      const data: any = await this.RoleService.getAllRole();
-      res.status(HttpStatus.OK).send(data);
+      const data: ResponseModel = await this.RoleService.getAllRole();
+      res.status(data.status).send(data);
     } catch (error) {
+      logger.logger.error(error);
       next(error);
     }
   };
@@ -37,9 +41,10 @@ class RoleController {
     next: NextFunction
   ): Promise<any> => {
     try {
-      const data: any = await this.RoleService.getRole(req.params.id);
-      res.status(HttpStatus.OK).send(data);
+      const data: ResponseModel = await this.RoleService.getRole(req.params.id);
+      res.status(data.status).send(data);
     } catch (error) {
+      logger.logger.error(error);
       next(error);
     }
   };
@@ -50,9 +55,12 @@ class RoleController {
     next: NextFunction
   ): Promise<any> => {
     try {
-      const data: any = await this.RoleService.deleteRole(req.params.id);
-      res.status(HttpStatus.OK).send(data);
+      const data: ResponseModel = await this.RoleService.deleteRole(
+        req.params.id
+      );
+      res.status(data.status).send(data);
     } catch (error) {
+      logger.logger.error(error);
       next(error);
     }
   };
@@ -63,12 +71,13 @@ class RoleController {
     next: NextFunction
   ): Promise<any> => {
     try {
-      const data: any = await this.RoleService.updateRole(
+      const data: ResponseModel = await this.RoleService.updateRole(
         req.params.id,
         req.body
       );
-      res.status(HttpStatus.OK).send(data);
+      res.status(data.status).send(data);
     } catch (error) {
+      logger.logger.error(error);
       next(error);
     }
   };

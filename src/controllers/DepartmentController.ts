@@ -1,6 +1,8 @@
 import HttpStatus from 'http-status-codes';
 import { Request, Response, NextFunction } from 'express';
 import DepartmentService from '../services/DepartmentService';
+import logger from '../config/logger';
+import ResponseModel from '../models/Response.model';
 
 class DepartmentController {
   public DepartmentService = new DepartmentService();
@@ -11,9 +13,12 @@ class DepartmentController {
     next: NextFunction
   ): Promise<any> => {
     try {
-      const data: any = await this.DepartmentService.addDepartment(req.body);
-      res.status(HttpStatus.OK).send(data);
+      const data: ResponseModel = await this.DepartmentService.addDepartment(
+        req.body
+      );
+      res.status(data.status).send(data);
     } catch (error) {
+      logger.logger.error(error);
       next(error);
     }
   };
@@ -24,9 +29,12 @@ class DepartmentController {
     next: NextFunction
   ): Promise<any> => {
     try {
-      const data: any = await this.DepartmentService.getAllDepartment();
-      res.status(HttpStatus.OK).send(data);
+      const data: ResponseModel =
+        await this.DepartmentService.getAllDepartment();
+
+      res.status(data.status).send(data);
     } catch (error) {
+      logger.logger.error(error);
       next(error);
     }
   };
@@ -37,11 +45,12 @@ class DepartmentController {
     next: NextFunction
   ): Promise<any> => {
     try {
-      const data: any = await this.DepartmentService.getDepartment(
+      const data: ResponseModel = await this.DepartmentService.getDepartment(
         req.params.id
       );
-      res.status(HttpStatus.OK).send(data);
+      res.status(data.status).send(data);
     } catch (error) {
+      logger.logger.error(error);
       next(error);
     }
   };
@@ -52,11 +61,12 @@ class DepartmentController {
     next: NextFunction
   ): Promise<any> => {
     try {
-      const data: any = await this.DepartmentService.deleteDepartment(
+      const data: ResponseModel = await this.DepartmentService.deleteDepartment(
         req.params.id
       );
-      res.status(HttpStatus.OK).send(data);
+      res.status(data.status).send(data);
     } catch (error) {
+      logger.logger.error(error);
       next(error);
     }
   };
@@ -67,12 +77,13 @@ class DepartmentController {
     next: NextFunction
   ): Promise<any> => {
     try {
-      const data: any = await this.DepartmentService.updateDepartment(
+      const data: ResponseModel = await this.DepartmentService.updateDepartment(
         req.params.id,
         req.body
       );
-      res.status(HttpStatus.OK).send(data);
+      res.status(data.status).send(data);
     } catch (error) {
+      logger.logger.error(error);
       next(error);
     }
   };

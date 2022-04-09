@@ -13,19 +13,26 @@ class RoleService {
   public addRole = async (body: RoleData): Promise<Response> => {
     let response = new Response();
 
-    const role = new Role();
+    let query: { roleName: string } = { roleName: body.roleName };
 
-    //assign values
-    role.roleName = body.roleName;
+    let result = await repo.get(query);
 
-    let find = await repo.add(role);
+    if (result) {
+      response.data = {};
+      response.message = 'Role Already Exists';
+      response.status = 201;
+    } else {
+      const role = new Role();
 
-    //response object
-    response.data = find;
-    response.message = 'Role Data Added';
-    response.status = 201;
+      role.roleName = body.roleName;
 
-    //return saved data
+      let newRole = await repo.add(role);
+
+      response.data = newRole;
+      response.message = 'Role Data Added';
+      response.status = 201;
+    }
+
     return response;
   };
 
@@ -85,11 +92,9 @@ class RoleService {
 
     let details: RoleData = await repo.get(id);
 
-    let newData = {
-      roleName: body.roleName ? body.roleName : details.roleName
-    };
+    let newData = { ...body };
 
-    let result = await repo.update(Role, id, newData);
+    let result = await repo.update(id, newData);
 
     if (result) {
       response.data = result;

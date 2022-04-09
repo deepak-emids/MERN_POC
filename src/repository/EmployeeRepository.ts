@@ -87,21 +87,13 @@ export default class EmployeeRepository {
       return await createConnection().then(async (connection) => {
         let repo = connection.getRepository(EmployeeDetails);
 
-        let foundEmp = await repo.find({ id: id });
+        await repo.update({ id: id }, object);
 
-        if (foundEmp.length > 0) {
-          await repo.update({ id: id }, object);
+        let find = await repo.findOne({ id: id });
 
-          let find = await repo.findOne({ id: id });
+        await connection.close();
 
-          await connection.close();
-
-          return find;
-        } else {
-          await connection.close();
-
-          return false;
-        }
+        return find;
       });
     } catch (error) {
       return error;

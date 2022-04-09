@@ -3,8 +3,8 @@ import bcrypt from 'bcrypt';
 import { EmployeeDetails } from '../entity/employee';
 import Response from '../models/Response.model';
 import LoginRequest from '../models/LoginRequest';
-import Repository from '../repository/Repository';
-let repo = new Repository();
+import UserRepository from '../repository/UserRepository';
+let repo = new UserRepository();
 
 let response = new Response();
 class UserService {
@@ -13,9 +13,10 @@ class UserService {
   */
   public loginUser = async (body: LoginRequest): Promise<Response> => {
     let query = { email: body.email };
-    let find = await repo.get(EmployeeDetails, query);
+    let find = await repo.get(query);
 
     if (find) {
+      console.log(find);
       let checkPassword = await bcrypt.compare(body.password, find.password);
       if (checkPassword) {
         const token: string = jwt.sign(

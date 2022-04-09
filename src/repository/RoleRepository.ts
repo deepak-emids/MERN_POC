@@ -72,9 +72,6 @@ export default class RoleRepository {
           if (Emp) return false;
           else return true;
         } else {
-          await connection.close();
-
-          return false;
         }
       });
     } catch (error) {
@@ -87,21 +84,13 @@ export default class RoleRepository {
       return await createConnection().then(async (connection) => {
         let repo = connection.getRepository(Role);
 
-        let foundEmp = await repo.find({ id: id });
+        await repo.update({ id: id }, object);
 
-        if (foundEmp.length > 0) {
-          await repo.update({ id: id }, object);
+        let find = await repo.findOne({ id: id });
 
-          let find = await repo.findOne({ id: id });
+        await connection.close();
 
-          await connection.close();
-
-          return find;
-        } else {
-          await connection.close();
-
-          return false;
-        }
+        return find;
       });
     } catch (error) {
       return error;

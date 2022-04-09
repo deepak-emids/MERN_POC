@@ -17,19 +17,27 @@ class DepartmentService {
   public addDepartment = async (body: DepartmentData): Promise<Response> => {
     let response = new Response();
 
-    const dept = new Department();
+    let query: { departmentName: string } = {
+      departmentName: body.departmentName
+    };
+    let result = await repo.get(query);
 
-    //assign values
-    dept.departmentName = body.departmentName;
+    if (result) {
+      response.data = {};
+      response.message = 'Department Already Exists';
+      response.status = 409;
+    } else {
+      const dept = new Department();
 
-    let find = await repo.add(dept);
+      dept.departmentName = body.departmentName;
 
-    //response object
-    response.data = find;
-    response.message = 'Department Added';
-    response.status = 201;
+      let newDepartment = await repo.add(dept);
 
-    //return saved data
+      response.data = newDepartment;
+      response.message = 'Department Added';
+      response.status = 201;
+    }
+
     return response;
   };
 
@@ -78,7 +86,6 @@ class DepartmentService {
       response.status = 404;
 
       return response;
-      // new Response({}, 'department not found', 404);
     }
   };
 
@@ -88,18 +95,17 @@ class DepartmentService {
   public updateDepartment = async (id: number, body: DepartmentData) => {
     let response = new Response();
 
-    let details: DepartmentData = await repo.get(id);
+    let newData = { ...body };
 
-    let newData = {
-      id: id,
-      departmentName: body.departmentName
-        ? body.departmentName
-        : details.departmentName
+    let query: { id: number } = {
+      id: id
     };
 
-    let result = await repository.update(id, newData);
+    let result = await repo.get(query);
 
     if (result) {
+      let result = await repo.update(id, newData);
+
       response.data = result;
       response.message = 'Department Updated';
       response.status = 200;
@@ -120,9 +126,15 @@ class DepartmentService {
   public deleteDepartment = async (id: number) => {
     let response = new Response();
 
-    let result = await repo.delete(id);
+    let query: { id: number } = {
+      id: id
+    };
+
+    let result = await repo.get(query);
 
     if (result) {
+      let result = await repo.delete(id);
+
       response.data = result;
       response.message = 'Department deleted';
       response.status = 200;

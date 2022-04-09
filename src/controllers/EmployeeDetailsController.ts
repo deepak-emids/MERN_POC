@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import EmployeeDetailsService from '../services/EmployeeDetailsService';
 import logger from '../config/logger';
 import EmployeeData from '../models/EmployeeData';
+import ResponseModel from '../models/Response.model';
 
 class EmployeeDetailsController {
   public EmployeeDetailsService = new EmployeeDetailsService();
@@ -12,7 +13,7 @@ class EmployeeDetailsController {
     next: NextFunction
   ): Promise<any> => {
     try {
-      const data: any = await this.EmployeeDetailsService.addEmployeeDetails(
+      const data: ResponseModel = await this.EmployeeDetailsService.addEmployeeDetails(
         req.body
       );
 
@@ -29,7 +30,7 @@ class EmployeeDetailsController {
     next: NextFunction
   ): Promise<any> => {
     try {
-      const data: any =
+      const data: ResponseModel =
         await this.EmployeeDetailsService.getAllEmployeeDetails();
       res.status(data.status).send(data);
     } catch (error) {
@@ -44,7 +45,7 @@ class EmployeeDetailsController {
     next: NextFunction
   ): Promise<any> => {
     try {
-      const data: any = await this.EmployeeDetailsService.getEmployeeDetails(
+      const data: ResponseModel = await this.EmployeeDetailsService.getEmployeeDetails(
         req.params.id
       );
       res.status(data.status).send(data);
@@ -61,7 +62,7 @@ class EmployeeDetailsController {
     next: NextFunction
   ): Promise<any> => {
     try {
-      const data: any = await this.EmployeeDetailsService.deleteEmployeeDetails(
+      const data: ResponseModel = await this.EmployeeDetailsService.deleteEmployeeDetails(
         req.params.id
       );
       res.status(data.status).send(data);
@@ -78,7 +79,7 @@ class EmployeeDetailsController {
     next: NextFunction
   ): Promise<any> => {
     try {
-      const data: any = await this.EmployeeDetailsService.updateEmployeeDetails(
+      const data: ResponseModel = await this.EmployeeDetailsService.updateEmployeeDetails(
         req.params.id,
         req.body
       );
