@@ -1,5 +1,6 @@
 import service from "../axios";
 
+// let url = "http://54.160.164.239:9000";
 let url = "http://localhost:9000";
 
 const header = {
@@ -26,7 +27,6 @@ const Service = {
 
   //update dept
   updateDepartment: (id: number, data: any) => {
-    console.log(id, data);
     return service.putMethod(`${url}/department/${id}`, data, header);
   },
 

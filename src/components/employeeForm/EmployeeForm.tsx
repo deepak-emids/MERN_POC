@@ -11,9 +11,9 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { useSelector, useDispatch } from "react-redux";
+import Snackbar from "../snackbar/Snackbar";
 
 import "./employeeForm.scss";
-import { Navigate } from "react-router";
 
 let value = {
   firstName: "",
@@ -243,6 +243,7 @@ export default function EmployeeForm() {
             name="password"
             label="password"
             variant="outlined"
+            type="password"
             size="small"
             className="form-detail"
             value={field.password}

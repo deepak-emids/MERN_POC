@@ -3,15 +3,25 @@ import Button from "@mui/material/Button";
 import service from "../../services/employeeService/employeeService";
 import TextField from "@mui/material/TextField";
 import back from "../../assets/back.jpg";
+import deptService from "../../services/depertmentService/departmentService";
+import { useSelector, useDispatch } from "react-redux";
+import Snackbar from "../../components/snackbar/Snackbar";
 
 import "./profile.scss";
-
-let employeeId: any = localStorage.getItem("employeeId");
+import { fetchEmployeeDetails } from "../../store/actions";
 
 export default function Profile() {
+  let employeeId: any = localStorage.getItem("employeeId");
+  // const dispatch = useDispatch();
+
   React.useEffect(() => {
-    getEmployee(employeeId);
+    // getEmployee(employeeId);
+    // getDepartment(department_Id);
   }, []);
+
+  // const employeeData = () => {
+  //   let emp = useSelector((state: any) => state.getEmployee.employee);
+  // };
 
   const [emp, setEmp] = React.useState({
     firstName: "",
@@ -26,16 +36,32 @@ export default function Profile() {
     role_Id: "",
   });
 
-  const getEmployee = (employeeId: any) => {
-    service
-      .getEmployee(employeeId)
-      .then((res) => {
-        setEmp(res.data.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  // const [department, setDepartment] = React.useState("");
+
+  // let department_Id = emp.department_Id;
+
+  // const getEmployee = (employeeId: any) => {
+  //   service
+  //     .getEmployee(employeeId)
+  //     .then((res) => {
+  //       setEmp(res.data.data);
+  //       dispatch(fetchEmployeeDetails(res.data.data));
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
+
+  // const getDepartment = (department_Id: any) => {
+  //   deptService
+  //     .getDepartment(department_Id)
+  //     .then((res) => {
+  //       setDepartment(res.data.data.departmentName);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
   const updateEmployee = (id: any, data: {}) => {
     service
@@ -142,7 +168,6 @@ export default function Profile() {
             id="outlined-basic"
             name="department_Id"
             label="Department"
-            value={emp.department_Id}
             variant="standard"
             size="small"
             className="form-detail"
@@ -181,7 +206,6 @@ export default function Profile() {
             name="password"
             label="Password"
             type="password"
-            value={emp.password}
             variant="standard"
             size="small"
             className="form-detail"

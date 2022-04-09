@@ -1,11 +1,11 @@
 const initialState = {
-  employee_details: {},
+  employeeDetails: {},
 };
 
 const getEmployeeDetails = (state = initialState, action: any) => {
   switch (action.type) {
     case "GET_EMPLOYEE_DETAILS":
-      return { ...state, employee_details: action.payload };
+      return { ...state, employeeDetails: action.payload };
 
     default:
       return state;
