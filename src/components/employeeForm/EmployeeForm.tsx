@@ -12,6 +12,7 @@ import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { useSelector, useDispatch } from "react-redux";
 import Snackbar from "../snackbar/Snackbar";
+import DatePicker from "../date/DatePicker";
 
 import "./employeeForm.scss";
 
@@ -74,6 +75,11 @@ export default function EmployeeForm() {
     });
   };
 
+  const handleDate = (date: string) => {
+    console.log(date);
+    field.date_Of_Joining = date;
+  };
+
   const validation = () => {
     let isError = false;
     let firstNameError = field.firstName === "" ? true : false;
@@ -117,6 +123,7 @@ export default function EmployeeForm() {
 
   const next = () => {
     let validated = validation();
+    console.log(field, "fie");
     if (!validated) {
       let data = {
         firstName: field.firstName,
@@ -235,7 +242,7 @@ export default function EmployeeForm() {
           className="name"
           style={{ display: "flex", justifyContent: "space-between" }}
         >
-          <TextField
+          {/* <TextField
             style={{ width: "45%" }}
             id="outlined-basic"
             name="date_Of_Joining"
@@ -254,7 +261,8 @@ export default function EmployeeForm() {
             onChange={(e) => {
               changeField(e);
             }}
-          ></TextField>
+          ></TextField> */}
+          <DatePicker handleDate={handleDate} />
           <TextField
             style={{ width: "45%" }}
             id="outlined-basic"
