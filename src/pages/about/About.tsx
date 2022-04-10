@@ -18,11 +18,11 @@ function About() {
           <img src={vec2} className="vec2" data-testid="vec2"></img>
           <div className="founded">
             <div className="emp-anim">
-              <div className="emp-anim-c">
+              <div className="emp-anim-a">
                 Employees
                 <NumberAnime number={3060} />
               </div>
-              <div className="emp-anim-c">
+              <div className="emp-anim-b">
                 Centers
                 <NumberAnime number={293} />
               </div>

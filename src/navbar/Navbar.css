@@ -8,6 +8,8 @@
 }
 
 .navbar-logo {
+  font-family: "Dancing Script", cursive;
+
   color: #fff;
   justify-self: start;
   margin-left: 20px;
