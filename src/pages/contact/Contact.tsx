@@ -2,6 +2,10 @@ import React from "react";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 import back from "../../assets/back.jpg";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import YouTubeIcon from "@mui/icons-material/YouTube";
+import InstagramIcon from "@mui/icons-material/Instagram";
 
 import "./contact.scss";
 
@@ -9,11 +13,11 @@ function Contact() {
   // const navigate = useNavigate();
 
   return (
-    <div className="Contact-area">
+    <div className="contact-area">
       <div className="contact-table">
-        <div className="Contact-placed">Reach Us Here</div>
+        <div className="contact-reach">Reach Us Here</div>
 
-        <div data-testid="table1">
+        <div data-testid="table1" className="table1">
           <table>
             <tr>
               <th>Email Us</th>
@@ -27,7 +31,16 @@ function Contact() {
             </tr>
           </table>
         </div>
+        <div className="media1">
+          <div className="icon">
+            <FacebookIcon />
+          </div>
+          <TwitterIcon className="icon" />
+          <YouTubeIcon className="icon" />
+          <InstagramIcon className="icon" />
+        </div>
       </div>
+
       <img
         className="back"
         src={back}

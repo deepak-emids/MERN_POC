@@ -61,6 +61,7 @@ function About() {
               highest of service standards to enrich your experience. <br></br>
             </p>
           </div>
+
           <img src={vec1} className="vec1" data-testid="vec1"></img>
         </div>
       </div>

@@ -18,7 +18,7 @@ function Navbar() {
     localStorage.clear();
   };
 
-  let roleId = localStorage.getItem("roleId");
+  let roleId: any = localStorage.getItem("roleId");
 
   const onMouseEnter = () => {
     if (window.innerWidth < 960) {
@@ -41,7 +41,7 @@ function Navbar() {
       <nav className="navbar">
         <Link to="/about" className="navbar-logo" onClick={closeMobileMenu}>
           CRM
-          <i class="fab fa-firstdraft" />
+          <i className="fab fa-firstdraft" />
         </Link>
         <div className="menu-icon" onClick={handleClick}>
           <i className={click ? "fas fa-times" : "fas fa-bars"} />

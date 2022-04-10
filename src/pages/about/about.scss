@@ -1,9 +1,7 @@
 .about {
   color: black;
-  margin-top: 3rem;
-  margin-bottom: 3rem;
 
-  height: 150vh;
+  min-height: 150vh;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -28,47 +26,46 @@
   }
 }
 .i2 {
+  font-size: 20px;
+
+  height: 75vh;
   background-color: #39cccc;
-  font-family: Sedgwick Ave, cursive;
+  font-family: "Dancing Script", cursive;
   display: flex;
   align-items: center;
   justify-content: space-around;
   padding-top: 1rem;
-
-  .vec2 {
-    // margin-top: 3rem;
-    height: 500px;
-    width: 500px;
-  }
 }
 .i3 {
+  font-size: 25px;
+  height: 80vh;
   background-color: #3d9970;
-
-  font-family: Sedgwick Ave, cursive;
-
+  font-family: "Dancing Script", cursive;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  padding-top: 2rem;
 }
 .mission {
   font-size: 25px;
 }
+
 .vec1 {
+  padding-left: 10rem;
+  padding-top: 4.5rem;
   height: 500px;
   width: 500px;
 }
 .vec2 {
-  position: relative;
-  height: 100vh;
-  width: 100vw;
+  padding-top: 3rem;
+  height: 500px;
+  width: 500px;
 }
 .mg {
   display: flex;
   flex-direction: column;
 
   .mission {
-    font-size: 20px;
+    font-size: 30px;
   }
 }
 .emp-anim {
