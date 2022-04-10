@@ -9,16 +9,16 @@
 .dept-form {
   padding: 2rem;
   position: absolute;
-  height: 20vh;
-  width: 35vw;
-  margin: 0vh 0vw 10vh 0vw;
+  height: 25vh;
+  margin-top: 10vh;
+
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
   border-radius: 0.6rem;
   border: 0.01rem solid #dadce0;
 }
-.form-button {
+.dept-form-button {
   display: flex;
   justify-content: space-between;
   width: 15rem;

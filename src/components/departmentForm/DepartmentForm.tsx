@@ -4,11 +4,14 @@ import service from "../../services/depertmentService/departmentService";
 import TextField from "@mui/material/TextField";
 import back from "../../assets/back.jpg";
 import { useNavigate } from "react-router-dom";
+import Snackbar from "../../components/snackbar/Snackbar";
 
 import "./departmentForm.scss";
 
 export default function DepartmentForm() {
   const navigate = useNavigate();
+
+  const [snackbar, setSnackbar] = React.useState(false);
 
   const [field, setField] = React.useState({
     departmentName: "",
@@ -46,6 +49,7 @@ export default function DepartmentForm() {
         .addDepartment(data)
         .then((res) => {
           console.log(res);
+          setSnackbar(true);
         })
         .catch((err) => {
           console.log(err);
@@ -53,8 +57,19 @@ export default function DepartmentForm() {
     }
   };
 
-  const handelBack = () => {
+  const handelCancel = () => {
     navigate("/department");
+  };
+  const showSnackbar = () => {
+    let show: any = "";
+    if (snackbar) {
+      show = <Snackbar message="Update Sucessful" />;
+      setTimeout(() => {
+        setSnackbar(false);
+      }, 2000);
+    }
+
+    return show;
   };
 
   return (
@@ -63,12 +78,12 @@ export default function DepartmentForm() {
         <div>Enter Department Name</div>
 
         <TextField
-          style={{ width: "45%" }}
           id="outlined-basic"
           name="departmentName"
           label="Department Name"
           variant="outlined"
           size="small"
+          fullWidth
           className="form-detail"
           helperText={
             field.departmentNameError ? " departmentName is required" : " "
@@ -79,7 +94,7 @@ export default function DepartmentForm() {
           }}
         ></TextField>
 
-        <div className="form-button">
+        <div className="dept-form-button">
           <Button
             onClick={next}
             style={{ backgroundColor: "#3371B5", color: "white" }}
@@ -87,13 +102,15 @@ export default function DepartmentForm() {
             Save
           </Button>
           <Button
-            onClick={handelBack}
+            onClick={handelCancel}
             style={{ backgroundColor: "white", color: "grey" }}
           >
             Back
           </Button>
         </div>
       </form>
+      <div>{showSnackbar()}</div>
+
       <img
         className="back"
         src={back}

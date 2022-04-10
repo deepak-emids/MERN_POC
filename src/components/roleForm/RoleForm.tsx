@@ -3,10 +3,17 @@ import Button from "@mui/material/Button";
 import service from "../../services/roleService/roleService";
 import TextField from "@mui/material/TextField";
 import back from "../../assets/back.jpg";
+import Snackbar from "../../components/snackbar/Snackbar";
+import { useNavigate } from "react-router-dom";
 
 import "./roleForm.scss";
+import { Navigate } from "react-router";
 
 export default function RoleForm() {
+  const navigate = useNavigate();
+
+  const [snackbar, setSnackbar] = React.useState(false);
+
   const [field, setField] = React.useState({
     roleName: "",
     roleNameError: false,
@@ -43,6 +50,7 @@ export default function RoleForm() {
         .addRole(data)
         .then((res) => {
           console.log(res);
+          setSnackbar(true);
         })
         .catch((err) => {
           console.log(err);
@@ -50,7 +58,21 @@ export default function RoleForm() {
     }
   };
 
-  const handelCancel = () => {};
+  const handelCancel = () => {
+    navigate("/role");
+  };
+
+  const showSnackbar = () => {
+    let show: any = "";
+    if (snackbar) {
+      show = <Snackbar message="Update Sucessful" />;
+      setTimeout(() => {
+        setSnackbar(false);
+      }, 2000);
+    }
+
+    return show;
+  };
 
   return (
     <div className="role-details">
@@ -58,12 +80,12 @@ export default function RoleForm() {
         <div>Enter Role Name</div>
 
         <TextField
-          style={{ width: "45%" }}
           id="outlined-basic"
           name="roleName"
           label="Role Name"
           variant="outlined"
           size="small"
+          fullWidth
           className="form-detail"
           helperText={field.roleNameError ? " roleName is required" : " "}
           error={field.roleNameError}
@@ -87,6 +109,8 @@ export default function RoleForm() {
           </Button>
         </div>
       </form>
+      <div>{showSnackbar()}</div>
+
       <img
         className="back"
         src={back}
