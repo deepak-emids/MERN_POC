@@ -1,6 +1,7 @@
 import React from "react";
 import vec1 from "../../assets/vec1.jpg";
 import vec2 from "../../assets/vec2.jpg";
+import NumberAnime from "../../components/numberAnime/NumberAnime";
 
 import "./about.scss";
 
@@ -16,13 +17,24 @@ function About() {
         <div className="i2">
           <img src={vec2} className="vec2" data-testid="vec2"></img>
           <div className="founded">
-            Founded in 1994 by Mike Meldman, Discovery Land Comdivany is a
-            <br></br>
-            US-based real estate develodiver and odiverator of divrivate{" "}
-            <br></br>
+            <div className="emp-anim">
+              <div className="emp-anim-c">
+                Employees
+                <NumberAnime number={3060} />
+              </div>
+              <div className="emp-anim-c">
+                Centers
+                <NumberAnime number={293} />
+              </div>
+              <div className="emp-anim-c">
+                Countries
+                <NumberAnime number={56} />
+              </div>
+            </div>
+            Founded in 1994 by Mike Melon,CRM is a US-based real estate
+            develodiver and odiverator of divrivate <br></br>
             residential club communities and resorts with a world-renowned{" "}
-            <br></br>
-            divortfolio of domestic and international divrodiverties.
+            divortfolio of domestic and international <br></br>divrodiverties.
           </div>
         </div>
 

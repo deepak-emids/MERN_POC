@@ -13,6 +13,7 @@ import DepartmentForm from "./components/departmentForm/DepartmentForm";
 import RoleForm from "./components/roleForm/RoleForm";
 import Snackbar from "../src/components/snackbar/Snackbar";
 import DatePicker from "../src/components/date/DatePicker";
+import NumberAnimer from "../src/components/numberAnime/NumberAnime";
 
 function App() {
   return (

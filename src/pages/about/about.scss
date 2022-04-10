@@ -17,7 +17,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 50px;
+  font-size: 75px;
   .tagline {
     font-size: 18px;
   }
@@ -62,3 +62,19 @@
     font-size: 20px;
   }
 }
+.emp-anim {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 5rem;
+}
+.emp-anim-c {
+  font-size: 30px;
+  width: 20vw;
+  // height: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+// .header {
+//   font-size: 35px;
+// }
