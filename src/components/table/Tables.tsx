@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import employeeService from "../../services/employeeService/employeeService";
 import departmentService from "../../services/depertmentService/departmentService";
 import roleService from "../../services/roleService/roleService";
+import Snackbar from "../../components/snackbar/Snackbar";
 
 import "./tables.scss";
 
@@ -27,12 +28,15 @@ const handleRowClick = (param: any, event: any) => {
 
 export default function DataGridDemo(props: any) {
   //------------------------------------------------Methods
+  const [snackbar, setSnackbar] = React.useState(false);
 
   //Employee Methods
   const updateEmployee = (id: number, data: {}) => {
     employeeService
       .updateEmployee(id, data)
       .then((res) => {
+        setSnackbar(true);
+
         props.refresh();
       })
       .catch((err) => {
@@ -44,6 +48,8 @@ export default function DataGridDemo(props: any) {
     employeeService
       .deleteEmployee(id)
       .then((res: {}) => {
+        setSnackbar(true);
+
         props.refresh();
       })
       .catch((err: {}) => {
@@ -56,6 +62,8 @@ export default function DataGridDemo(props: any) {
     departmentService
       .updateDepartment(id, data)
       .then((res) => {
+        setSnackbar(true);
+
         props.refresh();
       })
       .catch((err) => {
@@ -67,6 +75,8 @@ export default function DataGridDemo(props: any) {
     departmentService
       .deleteDepartment(id)
       .then((res: {}) => {
+        setSnackbar(true);
+
         props.refresh();
       })
       .catch((err: {}) => {
@@ -79,6 +89,8 @@ export default function DataGridDemo(props: any) {
     roleService
       .updateRole(id, data)
       .then((res) => {
+        setSnackbar(true);
+
         props.refresh();
       })
       .catch((err) => {
@@ -90,6 +102,8 @@ export default function DataGridDemo(props: any) {
     roleService
       .deleteRole(id)
       .then((res: {}) => {
+        setSnackbar(true);
+
         props.refresh();
       })
       .catch((err: {}) => {
@@ -179,6 +193,18 @@ export default function DataGridDemo(props: any) {
     },
   });
 
+  const showSnackbar = () => {
+    let show: any = "";
+    if (snackbar) {
+      show = <Snackbar message="Update Sucessful" />;
+      setTimeout(() => {
+        setSnackbar(false);
+      }, 2000);
+    }
+
+    return show;
+  };
+
   return (
     <div className="grid">
       <div className="table-button">
@@ -195,6 +221,7 @@ export default function DataGridDemo(props: any) {
           ADD
         </Button>
       </div>
+      <div>{showSnackbar()}</div>
 
       <DataGrid
         style={{ backgroundColor: "white", height: 550 }}

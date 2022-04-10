@@ -35,9 +35,8 @@ export default function CustomizedSnackbars(props: any) {
   return (
     <Stack spacing={2} sx={{ width: "100%" }}>
       <Snackbar
-        sx={{ width: "20%", marginBottom: "30rem", marginLeft: "35rem" }}
+        sx={{ width: "20%", marginBottom: "33rem", marginLeft: "36rem" }}
         open={open}
-        // autoHideDuration={6000}
         onClose={handleClose}
       >
         <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
