@@ -12,16 +12,15 @@ import { fetchEmployeeDetails } from "../../store/actions";
 
 export default function Profile() {
   let employeeId: any = localStorage.getItem("employeeId");
-  // const dispatch = useDispatch();
+
+  const [snackbar, setSnackbar] = React.useState(false);
+  const dispatch = useDispatch();
 
   React.useEffect(() => {
-    // getEmployee(employeeId);
-    // getDepartment(department_Id);
+    getEmployee(employeeId);
   }, []);
 
-  // const employeeData = () => {
-  //   let emp = useSelector((state: any) => state.getEmployee.employee);
-  // };
+  let employee = useSelector((state: any) => state.getEmployee.employee);
 
   const [emp, setEmp] = React.useState({
     firstName: "",
@@ -36,38 +35,24 @@ export default function Profile() {
     role_Id: "",
   });
 
-  // const [department, setDepartment] = React.useState("");
-
-  // let department_Id = emp.department_Id;
-
-  // const getEmployee = (employeeId: any) => {
-  //   service
-  //     .getEmployee(employeeId)
-  //     .then((res) => {
-  //       setEmp(res.data.data);
-  //       dispatch(fetchEmployeeDetails(res.data.data));
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
-
-  // const getDepartment = (department_Id: any) => {
-  //   deptService
-  //     .getDepartment(department_Id)
-  //     .then((res) => {
-  //       setDepartment(res.data.data.departmentName);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
+  const getEmployee = (employeeId: any) => {
+    service
+      .getEmployee(employeeId)
+      .then((res) => {
+        setEmp(res.data.data);
+        dispatch(fetchEmployeeDetails(res.data.data));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const updateEmployee = (id: any, data: {}) => {
     service
       .updateEmployee(id, data)
       .then((res) => {
         console.log(res);
+        setSnackbar(true);
       })
       .catch((err) => {
         console.log(err);
@@ -75,7 +60,7 @@ export default function Profile() {
   };
 
   const changeField = (e: any) => {
-    setEmp((previousstate) => ({
+    setEmp((previousstate: any) => ({
       ...previousstate,
       [e.target.name]: e.target.value,
     }));
@@ -91,6 +76,18 @@ export default function Profile() {
     let id = localStorage.getItem("employeeId");
 
     updateEmployee(id, data);
+  };
+
+  const showSnackbar = () => {
+    let show: any = "";
+    if (snackbar) {
+      show = <Snackbar message="Details Updated" />;
+      setTimeout(() => {
+        setSnackbar(false);
+      }, 2000);
+    }
+
+    return show;
   };
 
   return (
@@ -169,6 +166,7 @@ export default function Profile() {
             name="department_Id"
             label="Department"
             variant="standard"
+            value={emp.department_Id}
             size="small"
             className="form-detail"
             inputProps={{ readOnly: true }}
@@ -206,6 +204,7 @@ export default function Profile() {
             name="password"
             label="Password"
             type="password"
+            value={emp.password}
             variant="standard"
             size="small"
             className="form-detail"
@@ -236,6 +235,7 @@ export default function Profile() {
           SAVE
         </Button>
       </form>
+      <div>{showSnackbar()}</div>
       <img
         className="back"
         src={back}

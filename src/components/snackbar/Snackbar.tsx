@@ -1,47 +1,49 @@
 import * as React from "react";
+import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
-import Snackbar, { SnackbarOrigin } from "@mui/material/Snackbar";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert, { AlertProps } from "@mui/material/Alert";
 
-export interface State extends SnackbarOrigin {
-  open: boolean;
-}
+const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
+  props,
+  ref
+) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
-export default function PositionedSnackbar(props: any) {
+export default function CustomizedSnackbars(props: any) {
   React.useEffect(() => {
-    handleClick({
-      vertical: "top",
-      horizontal: "center",
-    });
+    handleClick();
   }, []);
+  const [open, setOpen] = React.useState(false);
 
-  const [state, setState] = React.useState<State>({
-    open: false,
-    vertical: "top",
-    horizontal: "center",
-  });
-  const { vertical, horizontal, open } = state;
-
-  const handleClick = (newState: SnackbarOrigin) => () => {
-    setState({ open: true, ...newState });
+  const handleClick = () => {
+    setOpen(true);
   };
 
-  const handleClose = () => {
-    setState({ ...state, open: false });
+  const handleClose = (
+    event?: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
   };
-  handleClick({
-    vertical: "top",
-    horizontal: "center",
-  });
 
   return (
-    <div>
+    <Stack spacing={2} sx={{ width: "100%" }}>
       <Snackbar
-        anchorOrigin={{ vertical, horizontal }}
+        sx={{ width: "20%", marginBottom: "30rem", marginLeft: "35rem" }}
         open={open}
+        // autoHideDuration={6000}
         onClose={handleClose}
-        message={props.message}
-        key={vertical + horizontal}
-      />
-    </div>
+      >
+        <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
+          {props.message}
+        </Alert>
+      </Snackbar>
+    </Stack>
   );
 }
