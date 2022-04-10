@@ -40,6 +40,8 @@ let value = {
 };
 
 export default function EmployeeForm() {
+  const [snackbar, setSnackbar] = React.useState(false);
+
   let departmentList: [{ id: number; departmentName: string }] = useSelector(
     (state: any) => state.getDepartment.department
   );
@@ -55,6 +57,8 @@ export default function EmployeeForm() {
       .addEmployee(data)
       .then((res) => {
         console.log(res);
+        setSnackbar(true);
+
         setField(value);
       })
       .catch((err) => {
@@ -135,11 +139,25 @@ export default function EmployeeForm() {
     navigate("/employee");
   };
 
+  const showSnackbar = () => {
+    let show: any = "";
+    if (snackbar) {
+      show = <Snackbar message="Update Sucessful" />;
+      setTimeout(() => {
+        setSnackbar(false);
+      }, 2000);
+    }
+
+    return show;
+  };
+
   return (
     <div className="emp-details">
       <form className="emp-form">
         <div>Enter Employee Details</div>
         <br></br>
+        <div>{showSnackbar()}</div>
+
         <div
           className="name"
           style={{ display: "flex", justifyContent: "space-between" }}
