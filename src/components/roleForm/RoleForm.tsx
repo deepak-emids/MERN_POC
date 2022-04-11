@@ -65,7 +65,7 @@ export default function RoleForm() {
   const showSnackbar = () => {
     let show: any = "";
     if (snackbar) {
-      show = <Snackbar message="Update Sucessful" />;
+      show = <Snackbar message="Role Added Successfully" />;
       setTimeout(() => {
         setSnackbar(false);
       }, 2000);

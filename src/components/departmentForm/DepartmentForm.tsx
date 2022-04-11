@@ -63,7 +63,7 @@ export default function DepartmentForm() {
   const showSnackbar = () => {
     let show: any = "";
     if (snackbar) {
-      show = <Snackbar message="Update Sucessful" />;
+      show = <Snackbar message="Department Added Successfully" />;
       setTimeout(() => {
         setSnackbar(false);
       }, 2000);

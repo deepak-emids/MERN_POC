@@ -81,7 +81,7 @@ export default function Profile() {
   const showSnackbar = () => {
     let show: any = "";
     if (snackbar) {
-      show = <Snackbar message="Details Updated" />;
+      show = <Snackbar message="Profile Updated Successfully" />;
       setTimeout(() => {
         setSnackbar(false);
       }, 2000);
@@ -237,7 +237,7 @@ export default function Profile() {
       </form>
       <div>{showSnackbar()}</div>
       <img
-        className="back"
+        className="backp"
         src={back}
         alt="this is logo"
         data-testid="profile1"

@@ -22,16 +22,12 @@ function User() {
               alt="this is logo"
               style={{ width: "245px", height: "245px" }}
             ></img>
-            <h3>CRM</h3>
+            <div>CRM</div>
           </div>
 
           <div className="formContainer">
             <div className="switch">
-              <h5
-                className="sign"
-                onClick={handleSwitch}
-                style={{ fontSize: "25px" }}
-              >
+              <h5 className="sign" onClick={handleSwitch}>
                 Signin
               </h5>
             </div>

@@ -149,7 +149,7 @@ export default function EmployeeForm() {
   const showSnackbar = () => {
     let show: any = "";
     if (snackbar) {
-      show = <Snackbar message="Update Sucessful" />;
+      show = <Snackbar message="Employee Added Successfully" />;
       setTimeout(() => {
         setSnackbar(false);
       }, 2000);

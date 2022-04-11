@@ -14,22 +14,43 @@ import RoleForm from "./components/roleForm/RoleForm";
 import Snackbar from "../src/components/snackbar/Snackbar";
 import DatePicker from "../src/components/date/DatePicker";
 import NumberAnimer from "../src/components/numberAnime/NumberAnime";
+import ProtectedRoute from "./components/protected/ProtectedRoute";
 
 function App() {
+  let isAuth = false;
+  const token: any = localStorage.getItem("token");
+  if (token != null || undefined) isAuth = true;
+  console.log(isAuth);
+
+  const defaultProtectedRouteProps: any = {
+    isAuthenticated: token,
+    authenticationPath: "/login",
+  };
+
   return (
     <>
       <Routes>
         <Route path="/login" element={<User />} />
-        <Route path="/" element={<Dashboard />}>
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute
+              isAuthenticated={isAuth}
+              authenticationPath="/login"
+              outlet={<Dashboard />}
+            />
+          }
+        >
+          {/* <Route path="/" element={<Dashboard />}> */}
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/addEmployee" element={<EmployeeForm />} />
-          <Route path="/departmentForm" element={<DepartmentForm />} />
-          <Route path="/roleForm" element={<RoleForm />} />
           <Route path="/employee" element={<Employee />} />
+          <Route path="/addEmployee" element={<EmployeeForm />} />
           <Route path="/department" element={<Department />} />
+          <Route path="/departmentForm" element={<DepartmentForm />} />
           <Route path="/role" element={<Role />} />
+          <Route path="/roleForm" element={<RoleForm />} />
         </Route>
       </Routes>
     </>

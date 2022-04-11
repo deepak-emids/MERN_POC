@@ -140,7 +140,7 @@ export default function Dashboard() {
 
   const handleClose = () => {
     setOpen(false);
-    navigate("/about");
+    navigate("/");
   };
 
   return (
@@ -162,6 +162,8 @@ export default function Dashboard() {
           </Box>
         </Modal>
 
+        {/* <About /> */}
+
         <div className="page-content">
           <div className="pages">
             <Routes>
@@ -174,6 +176,7 @@ export default function Dashboard() {
               <Route path="/role" element={<Role />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/*" element={<About />} />
             </Routes>
           </div>
         </div>
