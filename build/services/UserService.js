@@ -14,11 +14,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
-const employee_1 = require("../entity/employee");
-const response_model_1 = __importDefault(require("../models/response.model"));
-const repository_1 = __importDefault(require("../repository/repository"));
-let repo = new repository_1.default();
-let response = new response_model_1.default();
+const Response_model_1 = __importDefault(require("../models/Response.model"));
+const UserRepository_1 = __importDefault(require("../repository/UserRepository"));
+let repo = new UserRepository_1.default();
+let response = new Response_model_1.default();
 class UserService {
     constructor() {
         /*
@@ -26,8 +25,9 @@ class UserService {
         */
         this.loginUser = (body) => __awaiter(this, void 0, void 0, function* () {
             let query = { email: body.email };
-            let find = yield repo.get(employee_1.EmployeeDetails, query);
+            let find = yield repo.get(query);
             if (find) {
+                console.log(find);
                 let checkPassword = yield bcrypt_1.default.compare(body.password, find.password);
                 if (checkPassword) {
                     const token = jsonwebtoken_1.default.sign({

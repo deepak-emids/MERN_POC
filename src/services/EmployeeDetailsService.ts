@@ -17,9 +17,11 @@ class EmployeeDetailsService {
     let result = await repo.get(query);
     console.log(result);
     if (result) {
-      response.data = result;
-      response.message = 'Employee Already Exists';
-      response.status = 200;
+      response = {
+        data: result,
+        message: 'Employee Already Exists',
+        status: 200
+      };
 
       return response;
     } else {
@@ -31,9 +33,11 @@ class EmployeeDetailsService {
 
       let addedEmployee = await repo.add(emp);
 
-      response.data = addedEmployee;
-      response.message = 'Employee Details  Added';
-      response.status = 201;
+      response = {
+        data: addedEmployee,
+        message: 'Employee Details  Added',
+        status: 201
+      };
 
       return response;
     }
@@ -45,15 +49,19 @@ class EmployeeDetailsService {
     let result = await repo.getAll();
 
     if (result) {
-      response.data = result;
-      response.message = 'EmployeeDetails Fetched';
-      response.status = 200;
+      response = {
+        data: result,
+        message: 'EmployeeDetails Fetched',
+        status: 200
+      };
 
       return response;
     } else {
-      response.data = {};
-      response.message = 'EmployeeDetails Not Found';
-      response.status = 404;
+      response = {
+        data: {},
+        message: 'EmployeeDetails Not Found',
+        status: 404
+      };
 
       return response;
     }
@@ -66,15 +74,19 @@ class EmployeeDetailsService {
 
     let result = await repo.get(query);
     if (result) {
-      response.data = result;
-      response.message = 'Employee Details Fetched';
-      response.status = 200;
+      response = {
+        data: result,
+        message: 'Employee Details Fetched',
+        status: 200
+      };
 
       return response;
     } else {
-      response.data = {};
-      response.message = 'EmployeeDetails Not Found';
-      response.status = 404;
+      response = {
+        data: {},
+        message: 'EmployeeDetails Not Found',
+        status: 404
+      };
 
       return response;
     }
@@ -88,9 +100,11 @@ class EmployeeDetailsService {
     let result = await repo.update(id, newData);
 
     if (result) {
-      response.data = result;
-      response.message = 'EmployeeDetails updated';
-      response.status = 200;
+      response = {
+        data: result,
+        message: 'EmployeeDetails updated',
+        status: 200
+      };
 
       return response;
     } else {
@@ -108,15 +122,19 @@ class EmployeeDetailsService {
     let result = await repo.delete(id);
 
     if (result) {
-      response.data = {};
-      response.message = 'EmployeeDetails deleted';
-      response.status = 200;
+      response = {
+        data: {},
+        message: 'EmployeeDetails deleted',
+        status: 200
+      };
 
       return response;
     } else {
-      response.data = {};
-      response.message = 'Employee Not Found';
-      response.status = 404;
+      response = {
+        data: {},
+        message: 'Employee Not Found',
+        status: 404
+      };
 
       return response;
     }

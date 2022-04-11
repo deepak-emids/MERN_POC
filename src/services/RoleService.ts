@@ -18,9 +18,11 @@ class RoleService {
     let result = await repo.get(query);
 
     if (result) {
-      response.data = {};
-      response.message = 'Role Already Exists';
-      response.status = 201;
+      response = {
+        data: {},
+        message: 'Role Already Exists',
+        status: 201
+      };
     } else {
       const role = new Role();
 
@@ -28,9 +30,11 @@ class RoleService {
 
       let newRole = await repo.add(role);
 
-      response.data = newRole;
-      response.message = 'Role Data Added';
-      response.status = 201;
+      response = {
+        data: newRole,
+        message: 'Role Data Added',
+        status: 201
+      };
     }
 
     return response;
@@ -45,15 +49,19 @@ class RoleService {
     let result = await repo.getAll();
 
     if (result.length > 0) {
-      response.data = result;
-      response.message = 'Roles Fetched';
-      response.status = 200;
+      response = {
+        data: result,
+        message: 'Roles Fetched',
+        status: 200
+      };
 
       return response;
     } else {
-      response.data = {};
-      response.message = 'Role Not Found';
-      response.status = 404;
+      response = {
+        data: {},
+        message: 'Role Not Found',
+        status: 404
+      };
 
       return response;
     }
@@ -70,15 +78,19 @@ class RoleService {
     let result = await repo.get(query);
 
     if (result) {
-      response.data = result;
-      response.message = 'Role Fetched';
-      response.status = 200;
+      response = {
+        data: result,
+        message: 'Role Fetched',
+        status: 200
+      };
 
       return response;
     } else {
-      response.data = {};
-      response.message = 'Role Not Found';
-      response.status = 404;
+      response = {
+        data: {},
+        message: 'Role Not Found',
+        status: 404
+      };
 
       return response;
     }
@@ -97,15 +109,19 @@ class RoleService {
     let result = await repo.update(id, newData);
 
     if (result) {
-      response.data = result;
-      response.message = 'Role Updated';
-      response.status = 200;
+      response = {
+        data: result,
+        message: 'Role Updated',
+        status: 200
+      };
 
       return response;
     } else {
-      response.data = {};
-      response.message = 'Role Not Found';
-      response.status = 404;
+      response = {
+        data: {},
+        message: 'Role Not Found',
+        status: 404
+      };
 
       return response;
     }
@@ -120,15 +136,19 @@ class RoleService {
     let result = await repo.delete(id);
 
     if (result) {
-      response.data = result;
-      response.message = 'Role Deleted';
-      response.status = 200;
+      response = {
+        data: result,
+        message: 'Role Deleted',
+        status: 200
+      };
 
       return response;
     } else {
-      response.data = {};
-      response.message = 'Role Not Found';
-      response.status = 404;
+      response = {
+        data: {},
+        message: 'Role Not Found',
+        status: 404
+      };
 
       return response;
     }

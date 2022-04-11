@@ -14,32 +14,45 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 require("reflect-metadata");
 const department_1 = require("../entity/department");
-const repository_1 = __importDefault(require("../repository/repository"));
-const response_model_1 = __importDefault(require("../models/response.model"));
-let response = new response_model_1.default();
-let repository = new repository_1.default();
+const DepartmentRepository_1 = __importDefault(require("../repository/DepartmentRepository"));
+const Response_model_1 = __importDefault(require("../models/Response.model"));
+let repo = new DepartmentRepository_1.default();
 class DepartmentService {
     constructor() {
+        // private departmentService;
+        // constructor() {
+        //   this.departmentService = new DepartmentService();
+        // }
         /*
         add emp
         */
         this.addDepartment = (body) => __awaiter(this, void 0, void 0, function* () {
-            const dept = new department_1.Department();
-            //assign values
-            dept.departmentName = body.departmentName;
-            let find = yield repository.add(department_1.Department, dept);
-            //response object
-            response.data = find;
-            response.message = 'Department Added';
-            response.status = 201;
-            //return saved data
+            let response = new Response_model_1.default();
+            let query = {
+                departmentName: body.departmentName
+            };
+            let result = yield repo.get(query);
+            if (result) {
+                response.data = {};
+                response.message = 'Department Already Exists';
+                response.status = 409;
+            }
+            else {
+                const dept = new department_1.Department();
+                dept.departmentName = body.departmentName;
+                let newDepartment = yield repo.add(dept);
+                response.data = newDepartment;
+                response.message = 'Department Added';
+                response.status = 201;
+            }
             return response;
         });
         /*
         get Departments
         */
         this.getAllDepartment = () => __awaiter(this, void 0, void 0, function* () {
-            let result = yield repository.getAll(department_1.Department);
+            let response = new Response_model_1.default();
+            let result = yield repo.getAll();
             if (result.length > 0) {
                 response.data = result;
                 response.message = 'Departments Fetched';
@@ -57,8 +70,9 @@ class DepartmentService {
         get Departments
         */
         this.getDepartment = (id) => __awaiter(this, void 0, void 0, function* () {
+            let response = new Response_model_1.default();
             let query = { id: id };
-            let result = yield repository.get(department_1.Department, query);
+            let result = yield repo.get(query);
             if (result) {
                 response.data = result;
                 response.message = 'Department Fetched';
@@ -76,15 +90,14 @@ class DepartmentService {
         update Department
         */
         this.updateDepartment = (id, body) => __awaiter(this, void 0, void 0, function* () {
-            let details = yield repository.get(department_1.Department, id);
-            let newData = {
-                id: id,
-                departmentName: body.departmentName
-                    ? body.departmentName
-                    : details.departmentName
+            let response = new Response_model_1.default();
+            let newData = Object.assign({}, body);
+            let query = {
+                id: id
             };
-            let result = yield repository.update(department_1.Department, id, newData);
+            let result = yield repo.get(query);
             if (result) {
+                let result = yield repo.update(id, newData);
                 response.data = result;
                 response.message = 'Department Updated';
                 response.status = 200;
@@ -101,8 +114,13 @@ class DepartmentService {
         delete Department work details
         */
         this.deleteDepartment = (id) => __awaiter(this, void 0, void 0, function* () {
-            let result = yield repository.delete(department_1.Department, id);
+            let response = new Response_model_1.default();
+            let query = {
+                id: id
+            };
+            let result = yield repo.get(query);
             if (result) {
+                let result = yield repo.delete(id);
                 response.data = result;
                 response.message = 'Department deleted';
                 response.status = 200;

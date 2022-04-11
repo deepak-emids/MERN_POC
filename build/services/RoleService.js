@@ -14,32 +14,39 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 require("reflect-metadata");
 const role_1 = require("../entity/role");
-const repository_1 = __importDefault(require("../repository/repository"));
-const response_model_1 = __importDefault(require("../models/response.model"));
-let response = new response_model_1.default();
-let repository = new repository_1.default();
+const RoleRepository_1 = __importDefault(require("../repository/RoleRepository"));
+const Response_model_1 = __importDefault(require("../models/Response.model"));
+let repo = new RoleRepository_1.default();
 class RoleService {
     constructor() {
         /*
         add emp
         */
         this.addRole = (body) => __awaiter(this, void 0, void 0, function* () {
-            const role = new role_1.Role();
-            //assign values
-            role.roleName = body.roleName;
-            let find = yield repository.add(role_1.Role, role);
-            //response object
-            response.data = find;
-            response.message = 'Role Data Added';
-            response.status = 201;
-            //return saved data
+            let response = new Response_model_1.default();
+            let query = { roleName: body.roleName };
+            let result = yield repo.get(query);
+            if (result) {
+                response.data = {};
+                response.message = 'Role Already Exists';
+                response.status = 201;
+            }
+            else {
+                const role = new role_1.Role();
+                role.roleName = body.roleName;
+                let newRole = yield repo.add(role);
+                response.data = newRole;
+                response.message = 'Role Data Added';
+                response.status = 201;
+            }
             return response;
         });
         /*
         get Roles
         */
         this.getAllRole = () => __awaiter(this, void 0, void 0, function* () {
-            let result = yield repository.getAll(role_1.Role);
+            let response = new Response_model_1.default();
+            let result = yield repo.getAll();
             if (result.length > 0) {
                 response.data = result;
                 response.message = 'Roles Fetched';
@@ -57,11 +64,12 @@ class RoleService {
         get Roles
         */
         this.getRole = (id) => __awaiter(this, void 0, void 0, function* () {
+            let response = new Response_model_1.default();
             let query = { id: id };
-            let result = yield repository.get(role_1.Role, query);
+            let result = yield repo.get(query);
             if (result) {
                 response.data = result;
-                response.message = 'Role deleted';
+                response.message = 'Role Fetched';
                 response.status = 200;
                 return response;
             }
@@ -76,14 +84,13 @@ class RoleService {
         update Role
         */
         this.updateRole = (id, body) => __awaiter(this, void 0, void 0, function* () {
-            let details = yield repository.get(role_1.Role, id);
-            let newData = {
-                roleName: body.roleName ? body.roleName : details.roleName
-            };
-            let result = yield repository.update(role_1.Role, id, newData);
+            let response = new Response_model_1.default();
+            let details = yield repo.get(id);
+            let newData = Object.assign({}, body);
+            let result = yield repo.update(id, newData);
             if (result) {
                 response.data = result;
-                response.message = 'Role updated';
+                response.message = 'Role Updated';
                 response.status = 200;
                 return response;
             }
@@ -98,10 +105,11 @@ class RoleService {
         delete Role work details
         */
         this.deleteRole = (id) => __awaiter(this, void 0, void 0, function* () {
-            let result = yield repository.delete(role_1.Role, id);
+            let response = new Response_model_1.default();
+            let result = yield repo.delete(id);
             if (result) {
                 response.data = result;
-                response.message = 'Role deleted';
+                response.message = 'Role Deleted';
                 response.status = 200;
                 return response;
             }

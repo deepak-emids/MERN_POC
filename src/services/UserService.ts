@@ -16,7 +16,6 @@ class UserService {
     let find = await repo.get(query);
 
     if (find) {
-      console.log(find);
       let checkPassword = await bcrypt.compare(body.password, find.password);
       if (checkPassword) {
         const token: string = jwt.sign(
@@ -25,29 +24,35 @@ class UserService {
             id: find.id,
             role_Id: find.role_Id
           },
-          'secret'
+          process.env.SECRET
         );
 
-        response.data = {
-          id: find.id,
-          email: find.email,
-          role_Id: find.role_Id,
-          token: token
-        };
-        response.message = 'Login success';
-        response.status = 200;
+        response = {
+          data: {
+            id: find.id,
+            email: find.email,
+            role_Id: find.role_Id,
+            token: token
+          };
+          message: 'Login success',
+          status: 200,
+        }
 
         return response;
       } else {
-        response.data = {};
-        response.message = 'Incorrect Password';
-        response.status = 401;
+        response = {
+          data: {},
+          message: 'Incorrect Password',
+          status: 401
+        }
         return response;
       }
     } else {
-      response.data = {};
-      response.message = 'User Not Found';
-      response.status = 404;
+      response = {
+        data : {},
+        message : 'User Not Found',
+       status : 404
+      }
 
       return response;
     }

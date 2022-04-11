@@ -15,14 +15,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 require("reflect-metadata");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const employee_1 = require("../entity/employee");
-const response_model_1 = __importDefault(require("../models/response.model"));
-const repository_1 = __importDefault(require("../repository/repository"));
-let repo = new repository_1.default();
-let response = new response_model_1.default();
+const Response_model_1 = __importDefault(require("../models/Response.model"));
+const EmployeeRepository_1 = __importDefault(require("../repository/EmployeeRepository"));
+let repo = new EmployeeRepository_1.default();
 class EmployeeDetailsService {
     constructor() {
         this.getAllEmployeeDetails = () => __awaiter(this, void 0, void 0, function* () {
-            let result = yield repo.getAll(employee_1.EmployeeDetails);
+            let response = new Response_model_1.default();
+            let result = yield repo.getAll();
             if (result) {
                 response.data = result;
                 response.message = 'EmployeeDetails Fetched';
@@ -37,8 +37,9 @@ class EmployeeDetailsService {
             }
         });
         this.getEmployeeDetails = (id) => __awaiter(this, void 0, void 0, function* () {
+            let response = new Response_model_1.default();
             let query = { id: id };
-            let result = yield repo.get(employee_1.EmployeeDetails, query);
+            let result = yield repo.get(query);
             if (result) {
                 response.data = result;
                 response.message = 'Employee Details Fetched';
@@ -53,8 +54,9 @@ class EmployeeDetailsService {
             }
         });
         this.updateEmployeeDetails = (id, body) => __awaiter(this, void 0, void 0, function* () {
+            let response = new Response_model_1.default();
             let newData = Object.assign({}, body);
-            let result = yield repo.update(employee_1.EmployeeDetails, id, newData);
+            let result = yield repo.update(id, newData);
             if (result) {
                 response.data = result;
                 response.message = 'EmployeeDetails updated';
@@ -69,7 +71,8 @@ class EmployeeDetailsService {
             }
         });
         this.deleteEmployeeDetails = (id) => __awaiter(this, void 0, void 0, function* () {
-            let result = yield repo.delete(employee_1.EmployeeDetails, id);
+            let response = new Response_model_1.default();
+            let result = yield repo.delete(id);
             if (result) {
                 response.data = {};
                 response.message = 'EmployeeDetails deleted';
@@ -86,9 +89,11 @@ class EmployeeDetailsService {
     }
     addEmployeeDetails(body) {
         return __awaiter(this, void 0, void 0, function* () {
+            let response = new Response_model_1.default();
             let emp = new employee_1.EmployeeDetails();
             let query = { email: body.email };
-            let result = yield repo.get(employee_1.EmployeeDetails, query);
+            let result = yield repo.get(query);
+            console.log(result);
             if (result) {
                 response.data = result;
                 response.message = 'Employee Already Exists';
@@ -99,7 +104,7 @@ class EmployeeDetailsService {
                 const hash = yield bcrypt_1.default.hash(body.password, 8);
                 body.password = hash;
                 emp = Object.assign({}, body);
-                let addedEmployee = yield repo.add(employee_1.EmployeeDetails, emp);
+                let addedEmployee = yield repo.add(emp);
                 response.data = addedEmployee;
                 response.message = 'Employee Details  Added';
                 response.status = 201;

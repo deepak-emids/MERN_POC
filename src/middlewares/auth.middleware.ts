@@ -24,7 +24,7 @@ export const userAuth = async (
         message: 'Authorization token is required'
       };
 
-    const user: any = await jwt.verify(bearerToken, 'secret');
+    const user: any = await jwt.verify(bearerToken, process.env.SECRET);
     res.locals.user = user;
     res.locals.token = bearerToken;
 

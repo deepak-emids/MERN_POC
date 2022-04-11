@@ -23,9 +23,11 @@ class DepartmentService {
     let result = await repo.get(query);
 
     if (result) {
-      response.data = {};
-      response.message = 'Department Already Exists';
-      response.status = 409;
+      response = {
+        data: {},
+        message: 'Department Already Exists',
+        status: 409
+      };
     } else {
       const dept = new Department();
 
@@ -33,9 +35,11 @@ class DepartmentService {
 
       let newDepartment = await repo.add(dept);
 
-      response.data = newDepartment;
-      response.message = 'Department Added';
-      response.status = 201;
+      response = {
+        data: newDepartment,
+        message: 'Department Added',
+        status: 201
+      };
     }
 
     return response;
@@ -50,15 +54,19 @@ class DepartmentService {
     let result = await repo.getAll();
 
     if (result.length > 0) {
-      response.data = result;
-      response.message = 'Departments Fetched';
-      response.status = 200;
+      response = {
+        data: result,
+        message: 'Departments Fetched',
+        status: 200
+      };
 
       return response;
     } else {
-      response.data = {};
-      response.message = 'Department Not Found';
-      response.status = 404;
+      response = {
+        data: {},
+        message: 'Department Not Found',
+        status: 404
+      };
 
       return response;
     }
@@ -75,15 +83,19 @@ class DepartmentService {
     let result = await repo.get(query);
 
     if (result) {
-      response.data = result;
-      response.message = 'Department Fetched';
-      response.status = 200;
+      response = {
+        data: result,
+        message: 'Department Fetched',
+        status: 200
+      };
 
       return response;
     } else {
-      response.data = {};
-      response.message = 'Department Not Found';
-      response.status = 404;
+      response = {
+        data: {},
+        message: 'Department Not Found',
+        status: 404
+      };
 
       return response;
     }
@@ -106,15 +118,19 @@ class DepartmentService {
     if (result) {
       let result = await repo.update(id, newData);
 
-      response.data = result;
-      response.message = 'Department Updated';
-      response.status = 200;
+      response = {
+        data: result,
+        message: 'Department Updated',
+        status: 200
+      };
 
       return response;
     } else {
-      response.data = {};
-      response.message = 'Department Not Found';
-      response.status = 404;
+      response = {
+        data: {},
+        message: 'Department Not Found',
+        status: 404
+      };
 
       return response;
     }
@@ -135,15 +151,19 @@ class DepartmentService {
     if (result) {
       let result = await repo.delete(id);
 
-      response.data = result;
-      response.message = 'Department deleted';
-      response.status = 200;
+      response = {
+        data: result,
+        message: 'Department deleted',
+        status: 200
+      };
 
       return response;
     } else {
-      response.data = {};
-      response.message = 'Department Not Found';
-      response.status = 404;
+      response = {
+        data: {},
+        message: 'Department Not Found',
+        status: 404
+      };
 
       return response;
     }

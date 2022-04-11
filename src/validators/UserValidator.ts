@@ -38,22 +38,24 @@ class UserValidator {
     res: Response,
     next: NextFunction
   ): void => {
+    console.log('first');
     const schema = Joi.object({
       firstName: Joi.string().alphanum().min(2).max(20),
       lastName: Joi.string().alphanum().min(2).max(20),
       email: Joi.string().email(),
-      password: Joi.string()
-        .alphanum()
-        .min(3)
-        .max(20)
-        .pattern(new RegExp('^[a-zA-Z0-9]{6,30}$')),
-
       address: Joi.string().min(3).max(100).optional(),
       department_Id: Joi.number(),
       role_Id: Joi.number(),
       mobileNo: Joi.number().optional(),
       aadharId: Joi.number().integer(),
-      date_Of_Joining: Joi.date()
+      date_Of_Joining: Joi.date(),
+      password: Joi.string()
+        .allow(null)
+        .optional()
+        .alphanum()
+        .min(3)
+        .max(20)
+        .pattern(new RegExp('^[a-zA-Z0-9]{6,30}$'))
     });
     const { error } = schema.validate(req.body);
     if (error) {

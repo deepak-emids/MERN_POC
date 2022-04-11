@@ -8,23 +8,24 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const UserService_1 = __importDefault(require("../services/UserService"));
-class UserController {
+const typeorm_1 = require("typeorm");
+const employee_1 = require("../entity/employee");
+class EmployeeRepository {
     constructor() {
-        this.UserService = new UserService_1.default();
-        this.loginUser = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+        this.get = (query) => __awaiter(this, void 0, void 0, function* () {
             try {
-                const data = yield this.UserService.loginUser(req.body);
-                res.status(data.status).send(data);
+                return yield (0, typeorm_1.createConnection)().then((connection) => __awaiter(this, void 0, void 0, function* () {
+                    let repo = connection.getRepository(employee_1.EmployeeDetails);
+                    let find = yield repo.findOne(query);
+                    yield connection.close();
+                    return find;
+                }));
             }
             catch (error) {
-                next(error);
+                return error;
             }
         });
     }
 }
-exports.default = UserController;
+exports.default = EmployeeRepository;

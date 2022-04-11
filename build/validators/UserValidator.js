@@ -33,21 +33,24 @@ class UserValidator {
             }
         };
         this.updateEmployee = (req, res, next) => {
+            console.log('first');
             const schema = joi_1.default.object({
                 firstName: joi_1.default.string().alphanum().min(2).max(20),
                 lastName: joi_1.default.string().alphanum().min(2).max(20),
                 email: joi_1.default.string().email(),
-                password: joi_1.default.string()
-                    .alphanum()
-                    .min(3)
-                    .max(20)
-                    .pattern(new RegExp('^[a-zA-Z0-9]{6,30}$')),
                 address: joi_1.default.string().min(3).max(100).optional(),
                 department_Id: joi_1.default.number(),
                 role_Id: joi_1.default.number(),
                 mobileNo: joi_1.default.number().optional(),
                 aadharId: joi_1.default.number().integer(),
-                date_Of_Joining: joi_1.default.date()
+                date_Of_Joining: joi_1.default.date(),
+                password: joi_1.default.string()
+                    .allow(null)
+                    .optional()
+                    .alphanum()
+                    .min(3)
+                    .max(20)
+                    .pattern(new RegExp('^[a-zA-Z0-9]{6,30}$'))
             });
             const { error } = schema.validate(req.body);
             if (error) {
