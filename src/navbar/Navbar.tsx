@@ -53,18 +53,16 @@ function Navbar() {
             </Link>
           </li>
 
-          {roleId == 1 ? (
-            <li
-              className="nav-item"
-              onMouseEnter={onMouseEnter}
-              onMouseLeave={onMouseLeave}
-            >
-              <div className="nav-links" onClick={closeMobileMenu}>
-                Services <i className="fas fa-caret-down" />
-              </div>
-              {dropdown && <Dropdown />}
-            </li>
-          ) : null}
+          <li
+            className="nav-item"
+            onMouseEnter={onMouseEnter}
+            onMouseLeave={onMouseLeave}
+          >
+            <div className="nav-links" onClick={closeMobileMenu}>
+              Services <i className="fas fa-caret-down" />
+            </div>
+            {dropdown && <Dropdown />}
+          </li>
 
           <li className="nav-item">
             <Link to="/profile" className="nav-links" onClick={closeMobileMenu}>

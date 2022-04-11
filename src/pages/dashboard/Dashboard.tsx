@@ -25,6 +25,7 @@ import { fetchDepartment } from "../../store/actions";
 import { fetchRole } from "../../store/actions";
 import { useSelector, useDispatch } from "react-redux";
 import Snackbar from "../../components/snackbar/Snackbar";
+import AccessDenied from "../../components/accessDenied/AccessDenied";
 
 //css
 import "./dashboard.scss";
@@ -147,7 +148,7 @@ export default function Dashboard() {
     <div className="main-dashboard">
       <Navbar />
       <div className="modal-content">
-        <Modal
+        {/* <Modal
           open={open}
           onClose={handleClose}
           aria-labelledby="modal-modal-title"
@@ -160,9 +161,7 @@ export default function Dashboard() {
             <Button onClick={handleOpen}>Yes</Button>
             <Button onClick={handleClose}>Cancel</Button>
           </Box>
-        </Modal>
-
-        {/* <About /> */}
+        </Modal> */}
 
         <div className="page-content">
           <div className="pages">
@@ -176,6 +175,8 @@ export default function Dashboard() {
               <Route path="/role" element={<Role />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/accessdenied" element={<AccessDenied />} />
+
               <Route path="/*" element={<About />} />
             </Routes>
           </div>

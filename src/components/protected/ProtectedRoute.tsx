@@ -1,21 +1,17 @@
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
-import User from "../../pages/user/User";
+import { Navigate } from "react-router-dom";
 
 export type ProtectedRouteProps = {
-  isAuthenticated: boolean;
   authenticationPath: string;
+  role_Id: any;
   outlet: JSX.Element;
 };
 
 export default function ProtectedRoute({
-  isAuthenticated,
   authenticationPath,
+  role_Id,
   outlet,
 }: ProtectedRouteProps) {
-  if (isAuthenticated) {
-    return outlet;
-  } else {
-    return <User />;
-  }
+  console.log("role");
+  if (role_Id == 1) return outlet;
+  else return <Navigate to={authenticationPath} />;
 }

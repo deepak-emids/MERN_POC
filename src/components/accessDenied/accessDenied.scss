@@ -1,0 +1,27 @@
+.contact-area {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.sorry {
+  position: absolute;
+  height: 20vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  font-family: "Dancing Script", cursive;
+
+  font-size: 50px;
+  .sorry-1 {
+    font-size: 30px;
+  }
+}
+
+.back {
+  width: 100vw;
+  height: 100vh;
+}
