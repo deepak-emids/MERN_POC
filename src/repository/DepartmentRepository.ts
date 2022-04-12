@@ -1,6 +1,6 @@
 import { createConnection } from 'typeorm';
-import { Department } from '../entity/department';
-import DepartmentDetails from '../models/Department.model';
+import { Department } from '../entity/Department';
+import DepartmentDetails from '../models/DepartmentDetails';
 
 export default class DepartmentRepository {
   public add = async (object: DepartmentDetails) => {

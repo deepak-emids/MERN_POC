@@ -1,16 +1,12 @@
 import 'reflect-metadata';
-import { Department } from '../entity/department';
-import DepartmentData from '../models/Department.model';
+import { Department } from '../entity/Department';
+import DepartmentData from '../models/DepartmentDetails';
 import DepartmentRepository from '../repository/DepartmentRepository';
 import Response from '../models/Response.model';
 
 let repo = new DepartmentRepository();
 
 class DepartmentService {
-  // private departmentService;
-  // constructor() {
-  //   this.departmentService = new DepartmentService();
-  // }
   /*
   add emp
   */

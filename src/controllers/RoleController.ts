@@ -1,4 +1,3 @@
-import HttpStatus from 'http-status-codes';
 import { Request, Response, NextFunction } from 'express';
 import RoleService from '../services/RoleService';
 import logger from '../config/logger';

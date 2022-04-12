@@ -1,3 +1,4 @@
+import { string } from '@hapi/joi';
 import {
   Entity,
   Column,
@@ -28,8 +29,8 @@ export class EmployeeDetails {
   mobileNo: number;
   @Column({ type: 'int' })
   aadharId: number;
-  @Column({ type: 'date' })
-  date_Of_Joining: Date;
+  @Column({ type: 'date' || 'string' })
+  date_Of_Joining: Date | string;
   @Column({ type: 'boolean', default: true })
   isActive: boolean;
   @Column({ type: 'boolean', default: false })
@@ -38,12 +39,12 @@ export class EmployeeDetails {
     type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP(6)'
   })
-  public created_at: Date;
+  public created_at: Date | string;
 
   @UpdateDateColumn({
     type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP(6)',
     onUpdate: 'CURRENT_TIMESTAMP(6)'
   })
-  public updated_at: Date;
+  public updated_at: Date | string;
 }

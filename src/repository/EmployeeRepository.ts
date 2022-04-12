@@ -1,5 +1,5 @@
 import { createConnection } from 'typeorm';
-import { EmployeeDetails } from '../entity/employee';
+import { EmployeeDetails } from '../entity/Employee';
 import EmployeeData from '../models/EmployeeData';
 
 export default class EmployeeRepository {
@@ -65,12 +65,9 @@ export default class EmployeeRepository {
         if (foundEmp.length > 0) {
           await repo.remove(foundEmp[0]);
 
-          let Emp = await repo.findOne({ id: id });
-
           await connection.close();
 
-          if (Emp) return false;
-          else return true;
+          return true;
         } else {
           await connection.close();
 

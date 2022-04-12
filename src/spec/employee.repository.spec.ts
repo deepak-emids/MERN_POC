@@ -1,11 +1,12 @@
-import Repository from '../repository/Repository';
+import Repository from '../repository/EmployeeRepository';
 let repo = new Repository();
-import { EmployeeDetails } from '../entity/employee';
+import EmployeeData from '../models/EmployeeData';
 import faker from 'faker';
 
 describe('Repository', () => {
-  it('when given employee details should create new employeee and return the created employee', async () => {
-    let newUser = {
+  it.only('when given employee details should create new employeee and return the created employee', async () => {
+    let newUser: EmployeeData = {
+      id: 17,
       firstName: faker.name.findName(),
       lastName: faker.name.lastName(),
       email: faker.internet.email(),
@@ -14,77 +15,63 @@ describe('Repository', () => {
       department_Id: faker.datatype.number(),
       role_Id: faker.datatype.number(),
       mobileNo: faker.datatype.number(),
-      // mobileNo: faker.phone.phoneNumber(),
       aadharId: faker.datatype.number(100),
-      date_Of_Joining: '2004-12-27'
+      date_Of_Joining: '2004-12-27',
+      isActive: true,
+      isDeleted: false,
+      created_at: '2004-12-27',
+      updated_at: '2004-12-27'
     };
 
-    console.log(newUser, 'sent');
-    const createdUser = await repo.add(EmployeeDetails, newUser);
-    console.log(createdUser, 'creataed');
-    expect(createdUser).toMatchObject(newUser);
-  });
-
-  it('when given incorrect employee details should not create new employeee', async () => {
-    let newUser = {
-      firstName: faker.name.findName(),
-      email: faker.internet.email(),
-      password: faker.internet.password(),
-      address: faker.address.streetAddress(),
-      department_Id: faker.datatype.number(),
-      role_Id: faker.datatype.number(),
-      mobileNo: 123456789,
-      aadharId: faker.datatype.number(100),
-      date_Of_Joining: '2004-12-27'
-    };
-
-    const createdUser = await repo.add(EmployeeDetails, newUser);
-    console.log(createdUser);
-    expect(createdUser).toThrowError();
+    const createdUser = await repo.add(newUser);
+    // expect(createdUser.firstName).toMatchobject(newUser.firstName);
+    expect(createdUser.firstName).toMatch(newUser.firstName);
   });
 
   it('should return all employees', async () => {
-    const res = await repo.getAll(EmployeeDetails);
+    const res = await repo.getAll();
     expect(res.length).toBe(9);
   });
 
   it('when given employeeid should return employee details ', async () => {
     let employeeId = 5;
     let query = { id: employeeId };
-    const employee = await repo.get(EmployeeDetails, query);
+    const employee = await repo.get(query);
     expect(employee.id).toBe(employeeId);
   });
 
   it('when given falsy or employeeid is not present should return employee details ', async () => {
     let employeeId = 4;
     let query = { id: employeeId };
-    const employee = await repo.get(EmployeeDetails, query);
+    const employee = await repo.get(query);
     expect(employee).toBeFalsy();
   });
 
   it('when given employeeid ,should delete the given employee', async () => {
     const employeeId = 3;
-    await repo.delete(EmployeeDetails, employeeId);
-    const findDeleted = await repo.get(EmployeeDetails, employeeId);
+    await repo.delete(employeeId);
+    const findDeleted = await repo.get(employeeId);
 
     expect(findDeleted).toBeFalsy();
   });
 
   it('when given employeeid not present db,should return falsy value', async () => {
     const employeeId = 1;
-    await repo.delete(EmployeeDetails, employeeId);
-    const findDeleted = await repo.get(EmployeeDetails, employeeId);
+    await repo.delete(employeeId);
+    const findDeleted = await repo.get(employeeId);
 
     expect(findDeleted).toBeFalsy();
   });
 
   it('when given employeeid and employee details,should update the given employee details', async () => {
-    const employeeId = 5;
-    let updatedDetails = {};
-    await repo.update(EmployeeDetails, employeeId, updatedDetails);
-    const findUpdated = await repo.get(EmployeeDetails, employeeId);
+    const employeeId = 16;
+    let updatedDetails = {
+      firstName: faker.name.findName()
+    };
+    await repo.update(employeeId, updatedDetails);
+    const findUpdated = await repo.get(employeeId);
 
-    expect(findUpdated).toMatchObject(updatedDetails);
+    expect(findUpdated.firstName).toMatch(updatedDetails.firstName);
   });
 
   it('when given incorrect employeeid,should not update the given employee details', async () => {
@@ -99,13 +86,9 @@ describe('Repository', () => {
       role_Id: faker.datatype.number(),
       mobileNo: faker.datatype.number(),
       aadharId: faker.datatype.number(100),
-      date_Of_Joining: '2004-12-27'
+      date_Of_Joining: '2004-12-10'
     };
-    const update = await repo.update(
-      EmployeeDetails,
-      employeeId,
-      updatedDetails
-    );
+    const update = await repo.update(employeeId, updatedDetails);
 
     expect(update).toBeFalsy();
   });

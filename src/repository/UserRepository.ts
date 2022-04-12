@@ -1,6 +1,5 @@
 import { createConnection } from 'typeorm';
-import { EmployeeDetails } from '../entity/employee';
-import EmployeeData from '../models/EmployeeData';
+import { EmployeeDetails } from '../entity/Employee';
 
 export default class EmployeeRepository {
   public get = async (query: {}) => {

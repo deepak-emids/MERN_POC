@@ -1,11 +1,14 @@
-import HttpStatus from 'http-status-codes';
 import { Request, Response, NextFunction } from 'express';
 import DepartmentService from '../services/DepartmentService';
 import logger from '../config/logger';
 import ResponseModel from '../models/Response.model';
 
 class DepartmentController {
-  public DepartmentService = new DepartmentService();
+  // public DepartmentService = new DepartmentService();
+  private DepartmentService;
+  constructor() {
+    this.DepartmentService = new DepartmentService();
+  }
 
   public addDepartment = async (
     req: Request,

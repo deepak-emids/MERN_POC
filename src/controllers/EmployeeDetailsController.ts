@@ -1,7 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import EmployeeDetailsService from '../services/EmployeeDetailsService';
 import logger from '../config/logger';
-import EmployeeData from '../models/EmployeeData';
 import ResponseModel from '../models/Response.model';
 
 class EmployeeDetailsController {
@@ -13,9 +12,8 @@ class EmployeeDetailsController {
     next: NextFunction
   ): Promise<any> => {
     try {
-      const data: ResponseModel = await this.EmployeeDetailsService.addEmployeeDetails(
-        req.body
-      );
+      const data: ResponseModel =
+        await this.EmployeeDetailsService.addEmployeeDetails(req.body);
 
       res.status(data.status).send(data);
     } catch (error) {
@@ -45,9 +43,8 @@ class EmployeeDetailsController {
     next: NextFunction
   ): Promise<any> => {
     try {
-      const data: ResponseModel = await this.EmployeeDetailsService.getEmployeeDetails(
-        req.params.id
-      );
+      const data: ResponseModel =
+        await this.EmployeeDetailsService.getEmployeeDetails(req.params.id);
       res.status(data.status).send(data);
     } catch (error) {
       logger.logger.error(error);
@@ -62,9 +59,8 @@ class EmployeeDetailsController {
     next: NextFunction
   ): Promise<any> => {
     try {
-      const data: ResponseModel = await this.EmployeeDetailsService.deleteEmployeeDetails(
-        req.params.id
-      );
+      const data: ResponseModel =
+        await this.EmployeeDetailsService.deleteEmployeeDetails(req.params.id);
       res.status(data.status).send(data);
     } catch (error) {
       logger.logger.error(error);
@@ -79,10 +75,11 @@ class EmployeeDetailsController {
     next: NextFunction
   ): Promise<any> => {
     try {
-      const data: ResponseModel = await this.EmployeeDetailsService.updateEmployeeDetails(
-        req.params.id,
-        req.body
-      );
+      const data: ResponseModel =
+        await this.EmployeeDetailsService.updateEmployeeDetails(
+          req.params.id,
+          req.body
+        );
       res.status(data.status).send(data);
     } catch (error) {
       logger.logger.error(error);

@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { Role } from '../entity/role';
+import { Role } from '../entity/Role';
 import RoleData from '../models/RoleDetails';
 import RoleRepository from '../repository/RoleRepository';
 import Response from '../models/Response.model';
@@ -102,20 +102,23 @@ class RoleService {
   public updateRole = async (id: number, body: RoleData) => {
     let response = new Response();
 
-    let details: RoleData = await repo.get(id);
-
     let newData = { ...body };
 
-    let result = await repo.update(id, newData);
+    let query = { id: id };
 
-    if (result) {
-      response = {
-        data: result,
-        message: 'Role Updated',
-        status: 200
-      };
+    let findRole = await repo.get(query);
+    if (findRole) {
+      let result = await repo.update(id, newData);
 
-      return response;
+      if (result) {
+        response = {
+          data: result,
+          message: 'Role Updated',
+          status: 200
+        };
+
+        return response;
+      }
     } else {
       response = {
         data: {},
@@ -132,17 +135,21 @@ class RoleService {
   */
   public deleteRole = async (id: number) => {
     let response = new Response();
+    let query = { id: id };
 
-    let result = await repo.delete(id);
+    let findRole = await repo.get(query);
+    if (findRole) {
+      let result = await repo.delete(id);
 
-    if (result) {
-      response = {
-        data: result,
-        message: 'Role Deleted',
-        status: 200
-      };
+      if (result) {
+        response = {
+          data: result,
+          message: 'Role Deleted',
+          status: 200
+        };
 
-      return response;
+        return response;
+      }
     } else {
       response = {
         data: {},

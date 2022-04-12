@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import bcrypt from 'bcrypt';
-import { EmployeeDetails } from '../entity/employee';
+import { EmployeeDetails } from '../entity/Employee';
 import EmployeeData from '../models/EmployeeData';
 import Response from '../models/Response.model';
 import EmployeeRepository from '../repository/EmployeeRepository';
@@ -12,10 +12,10 @@ class EmployeeDetailsService {
 
     let emp = new EmployeeDetails();
 
-    let query: { email: string } = { email: body.email };
+    const query: { email: string } = { email: body.email };
 
-    let result = await repo.get(query);
-    console.log(result);
+    const result = await repo.get(query);
+
     if (result) {
       response = {
         data: result,
@@ -92,21 +92,26 @@ class EmployeeDetailsService {
     }
   };
 
-  public updateEmployeeDetails = async (id: number, body) => {
+  public updateEmployeeDetails = async (id: number, body: EmployeeData) => {
     let response = new Response();
 
     let newData = { ...body };
 
-    let result = await repo.update(id, newData);
+    let query = { id: id };
 
-    if (result) {
-      response = {
-        data: result,
-        message: 'EmployeeDetails updated',
-        status: 200
-      };
+    let findEmployee = await repo.get(query);
+    if (findEmployee) {
+      let result = await repo.update(id, newData);
 
-      return response;
+      if (result) {
+        response = {
+          data: result,
+          message: 'EmployeeDetails updated',
+          status: 200
+        };
+
+        return response;
+      }
     } else {
       response.data = {};
       response.message = 'Employee Not Found';
@@ -119,16 +124,21 @@ class EmployeeDetailsService {
   public deleteEmployeeDetails = async (id: number) => {
     let response = new Response();
 
-    let result = await repo.delete(id);
+    let query = { id: id };
 
-    if (result) {
-      response = {
-        data: {},
-        message: 'EmployeeDetails deleted',
-        status: 200
-      };
+    let findEmployee = await repo.get(query);
+    if (findEmployee) {
+      let result = await repo.delete(id);
 
-      return response;
+      if (result) {
+        response = {
+          data: {},
+          message: 'EmployeeDetails deleted',
+          status: 200
+        };
+
+        return response;
+      }
     } else {
       response = {
         data: {},
