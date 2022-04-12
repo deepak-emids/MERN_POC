@@ -49,7 +49,6 @@ export default function DepartmentForm() {
       service
         .addDepartment(data)
         .then((res) => {
-          console.log(res);
           setSnackbar(true);
           setDisableSave(true);
         })

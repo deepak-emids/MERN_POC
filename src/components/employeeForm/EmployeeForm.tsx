@@ -58,7 +58,6 @@ export default function EmployeeForm() {
     service
       .addEmployee(data)
       .then((res) => {
-        console.log(res);
         setSnackbar(true);
         setDisableSave(true);
 

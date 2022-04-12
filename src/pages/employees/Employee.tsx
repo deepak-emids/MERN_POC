@@ -24,6 +24,7 @@ function Employee() {
     service
       .getAllEmployee()
       .then((res) => {
+        console.log(res);
         dispatch(fetchEmployee(res.data.data));
       })
       .catch((err) => {

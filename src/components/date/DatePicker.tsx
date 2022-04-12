@@ -7,12 +7,13 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 export default function BasicDatePicker(props: any) {
   const [value, setValue] = React.useState<Date | null>(null);
 
-  const passDate = (nvalue: any) => {
-    console.log(
-      `${nvalue?.getUTCDay()}/${nvalue?.getUTCDate()}/${nvalue?.getUTCFullYear()}`
-    );
+  React.useEffect(() => {
+    passDate(value);
+  });
+
+  const passDate = (value: any) => {
     props.handleDate(
-      `${nvalue?.getUTCDay()}/${nvalue?.getUTCDate()}/${nvalue?.getUTCFullYear()}`
+      `${value?.getUTCDay()}/${value?.getUTCDate()}/${value?.getUTCFullYear()}`
     );
   };
 
@@ -22,8 +23,7 @@ export default function BasicDatePicker(props: any) {
         label="Basic example"
         value={value}
         onChange={(newValue) => {
-          // setValue(newValue);
-          passDate(newValue);
+          setValue(newValue);
         }}
         renderInput={(params) => <TextField {...params} />}
       />

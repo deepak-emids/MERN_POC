@@ -35,7 +35,6 @@ export default function Profile() {
     address: "",
     mobileNo: "",
     aadharId: "",
-    // password: "",
     department_Id: "",
     role_Id: "",
   });
@@ -47,7 +46,6 @@ export default function Profile() {
       .getEmployee(employeeId)
       .then((res) => {
         setEmp(res.data.data);
-
         dispatch(fetchEmployeeDetails(res.data.data));
       })
       .catch((err) => {
@@ -59,7 +57,6 @@ export default function Profile() {
     service
       .updateEmployee(id, data)
       .then((res) => {
-        console.log(res);
         setSnackbar(true);
         setDisableSave(true);
       })
@@ -77,7 +74,6 @@ export default function Profile() {
 
   const changePassword = (e: any) => {
     let pass = e.target.value;
-    console.log(pass);
     setPassword(pass);
   };
 
