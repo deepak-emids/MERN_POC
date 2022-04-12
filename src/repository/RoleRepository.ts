@@ -71,7 +71,6 @@ export default class RoleRepository {
 
           if (Emp) return false;
           else return true;
-        } else {
         }
       });
     } catch (error) {

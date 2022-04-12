@@ -95,6 +95,12 @@ class EmployeeDetailsService {
   public updateEmployeeDetails = async (id: number, body: EmployeeData) => {
     let response = new Response();
 
+    if (body.hasOwnProperty('password')) {
+      const hash: string = await bcrypt.hash(body.password, 8);
+
+      body.password = hash;
+    }
+
     let newData = { ...body };
 
     let query = { id: id };
@@ -113,9 +119,11 @@ class EmployeeDetailsService {
         return response;
       }
     } else {
-      response.data = {};
-      response.message = 'Employee Not Found';
-      response.status = 404;
+      response = {
+        data: {},
+        message: 'Employee Not Found',
+        status: 404
+      };
 
       return response;
     }

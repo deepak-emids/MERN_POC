@@ -112,10 +112,10 @@ class DepartmentService {
     let result = await repo.get(query);
 
     if (result) {
-      let result = await repo.update(id, newData);
+      let update = await repo.update(id, newData);
 
       response = {
-        data: result,
+        data: update,
         message: 'Department Updated',
         status: 200
       };
@@ -145,10 +145,10 @@ class DepartmentService {
     let result = await repo.get(query);
 
     if (result) {
-      let result = await repo.delete(id);
+      let update = await repo.delete(id);
 
       response = {
-        data: result,
+        data: update,
         message: 'Department deleted',
         status: 200
       };
