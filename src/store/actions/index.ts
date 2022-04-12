@@ -6,7 +6,6 @@ export const fetchEmployeeDetails = (employee_details: {}) => {
 };
 
 export const fetchEmployee = (employee: []) => {
-  
   return {
     type: "GET_EMPLOYEE",
     payload: employee,

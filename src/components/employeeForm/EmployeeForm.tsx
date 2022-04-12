@@ -42,6 +42,7 @@ let value = {
 
 export default function EmployeeForm() {
   const [snackbar, setSnackbar] = React.useState(false);
+  const [disableSave, setDisableSave] = React.useState(false);
 
   let departmentList: [{ id: number; departmentName: string }] = useSelector(
     (state: any) => state.getDepartment.department
@@ -59,6 +60,7 @@ export default function EmployeeForm() {
       .then((res) => {
         console.log(res);
         setSnackbar(true);
+        setDisableSave(true);
 
         setField(value);
       })
@@ -242,26 +244,6 @@ export default function EmployeeForm() {
           className="name"
           style={{ display: "flex", justifyContent: "space-between" }}
         >
-          {/* <TextField
-            style={{ width: "45%" }}
-            id="outlined-basic"
-            name="date_Of_Joining"
-            label="date_Of_Joining"
-            variant="outlined"
-            size="small"
-            className=" "
-            fullWidth
-            value={field.date_Of_Joining}
-            helperText={
-              field.date_Of_JoiningError
-                ? " date_Of_Joining is required"
-                : "*eg:2010-10-10"
-            }
-            error={field.date_Of_JoiningError}
-            onChange={(e) => {
-              changeField(e);
-            }}
-          ></TextField> */}
           <DatePicker handleDate={handleDate} />
           <TextField
             style={{ width: "45%" }}
@@ -359,16 +341,10 @@ export default function EmployeeForm() {
           }}
         ></TextField>
 
-        <Button
-          onClick={next}
-          style={{ backgroundColor: "#3371B5", color: "white" }}
-        >
+        <Button onClick={next} variant="contained" disabled={disableSave}>
           Save
         </Button>
-        <Button
-          onClick={handelCancel}
-          style={{ backgroundColor: "white", color: "grey" }}
-        >
+        <Button onClick={handelCancel} variant="outlined">
           Back
         </Button>
       </form>

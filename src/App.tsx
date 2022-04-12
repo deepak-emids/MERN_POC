@@ -40,6 +40,8 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/profile" element={<Profile />} />
 
+          <Route path="/employee" element={<Employee />} />
+
           <Route path="/addEmployee" element={<EmployeeForm />} />
           <Route path="/department" element={<Department />} />
           <Route path="/departmentForm" element={<DepartmentForm />} />
@@ -47,66 +49,6 @@ function App() {
           <Route path="/roleForm" element={<RoleForm />} />
           <Route path="/accessdenied" element={<AccessDenied />} />
         </Route>
-        <Route
-          path="/employee"
-          element={
-            <ProtectedRoute
-              role_Id={role_Id}
-              authenticationPath="/accessdenied"
-              outlet={<Employee />}
-            />
-          }
-        />
-        <Route
-          path="/addEmployee"
-          element={
-            <ProtectedRoute
-              role_Id={role_Id}
-              authenticationPath="/accessdenied"
-              outlet={<EmployeeForm />}
-            />
-          }
-        />
-        <Route
-          path="/department"
-          element={
-            <ProtectedRoute
-              role_Id={role_Id}
-              authenticationPath="/accessdenied"
-              outlet={<Department />}
-            />
-          }
-        />
-        <Route
-          path="/departmentForm"
-          element={
-            <ProtectedRoute
-              role_Id={role_Id}
-              authenticationPath="/accessdenied"
-              outlet={<DepartmentForm />}
-            />
-          }
-        />
-        <Route
-          path="/role"
-          element={
-            <ProtectedRoute
-              role_Id={role_Id}
-              authenticationPath="/accessdenied"
-              outlet={<Role />}
-            />
-          }
-        />
-        <Route
-          path="/roleForm"
-          element={
-            <ProtectedRoute
-              role_Id={role_Id}
-              authenticationPath="/accessdenied"
-              outlet={<RoleForm />}
-            />
-          }
-        />
       </Routes>
     </>
   );

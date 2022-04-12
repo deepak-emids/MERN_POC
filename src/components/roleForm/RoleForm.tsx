@@ -11,6 +11,7 @@ import { Navigate } from "react-router";
 
 export default function RoleForm() {
   const navigate = useNavigate();
+  const [disableSave, setDisableSave] = React.useState(false);
 
   const [snackbar, setSnackbar] = React.useState(false);
 
@@ -51,6 +52,7 @@ export default function RoleForm() {
         .then((res) => {
           console.log(res);
           setSnackbar(true);
+          setDisableSave(true);
         })
         .catch((err) => {
           console.log(err);
@@ -95,17 +97,11 @@ export default function RoleForm() {
         ></TextField>
 
         <div className="form-button">
-          <Button
-            onClick={next}
-            style={{ backgroundColor: "#3371B5", color: "white" }}
-          >
-            Continue
+          <Button onClick={next} variant="contained" disabled={disableSave}>
+          Save
           </Button>
-          <Button
-            onClick={handelCancel}
-            style={{ backgroundColor: "white", color: "grey" }}
-          >
-            Cancel
+          <Button onClick={handelCancel} variant="outlined">
+            Back
           </Button>
         </div>
       </form>

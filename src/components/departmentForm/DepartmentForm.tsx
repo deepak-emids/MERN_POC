@@ -10,6 +10,7 @@ import "./departmentForm.scss";
 
 export default function DepartmentForm() {
   const navigate = useNavigate();
+  const [disableSave, setDisableSave] = React.useState(false);
 
   const [snackbar, setSnackbar] = React.useState(false);
 
@@ -50,6 +51,7 @@ export default function DepartmentForm() {
         .then((res) => {
           console.log(res);
           setSnackbar(true);
+          setDisableSave(true);
         })
         .catch((err) => {
           console.log(err);
@@ -95,16 +97,10 @@ export default function DepartmentForm() {
         ></TextField>
 
         <div className="dept-form-button">
-          <Button
-            onClick={next}
-            style={{ backgroundColor: "#3371B5", color: "white" }}
-          >
+          <Button onClick={next} variant="contained" disabled={disableSave}>
             Save
           </Button>
-          <Button
-            onClick={handelCancel}
-            style={{ backgroundColor: "white", color: "grey" }}
-          >
+          <Button onClick={handelCancel} variant="outlined">
             Back
           </Button>
         </div>

@@ -3,7 +3,6 @@ import Button from "@mui/material/Button";
 import service from "../../services/employeeService/employeeService";
 import TextField from "@mui/material/TextField";
 import back from "../../assets/back.jpg";
-import deptService from "../../services/depertmentService/departmentService";
 import { useSelector, useDispatch } from "react-redux";
 import Snackbar from "../../components/snackbar/Snackbar";
 
@@ -14,6 +13,12 @@ export default function Profile() {
   let employeeId: any = localStorage.getItem("employeeId");
 
   const [snackbar, setSnackbar] = React.useState(false);
+  const [disableSave, setDisableSave] = React.useState(true);
+
+  const handleDisableSave = () => {
+    setDisableSave(false);
+  };
+
   const dispatch = useDispatch();
 
   React.useEffect(() => {
@@ -30,16 +35,19 @@ export default function Profile() {
     address: "",
     mobileNo: "",
     aadharId: "",
-    password: "",
+    // password: "",
     department_Id: "",
     role_Id: "",
   });
+
+  const [password, setPassword] = React.useState("");
 
   const getEmployee = (employeeId: any) => {
     service
       .getEmployee(employeeId)
       .then((res) => {
         setEmp(res.data.data);
+
         dispatch(fetchEmployeeDetails(res.data.data));
       })
       .catch((err) => {
@@ -53,6 +61,7 @@ export default function Profile() {
       .then((res) => {
         console.log(res);
         setSnackbar(true);
+        setDisableSave(true);
       })
       .catch((err) => {
         console.log(err);
@@ -66,15 +75,31 @@ export default function Profile() {
     }));
   };
 
-  const next = () => {
-    let data = {
-      email: emp.email,
-      address: emp.address,
-      password: emp.password,
-      mobileNo: emp.mobileNo,
-    };
-    let id = localStorage.getItem("employeeId");
+  const changePassword = (e: any) => {
+    let pass = e.target.value;
+    console.log(pass);
+    setPassword(pass);
+  };
 
+  const next = () => {
+    let data;
+    if (password !== "") {
+      data = {
+        email: emp.email,
+        address: emp.address,
+        password: password,
+        mobileNo: emp.mobileNo,
+      };
+    } else {
+      data = {
+        email: emp.email,
+        address: emp.address,
+        mobileNo: emp.mobileNo,
+      };
+    }
+
+    let id = localStorage.getItem("employeeId");
+    console.log(data);
     updateEmployee(id, data);
   };
 
@@ -92,7 +117,7 @@ export default function Profile() {
 
   return (
     <div className="empl-details">
-      <form className="empl-form">
+      <form className="empl-form" onClick={handleDisableSave}>
         <h2>Employee Basic Details</h2>
         <div className="note">
           *Only Phone,Address,Email And Password Is Editable
@@ -204,12 +229,13 @@ export default function Profile() {
             name="password"
             label="Password"
             type="password"
-            value={emp.password}
+            // value={password}
             variant="standard"
             size="small"
             className="form-detail"
+            helperText="*password size must be greater than 4 and has atleast one number"
             onChange={(e) => {
-              changeField(e);
+              changePassword(e);
             }}
           ></TextField>
         </div>
@@ -228,10 +254,7 @@ export default function Profile() {
           }}
         ></TextField>
 
-        <Button
-          onClick={next}
-          style={{ backgroundColor: "#3371B5", color: "white" }}
-        >
+        <Button onClick={next} variant="contained" disabled={disableSave}>
           SAVE
         </Button>
       </form>
