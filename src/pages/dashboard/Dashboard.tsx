@@ -19,10 +19,10 @@ import RoleForm from "../../components/roleForm/RoleForm";
 import employeeService from "../../services/employeeService/employeeService";
 import departmentService from "../../services/depertmentService/departmentService";
 import roleService from "../../services/roleService/roleService";
-import { fetchEmployeeDetails } from "../../store/actions";
-import { fetchEmployee } from "../../store/actions";
-import { fetchDepartment } from "../../store/actions";
-import { fetchRole } from "../../store/actions";
+import { getAllEmployee } from "../../store/actions/index";
+// import { fetchEmployee } from "../../store/actions";
+// import { fetchDepartment } from "../../store/actions";
+// import { fetchRole } from "../../store/actions";
 import { useSelector, useDispatch } from "react-redux";
 import Snackbar from "../../components/snackbar/Snackbar";
 import AccessDenied from "../../components/accessDenied/AccessDenied";
@@ -50,11 +50,12 @@ export default function Dashboard() {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    handleGetAllEmployees();
-    handleGetAllDepartment();
-    handleGetAllRoles();
-    handleGetAllRoles();
-    getEmployee(employeeId);
+    dispatch(getAllEmployee());
+    // handleGetAllEmployees();
+    // handleGetAllDepartment();
+    // handleGetAllRoles();
+    // handleGetAllRoles();
+    // getEmployee(employeeId);
   }, []);
 
   const getEmployee = (employeeId: any) => {
@@ -62,7 +63,7 @@ export default function Dashboard() {
       .getEmployee(employeeId)
       .then((res) => {
         setEmp(res.data.data);
-        dispatch(fetchEmployeeDetails(res.data.data));
+        // dispatch(fetchEmployeeDetails(res.data.data));
       })
       .catch((err) => {
         console.log(err);
@@ -73,7 +74,7 @@ export default function Dashboard() {
     roleService
       .getAllRole()
       .then((res) => {
-        dispatch(fetchRole(res.data.data));
+        // dispatch(fetchRole(res.data.data));
       })
       .catch((err) => {
         console.log(err);
@@ -84,7 +85,7 @@ export default function Dashboard() {
     employeeService
       .getAllEmployee()
       .then((res) => {
-        dispatch(fetchEmployee(res.data.data));
+        // dispatch(fetchEmployee(res.data.data));
       })
       .catch((err) => {
         console.log(err);
@@ -95,7 +96,7 @@ export default function Dashboard() {
     departmentService
       .getAllDepartment()
       .then((res) => {
-        dispatch(fetchDepartment(res.data.data));
+        // dispatch(fetchDepartment(res.data.data));
       })
       .catch((err) => {
         console.log(err);

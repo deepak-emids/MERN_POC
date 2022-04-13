@@ -1,0 +1,6 @@
+export const ActionTypes = {
+  FETCH_ROLE: "FETCH_ROLE",
+  POST_ROLE: "POST_ROLE",
+  DELETE_ROLE: "DELETE_ROLE",
+  UPDATE_ROLE: "UPDATE_ROLE",
+};

@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Snackbar from "../../components/snackbar/Snackbar";
 
 import "./profile.scss";
-import { fetchEmployeeDetails } from "../../store/actions";
+// import { fetchEmployeeDetails } from "../../store/actions";
 
 export default function Profile() {
   let employeeId: any = localStorage.getItem("employeeId");
@@ -46,7 +46,7 @@ export default function Profile() {
       .getEmployee(employeeId)
       .then((res) => {
         setEmp(res.data.data);
-        dispatch(fetchEmployeeDetails(res.data.data));
+        // dispatch(fetchEmployeeDetails(res.data.data));
       })
       .catch((err) => {
         console.log(err);

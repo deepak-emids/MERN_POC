@@ -6,7 +6,7 @@ import Table from "../../components/table/Tables";
 import { useSelector, useDispatch } from "react-redux";
 
 import "./roles.scss";
-import { fetchRole } from "../../store/actions";
+// import { fetchRole } from "../../store/actions";
 
 function Roles() {
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ function Roles() {
       .getAllRole()
       .then((res) => {
         setRoles(res.data.data);
-        dispatch(fetchRole(res.data.data));
+        // dispatch(fetchRole(res.data.data));
       })
       .catch((err) => {
         console.log(err);

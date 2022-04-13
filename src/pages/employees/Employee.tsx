@@ -8,7 +8,7 @@ import { EmployeeData } from "../../models/model";
 
 import "./employee.scss";
 import getEmployee from "../../store/reducer/getEmployee";
-import { fetchEmployee } from "../../store/actions";
+// import { fetchEmployee } from "../../store/actions";
 
 function Employee() {
   const employee = useSelector((state: any) => state.getEmployee.employee);
@@ -24,7 +24,7 @@ function Employee() {
     service
       .getAllEmployee()
       .then((res) => {
-        dispatch(fetchEmployee(res.data.data));
+        // dispatch(fetchEmployee(res.data.data));
       })
       .catch((err) => {
         console.log(err);

@@ -5,7 +5,7 @@ import Table from "../../components/table/Tables";
 import { useSelector, useDispatch } from "react-redux";
 
 import "./department.scss";
-import { fetchDepartment } from "../../store/actions";
+// import { fetchDepartment } from "../../store/actions";
 
 function Department() {
   const [department, setDepartment] = React.useState([]);
@@ -20,7 +20,7 @@ function Department() {
       .getAllDepartment()
       .then((res) => {
         setDepartment(res.data.data);
-        dispatch(fetchDepartment(res.data.data));
+        // dispatch(fetchDepartment(res.data.data));
       })
       .catch((err) => {
         console.log(err);

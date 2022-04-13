@@ -28,9 +28,10 @@ function App() {
         <Route
           path="/"
           element={
-            <IsAuth
+            <ProtectedRoute
+              role_Id={role_Id}
               isAuthenticated={auth}
-              authenticationPath="/accessdenied"
+              authenticationPath="/login"
               outlet={<Dashboard />}
             />
           }
@@ -38,8 +39,18 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/profile" element={<Profile />} />
-
-          <Route path="/employee" element={<Employee />} />
+          <Route
+            path="/employee"
+            element={
+              <ProtectedRoute
+                isAuthenticated={auth}
+                role_Id={role_Id}
+                authenticationPath="/accessdenied"
+                outlet={<Employee />}
+              />
+            }
+          />
+          {/* <Route path="/employee" element={<Employee />} /> */}
 
           <Route path="/addEmployee" element={<EmployeeForm />} />
           <Route path="/department" element={<Department />} />
@@ -48,7 +59,7 @@ function App() {
           <Route path="/roleForm" element={<RoleForm />} />
           <Route path="/accessdenied" element={<AccessDenied />} />
         </Route>
-        <Route
+        {/* <Route
           path="/employee"
           element={
             <ProtectedRoute
@@ -107,7 +118,7 @@ function App() {
               outlet={<RoleForm />}
             />
           }
-        />
+        /> */}
       </Routes>
     </>
   );
