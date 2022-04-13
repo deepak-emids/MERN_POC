@@ -19,7 +19,6 @@ function App() {
   let auth = false;
   const token: any = localStorage.getItem("token");
   if (token != null || undefined) auth = true;
-  console.log(auth);
   const role_Id: any = localStorage.getItem("roleId");
 
   return (

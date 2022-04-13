@@ -6,7 +6,6 @@ import NumberAnime from "../../components/numberAnime/NumberAnime";
 import "./about.scss";
 
 function About() {
-  console.log(process.env);
   return (
     <div className="about-main">
       <div className="about">

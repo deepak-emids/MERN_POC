@@ -5,6 +5,9 @@ import employeeService from "../../services/employeeService/employeeService";
 import departmentService from "../../services/depertmentService/departmentService";
 import roleService from "../../services/roleService/roleService";
 import Snackbar from "../../components/snackbar/Snackbar";
+import { employee_fields } from "../tablefields/Employee";
+import { department_fields } from "../tablefields/Department";
+import { role_fields } from "../tablefields/Role";
 
 import "./tables.scss";
 
@@ -160,21 +163,33 @@ export default function DataGridDemo(props: any) {
     }
   };
 
+  let tableField: { field: string; headerName: string }[];
+
+  if (props.mode == "employee") {
+    tableField = employee_fields;
+  } else if (props.mode == "department") {
+    tableField = department_fields;
+  } else if (props.mode == "role") {
+    tableField = role_fields;
+  } else {
+    tableField = [];
+  }
+
   //row data
   const rows = props.data;
 
   //column data
-  const columns: GridColDef[] = Object.keys(props.data[0]).map((key, id) => {
+  const columns: GridColDef[] = tableField.map((key: any) => {
     return {
-      field: key,
-      headerName: key,
+      field: key.field,
+      headerName: key.headerName,
       width: 140,
       editable: true,
     };
   });
 
   columns.unshift({
-    field: "Delete",
+    field: "Action",
     width: 125,
     renderCell: (cellValues) => {
       return (

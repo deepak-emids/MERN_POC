@@ -243,7 +243,9 @@ export default function EmployeeForm() {
           className="name"
           style={{ display: "flex", justifyContent: "space-between" }}
         >
-          <DatePicker handleDate={handleDate} />
+          <div style={{ width: "45%" }}>
+            <DatePicker handleDate={handleDate} />
+          </div>
           <TextField
             style={{ width: "45%" }}
             id="outlined-basic"
@@ -340,12 +342,19 @@ export default function EmployeeForm() {
           }}
         ></TextField>
 
-        <Button onClick={next} variant="contained" disabled={disableSave}>
-          Save
-        </Button>
-        <Button onClick={handelCancel} variant="outlined">
-          Back
-        </Button>
+        <div className="button-grp">
+          <Button
+            className="b1"
+            onClick={next}
+            variant="contained"
+            disabled={disableSave}
+          >
+            Save
+          </Button>
+          <Button className="b1" onClick={handelCancel} variant="outlined">
+            Back
+          </Button>
+        </div>
       </form>
       <img
         className="back"

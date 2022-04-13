@@ -26,6 +26,7 @@ import { fetchRole } from "../../store/actions";
 import { useSelector, useDispatch } from "react-redux";
 import Snackbar from "../../components/snackbar/Snackbar";
 import AccessDenied from "../../components/accessDenied/AccessDenied";
+import BasicModal from "../../components/Modal/Modal";
 
 //css
 import "./dashboard.scss";
@@ -33,52 +34,34 @@ import "./dashboard.scss";
 export default function Dashboard() {
   let employeeId: any = localStorage.getItem("employeeId");
 
+  const [emp, setEmp] = React.useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    date_Of_Joining: "",
+    address: "",
+    mobileNo: "",
+    aadharId: "",
+    department_Id: "",
+    role_Id: "",
+  });
+
   let navigate = useNavigate();
   const dispatch = useDispatch();
 
   React.useEffect(() => {
+    handleGetAllEmployees();
     handleGetAllDepartment();
     handleGetAllRoles();
     handleGetAllRoles();
     getEmployee(employeeId);
   }, []);
 
-  const employee = useSelector(
-    (state: any) => state.getEmployeeDetails.employeeDetails
-  );
-
-  console.log(employee.firstName);
-
-  let isError: boolean = false;
-  let firstNameError = employee.firstName === "" ? true : false;
-  let lastNameError = employee.lastName === "" ? true : false;
-  let emailError = employee.email === "" ? true : false;
-  let department_IdError = employee.department_Id === "" ? true : false;
-  let date_Of_JoiningError = employee.date_Of_Joining === "" ? true : false;
-  let addressError = employee.address === "" ? true : false;
-  let role_IdError = employee.role_Id === "" ? true : false;
-  let passwordError = employee.password === "" ? true : false;
-  let mobileNoError = employee.mobileNo === "" ? true : false;
-  let aadharIdError = employee.aadharId === "" ? true : false;
-
-  isError =
-    emailError ||
-    department_IdError ||
-    firstNameError ||
-    lastNameError ||
-    date_Of_JoiningError ||
-    addressError ||
-    passwordError ||
-    role_IdError ||
-    mobileNoError ||
-    aadharIdError;
-
-  console.log(isError);
-
   const getEmployee = (employeeId: any) => {
     employeeService
       .getEmployee(employeeId)
       .then((res) => {
+        setEmp(res.data.data);
         dispatch(fetchEmployeeDetails(res.data.data));
       })
       .catch((err) => {
@@ -119,49 +102,19 @@ export default function Dashboard() {
       });
   };
 
-  //modal
-  const style = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 400,
-    bgcolor: "background.paper",
-    border: "2px solid #000",
-    boxShadow: 24,
-    p: 4,
-  };
+  const employee = useSelector(
+    (state: any) => state.getEmployeeDetails.employeeDetails
+  );
 
-  const [open, setOpen] = React.useState(true);
+  const isEmpty = Object.values(emp).every((x) => x == "" || x == null);
 
-  const handleOpen = () => {
-    setOpen(false);
-    navigate("/profile");
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-    navigate("/");
-  };
+  console.log(isEmpty, "empty", emp.address);
 
   return (
     <div className="main-dashboard">
       <Navbar />
       <div className="modal-content">
-        {/* <Modal
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <Box sx={style}>
-            <Typography id="modal-modal-title" variant="h6" component="h2">
-              Update Your profile
-            </Typography>
-            <Button onClick={handleOpen}>Yes</Button>
-            <Button onClick={handleClose}>Cancel</Button>
-          </Box>
-        </Modal> */}
+        {/* <BasicModal /> */}
 
         <div className="page-content">
           <div className="pages">
@@ -176,7 +129,6 @@ export default function Dashboard() {
               <Route path="/profile" element={<Profile />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/accessdenied" element={<AccessDenied />} />
-
               <Route path="/*" element={<About />} />
             </Routes>
           </div>

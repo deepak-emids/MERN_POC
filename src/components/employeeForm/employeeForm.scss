@@ -36,3 +36,11 @@
     justify-content: space-between;
   }
 }
+.button-grp {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .b1 {
+    width: 45%;
+  }
+}
