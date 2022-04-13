@@ -16,13 +16,10 @@ import EmployeeForm from "../../components/employeeForm/EmployeeForm";
 import Employee from "../employees/Employee";
 import DepartmentForm from "../../components/departmentForm/DepartmentForm";
 import RoleForm from "../../components/roleForm/RoleForm";
-import employeeService from "../../services/employeeService/employeeService";
-import departmentService from "../../services/depertmentService/departmentService";
-import roleService from "../../services/roleService/roleService";
-import { getAllEmployee } from "../../store/actions/index";
-// import { fetchEmployee } from "../../store/actions";
-// import { fetchDepartment } from "../../store/actions";
-// import { fetchRole } from "../../store/actions";
+import { getEmployees } from "../../store/actions/EmployeeActions";
+import { getEmployee } from "../../store/actions/EmployeeActions";
+import { getDepartments } from "../../store/actions/DepartmentActions";
+import { getRoles } from "../../store/actions/RoleActions";
 import { useSelector, useDispatch } from "react-redux";
 import Snackbar from "../../components/snackbar/Snackbar";
 import AccessDenied from "../../components/accessDenied/AccessDenied";
@@ -50,58 +47,11 @@ export default function Dashboard() {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    dispatch(getAllEmployee());
-    // handleGetAllEmployees();
-    // handleGetAllDepartment();
-    // handleGetAllRoles();
-    // handleGetAllRoles();
-    // getEmployee(employeeId);
+    dispatch(getEmployees());
+    dispatch(getEmployee(employeeId));
+    dispatch(getDepartments());
+    dispatch(getRoles());
   }, []);
-
-  const getEmployee = (employeeId: any) => {
-    employeeService
-      .getEmployee(employeeId)
-      .then((res) => {
-        setEmp(res.data.data);
-        // dispatch(fetchEmployeeDetails(res.data.data));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  const handleGetAllRoles = () => {
-    roleService
-      .getAllRole()
-      .then((res) => {
-        // dispatch(fetchRole(res.data.data));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  const handleGetAllEmployees = () => {
-    employeeService
-      .getAllEmployee()
-      .then((res) => {
-        // dispatch(fetchEmployee(res.data.data));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  const handleGetAllDepartment = () => {
-    departmentService
-      .getAllDepartment()
-      .then((res) => {
-        // dispatch(fetchDepartment(res.data.data));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
 
   const employee = useSelector(
     (state: any) => state.getEmployeeDetails.employeeDetails

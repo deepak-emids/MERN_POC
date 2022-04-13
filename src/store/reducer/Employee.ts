@@ -8,18 +8,18 @@ const initialState = {
 
 export default (state = initialState, { type, payload }: any) => {
   switch (type) {
-    case ActionTypes.FETCH_EMPLOYEE:
+    case ActionTypes.GET_EMPLOYEES:
       return {
         ...state,
         employees: payload,
       };
-    case ActionTypes.POST_EMPLOYEE:
+    case ActionTypes.ADD_EMPLOYEE:
       console.log(payload);
       return {
         ...state,
         employees: [payload, ...state.employees],
       };
-    case ActionTypes.SELECTED_EMPLOYEE:
+    case ActionTypes.GET_EMPLOYEE:
       return {
         ...state,
         employee: payload,
