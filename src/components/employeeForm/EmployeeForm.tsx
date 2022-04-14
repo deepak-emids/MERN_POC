@@ -13,6 +13,7 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { useSelector, useDispatch } from "react-redux";
 import Snackbar from "../snackbar/Snackbar";
 import DatePicker from "../date/DatePicker";
+import { addEmployee, getEmployees } from "../../store/actions/EmployeeActions";
 
 import "./employeeForm.scss";
 
@@ -41,32 +42,21 @@ let value = {
 };
 
 export default function EmployeeForm() {
+  const dispatch = useDispatch();
+
   const [snackbar, setSnackbar] = React.useState(false);
   const [disableSave, setDisableSave] = React.useState(false);
 
   let departmentList: [{ id: number; departmentName: string }] = useSelector(
-    (state: any) => state.getDepartment.department
+    (state: any) => state.Department.departments
   );
 
   let roleList: [{ id: number; roleName: string }] = useSelector(
-    (state: any) => state.getRole.role
+    (state: any) => state.Role.roles
   );
 
+  console.log(roleList, "rolelist");
   const navigate = useNavigate();
-
-  const addEmployee = (data: EmployeeData) => {
-    service
-      .addEmployee(data)
-      .then((res) => {
-        setSnackbar(true);
-        setDisableSave(true);
-
-        setField(value);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
 
   const [field, setField] = React.useState(value);
 
@@ -139,7 +129,8 @@ export default function EmployeeForm() {
         aadharId: field.aadharId,
       };
 
-      addEmployee(data);
+      dispatch(addEmployee(data));
+      dispatch(getEmployees());
     }
   };
 

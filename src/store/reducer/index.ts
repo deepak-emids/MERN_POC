@@ -1,15 +1,13 @@
-import getEmployee from "./getEmployee";
-import getDepartment from "./getDepartment";
-import getRole from "./getRole";
-import getEmployeeDetails from "./getEmployeeDetails";
+import Employee from "./Employee";
+import Department from "./Department";
+import Role from "./Role";
 
 import { combineReducers } from "redux";
 
 const reducers = combineReducers({
-  getEmployee,
-  getDepartment,
-  getRole,
-  getEmployeeDetails,
+  Employee,
+  Department,
+  Role,
 });
 
 export default reducers;

@@ -1,13 +1,12 @@
 import React from "react";
 import Button from "@mui/material/Button";
-import service from "../../services/employeeService/employeeService";
 import TextField from "@mui/material/TextField";
 import back from "../../assets/back.jpg";
 import { useSelector, useDispatch } from "react-redux";
 import Snackbar from "../../components/snackbar/Snackbar";
-
+import { updateEmployee } from "../../store/actions/EmployeeActions";
+import { getEmployee } from "../../store/actions/EmployeeActions";
 import "./profile.scss";
-// import { fetchEmployeeDetails } from "../../store/actions";
 
 export default function Profile() {
   let employeeId: any = localStorage.getItem("employeeId");
@@ -21,49 +20,13 @@ export default function Profile() {
 
   const dispatch = useDispatch();
 
-  React.useEffect(() => {
-    getEmployee(employeeId);
-  }, []);
+  React.useEffect(() => {}, []);
 
-  let employee = useSelector((state: any) => state.getEmployee.employee);
+  let employee = useSelector((state: any) => state.Employee.employee);
 
-  const [emp, setEmp] = React.useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    date_Of_Joining: "",
-    address: "",
-    mobileNo: "",
-    aadharId: "",
-    department_Id: "",
-    role_Id: "",
-  });
+  const [emp, setEmp] = React.useState(employee);
 
   const [password, setPassword] = React.useState("");
-
-  const getEmployee = (employeeId: any) => {
-    service
-      .getEmployee(employeeId)
-      .then((res) => {
-        setEmp(res.data.data);
-        // dispatch(fetchEmployeeDetails(res.data.data));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  const updateEmployee = (id: any, data: {}) => {
-    service
-      .updateEmployee(id, data)
-      .then((res) => {
-        setSnackbar(true);
-        setDisableSave(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
 
   const changeField = (e: any) => {
     setEmp((previousstate: any) => ({
@@ -94,9 +57,8 @@ export default function Profile() {
       };
     }
 
-    let id = localStorage.getItem("employeeId");
-    console.log(data);
-    updateEmployee(id, data);
+    dispatch(updateEmployee(emp.id, data));
+    dispatch(getEmployee(emp.id));
   };
 
   const showSnackbar = () => {

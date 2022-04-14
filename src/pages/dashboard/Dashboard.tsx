@@ -1,10 +1,6 @@
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import { Routes, Route, Link } from "react-router-dom";
-import Typography from "@mui/material/Typography";
-import Modal from "@mui/material/Modal";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import About from "../about/About";
 import Navbar from "../../navbar/Navbar";
 import Footer from "../../components/footer/Footer";
@@ -31,18 +27,6 @@ import "./dashboard.scss";
 export default function Dashboard() {
   let employeeId: any = localStorage.getItem("employeeId");
 
-  const [emp, setEmp] = React.useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    date_Of_Joining: "",
-    address: "",
-    mobileNo: "",
-    aadharId: "",
-    department_Id: "",
-    role_Id: "",
-  });
-
   let navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -53,13 +37,11 @@ export default function Dashboard() {
     dispatch(getRoles());
   }, []);
 
-  const employee = useSelector(
-    (state: any) => state.getEmployeeDetails.employeeDetails
-  );
+  // const employee = useSelector((state: any) => state.Employee.employee);
 
-  const isEmpty = Object.values(emp).every((x) => x == "" || x == null);
+  // const isEmpty = Object.values(emp).every((x) => x == "" || x == null);
 
-  console.log(isEmpty, "empty", emp.address);
+  // console.log(isEmpty, "empty", emp.address);
 
   return (
     <div className="main-dashboard">

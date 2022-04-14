@@ -12,8 +12,11 @@ export default function BasicDatePicker(props: any) {
   });
 
   const passDate = (value: any) => {
+    console.log(
+      `${value?.getUTCFullYear()}-${value?.getUTCDate()}-${value?.getUTCDay()}`
+    );
     props.handleDate(
-      `${value?.getUTCDay()}/${value?.getUTCDate()}/${value?.getUTCFullYear()}`
+      `${value?.getUTCFullYear()}-${value?.getUTCDate()}-${value?.getUTCDay()}`
     );
   };
 

@@ -7,39 +7,19 @@ import { useSelector, useDispatch } from "react-redux";
 import { EmployeeData } from "../../models/model";
 
 import "./employee.scss";
-import getEmployee from "../../store/reducer/getEmployee";
-// import { fetchEmployee } from "../../store/actions";
 
 function Employee() {
-  const employee = useSelector((state: any) => state.getEmployee.employee);
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
-  React.useEffect(() => {
-    handleGetAllEmployees();
-  }, []);
-
-  const handleGetAllEmployees = () => {
-    service
-      .getAllEmployee()
-      .then((res) => {
-        // dispatch(fetchEmployee(res.data.data));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  const employees = useSelector((state: any) => state.Employee.employees);
 
   return (
     <div className="employee">
-      {employee.length ? (
+      {employees.length ? (
         <div className="table">
-          <Table
-            data={employee}
-            refresh={() => handleGetAllEmployees()}
-            mode="employee"
-          />
+          <Table data={employees} refresh={() => {}} mode="employee" />
         </div>
       ) : null}
 
