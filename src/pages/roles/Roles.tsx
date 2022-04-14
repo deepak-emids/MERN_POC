@@ -6,34 +6,19 @@ import Table from "../../components/table/Tables";
 import { useSelector, useDispatch } from "react-redux";
 
 import "./roles.scss";
-// import { fetchRole } from "../../store/actions";
 
 function Roles() {
   const dispatch = useDispatch();
 
-  const [roles, setRoles] = React.useState([]);
+  const roles = useSelector((state: any) => state.Role.roles);
 
-  React.useEffect(() => {
-    handleGetAllRoles();
-  }, []);
-
-  const handleGetAllRoles = () => {
-    service
-      .getAllRole()
-      .then((res) => {
-        setRoles(res.data.data);
-        // dispatch(fetchRole(res.data.data));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  React.useEffect(() => {}, []);
 
   return (
     <div className="role">
       {roles.length ? (
         <div className="table">
-          <Table data={roles} refresh={() => handleGetAllRoles()} mode="role" />
+          <Table data={roles} refresh={() => {}} mode="role" />
         </div>
       ) : null}
 

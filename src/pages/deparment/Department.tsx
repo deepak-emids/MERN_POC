@@ -5,37 +5,19 @@ import Table from "../../components/table/Tables";
 import { useSelector, useDispatch } from "react-redux";
 
 import "./department.scss";
-// import { fetchDepartment } from "../../store/actions";
 
 function Department() {
-  const [department, setDepartment] = React.useState([]);
   const dispatch = useDispatch();
 
-  React.useEffect(() => {
-    handleGetAllDepartment();
-  }, []);
+  const departments = useSelector((state: any) => state.Department.departments);
 
-  const handleGetAllDepartment = () => {
-    service
-      .getAllDepartment()
-      .then((res) => {
-        setDepartment(res.data.data);
-        // dispatch(fetchDepartment(res.data.data));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  React.useEffect(() => {}, []);
 
   return (
     <div className="department">
-      {department.length ? (
+      {departments.length ? (
         <div className="table">
-          <Table
-            data={department}
-            refresh={handleGetAllDepartment}
-            mode="department"
-          />
+          <Table data={departments} refresh={() => {}} mode="department" />
         </div>
       ) : null}
 

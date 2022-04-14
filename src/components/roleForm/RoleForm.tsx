@@ -5,11 +5,15 @@ import TextField from "@mui/material/TextField";
 import back from "../../assets/back.jpg";
 import Snackbar from "../../components/snackbar/Snackbar";
 import { useNavigate } from "react-router-dom";
+import { addRole, getRoles } from "../../store/actions/RoleActions";
+import { useSelector, useDispatch } from "react-redux";
 
 import "./roleForm.scss";
 import { Navigate } from "react-router";
 
 export default function RoleForm() {
+  const dispatch = useDispatch();
+
   const navigate = useNavigate();
   const [disableSave, setDisableSave] = React.useState(false);
 
@@ -46,17 +50,8 @@ export default function RoleForm() {
       let data = {
         roleName: field.roleName,
       };
-
-      service
-        .addRole(data)
-        .then((res) => {
-          console.log(res);
-          setSnackbar(true);
-          setDisableSave(true);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      dispatch(addRole(data));
+      dispatch(getRoles());
     }
   };
 
@@ -98,7 +93,7 @@ export default function RoleForm() {
 
         <div className="form-button">
           <Button onClick={next} variant="contained" disabled={disableSave}>
-          Save
+            Save
           </Button>
           <Button onClick={handelCancel} variant="outlined">
             Back

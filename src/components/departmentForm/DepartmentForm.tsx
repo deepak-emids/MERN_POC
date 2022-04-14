@@ -5,10 +5,16 @@ import TextField from "@mui/material/TextField";
 import back from "../../assets/back.jpg";
 import { useNavigate } from "react-router-dom";
 import Snackbar from "../../components/snackbar/Snackbar";
-
+import { useSelector, useDispatch } from "react-redux";
+import {
+  addDepartment,
+  getDepartments,
+} from "../../store/actions/DepartmentActions";
 import "./departmentForm.scss";
 
 export default function DepartmentForm() {
+  const dispatch = useDispatch();
+
   const navigate = useNavigate();
   const [disableSave, setDisableSave] = React.useState(false);
 
@@ -46,15 +52,8 @@ export default function DepartmentForm() {
         departmentName: field.departmentName,
       };
 
-      service
-        .addDepartment(data)
-        .then((res) => {
-          setSnackbar(true);
-          setDisableSave(true);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      dispatch(addDepartment(data));
+      dispatch(getDepartments());
     }
   };
 
