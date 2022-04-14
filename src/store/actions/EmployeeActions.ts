@@ -4,7 +4,6 @@ import service from "../../services/employeeService/employeeService";
 // get all posts
 export const getEmployees = () => async (dispatch: any) => {
   const result = await service.getAllEmployee();
-  console.log(result, "res");
   dispatch({
     type: ActionTypes.GET_EMPLOYEES,
     payload: result.data.data,

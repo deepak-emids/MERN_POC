@@ -19,28 +19,41 @@ const style = {
 };
 
 export default function BasicModal() {
-  const employee = useSelector(
-    (state: any) => state.getEmployeeDetails.employeeDetails
-  );
+  React.useEffect(() => {
+    check();
+  });
   const [open, setOpen] = React.useState(false);
+  const [checked, setChecked] = React.useState(false);
+
   let navigate = useNavigate();
 
   const handleOpen = () => {
-    // setOpen(true);
-    // navigate("/profile");
+    setOpen(false);
+    navigate("/profile");
   };
 
   const handleClose = () => {
-    // navigate("/");
-    // setOpen(false);
+    navigate("/about");
+    setOpen(false);
   };
 
-  console.log(employee);
+  const employee = useSelector((state: any) => state.Employee.employee);
 
-  const isEmpty = Object.values(employee).every((x) => x === null || x === "");
+  let isEmpty = false;
 
-  console.log(isEmpty);
-  if (isEmpty) setOpen(true);
+  const check = () => {
+    console.log(checked, "checked");
+
+    setTimeout(() => {
+      if (!checked) {
+        isEmpty =
+          Object.values(employee).includes("") ||
+          Object.values(employee).includes(null);
+        setOpen(isEmpty);
+        setChecked(true);
+      }
+    }, 2000);
+  };
 
   return (
     <div>

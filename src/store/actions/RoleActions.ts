@@ -4,7 +4,6 @@ import service from "../../services/roleService/roleService";
 // get all posts
 export const getRoles = () => async (dispatch: any) => {
   const result = await service.getAllRole();
-  console.log(result, "res");
   dispatch({
     type: ActionTypes.GET_ROLES,
     payload: result.data.data,

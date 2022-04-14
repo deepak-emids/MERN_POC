@@ -55,7 +55,6 @@ export default function EmployeeForm() {
     (state: any) => state.Role.roles
   );
 
-  console.log(roleList, "rolelist");
   const navigate = useNavigate();
 
   const [field, setField] = React.useState(value);
@@ -67,7 +66,6 @@ export default function EmployeeForm() {
   };
 
   const handleDate = (date: string) => {
-    console.log(date);
     field.date_Of_Joining = date;
   };
 

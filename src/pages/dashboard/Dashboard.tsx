@@ -37,17 +37,11 @@ export default function Dashboard() {
     dispatch(getRoles());
   }, []);
 
-  // const employee = useSelector((state: any) => state.Employee.employee);
-
-  // const isEmpty = Object.values(emp).every((x) => x == "" || x == null);
-
-  // console.log(isEmpty, "empty", emp.address);
-
   return (
     <div className="main-dashboard">
       <Navbar />
       <div className="modal-content">
-        {/* <BasicModal /> */}
+        <BasicModal />
 
         <div className="page-content">
           <div className="pages">

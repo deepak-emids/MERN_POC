@@ -4,7 +4,6 @@ import service from "../../services/depertmentService/departmentService";
 // get all posts
 export const getDepartments = () => async (dispatch: any) => {
   const result = await service.getAllDepartment();
-  console.log(result, "res");
   dispatch({
     type: ActionTypes.GET_DEPARTMENTS,
     payload: result.data.data,

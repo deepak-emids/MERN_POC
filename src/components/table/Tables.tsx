@@ -49,10 +49,6 @@ export default function DataGridDemo(props: any) {
 
   const classes = useStyles();
 
-  // React.useEffect(() => {
-  //   props.refresh();
-  // }, []);
-
   const navigate = useNavigate();
 
   const handleDelete = (
