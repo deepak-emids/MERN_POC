@@ -8,13 +8,13 @@ let repo = new EmployeeRepository();
 
 class EmployeeDetailsService {
   public async addEmployeeDetails(body: EmployeeData): Promise<Response> {
-    let response = new Response();
+    let response: Response;
 
     let emp = new EmployeeDetails();
 
     const query: { email: string } = { email: body.email };
 
-    const result = await repo.get(query);
+    const result: EmployeeData = await repo.get(query);
 
     if (result) {
       response = {
@@ -31,7 +31,7 @@ class EmployeeDetailsService {
 
       emp = { ...body };
 
-      let addedEmployee = await repo.add(emp);
+      let addedEmployee: EmployeeData = await repo.add(emp);
 
       response = {
         data: addedEmployee,
@@ -44,9 +44,9 @@ class EmployeeDetailsService {
   }
 
   public getAllEmployeeDetails = async (): Promise<Response> => {
-    let response = new Response();
+    let response: Response;
 
-    let result = await repo.getAll();
+    let result = true; //: EmployeeData[] = await repo.getAll();
 
     if (result) {
       response = {
@@ -68,11 +68,11 @@ class EmployeeDetailsService {
   };
 
   public getEmployeeDetails = async (id: number): Promise<Response> => {
-    let response = new Response();
+    let response: Response;
 
     let query = { id: id };
 
-    let result = await repo.get(query);
+    let result: EmployeeData = await repo.get(query);
     if (result) {
       response = {
         data: result,
@@ -93,7 +93,7 @@ class EmployeeDetailsService {
   };
 
   public updateEmployeeDetails = async (id: number, body: EmployeeData) => {
-    let response = new Response();
+    let response: Response;
 
     if (body.hasOwnProperty('password')) {
       const hash: string = await bcrypt.hash(body.password, 8);
@@ -105,7 +105,7 @@ class EmployeeDetailsService {
 
     let query = { id: id };
 
-    let findEmployee = await repo.get(query);
+    let findEmployee: EmployeeData = await repo.get(query);
     if (findEmployee) {
       let result = await repo.update(id, newData);
 
@@ -130,7 +130,7 @@ class EmployeeDetailsService {
   };
 
   public deleteEmployeeDetails = async (id: number) => {
-    let response = new Response();
+    let response: Response;
 
     let query = { id: id };
 
