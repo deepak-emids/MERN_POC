@@ -20,24 +20,31 @@ let employeeService = new EmployeeDetailsService();
 let employeeController = new EmployeeDetailsController(employeeService);
 
 describe('testing employee controller', () => {
-  it('when given a controller methods it should return type of method to be function', async () => {
+  it.only('when given a controller methods it should return type of method to be function', async () => {
     employeeService.addEmployee = jest.fn();
 
-    expect(typeof employeeService.addEmployee).toBe('function');
+    expect(typeof employeeController.addEmployee).toBe('function');
   });
 
   it('when given a controller method it should be defined', async () => {
-    expect(employeeService.addEmployee).toBeDefined();
+    expect(employeeController.addEmployee).toBeDefined();
+  });
+
+  it('when a give controller method is called it should call corresponding service method', async () => {
+    employeeService.addEmployee = jest.fn();
+    await employeeController.addEmployee(req, res, next);
+
+    expect(employeeService.addEmployee).toHaveBeenCalled();
   });
 
   it('when given a controller methods it should return type of method to be function', async () => {
-    employeeService.getAllEmployee = jest.fn();
+    employeeController.getAllEmployee = jest.fn();
 
-    expect(typeof employeeService.getAllEmployee).toBe('function');
+    expect(typeof employeeController.getAllEmployee).toBe('function');
   });
 
   it('when given a controller method it should be defined', async () => {
-    expect(employeeService.getAllEmployee).toBeDefined();
+    expect(employeeController.getAllEmployee).toBeDefined();
   });
 
   it('when a give controller method is called it should call corresponding service method', async () => {
@@ -48,13 +55,13 @@ describe('testing employee controller', () => {
   });
 
   it('when given a controller methods it should return type of method to be function', async () => {
-    employeeService.getEmployee = jest.fn();
+    employeeController.getEmployee = jest.fn();
 
-    expect(typeof employeeService.getEmployee).toBe('function');
+    expect(typeof employeeController.getEmployee).toBe('function');
   });
 
   it('when given a controller method it should be defined', async () => {
-    expect(employeeService.getEmployee).toBeDefined();
+    expect(employeeController.getEmployee).toBeDefined();
   });
 
   it('when a give controller method is called it should call corresponding service method', async () => {
@@ -72,13 +79,13 @@ describe('testing employee controller', () => {
   });
 
   it('when given a controller methods it should return type of method to be function', async () => {
-    employeeService.getEmployee = jest.fn();
+    employeeController.getEmployee = jest.fn();
 
-    expect(typeof employeeService.getEmployee).toBe('function');
+    expect(typeof employeeController.getEmployee).toBe('function');
   });
 
   it('when given a controller method it should be defined', async () => {
-    expect(employeeService.deleteEmployee).toBeDefined();
+    expect(employeeController.deleteEmployee).toBeDefined();
   });
 
   it('when a give controller method is called it should call corresponding service method', async () => {
