@@ -26,6 +26,10 @@ describe('testing employee controller', () => {
     expect(typeof employeeService.addEmployee).toBe('function');
   });
 
+  it('when given a controller method it should be defined', async () => {
+    expect(employeeService.addEmployee).toBeDefined();
+  });
+
   it('when given a controller methods it should return type of method to be function', async () => {
     employeeService.getAllEmployee = jest.fn();
 
