@@ -53,4 +53,11 @@ describe('testing employee controller', () => {
 
     expect(employeeService.getEmployee).toHaveBeenCalled();
   });
+
+  it.only('when a give controller method is called it should call corresponding service method', async () => {
+    employeeService.getEmployee = jest.fn();
+    await employeeController.getEmployee(req, res, next);
+
+    expect(employeeService.getEmployee).toBeCalledWith(req.params.id);
+  });
 });
