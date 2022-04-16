@@ -1,5 +1,4 @@
 class DepartmentDetails {
-  id: number;
   departmentName: string;
 }
 

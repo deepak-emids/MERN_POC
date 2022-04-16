@@ -1,7 +1,7 @@
 // import httpMock from 'node-mocks-http';
-// import EmployeeDetailsService from '../../services/EmployeeService';
+// import EmployeeService from '../../services/EmployeeService';
 
-// import EmployeeDetailsController from '../../controllers/EmployeeController';
+// import EmployeeController from '../../controllers/EmployeeController';
 
 // let req: any, res: any, next: any;
 
@@ -15,9 +15,9 @@
 //   next = () => {};
 // });
 
-// let employeeService = new EmployeeDetailsService();
+// let employeeService = new EmployeeService();
 
-// let employeeController = new EmployeeDetailsController(employeeService);
+// let employeeController = new EmployeeController(employeeService);
 
 // describe('testing employee controller', () => {
 //   it('when given a controller methods it should return type of method to be function', async () => {

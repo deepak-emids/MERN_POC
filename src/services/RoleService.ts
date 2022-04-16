@@ -4,18 +4,19 @@ import RoleData from '../models/RoleDetails';
 import RoleRepository from '../repository/RoleRepository';
 import Response from '../models/Response.model';
 
-let repo = new RoleRepository();
-
 class RoleService {
-  /*
-  add emp
-  */
-  public addRole = async (body: RoleData): Promise<Response> => {
-    let response = new Response();
+  private roleRepository;
 
+  constructor(roleRepository?: RoleRepository) {
+    this.roleRepository = roleRepository
+      ? roleRepository
+      : new RoleRepository();
+  }
+
+  public addRole = async (body: RoleData): Promise<Response> => {
     let query: { roleName: string } = { roleName: body.roleName };
 
-    let result = await repo.get(query);
+    let result = await this.roleRepository.get(query);
 
     if (result) {
       response = {
@@ -28,7 +29,7 @@ class RoleService {
 
       role.roleName = body.roleName;
 
-      let newRole = await repo.add(role);
+      let newRole = await this.roleRepository.add(role);
 
       response = {
         data: newRole,
@@ -46,7 +47,7 @@ class RoleService {
   public getAllRole = async (): Promise<Response> => {
     let response = new Response();
 
-    let result = await repo.getAll();
+    let result = await this.roleRepository.getAll();
 
     if (result.length > 0) {
       response = {
@@ -75,7 +76,7 @@ class RoleService {
 
     let query = { id: id };
 
-    let result = await repo.get(query);
+    let result = await this.roleRepository.get(query);
 
     if (result) {
       response = {
@@ -106,9 +107,9 @@ class RoleService {
 
     let query = { id: id };
 
-    let findRole = await repo.get(query);
+    let findRole = await this.roleRepository.get(query);
     if (findRole) {
-      let result = await repo.update(id, newData);
+      let result = await this.roleRepository.update(id, newData);
 
       if (result) {
         response = {
@@ -137,9 +138,9 @@ class RoleService {
     let response = new Response();
     let query = { id: id };
 
-    let findRole = await repo.get(query);
+    let findRole = await this.roleRepository.get(query);
     if (findRole) {
-      let result = await repo.delete(id);
+      let result = await this.roleRepository.delete(id);
 
       if (result) {
         response = {
