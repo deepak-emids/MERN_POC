@@ -9,11 +9,11 @@ class EmployeeData {
   role_Id: number;
   mobileNo: number;
   aadharId: number;
-  date_Of_Joining: Date;
+  date_Of_Joining: Date | string;
   isActive: boolean;
   isDeleted: boolean;
-  created_at: Date;
-  updated_at: Date;
+  created_at: Date | string;
+  updated_at: Date | string;
 }
 
 export default EmployeeData;

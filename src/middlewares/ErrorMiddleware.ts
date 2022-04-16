@@ -6,13 +6,6 @@ import HttpStatus from 'http-status-codes';
 import Logger from '../config/logger';
 import { Request, Response, NextFunction } from 'express';
 
-class Error {
-  code: number;
-  message: string;
-  data: {};
-  stack: string;
-}
-
 class ErrorMiddleware {
   private logger;
 
@@ -44,7 +37,7 @@ class ErrorMiddleware {
    */
   // eslint-disable-next-line no-unused-vars
   public appErrorHandler = (
-    err: Error,
+    err: any,
     req: Request,
     res: Response,
     next: NextFunction
