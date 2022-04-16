@@ -70,4 +70,11 @@ describe('testing employee controller', () => {
   it('when given a controller method it should be defined', async () => {
     expect(employeeService.deleteEmployee).toBeDefined();
   });
+
+  it.only('when a give controller method is called it should call corresponding service method', async () => {
+    employeeService.deleteEmployee = jest.fn();
+    await employeeController.deleteEmployee(req, res, next);
+
+    expect(employeeService.deleteEmployee).toHaveBeenCalled();
+  });
 });

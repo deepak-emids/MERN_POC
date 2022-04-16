@@ -30,7 +30,7 @@ FN:65,(anonymous_16)
 FN:78,(anonymous_17)
 FN:82,(anonymous_18)
 FNF:11
-FNH:1
+FNH:3
 FNDA:1,(anonymous_8)
 FNDA:0,(anonymous_9)
 FNDA:0,(anonymous_10)
@@ -38,8 +38,8 @@ FNDA:0,(anonymous_11)
 FNDA:0,(anonymous_12)
 FNDA:0,(anonymous_13)
 FNDA:0,(anonymous_14)
-FNDA:0,(anonymous_15)
-FNDA:0,(anonymous_16)
+FNDA:1,(anonymous_15)
+FNDA:1,(anonymous_16)
 FNDA:0,(anonymous_17)
 FNDA:0,(anonymous_18)
 DA:2,1
@@ -67,12 +67,12 @@ DA:53,0
 DA:55,0
 DA:57,0
 DA:61,1
-DA:65,0
-DA:66,0
-DA:67,0
-DA:70,0
-DA:72,0
-DA:74,0
+DA:65,1
+DA:66,1
+DA:67,1
+DA:70,1
+DA:72,1
+DA:74,1
 DA:78,1
 DA:82,0
 DA:83,0
@@ -82,7 +82,7 @@ DA:90,0
 DA:92,0
 DA:97,1
 LF:39
-LH:9
+LH:15
 BRDA:9,0,0,1
 BRDA:9,0,1,0
 BRF:2
