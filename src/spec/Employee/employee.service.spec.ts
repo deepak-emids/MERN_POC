@@ -23,4 +23,8 @@ describe('unit tests for employee service module', () => {
   it('when given a controller method addEmployee it should return type of method to be function', async () => {
     expect(typeof employeeService.addEmployee).toBe('function');
   });
+
+  it('when given a controller method addEmployee it should be defined', async () => {
+    expect(employeeService.addEmployee).toBeDefined();
+  });
 });
