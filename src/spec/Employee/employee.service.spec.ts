@@ -64,4 +64,10 @@ describe('unit tests for employee service module', () => {
 
     expect(employeeRepository.get).toBeCalledWith({ id: 5 });
   });
+
+  it('when given a controller method deleteEmployee it should return type of method to be function', async () => {
+    employeeRepository.get = jest.fn();
+
+    expect(typeof employeeService.deleteEmployee).toBe('function');
+  });
 });
