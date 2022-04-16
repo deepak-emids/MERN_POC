@@ -6,8 +6,8 @@ import Response from '../models/Response.model';
 import EmployeeRepository from '../repository/EmployeeRepository';
 let repo = new EmployeeRepository();
 
-class EmployeeDetailsService {
-  public async addEmployeeDetails(body: EmployeeData): Promise<Response> {
+class EmployeeService {
+  public async addEmployee(body: EmployeeData): Promise<Response> {
     let response = new Response();
 
     let emp = new EmployeeDetails();
@@ -43,7 +43,7 @@ class EmployeeDetailsService {
     }
   }
 
-  public getAllEmployeeDetails = async (): Promise<Response> => {
+  public getAllEmployee = async (): Promise<Response> => {
     let response = new Response();
 
     let result = await repo.getAll();
@@ -67,7 +67,7 @@ class EmployeeDetailsService {
     }
   };
 
-  public getEmployeeDetails = async (id: number): Promise<Response> => {
+  public getEmployee = async (id: number): Promise<Response> => {
     let response = new Response();
 
     let query = { id: id };
@@ -92,7 +92,7 @@ class EmployeeDetailsService {
     }
   };
 
-  public updateEmployeeDetails = async (id: number, body: EmployeeData) => {
+  public updateEmployee = async (id: number, body: EmployeeData) => {
     let response = new Response();
 
     if (body.hasOwnProperty('password')) {
@@ -129,7 +129,7 @@ class EmployeeDetailsService {
     }
   };
 
-  public deleteEmployeeDetails = async (id: number) => {
+  public deleteEmployee = async (id: number) => {
     let response = new Response();
 
     let query = { id: id };
@@ -159,4 +159,4 @@ class EmployeeDetailsService {
   };
 }
 
-export default EmployeeDetailsService;
+export default EmployeeService;

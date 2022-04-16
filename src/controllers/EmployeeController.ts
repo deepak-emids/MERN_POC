@@ -1,22 +1,22 @@
 import { Request, Response, NextFunction } from 'express';
-import EmployeeDetailsService from '../services/EmployeeDetailsService';
+import EmployeeService from '../services/EmployeeService';
 import logger from '../config/logger';
 import ResponseModel from '../models/Response.model';
 
-class EmployeeDetailsController {
-  private employeeDetailsService;
-  constructor(employeeDetailsService?: EmployeeDetailsService) {
-    this.employeeDetailsService = employeeDetailsService
-      ? employeeDetailsService
-      : new EmployeeDetailsService();
+class EmployeeController {
+  private employeeService;
+  constructor(employeeService?: employeeService) {
+    this.employeeService = employeeService
+      ? employeeService
+      : new EmployeeService();
   }
-  public addEmployeeDetails = async (
+  public addEmployee = async (
     req: Request,
     res: Response,
     next: NextFunction
   ): Promise<any> => {
     try {
-      const data: ResponseModel = await this.employeeDetailsService.addEmployee(
+      const data: ResponseModel = await this.employeeService.addEmployee(
         req.body
       );
 
@@ -27,14 +27,13 @@ class EmployeeDetailsController {
     }
   };
 
-  public getAllEmployeeDetails = async (
+  public getAllEmployee = async (
     req: Request,
     res: Response,
     next: NextFunction
   ): Promise<any> => {
     try {
-      const data: ResponseModel =
-        await this.employeeDetailsService.getAllEmployee();
+      const data: ResponseModel = await this.employeeService.getAllEmployee();
       res.status(data.status).send(data);
     } catch (error) {
       logger.logger.error(error);
@@ -42,30 +41,15 @@ class EmployeeDetailsController {
     }
   };
 
-  public getEmployeeDetails = async (
+  public getEmployee = async (
     req: Request,
     res: Response,
     next: NextFunction
   ): Promise<any> => {
     try {
-      const data: ResponseModel =
-        await this.employeeDetailsService.getEmployeeDetails(req.params.id);
-      res.status(data.status).send(data);
-    } catch (error) {
-      logger.logger.error(error);
-
-      next(error);
-    }
-  };
-
-  public deleteEmployeeDetails = async (
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ): Promise<any> => {
-    try {
-      const data: ResponseModel =
-        await this.employeeDetailsService.deleteEmployeeDetails(req.params.id);
+      const data: ResponseModel = await this.employeeService.getEmployee(
+        req.params.id
+      );
       res.status(data.status).send(data);
     } catch (error) {
       logger.logger.error(error);
@@ -74,17 +58,33 @@ class EmployeeDetailsController {
     }
   };
 
-  public updateEmployeeDetails = async (
+  public deleteEmployee = async (
     req: Request,
     res: Response,
     next: NextFunction
   ): Promise<any> => {
     try {
-      const data: ResponseModel =
-        await this.employeeDetailsService.updateEmployeeDetails(
-          req.params.id,
-          req.body
-        );
+      const data: ResponseModel = await this.employeeService.deleteEmployee(
+        req.params.id
+      );
+      res.status(data.status).send(data);
+    } catch (error) {
+      logger.logger.error(error);
+
+      next(error);
+    }
+  };
+
+  public updateEmployee = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<any> => {
+    try {
+      const data: ResponseModel = await this.employeeService.updateEmployee(
+        req.params.id,
+        req.body
+      );
       res.status(data.status).send(data);
     } catch (error) {
       logger.logger.error(error);
@@ -94,4 +94,4 @@ class EmployeeDetailsController {
   };
 }
 
-export default EmployeeDetailsController;
+export default EmployeeController;
