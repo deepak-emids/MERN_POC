@@ -4,9 +4,15 @@ import { EmployeeDetails } from '../entity/Employee';
 import EmployeeData from '../models/EmployeeData';
 import Response from '../models/Response.model';
 import EmployeeRepository from '../repository/EmployeeRepository';
-let repo = new EmployeeRepository();
 
 class EmployeeService {
+  private employeeRepository;
+  constructor(employeeRepository?: EmployeeRepository) {
+    this.employeeRepository = employeeRepository
+      ? employeeRepository
+      : new EmployeeRepository();
+  }
+
   public async addEmployee(body: EmployeeData): Promise<Response> {
     let response = new Response();
 
@@ -14,7 +20,7 @@ class EmployeeService {
 
     const query: { email: string } = { email: body.email };
 
-    const result = await repo.get(query);
+    const result = await this.employeeRepository.get(query);
 
     if (result) {
       response = {
@@ -31,7 +37,7 @@ class EmployeeService {
 
       emp = { ...body };
 
-      let addedEmployee = await repo.add(emp);
+      let addedEmployee = await this.employeeRepository.add(emp);
 
       response = {
         data: addedEmployee,
@@ -46,7 +52,7 @@ class EmployeeService {
   public getAllEmployee = async (): Promise<Response> => {
     let response = new Response();
 
-    let result = await repo.getAll();
+    let result = await this.employeeRepository.getAll();
 
     if (result) {
       response = {
@@ -72,7 +78,7 @@ class EmployeeService {
 
     let query = { id: id };
 
-    let result = await repo.get(query);
+    let result = await this.employeeRepository.get(query);
     if (result) {
       response = {
         data: result,
@@ -105,9 +111,9 @@ class EmployeeService {
 
     let query = { id: id };
 
-    let findEmployee = await repo.get(query);
+    let findEmployee = await this.employeeRepository.get(query);
     if (findEmployee) {
-      let result = await repo.update(id, newData);
+      let result = await this.employeeRepository.update(id, newData);
 
       if (result) {
         response = {
@@ -134,9 +140,9 @@ class EmployeeService {
 
     let query = { id: id };
 
-    let findEmployee = await repo.get(query);
+    let findEmployee = await this.employeeRepository.get(query);
     if (findEmployee) {
-      let result = await repo.delete(id);
+      let result = await this.employeeRepository.delete(id);
 
       if (result) {
         response = {
