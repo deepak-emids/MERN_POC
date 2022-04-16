@@ -70,4 +70,8 @@ describe('unit tests for employee service module', () => {
 
     expect(typeof employeeService.deleteEmployee).toBe('function');
   });
+
+  it('when given a controller method deleteEmployee it should be defined', async () => {
+    expect(employeeService.deleteEmployee).toBeDefined();
+  });
 });
