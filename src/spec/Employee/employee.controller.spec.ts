@@ -1,35 +1,24 @@
-// import httpMock from 'node-mocks-http';
-../services/EmployeeService
-// import EmployeeDetailsController from '../controllers/EmployeeDetailsController';
+import httpMock from 'node-mocks-http';
+import EmployeeDetailsService from '../../services/EmployeeService';
 
-// import EmployeeDetailsService from '../services/EmployeeDetailsService';
+import EmployeeDetailsController from '../../controllers/EmployeeController';
 
-// describe('testing employee controller', () => {
-//   jest.mock('../services/EmployeeDetailsService', () => {
-//     return {
-//       getAllEmployeeDetails: jest.fn()
-//     };
-//   });
+describe('testing employee controller', () => {
+  let employeeService = new EmployeeDetailsService();
 
-//   let employeeService = new EmployeeDetailsService();
+  let employeeController = new EmployeeDetailsController(employeeService);
 
-//   let employeeController = new EmployeeDetailsController();
+  let req: any, res: any, next: any;
 
-//   let req: any, res: any, next: any;
+  beforeEach(() => {
+    req = httpMock.createRequest({});
+    res = httpMock.createResponse({});
+    next = () => {};
+  });
 
-//   beforeEach(() => {
-//     req = httpMock.createRequest({});
-//     res = httpMock.createResponse({});
-//     next = null;
-//   });
+  it.only('when given a controller methods it should return type of method to be function', async () => {
+    employeeService.getAllEmployee = jest.fn();
 
-//   it.only('should call getAllEmployee from service', async () => {
-//     employeeService.getAllEmployeeDetails = jest
-//       .fn()
-//       .mockImplementation(() => {});
-
-//     await employeeController.getAllEmployeeDetails(req, res, next);
-
-//     expect(employeeService.getAllEmployeeDetails).toHaveBeenCalled();
-//   });
-// });
+    expect(typeof employeeService.getAllEmployee).toBe('function');
+  });
+});
