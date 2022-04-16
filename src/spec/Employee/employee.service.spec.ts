@@ -57,4 +57,11 @@ describe('unit tests for employee service module', () => {
 
     expect(employeeRepository.get).toHaveBeenCalled();
   });
+
+  it('when a give controller method getEmployee is called it should call corresponding service method with parameters', async () => {
+    employeeRepository.get = jest.fn();
+    await employeeService.getEmployee(id);
+
+    expect(employeeRepository.get).toBeCalledWith({ id: 5 });
+  });
 });
