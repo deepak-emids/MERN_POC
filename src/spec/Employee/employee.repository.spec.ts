@@ -1,6 +1,6 @@
-import Repository from '../repository/EmployeeRepository';
+import Repository from '../../repository/EmployeeRepository';
 let repo = new Repository();
-import EmployeeData from '../models/EmployeeData';
+import EmployeeData from '../../models/EmployeeData';
 import faker from 'faker';
 
 describe('Repository', () => {

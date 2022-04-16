@@ -5,7 +5,7 @@ import ResponseModel from '../models/Response.model';
 
 class EmployeeController {
   private employeeService;
-  constructor(employeeService?: employeeService) {
+  constructor(employeeService?: EmployeeService) {
     this.employeeService = employeeService
       ? employeeService
       : new EmployeeService();
