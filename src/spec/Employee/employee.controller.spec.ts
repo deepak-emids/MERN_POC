@@ -42,4 +42,8 @@ describe('testing employee controller', () => {
 
     expect(typeof employeeService.getEmployee).toBe('function');
   });
+
+  it.only('when given a controller method it should be defined', async () => {
+    expect(employeeService.getEmployee).toBeDefined();
+  });
 });
