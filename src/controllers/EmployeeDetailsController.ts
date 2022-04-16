@@ -4,12 +4,7 @@ import logger from '../config/logger';
 import ResponseModel from '../models/Response.model';
 
 class EmployeeDetailsController {
-  private employeeDetailsService;
-  constructor(employeeDetailsService?: EmployeeDetailsService) {
-    this.employeeDetailsService = employeeDetailsService
-      ? employeeDetailsService
-      : new EmployeeDetailsService();
-  }
+  public EmployeeDetailsService = new EmployeeDetailsService();
 
   public addEmployeeDetails = async (
     req: Request,
@@ -18,7 +13,7 @@ class EmployeeDetailsController {
   ): Promise<any> => {
     try {
       const data: ResponseModel =
-        await this.employeeDetailsService.addEmployeeDetails(req.body);
+        await this.EmployeeDetailsService.addEmployeeDetails(req.body);
 
       res.status(data.status).send(data);
     } catch (error) {
@@ -34,7 +29,7 @@ class EmployeeDetailsController {
   ): Promise<any> => {
     try {
       const data: ResponseModel =
-        await this.employeeDetailsService.getAllEmployeeDetails();
+        await this.EmployeeDetailsService.getAllEmployeeDetails();
       res.status(data.status).send(data);
     } catch (error) {
       logger.logger.error(error);
@@ -47,11 +42,9 @@ class EmployeeDetailsController {
     res: Response,
     next: NextFunction
   ): Promise<any> => {
-    let id: number = Number(req.params.id);
-
     try {
       const data: ResponseModel =
-        await this.employeeDetailsService.getEmployeeDetails(id);
+        await this.EmployeeDetailsService.getEmployeeDetails(req.params.id);
       res.status(data.status).send(data);
     } catch (error) {
       logger.logger.error(error);
@@ -66,9 +59,8 @@ class EmployeeDetailsController {
     next: NextFunction
   ): Promise<any> => {
     try {
-      let id: number = Number(req.params.id);
       const data: ResponseModel =
-        await this.employeeDetailsService.deleteEmployeeDetails(id);
+        await this.EmployeeDetailsService.deleteEmployeeDetails(req.params.id);
       res.status(data.status).send(data);
     } catch (error) {
       logger.logger.error(error);
@@ -83,10 +75,11 @@ class EmployeeDetailsController {
     next: NextFunction
   ): Promise<any> => {
     try {
-      let id: number = Number(req.params.id);
-
       const data: ResponseModel =
-        await this.employeeDetailsService.updateEmployeeDetails(id, req.body);
+        await this.EmployeeDetailsService.updateEmployeeDetails(
+          req.params.id,
+          req.body
+        );
       res.status(data.status).send(data);
     } catch (error) {
       logger.logger.error(error);
