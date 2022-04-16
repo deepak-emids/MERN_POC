@@ -11,7 +11,11 @@ describe('testing employee controller', () => {
   let req: any, res: any, next: any;
 
   beforeEach(() => {
-    req = httpMock.createRequest({});
+    req = httpMock.createRequest({
+      params: {
+        id: 5
+      }
+    });
     res = httpMock.createResponse({});
     next = () => {};
   });
@@ -31,5 +35,11 @@ describe('testing employee controller', () => {
     await employeeController.getAllEmployee(req, res, next);
 
     expect(employeeService.getAllEmployee).toHaveBeenCalled();
+  });
+
+  it.only('when given a controller methods it should return type of method to be function', async () => {
+    employeeService.getEmployee = jest.fn();
+
+    expect(typeof employeeService.getEmployee).toBe('function');
   });
 });
