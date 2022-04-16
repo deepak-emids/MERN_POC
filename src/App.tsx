@@ -50,7 +50,7 @@ function App() {
               />
             }
           />
-          {/* <Route path="/employee" element={<Employee />} /> */}
+          <Route path="/employee" element={<Employee />} />
 
           <Route path="/addEmployee" element={<EmployeeForm />} />
           <Route path="/department" element={<Department />} />
