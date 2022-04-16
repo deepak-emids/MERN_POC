@@ -21,6 +21,12 @@ let employeeController = new EmployeeDetailsController(employeeService);
 
 describe('testing employee controller', () => {
   it('when given a controller methods it should return type of method to be function', async () => {
+    employeeService.addEmployee = jest.fn();
+
+    expect(typeof employeeService.addEmployee).toBe('function');
+  });
+
+  it('when given a controller methods it should return type of method to be function', async () => {
     employeeService.getAllEmployee = jest.fn();
 
     expect(typeof employeeService.getAllEmployee).toBe('function');
