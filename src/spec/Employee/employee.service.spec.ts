@@ -35,4 +35,11 @@ describe('unit tests for employee service module', () => {
   it('when given a controller method getAllEmployee it should be defined', async () => {
     expect(employeeService.getAllEmployee).toBeDefined();
   });
+
+  it('when a give controller method getAllEmployee is called it should call corresponding service method', async () => {
+    employeeRepository.getAll = jest.fn();
+    await employeeService.getAllEmployee();
+
+    expect(employeeRepository.getAll).toHaveBeenCalled();
+  });
 });
