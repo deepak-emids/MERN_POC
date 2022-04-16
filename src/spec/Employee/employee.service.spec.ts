@@ -74,4 +74,11 @@ describe('unit tests for employee service module', () => {
   it('when given a controller method deleteEmployee it should be defined', async () => {
     expect(employeeService.deleteEmployee).toBeDefined();
   });
+
+  it('when a give controller method deleteEmployee is called it should call corresponding service method', async () => {
+    employeeRepository.delete = jest.fn();
+    await employeeService.deleteEmployee(id);
+
+    expect(employeeRepository.delete).toHaveBeenCalled();
+  });
 });
