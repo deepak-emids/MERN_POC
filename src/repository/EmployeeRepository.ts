@@ -1,12 +1,12 @@
 import { createConnection } from 'typeorm';
-import { EmployeeDetails } from '../entity/Employee';
+import { Employee } from '../entity/Employee';
 import EmployeeData from '../models/EmployeeData';
 
 export default class EmployeeRepository {
   public add = async (object: EmployeeData) => {
     try {
       let result = await createConnection().then(async (connection) => {
-        let repo = connection.getRepository(EmployeeDetails);
+        let repo = connection.getRepository(Employee);
 
         await repo.save(object);
 
@@ -26,7 +26,7 @@ export default class EmployeeRepository {
   public async getAll() {
     try {
       return await createConnection().then(async (connection) => {
-        let repo = connection.getRepository(EmployeeDetails);
+        let repo = connection.getRepository(Employee);
 
         let find = await repo.find();
 
@@ -42,7 +42,7 @@ export default class EmployeeRepository {
   public get = async (query: {}) => {
     try {
       return await createConnection().then(async (connection) => {
-        let repo = connection.getRepository(EmployeeDetails);
+        let repo = connection.getRepository(Employee);
 
         let find = await repo.findOne(query);
 
@@ -58,7 +58,7 @@ export default class EmployeeRepository {
   public delete = async (id: number) => {
     try {
       return await createConnection().then(async (connection) => {
-        let repo = connection.getRepository(EmployeeDetails);
+        let repo = connection.getRepository(Employee);
 
         let foundEmp = await repo.find({ id: id });
 
@@ -82,7 +82,7 @@ export default class EmployeeRepository {
   public update = async (id: number, object) => {
     try {
       return await createConnection().then(async (connection) => {
-        let repo = connection.getRepository(EmployeeDetails);
+        let repo = connection.getRepository(Employee);
 
         await repo.update({ id: id }, object);
 

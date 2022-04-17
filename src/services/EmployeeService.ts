@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import bcrypt from 'bcrypt';
-import { EmployeeDetails } from '../entity/Employee';
+import { Employee } from '../entity/Employee';
 import EmployeeData from '../models/EmployeeData';
 import Response from '../models/Response.model';
 import EmployeeRepository from '../repository/EmployeeRepository';
@@ -17,7 +17,7 @@ class EmployeeService {
   public async addEmployee(body: EmployeeData): Promise<Response> {
     let response = new Response();
 
-    let emp = new EmployeeDetails();
+    let emp = new Employee();
 
     const query: { email: string } = { email: body.email };
 
