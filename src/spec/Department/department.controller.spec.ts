@@ -88,4 +88,11 @@ describe('testing Department controller', () => {
 
     expect(departmentService.deleteDepartment).toHaveBeenCalled();
   });
+
+  it('when a give controller method is called it should call corresponding service method with parameters', async () => {
+    departmentService.deleteDepartment = jest.fn();
+    await departmentController.deleteDepartment(req, res, next);
+
+    expect(departmentService.deleteDepartment).toBeCalledWith(req.params.id);
+  });
 });
