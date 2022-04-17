@@ -36,4 +36,8 @@ describe('unit tests for employee service module', () => {
 
     expect(departmentRepository.add).toHaveBeenCalled();
   });
+
+  it('when given a service method getAllDepartment it should return type of method to be function', async () => {
+    expect(typeof departmentService.getAllDepartment).toBe('function');
+  });
 });
