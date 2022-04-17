@@ -90,4 +90,11 @@ describe('unit tests for employee service module', () => {
 
     expect(departmentRepository.delete).toHaveBeenCalled();
   });
+
+  it('when given a service method deleteDepartment is called it should call corresponding service method with parameters', async () => {
+    departmentRepository.delete = jest.fn();
+    await departmentService.deleteDepartment(id);
+
+    expect(departmentRepository.delete).toBeCalledWith(req.params.id);
+  });
 });
