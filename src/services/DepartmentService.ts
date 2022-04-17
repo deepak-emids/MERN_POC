@@ -4,19 +4,21 @@ import DepartmentData from '../models/DepartmentDetails';
 import DepartmentRepository from '../repository/DepartmentRepository';
 import Response from '../models/Response.model';
 
-let repo = new DepartmentRepository();
-
 class DepartmentService {
-  /*
-  add emp
-  */
+  private departmentRepository;
+  constructor(departmentRepository?: DepartmentRepository) {
+    this.departmentRepository = departmentRepository
+      ? departmentRepository
+      : new DepartmentRepository();
+  }
+
   public addDepartment = async (body: DepartmentData): Promise<Response> => {
     let response = new Response();
 
     let query: { departmentName: string } = {
       departmentName: body.departmentName
     };
-    let result = await repo.get(query);
+    let result = await this.departmentRepository.get(query);
 
     if (result) {
       response = {
@@ -29,7 +31,7 @@ class DepartmentService {
 
       dept.departmentName = body.departmentName;
 
-      let newDepartment = await repo.add(dept);
+      let newDepartment = await this.departmentRepository.add(dept);
 
       response = {
         data: newDepartment,
@@ -41,13 +43,10 @@ class DepartmentService {
     return response;
   };
 
-  /*
-  get Departments
-  */
   public getAllDepartment = async (): Promise<Response> => {
     let response = new Response();
 
-    let result = await repo.getAll();
+    let result = await this.departmentRepository.getAll();
 
     if (result.length > 0) {
       response = {
@@ -68,15 +67,12 @@ class DepartmentService {
     }
   };
 
-  /*
-  get Departments
-  */
   public getDepartment = async (id: number): Promise<Response> => {
     let response = new Response();
 
     let query = { id: id };
 
-    let result = await repo.get(query);
+    let result = await this.departmentRepository.get(query);
 
     if (result) {
       response = {
@@ -97,9 +93,6 @@ class DepartmentService {
     }
   };
 
-  /*
-  update Department
-  */
   public updateDepartment = async (id: number, body: DepartmentData) => {
     let response = new Response();
 
@@ -109,10 +102,10 @@ class DepartmentService {
       id: id
     };
 
-    let result = await repo.get(query);
+    let result = await this.departmentRepository.get(query);
 
     if (result) {
-      let update = await repo.update(id, newData);
+      let update = await this.departmentRepository.update(id, newData);
 
       response = {
         data: update,
@@ -132,9 +125,6 @@ class DepartmentService {
     }
   };
 
-  /*
-  delete Department work details
-  */
   public deleteDepartment = async (id: number) => {
     let response = new Response();
 
@@ -142,10 +132,10 @@ class DepartmentService {
       id: id
     };
 
-    let result = await repo.get(query);
+    let result = await this.departmentRepository.get(query);
 
     if (result) {
-      let update = await repo.delete(id);
+      let update = await this.departmentRepository.delete(id);
 
       response = {
         data: update,
