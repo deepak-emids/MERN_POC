@@ -64,4 +64,11 @@ describe('testing Department controller', () => {
 
     expect(departmentService.getDepartment).toHaveBeenCalled();
   });
+
+  it('when a give controller getDepartment method is called it should call corresponding service method with parameters', async () => {
+    departmentService.getDepartment = jest.fn();
+    await departmentController.getDepartment(req, res, next);
+
+    expect(departmentService.getDepartment).toBeCalledWith(req.params.id);
+  });
 });
