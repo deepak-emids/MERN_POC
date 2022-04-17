@@ -77,4 +77,8 @@ describe('testing Department controller', () => {
 
     expect(typeof departmentController.deleteDepartment).toBe('function');
   });
+
+  it('when given a controller method it should be defined', async () => {
+    expect(departmentController.deleteDepartment).toBeDefined();
+  });
 });
