@@ -59,4 +59,11 @@ describe('unit tests for employee service module', () => {
   it('when given a service method getDepartment it should be defined', async () => {
     expect(departmentService.getDepartment).toBeDefined();
   });
+
+  it('when a give service method getDepartment is called it should call corresponding service method', async () => {
+    departmentRepository.get = jest.fn();
+    await departmentService.getDepartment(id);
+
+    expect(departmentRepository.get).toHaveBeenCalled();
+  });
 });
