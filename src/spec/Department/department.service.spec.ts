@@ -44,4 +44,15 @@ describe('unit tests for employee service module', () => {
   it('when given a service method getAllDepartment it should be defined', async () => {
     expect(departmentService.getAllDepartment).toBeDefined();
   });
+
+  it('when a give service method getAllDepartmentis called it should call corresponding service method', async () => {
+    departmentRepository.getAll = jest.fn();
+    await departmentService.getAllDepartment();
+
+    expect(departmentRepository.getAll).toHaveBeenCalled();
+  });
+
+  it('when given a service method getDepartment it should return type of method to be function', async () => {
+    expect(typeof departmentService.getDepartment).toBe('function');
+  });
 });
