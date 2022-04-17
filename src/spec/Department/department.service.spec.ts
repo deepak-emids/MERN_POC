@@ -73,4 +73,10 @@ describe('unit tests for employee service module', () => {
 
     expect(departmentRepository.get).toBeCalledWith({ id: 5 });
   });
+
+  it('when given a service method getDepartment it should return type of method to be function', async () => {
+    departmentService.getDepartment = jest.fn();
+
+    expect(typeof departmentService.deleteDepartment).toBe('function');
+  });
 });
