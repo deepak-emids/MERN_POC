@@ -5,12 +5,12 @@ import DepartmentService from '../../services/DepartmentService';
 
 let req: any, res: any, next: any;
 const newDepartment = { departmentName: 'testDepartment' };
-const id: number = 5;
+const id: number = 1;
 
 beforeEach(() => {
   req = httpMock.createRequest({
     params: {
-      id: 5
+      id: 1
     }
   });
   res = httpMock.createResponse({});
@@ -71,7 +71,7 @@ describe('unit tests for employee service module', () => {
     departmentRepository.get = jest.fn();
     await departmentService.getDepartment(id);
 
-    expect(departmentRepository.get).toBeCalledWith({ id: 5 });
+    expect(departmentRepository.get).toBeCalledWith({ id: id });
   });
 
   it('when given a service method getDepartment it should return type of method to be function', async () => {

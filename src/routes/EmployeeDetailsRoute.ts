@@ -1,4 +1,4 @@
-import EmployeeDetailsController from '../controllers/EmployeeDetailsController';
+import EmployeeDetailsController from '../controllers/EmployeeController';
 import express, { IRouter } from 'express';
 import { userAuth } from '../middlewares/auth.middleware';
 import UserValidator from '../validators/UserValidator';
@@ -22,32 +22,32 @@ class EmployeeDetailsRoute {
       '/',
       userAuth,
       this.validator.newEmployee,
-      this.EmployeeDetailsController.addEmployeeDetails
+      this.EmployeeDetailsController.addEmployee
     );
 
     this.router.get(
       '/',
       userAuth,
-      this.EmployeeDetailsController.getAllEmployeeDetails
+      this.EmployeeDetailsController.getAllEmployee
     );
 
     this.router.get(
       '/:id',
       userAuth,
-      this.EmployeeDetailsController.getEmployeeDetails
+      this.EmployeeDetailsController.getEmployee
     );
 
     this.router.delete(
       '/:id',
       userAuth,
-      this.EmployeeDetailsController.deleteEmployeeDetails
+      this.EmployeeDetailsController.deleteEmployee
     );
 
     this.router.put(
       '/:id',
       userAuth,
       this.validator.updateEmployee,
-      this.EmployeeDetailsController.updateEmployeeDetails
+      this.EmployeeDetailsController.updateEmployee
     );
   };
 

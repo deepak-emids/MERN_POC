@@ -8,7 +8,7 @@ let req: any, res: any, next: any;
 beforeEach(() => {
   req = httpMock.createRequest({
     params: {
-      id: 5
+      id: 1
     }
   });
   res = httpMock.createResponse({});

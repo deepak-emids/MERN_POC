@@ -4,6 +4,7 @@ import { EmployeeDetails } from '../entity/Employee';
 import EmployeeData from '../models/EmployeeData';
 import Response from '../models/Response.model';
 import EmployeeRepository from '../repository/EmployeeRepository';
+import Message from '../utils/ResponseMessage.json';
 
 class EmployeeService {
   private employeeRepository;
@@ -25,7 +26,7 @@ class EmployeeService {
     if (result) {
       response = {
         data: result,
-        message: 'Employee Already Exists',
+        message: Message.CONFLICT,
         status: 200
       };
 
@@ -41,7 +42,7 @@ class EmployeeService {
 
       response = {
         data: addedEmployee,
-        message: 'Employee Details  Added',
+        message: Message.CREATED,
         status: 201
       };
 
@@ -57,7 +58,7 @@ class EmployeeService {
     if (result) {
       response = {
         data: result,
-        message: 'EmployeeDetails Fetched',
+        message: Message.FETCHED,
         status: 200
       };
 
@@ -65,7 +66,7 @@ class EmployeeService {
     } else {
       response = {
         data: {},
-        message: 'EmployeeDetails Not Found',
+        message: Message.NOT_FOUND,
         status: 404
       };
 
@@ -82,7 +83,7 @@ class EmployeeService {
     if (result) {
       response = {
         data: result,
-        message: 'Employee Details Fetched',
+        message: Message.FETCHED,
         status: 200
       };
 
@@ -90,7 +91,7 @@ class EmployeeService {
     } else {
       response = {
         data: {},
-        message: 'EmployeeDetails Not Found',
+        message: Message.NOT_FOUND,
         status: 404
       };
 
@@ -118,7 +119,7 @@ class EmployeeService {
       if (result) {
         response = {
           data: result,
-          message: 'EmployeeDetails updated',
+          message: Message.UPDATED,
           status: 200
         };
 
@@ -127,7 +128,7 @@ class EmployeeService {
     } else {
       response = {
         data: {},
-        message: 'Employee Not Found',
+        message: Message.NOT_FOUND,
         status: 404
       };
 
@@ -147,7 +148,7 @@ class EmployeeService {
       if (result) {
         response = {
           data: {},
-          message: 'EmployeeDetails deleted',
+          message: Message.DELETED,
           status: 200
         };
 
@@ -156,7 +157,7 @@ class EmployeeService {
     } else {
       response = {
         data: {},
-        message: 'Employee Not Found',
+        message: Message.NOT_FOUND,
         status: 404
       };
 
