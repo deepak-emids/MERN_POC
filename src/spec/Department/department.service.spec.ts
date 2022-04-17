@@ -40,4 +40,8 @@ describe('unit tests for employee service module', () => {
   it('when given a service method getAllDepartment it should return type of method to be function', async () => {
     expect(typeof departmentService.getAllDepartment).toBe('function');
   });
+
+  it('when given a service method getAllDepartment it should be defined', async () => {
+    expect(departmentService.getAllDepartment).toBeDefined();
+  });
 });
