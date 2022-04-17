@@ -34,4 +34,8 @@ describe('testing Department controller', () => {
 
     expect(departmentService.addDepartment).toHaveBeenCalled();
   });
+
+  it('when given a controller methods it should return type of method to be function', async () => {
+    expect(typeof departmentController.getAllDepartment).toBe('function');
+  });
 });
