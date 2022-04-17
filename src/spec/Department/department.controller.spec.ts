@@ -71,4 +71,10 @@ describe('testing Department controller', () => {
 
     expect(departmentService.getDepartment).toBeCalledWith(req.params.id);
   });
+
+  it('when given a controller methods it should return type of method to be function', async () => {
+    departmentController.getDepartment = jest.fn();
+
+    expect(typeof departmentController.deleteDepartment).toBe('function');
+  });
 });
