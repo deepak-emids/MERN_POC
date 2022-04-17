@@ -79,4 +79,8 @@ describe('unit tests for employee service module', () => {
 
     expect(typeof departmentService.deleteDepartment).toBe('function');
   });
+
+  it('when given a service method deleteDepartment it should be defined', async () => {
+    expect(departmentService.deleteDepartment).toBeDefined();
+  });
 });
