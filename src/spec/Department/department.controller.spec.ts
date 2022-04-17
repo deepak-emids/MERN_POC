@@ -23,4 +23,8 @@ describe('testing Department controller', () => {
   it('when given a controller methods it should return type of method to be function', async () => {
     expect(typeof departmentController.addDepartment).toBe('function');
   });
+
+  it('when given a controller method it should be defined', async () => {
+    expect(departmentController.addDepartment).toBeDefined();
+  });
 });
