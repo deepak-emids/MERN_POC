@@ -80,4 +80,11 @@ describe('testing role controller', () => {
   it('when given a controller method it should be defined', async () => {
     expect(roleController.deleteRole).toBeDefined();
   });
+
+  it('when a give controller method is called it should call corresponding service method', async () => {
+    roleService.deleteRole = jest.fn();
+    await roleController.deleteRole(req, res, next);
+
+    expect(roleService.deleteRole).toHaveBeenCalled();
+  });
 });
