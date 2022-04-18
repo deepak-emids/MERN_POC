@@ -116,4 +116,8 @@ describe('unit tests for employee service module', () => {
 
     expect(typeof employeeService.updateEmployee).toBe('function');
   });
+
+  it('when given a Service method updateEmployee it should be defined', async () => {
+    expect(employeeService.updateEmployee).toBeDefined();
+  });
 });
