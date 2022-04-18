@@ -136,7 +136,14 @@ describe('testing employee controller', () => {
     expect(employeeController.updateEmployee).toBeDefined();
   });
 
-  it.only('when a give controller method updateEmployee is called it should call corresponding service method with parameters', async () => {
+  it.only('when a give controller method updateEmployee is called it should call corresponding service method', async () => {
+    employeeService.updateEmployee = jest.fn();
+    await employeeController.updateEmployee(req, res, next);
+
+    expect(employeeService.updateEmployee).toHaveBeenCalled();
+  });
+
+  it('when a give controller method updateEmployee is called it should call corresponding service method with parameters', async () => {
     employeeService.updateEmployee = jest.fn();
     await employeeController.updateEmployee(req, res, next);
 
