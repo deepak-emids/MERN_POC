@@ -127,4 +127,14 @@ describe('unit tests for employee service module', () => {
 
     expect(employeeRepository.update).toHaveBeenCalled();
   });
+
+  it('when a give Service method updateEmployee is called it should call corresponding service method with parameters', async () => {
+    employeeRepository.update = jest.fn();
+    await employeeService.updateEmployee(req.params.id, newUser);
+
+    expect(employeeRepository.update).toHaveBeenCalledWith(
+      req.params.id,
+      newUser
+    );
+  });
 });
