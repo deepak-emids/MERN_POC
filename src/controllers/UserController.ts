@@ -1,6 +1,6 @@
 import userService from '../services/UserService';
 import { Request, Response, NextFunction } from 'express';
-import ResponseModel from '../models/Response.model';
+import ResponseModel from '../models/ResponseDTO';
 
 class UserController {
   public UserService = new userService();

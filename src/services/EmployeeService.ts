@@ -2,9 +2,10 @@ import 'reflect-metadata';
 import bcrypt from 'bcrypt';
 import { Employee } from '../entity/Employee';
 import EmployeeData from '../models/EmployeeData';
-import Response from '../models/Response.model';
+import Response from '../models/ResponseDTO';
 import EmployeeRepository from '../repository/EmployeeRepository';
 import Message from '../utils/ResponseMessage.json';
+import HttpStatus from 'http-status-codes';
 
 class EmployeeService {
   private employeeRepository;
@@ -15,7 +16,7 @@ class EmployeeService {
   }
 
   public async addEmployee(body: EmployeeData): Promise<Response> {
-    let response = new Response();
+    let responseDTO: Response;
 
     let emp = new Employee();
 
@@ -24,13 +25,13 @@ class EmployeeService {
     const result = await this.employeeRepository.get(query);
 
     if (result) {
-      response = {
+      responseDTO = {
         data: result,
         message: Message.CONFLICT,
-        status: 200
+        status: HttpStatus.CONFLICT
       };
 
-      return response;
+      return responseDTO;
     } else {
       const hash: string = await bcrypt.hash(body.password, 8);
 
@@ -40,67 +41,67 @@ class EmployeeService {
 
       let addedEmployee = await this.employeeRepository.add(emp);
 
-      response = {
+      responseDTO = {
         data: addedEmployee,
         message: Message.CREATED,
-        status: 201
+        status: HttpStatus.CREATED
       };
 
-      return response;
+      return responseDTO;
     }
   }
 
   public getAllEmployee = async (): Promise<Response> => {
-    let response = new Response();
+    let responseDTO: Response;
 
     let result = await this.employeeRepository.getAll();
 
     if (result) {
-      response = {
+      responseDTO = {
         data: result,
         message: Message.FETCHED,
-        status: 200
+        status: HttpStatus.OK
       };
 
-      return response;
+      return responseDTO;
     } else {
-      response = {
+      responseDTO = {
         data: {},
         message: Message.NOT_FOUND,
-        status: 404
+        status: HttpStatus.NOT_FOUND
       };
 
-      return response;
+      return responseDTO;
     }
   };
 
   public getEmployee = async (id: number): Promise<Response> => {
-    let response = new Response();
+    let responseDTO: Response;
 
     let query = { id: id };
 
     let result = await this.employeeRepository.get(query);
     if (result) {
-      response = {
+      responseDTO = {
         data: result,
         message: Message.FETCHED,
-        status: 200
+        status: HttpStatus.OK
       };
 
-      return response;
+      return responseDTO;
     } else {
-      response = {
+      responseDTO = {
         data: {},
         message: Message.NOT_FOUND,
-        status: 404
+        status: HttpStatus.NOT_FOUND
       };
 
-      return response;
+      return responseDTO;
     }
   };
 
   public updateEmployee = async (id: number, body: EmployeeData) => {
-    let response = new Response();
+    let responseDTO: Response;
 
     if (body.hasOwnProperty('password')) {
       const hash: string = await bcrypt.hash(body.password, 8);
@@ -117,27 +118,27 @@ class EmployeeService {
       let result = await this.employeeRepository.update(id, newData);
 
       if (result) {
-        response = {
+        responseDTO = {
           data: result,
           message: Message.UPDATED,
-          status: 200
+          status: HttpStatus.OK
         };
 
-        return response;
+        return responseDTO;
       }
     } else {
-      response = {
+      responseDTO = {
         data: {},
         message: Message.NOT_FOUND,
-        status: 404
+        status: HttpStatus.NOT_FOUND
       };
 
-      return response;
+      return responseDTO;
     }
   };
 
   public deleteEmployee = async (id: number) => {
-    let response = new Response();
+    let responseDTO: Response;
 
     let query = { id: id };
 
@@ -146,22 +147,22 @@ class EmployeeService {
       let result = await this.employeeRepository.delete(id);
 
       if (result) {
-        response = {
+        responseDTO = {
           data: {},
           message: Message.DELETED,
-          status: 200
+          status: HttpStatus.OK
         };
 
-        return response;
+        return responseDTO;
       }
     } else {
-      response = {
+      responseDTO = {
         data: {},
         message: Message.NOT_FOUND,
-        status: 404
+        status: HttpStatus.NOT_FOUND
       };
 
-      return response;
+      return responseDTO;
     }
   };
 }

@@ -2,7 +2,7 @@ import 'reflect-metadata';
 import { Role } from '../entity/Role';
 import RoleData from '../models/RoleDetails';
 import RoleRepository from '../repository/RoleRepository';
-import Response from '../models/Response.model';
+import Response from '../models/ResponseDTO';
 
 class RoleService {
   private roleRepository;
@@ -14,14 +14,14 @@ class RoleService {
   }
 
   public addRole = async (body: RoleData): Promise<Response> => {
-    let response = new Response();
+    let responseDTO: Response;
 
     let query: { roleName: string } = { roleName: body.roleName };
 
     let result = await this.roleRepository.get(query);
 
     if (result) {
-      response = {
+      responseDTO = {
         data: {},
         message: 'Role Already Exists',
         status: 201
@@ -33,68 +33,68 @@ class RoleService {
 
       let newRole = await this.roleRepository.add(role);
 
-      response = {
+      responseDTO = {
         data: newRole,
         message: 'Role Data Added',
         status: 201
       };
     }
 
-    return response;
+    return responseDTO;
   };
 
   public getAllRole = async (): Promise<Response> => {
-    let response = new Response();
+    let responseDTO: Response;
 
     let result = await this.roleRepository.getAll();
 
     if (result.length > 0) {
-      response = {
+      responseDTO = {
         data: result,
         message: 'Roles Fetched',
         status: 200
       };
 
-      return response;
+      return responseDTO;
     } else {
-      response = {
+      responseDTO = {
         data: {},
         message: 'Role Not Found',
         status: 404
       };
 
-      return response;
+      return responseDTO;
     }
   };
 
   public getRole = async (id: number): Promise<Response> => {
-    let response = new Response();
+    let responseDTO: Response;
 
     let query = { id: id };
 
     let result = await this.roleRepository.get(query);
 
     if (result) {
-      response = {
+      responseDTO = {
         data: result,
         message: 'Role Fetched',
         status: 200
       };
 
-      return response;
+      return responseDTO;
     } else {
-      response = {
+      responseDTO = {
         data: {},
         message: 'Role Not Found',
         status: 404
       };
 
-      return response;
+      return responseDTO;
     }
   };
 
-  public updateRole = async (id: number, body: RoleData) => {
-    let response = new Response();
+  public updateRole = async (id: number, body: RoleData): Promise<Response> => {
+    let responseDTO: Response;
 
     let newData = { ...body };
 
@@ -105,27 +105,27 @@ class RoleService {
       let result = await this.roleRepository.update(id, newData);
 
       if (result) {
-        response = {
+        responseDTO = {
           data: result,
           message: 'Role Updated',
           status: 200
         };
 
-        return response;
+        return responseDTO;
       }
     } else {
-      response = {
+      responseDTO = {
         data: {},
         message: 'Role Not Found',
         status: 404
       };
 
-      return response;
+      return responseDTO;
     }
   };
 
-  public deleteRole = async (id: number) => {
-    let response = new Response();
+  public deleteRole = async (id: number): Promise<Response> => {
+    let responseDTO: Response;
     let query = { id: id };
 
     let findRole = await this.roleRepository.get(query);
@@ -133,22 +133,22 @@ class RoleService {
       let result = await this.roleRepository.delete(id);
 
       if (result) {
-        response = {
+        responseDTO = {
           data: result,
           message: 'Role Deleted',
           status: 200
         };
 
-        return response;
+        return responseDTO;
       }
     } else {
-      response = {
+      responseDTO = {
         data: {},
         message: 'Role Not Found',
         status: 404
       };
 
-      return response;
+      return responseDTO;
     }
   };
 }

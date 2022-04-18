@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import RoleService from '../services/RoleService';
 import logger from '../config/logger';
-import ResponseModel from '../models/Response.model';
+import ResponseModel from '../models/ResponseDTO';
 
 class RoleController {
   private roleService;

@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import DepartmentService from '../services/DepartmentService';
 import logger from '../config/logger';
-import ResponseModel from '../models/Response.model';
+import ResponseModel from '../models/ResponseDTO';
 
 class DepartmentController {
   private departmentService;

@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
-import Response from '../models/Response.model';
+import Response from '../models/ResponseDTO';
 import LoginRequest from '../models/LoginRequest';
 import UserRepository from '../repository/UserRepository';
 let repo = new UserRepository();

@@ -2,7 +2,8 @@ import 'reflect-metadata';
 import { Department } from '../entity/Department';
 import DepartmentData from '../models/DepartmentDetails';
 import DepartmentRepository from '../repository/DepartmentRepository';
-import Response from '../models/Response.model';
+import Response from '../models/ResponseDTO';
+import HttpStatus from 'http-status-codes';
 
 class DepartmentService {
   private departmentRepository;
@@ -13,7 +14,7 @@ class DepartmentService {
   }
 
   public addDepartment = async (body: DepartmentData): Promise<Response> => {
-    let response = new Response();
+    let responseDTO: Response;
 
     let query: { departmentName: string } = {
       departmentName: body.departmentName
@@ -21,10 +22,10 @@ class DepartmentService {
     let result = await this.departmentRepository.get(query);
 
     if (result) {
-      response = {
+      responseDTO = {
         data: {},
         message: 'Department Already Exists',
-        status: 409
+        status: HttpStatus.CONFLICT
       };
     } else {
       const dept = new Department();
@@ -33,68 +34,68 @@ class DepartmentService {
 
       let newDepartment = await this.departmentRepository.add(dept);
 
-      response = {
+      responseDTO = {
         data: newDepartment,
         message: 'Department Added',
-        status: 201
+        status: HttpStatus.CREATED
       };
     }
 
-    return response;
+    return responseDTO;
   };
 
   public getAllDepartment = async (): Promise<Response> => {
-    let response = new Response();
+    let responseDTO: Response;
 
     let result: [] = await this.departmentRepository.getAll();
 
     if (result.length > 0) {
-      response = {
+      responseDTO = {
         data: result,
         message: 'Departments Fetched',
-        status: 200
+        status: HttpStatus.OK
       };
 
-      return response;
+      return responseDTO;
     } else {
-      response = {
+      responseDTO = {
         data: {},
         message: 'Department Not Found',
-        status: 404
+        status: HttpStatus.NOT_FOUND
       };
 
-      return response;
+      return responseDTO;
     }
   };
 
   public getDepartment = async (id: number): Promise<Response> => {
-    let response = new Response();
+    let responseDTO: Response;
 
     let query = { id: id };
 
     let result = await this.departmentRepository.get(query);
 
     if (result) {
-      response = {
+      responseDTO = {
         data: result,
         message: 'Department Fetched',
-        status: 200
+        status: HttpStatus.OK
       };
 
-      return response;
+      return responseDTO;
     } else {
-      response = {
+      responseDTO = {
         data: {},
         message: 'Department Not Found',
-        status: 404
+        status: HttpStatus.NOT_FOUND
       };
 
-      return response;
+      return responseDTO;
     }
   };
 
   public updateDepartment = async (id: number, body: DepartmentData) => {
-    let response = new Response();
+    let responseDTO: Response;
 
     let newData = { ...body };
 
@@ -107,26 +108,26 @@ class DepartmentService {
     if (result) {
       let update = await this.departmentRepository.update(id, newData);
 
-      response = {
+      responseDTO = {
         data: update,
         message: 'Department Updated',
-        status: 200
+        status: HttpStatus.OK
       };
 
-      return response;
+      return responseDTO;
     } else {
-      response = {
+      responseDTO = {
         data: {},
         message: 'Department Not Found',
-        status: 404
+        status: HttpStatus.NOT_FOUND
       };
 
-      return response;
+      return responseDTO;
     }
   };
 
   public deleteDepartment = async (id: number) => {
-    let response = new Response();
+    let responseDTO: Response;
 
     let query: { id: number } = {
       id: id
@@ -137,21 +138,21 @@ class DepartmentService {
     if (result) {
       let update = await this.departmentRepository.delete(id);
 
-      response = {
+      responseDTO = {
         data: update,
         message: 'Department deleted',
-        status: 200
+        status: HttpStatus.OK
       };
 
-      return response;
+      return responseDTO;
     } else {
-      response = {
+      responseDTO = {
         data: {},
         message: 'Department Not Found',
-        status: 404
+        status: HttpStatus.NOT_FOUND
       };
 
-      return response;
+      return responseDTO;
     }
   };
 }
