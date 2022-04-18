@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">17.64% </span>
+                <span class="strong">33.82% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>12/68</span>
+                <span class='fraction'>23/68</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">6.66% </span>
+                <span class="strong">20% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/15</span>
+                <span class='fraction'>3/15</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">10% </span>
+                <span class="strong">30% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/10</span>
+                <span class='fraction'>3/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">18.75% </span>
+                <span class="strong">34.37% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>12/64</span>
+                <span class='fraction'>22/64</span>
             </div>
         
             
@@ -333,24 +333,24 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -413,8 +413,8 @@ class EmployeeService {
   private employeeRepository;
   constructor(employeeRepository?: EmployeeRepository) {
     this.employeeRepository = employeeRepository
-      ? <span class="branch-0 cbranch-no" title="branch not covered" >employeeRepository</span>
-      : new EmployeeRepository();
+      ? employeeRepository
+      : <span class="branch-1 cbranch-no" title="branch not covered" >new EmployeeRepository();</span>
   }
 &nbsp;
   public async <span class="fstat-no" title="function not covered" >addEmployee(</span>body: EmployeeData): Promise&lt;Response&gt; {
@@ -502,24 +502,24 @@ class EmployeeService {
     }
   };
 &nbsp;
-  public updateEmployee = <span class="fstat-no" title="function not covered" >async (i</span>d: number, body: EmployeeData) =&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" > {</span></span>
-    let response = <span class="cstat-no" title="statement not covered" >new Response();</span>
+  public updateEmployee = async (id: number, body: EmployeeData) =&gt; {
+    let response = new Response();
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (body.hasOwnProperty('password')) {</span>
-      const hash: string = <span class="cstat-no" title="statement not covered" >await bcrypt.hash(body.password, 8);</span>
+    if (body.hasOwnProperty('password')) {
+      const hash: string = await bcrypt.hash(body.password, 8);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >      body.password = hash;</span>
+      body.password = hash;
     }
 &nbsp;
-    let newData<span class="cstat-no" title="statement not covered" > = { ...body };</span>
+    let newData = { ...body };
 &nbsp;
-    let query = <span class="cstat-no" title="statement not covered" >{ id: id };</span>
+    let query = { id: id };
 &nbsp;
-    let findEmployee = <span class="cstat-no" title="statement not covered" >await this.employeeRepository.get(query);</span>
-<span class="cstat-no" title="statement not covered" >    if (findEmployee) {</span>
-      let result = <span class="cstat-no" title="statement not covered" >await this.employeeRepository.update(id, newData);</span>
+    let findEmployee = await this.employeeRepository.get(query);
+    if (findEmployee) {
+      let result = await this.employeeRepository.update(id, newData);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >      <span class="missing-if-branch" title="if path not taken" >I</span>if (result) {</span>
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (result) {
 <span class="cstat-no" title="statement not covered" >        response = {</span>
           data: result,
           message: Message.UPDATED,
@@ -528,7 +528,7 @@ class EmployeeService {
 &nbsp;
 <span class="cstat-no" title="statement not covered" >        return response;</span>
       }
-    } else {
+    } else <span class="missing-if-branch" title="else path not taken" >E</span>{
 <span class="cstat-no" title="statement not covered" >      response = {</span>
         data: {},
         message: Message.NOT_FOUND,
@@ -577,7 +577,7 @@ export default EmployeeService;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Mon Apr 18 2022 08:47:49 GMT+0530 (India Standard Time)
+                at Mon Apr 18 2022 09:00:35 GMT+0530 (India Standard Time)
             </div>
         <script src="../prettify.js"></script>
         <script>
