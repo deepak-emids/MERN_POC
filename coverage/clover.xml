@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1650251463969" clover="3.2.0">
-  <project timestamp="1650251463970" name="All files">
-    <metrics statements="180" coveredstatements="51" conditionals="19" coveredconditionals="2" methods="45" coveredmethods="3" elements="244" coveredelements="56" complexity="0" loc="180" ncloc="180" packages="6" files="6" classes="6"/>
+<coverage generated="1650251749826" clover="3.2.0">
+  <project timestamp="1650251749826" name="All files">
+    <metrics statements="180" coveredstatements="57" conditionals="19" coveredconditionals="2" methods="45" coveredmethods="5" elements="244" coveredelements="64" complexity="0" loc="180" ncloc="180" packages="6" files="6" classes="6"/>
     <package name="config">
       <metrics statements="7" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
       <file name="logger.ts" path="C:\Users\deepak.kumbhar\Desktop\Projects\crm_backend\src\config\logger.ts">
@@ -16,9 +16,9 @@
       </file>
     </package>
     <package name="controllers">
-      <metrics statements="39" coveredstatements="9" conditionals="2" coveredconditionals="1" methods="11" coveredmethods="1"/>
+      <metrics statements="39" coveredstatements="15" conditionals="2" coveredconditionals="1" methods="11" coveredmethods="3"/>
       <file name="EmployeeController.ts" path="C:\Users\deepak.kumbhar\Desktop\Projects\crm_backend\src\controllers\EmployeeController.ts">
-        <metrics statements="39" coveredstatements="9" conditionals="2" coveredconditionals="1" methods="11" coveredmethods="1"/>
+        <metrics statements="39" coveredstatements="15" conditionals="2" coveredconditionals="1" methods="11" coveredmethods="3"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="9" count="1" type="cond" truecount="1" falsecount="1"/>
@@ -51,12 +51,12 @@
         <line num="72" count="0" type="stmt"/>
         <line num="74" count="0" type="stmt"/>
         <line num="78" count="1" type="stmt"/>
-        <line num="82" count="0" type="stmt"/>
-        <line num="83" count="0" type="stmt"/>
-        <line num="84" count="0" type="stmt"/>
-        <line num="88" count="0" type="stmt"/>
-        <line num="90" count="0" type="stmt"/>
-        <line num="92" count="0" type="stmt"/>
+        <line num="82" count="1" type="stmt"/>
+        <line num="83" count="1" type="stmt"/>
+        <line num="84" count="1" type="stmt"/>
+        <line num="88" count="1" type="stmt"/>
+        <line num="90" count="1" type="stmt"/>
+        <line num="92" count="1" type="stmt"/>
         <line num="97" count="1" type="stmt"/>
       </file>
     </package>

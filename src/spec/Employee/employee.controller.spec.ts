@@ -126,7 +126,7 @@ describe('testing employee controller', () => {
     expect(employeeService.deleteEmployee).toBeCalledWith(req.params.id);
   });
 
-  it.only('when given a controller method updateEmployee it should return type of method to be function', async () => {
+  it('when given a controller method updateEmployee it should return type of method to be function', async () => {
     employeeController.updateEmployee = jest.fn();
 
     expect(typeof employeeController.updateEmployee).toBe('function');
@@ -134,5 +134,15 @@ describe('testing employee controller', () => {
 
   it('when given a controller method updateEmployee it should be defined', async () => {
     expect(employeeController.updateEmployee).toBeDefined();
+  });
+
+  it.only('when a give controller method updateEmployee is called it should call corresponding service method with parameters', async () => {
+    employeeService.updateEmployee = jest.fn();
+    await employeeController.updateEmployee(req, res, next);
+
+    expect(employeeService.updateEmployee).toHaveBeenCalledWith(
+      req.params.id,
+      newUser
+    );
   });
 });
