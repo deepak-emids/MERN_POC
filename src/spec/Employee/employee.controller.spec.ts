@@ -9,6 +9,7 @@ let req: any, res: any, next: any;
 const date = new Date('2010-10-10');
 
 const newUser: EmployeeData = {
+  id: faker.datatype.number(),
   firstName: faker.name.findName(),
   lastName: faker.name.lastName(),
   email: faker.internet.email(),
@@ -56,7 +57,7 @@ describe('testing employee controller', () => {
     expect(employeeService.addEmployee).toHaveBeenCalled();
   });
 
-  it.only('when a give controller method is called it should call corresponding service method', async () => {
+  it('when a give controller method is called it should call corresponding service method', async () => {
     employeeService.addEmployee = jest.fn();
     console.log(req.body);
     await employeeController.addEmployee(req, res, next);
@@ -123,5 +124,11 @@ describe('testing employee controller', () => {
     await employeeController.deleteEmployee(req, res, next);
 
     expect(employeeService.deleteEmployee).toBeCalledWith(req.params.id);
+  });
+
+  it.only('when given a controller method updateEmployee it should return type of method to be function', async () => {
+    employeeController.updateEmployee = jest.fn();
+
+    expect(typeof employeeController.updateEmployee).toBe('function');
   });
 });
