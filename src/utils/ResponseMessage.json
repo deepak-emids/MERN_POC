@@ -4,5 +4,5 @@
   "CONFLICT": "Employee Already Exists",
   "FETCHED": "Employees Fetched",
   "UPDATED": "Employee Details updated",
-  "DELETED": " Employee Details deleted"
+  "DELETED": "Employee Details deleted"
 }
