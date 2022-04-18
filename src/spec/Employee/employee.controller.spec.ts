@@ -131,4 +131,8 @@ describe('testing employee controller', () => {
 
     expect(typeof employeeController.updateEmployee).toBe('function');
   });
+
+  it('when given a controller method updateEmployee it should be defined', async () => {
+    expect(employeeController.updateEmployee).toBeDefined();
+  });
 });
