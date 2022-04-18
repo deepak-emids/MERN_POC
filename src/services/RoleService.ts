@@ -14,6 +14,8 @@ class RoleService {
   }
 
   public addRole = async (body: RoleData): Promise<Response> => {
+    let response = new Response();
+
     let query: { roleName: string } = { roleName: body.roleName };
 
     let result = await this.roleRepository.get(query);
@@ -41,9 +43,6 @@ class RoleService {
     return response;
   };
 
-  /*
-  get Roles
-  */
   public getAllRole = async (): Promise<Response> => {
     let response = new Response();
 
@@ -68,9 +67,6 @@ class RoleService {
     }
   };
 
-  /*
-  get Roles
-  */
   public getRole = async (id: number): Promise<Response> => {
     let response = new Response();
 
@@ -97,9 +93,6 @@ class RoleService {
     }
   };
 
-  /*
-  update Role
-  */
   public updateRole = async (id: number, body: RoleData) => {
     let response = new Response();
 
@@ -131,9 +124,6 @@ class RoleService {
     }
   };
 
-  /*
-  delete Role work details
-  */
   public deleteRole = async (id: number) => {
     let response = new Response();
     let query = { id: id };

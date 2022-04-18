@@ -5,12 +5,12 @@
 
 // let req: any, res: any, next: any;
 // const newDepartment = { departmentName: 'testDepartment' };
-// const id: number = 1;
+// const id: number = 9;
 
 // beforeEach(() => {
 //   req = httpMock.createRequest({
 //     params: {
-//       id: 1
+//       id: 9
 //     }
 //   });
 //   res = httpMock.createResponse({});

@@ -46,7 +46,7 @@ class DepartmentService {
   public getAllDepartment = async (): Promise<Response> => {
     let response = new Response();
 
-    let result = await this.departmentRepository.getAll();
+    let result: [] = await this.departmentRepository.getAll();
 
     if (result.length > 0) {
       response = {

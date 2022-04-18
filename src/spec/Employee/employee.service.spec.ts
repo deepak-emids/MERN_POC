@@ -1,15 +1,14 @@
 // import httpMock from 'node-mocks-http';
 // import EmployeeDetailsService from '../../services/EmployeeService';
-
 // import EmployeeRepository from '../../repository/EmployeeRepository';
 
 // let req: any, res: any, next: any;
-// const id = 5;
+// const id = 1;
 
 // beforeEach(() => {
 //   req = httpMock.createRequest({
 //     params: {
-//       id: 5
+//       id: 1
 //     }
 //   });
 //   res = httpMock.createResponse({});
@@ -62,7 +61,7 @@
 //     employeeRepository.get = jest.fn();
 //     await employeeService.getEmployee(id);
 
-//     expect(employeeRepository.get).toBeCalledWith({ id: 5 });
+//     expect(employeeRepository.get).toBeCalledWith({ id: id });
 //   });
 
 //   it('when given a controller method deleteEmployee it should return type of method to be function', async () => {
