@@ -4,7 +4,7 @@ import { Employee } from '../entity/Employee';
 import EmployeeData from '../models/EmployeeData';
 import Response from '../models/ResponseDTO';
 import EmployeeRepository from '../repository/EmployeeRepository';
-import Message from '../utils/ResponseMessage.json';
+import Message from '../utils/EmployeeMessage.json';
 import HttpStatus from 'http-status-codes';
 
 class EmployeeService {

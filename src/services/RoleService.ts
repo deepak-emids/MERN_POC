@@ -3,6 +3,8 @@ import { Role } from '../entity/Role';
 import RoleData from '../models/RoleDetails';
 import RoleRepository from '../repository/RoleRepository';
 import Response from '../models/ResponseDTO';
+import HttpStatus from 'http-status-codes';
+import Message from '../utils/RoleMessage.json';
 
 class RoleService {
   private roleRepository;
@@ -23,8 +25,8 @@ class RoleService {
     if (result) {
       responseDTO = {
         data: {},
-        message: 'Role Already Exists',
-        status: 201
+        message: Message.CONFLICT,
+        status: HttpStatus.CONFLICT
       };
     } else {
       const role = new Role();
@@ -35,8 +37,8 @@ class RoleService {
 
       responseDTO = {
         data: newRole,
-        message: 'Role Data Added',
-        status: 201
+        message: Message.CREATED,
+        status: HttpStatus.CREATED
       };
     }
 
@@ -51,16 +53,16 @@ class RoleService {
     if (result.length > 0) {
       responseDTO = {
         data: result,
-        message: 'Roles Fetched',
-        status: 200
+        message: Message.FETCHED,
+        status: HttpStatus.OK
       };
 
       return responseDTO;
     } else {
       responseDTO = {
         data: {},
-        message: 'Role Not Found',
-        status: 404
+        message: Message.NOT_FOUND,
+        status: HttpStatus.NOT_FOUND
       };
 
       return responseDTO;
@@ -77,16 +79,16 @@ class RoleService {
     if (result) {
       responseDTO = {
         data: result,
-        message: 'Role Fetched',
-        status: 200
+        message: Message.FETCHED,
+        status: HttpStatus.OK
       };
 
       return responseDTO;
     } else {
       responseDTO = {
         data: {},
-        message: 'Role Not Found',
-        status: 404
+        message: Message.NOT_FOUND,
+        status: HttpStatus.NOT_FOUND
       };
 
       return responseDTO;
@@ -107,8 +109,8 @@ class RoleService {
       if (result) {
         responseDTO = {
           data: result,
-          message: 'Role Updated',
-          status: 200
+          message: Message.UPDATED,
+          status: HttpStatus.OK
         };
 
         return responseDTO;
@@ -116,8 +118,8 @@ class RoleService {
     } else {
       responseDTO = {
         data: {},
-        message: 'Role Not Found',
-        status: 404
+        message: Message.NOT_FOUND,
+        status: HttpStatus.NOT_FOUND
       };
 
       return responseDTO;
@@ -135,8 +137,8 @@ class RoleService {
       if (result) {
         responseDTO = {
           data: result,
-          message: 'Role Deleted',
-          status: 200
+          message: Message.DELETED,
+          status: HttpStatus.OK
         };
 
         return responseDTO;
@@ -144,8 +146,8 @@ class RoleService {
     } else {
       responseDTO = {
         data: {},
-        message: 'Role Not Found',
-        status: 404
+        message: Message.NOT_FOUND,
+        status: HttpStatus.NOT_FOUND
       };
 
       return responseDTO;

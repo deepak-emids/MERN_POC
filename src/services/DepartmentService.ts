@@ -4,6 +4,7 @@ import DepartmentData from '../models/DepartmentDetails';
 import DepartmentRepository from '../repository/DepartmentRepository';
 import Response from '../models/ResponseDTO';
 import HttpStatus from 'http-status-codes';
+import Message from '../utils/DepartmentMessage.json';
 
 class DepartmentService {
   private departmentRepository;
@@ -24,7 +25,7 @@ class DepartmentService {
     if (result) {
       responseDTO = {
         data: {},
-        message: 'Department Already Exists',
+        message: Message.CONFLICT,
         status: HttpStatus.CONFLICT
       };
     } else {
@@ -36,7 +37,7 @@ class DepartmentService {
 
       responseDTO = {
         data: newDepartment,
-        message: 'Department Added',
+        message: Message.CREATED,
         status: HttpStatus.CREATED
       };
     }
@@ -52,7 +53,7 @@ class DepartmentService {
     if (result.length > 0) {
       responseDTO = {
         data: result,
-        message: 'Departments Fetched',
+        message: Message.FETCHED,
         status: HttpStatus.OK
       };
 
@@ -60,7 +61,7 @@ class DepartmentService {
     } else {
       responseDTO = {
         data: {},
-        message: 'Department Not Found',
+        message: Message.NOT_FOUND,
         status: HttpStatus.NOT_FOUND
       };
 
@@ -78,7 +79,7 @@ class DepartmentService {
     if (result) {
       responseDTO = {
         data: result,
-        message: 'Department Fetched',
+        message: Message.FETCHED,
         status: HttpStatus.OK
       };
 
@@ -86,7 +87,7 @@ class DepartmentService {
     } else {
       responseDTO = {
         data: {},
-        message: 'Department Not Found',
+        message: Message.NOT_FOUND,
         status: HttpStatus.NOT_FOUND
       };
 
@@ -110,7 +111,7 @@ class DepartmentService {
 
       responseDTO = {
         data: update,
-        message: 'Department Updated',
+        message: Message.UPDATED,
         status: HttpStatus.OK
       };
 
@@ -118,7 +119,7 @@ class DepartmentService {
     } else {
       responseDTO = {
         data: {},
-        message: 'Department Not Found',
+        message: Message.NOT_FOUND,
         status: HttpStatus.NOT_FOUND
       };
 
@@ -140,7 +141,7 @@ class DepartmentService {
 
       responseDTO = {
         data: update,
-        message: 'Department deleted',
+        message: Message.DELETED,
         status: HttpStatus.OK
       };
 
@@ -148,7 +149,7 @@ class DepartmentService {
     } else {
       responseDTO = {
         data: {},
-        message: 'Department Not Found',
+        message: Message.NOT_FOUND,
         status: HttpStatus.NOT_FOUND
       };
 
