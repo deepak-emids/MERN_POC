@@ -57,4 +57,11 @@ describe('testing role controller', () => {
   it('when given a controller method getrole it should be defined', async () => {
     expect(roleController.getRole).toBeDefined();
   });
+
+  it('when a give controller  method getrole is called it should call corresponding service method', async () => {
+    roleService.getRole = jest.fn();
+    await roleController.getRole(req, res, next);
+
+    expect(roleService.getRole).toHaveBeenCalled();
+  });
 });
