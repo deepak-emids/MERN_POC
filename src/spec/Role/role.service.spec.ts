@@ -77,4 +77,8 @@ describe('testing role controller', () => {
 
     expect(typeof roleController.deleteRole).toBe('function');
   });
+
+  it('when given a controller method it should be defined', async () => {
+    expect(roleController.deleteRole).toBeDefined();
+  });
 });
