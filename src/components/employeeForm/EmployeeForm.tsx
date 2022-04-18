@@ -235,6 +235,7 @@ export default function EmployeeForm() {
           <div style={{ width: "45%" }}>
             <DatePicker handleDate={handleDate} />
           </div>
+
           <TextField
             style={{ width: "45%" }}
             id="outlined-basic"
