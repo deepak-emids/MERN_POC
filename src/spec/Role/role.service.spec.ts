@@ -38,4 +38,8 @@ describe('testing role controller', () => {
   it('when given a controller methods it should return type of method to be function', async () => {
     expect(typeof roleController.getAllRole).toBe('function');
   });
+
+  it('when given a controller method it should be defined', async () => {
+    expect(roleController.getAllRole).toBeDefined();
+  });
 });
