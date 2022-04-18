@@ -64,4 +64,11 @@ describe('testing role controller', () => {
 
     expect(roleService.getRole).toHaveBeenCalled();
   });
+
+  it('when a give controller getrole method is called it should call corresponding service method with parameters', async () => {
+    roleService.getRole = jest.fn();
+    await roleController.getRole(req, res, next);
+
+    expect(roleService.getRole).toBeCalledWith(req.params.id);
+  });
 });
