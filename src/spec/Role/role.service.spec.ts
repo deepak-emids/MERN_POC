@@ -71,4 +71,10 @@ describe('testing role controller', () => {
 
     expect(roleService.getRole).toBeCalledWith(req.params.id);
   });
+
+  it('when given a controller methods it should return type of method to be function', async () => {
+    roleController.getRole = jest.fn();
+
+    expect(typeof roleController.deleteRole).toBe('function');
+  });
 });
