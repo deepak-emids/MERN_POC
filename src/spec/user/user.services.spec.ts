@@ -34,4 +34,11 @@ describe('testing User Service', () => {
 
     expect(userRepository.get).toHaveBeenCalled();
   });
+
+  it('when a give Service method is called it should call corresponding Repository method', async () => {
+    userRepository.get = jest.fn();
+    await userService.loginUser(req.body);
+
+    expect(userRepository.get).toHaveBeenCalledWith(userEmail);
+  });
 });
