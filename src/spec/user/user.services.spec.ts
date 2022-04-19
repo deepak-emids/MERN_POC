@@ -27,4 +27,11 @@ describe('testing User Service', () => {
   it('when given a Service method it should be defined', async () => {
     expect(userService.loginUser).toBeDefined();
   });
+
+  it('when a give Service method is called it should call corresponding Repository method', async () => {
+    userRepository.get = jest.fn();
+    await userService.loginUser(req.body);
+
+    expect(userRepository.get).toHaveBeenCalled();
+  });
 });
