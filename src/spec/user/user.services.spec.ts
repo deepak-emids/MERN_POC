@@ -23,4 +23,8 @@ describe('testing User Service', () => {
   it('when given a Service methods it should return type of method to be function', async () => {
     expect(typeof userService.loginUser).toBe('function');
   });
+
+  it('when given a Service method it should be defined', async () => {
+    expect(userService.loginUser).toBeDefined();
+  });
 });
