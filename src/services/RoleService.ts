@@ -2,7 +2,7 @@ import 'reflect-metadata';
 import { Role } from '../entity/Role';
 import RoleData from '../models/RoleDetails';
 import RoleRepository from '../repository/RoleRepository';
-import Response from '../models/ResponseDTO';
+import Response from '../models/Response';
 import HttpStatus from 'http-status-codes';
 import Message from '../utils/RoleMessage.json';
 

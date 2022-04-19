@@ -1,18 +1,22 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
-import Response from '../models/ResponseDTO';
+import Response from '../models/Response';
 import LoginRequest from '../models/LoginRequest';
 import UserRepository from '../repository/UserRepository';
-let repo = new UserRepository();
 
 let response = new Response();
 class UserService {
-  /*
-  login user
-  */
+  private userRepository;
+
+  constructor(userRepository?: UserRepository) {
+    this.userRepository = userRepository
+      ? userRepository
+      : new UserRepository();
+  }
+
   public loginUser = async (body: LoginRequest): Promise<Response> => {
     let query = { email: body.email };
-    let find = await repo.get(query);
+    let find = await this.userRepository.get(query);
 
     if (find) {
       let checkPassword = await bcrypt.compare(body.password, find.password);

@@ -2,7 +2,7 @@ import 'reflect-metadata';
 import { Department } from '../entity/Department';
 import DepartmentData from '../models/DepartmentDetails';
 import DepartmentRepository from '../repository/DepartmentRepository';
-import Response from '../models/ResponseDTO';
+import Response from '../models/Response';
 import HttpStatus from 'http-status-codes';
 import Message from '../utils/DepartmentMessage.json';
 
