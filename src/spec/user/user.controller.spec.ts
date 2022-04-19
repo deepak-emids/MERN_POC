@@ -33,4 +33,11 @@ describe.only('testing User controller', () => {
 
     expect(userService.loginUser).toHaveBeenCalled();
   });
+
+  it('when a give controller method is called it should call corresponding service method', async () => {
+    userService.loginUser = jest.fn();
+    await userController.loginUser(req, res, next);
+
+    expect(userService.loginUser).toHaveBeenCalledWith(req.body);
+  });
 });
