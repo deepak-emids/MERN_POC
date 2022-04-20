@@ -1,153 +1,153 @@
-import httpMock from 'node-mocks-http';
-import RoleRepository from '../../repository/RoleRepository';
-import RoleService from '../../services/RoleService';
+// import httpMock from 'node-mocks-http';
+// import RoleRepository from '../../repository/RoleRepository';
+// import RoleService from '../../services/RoleService';
 
-let req: any, res: any, next: any;
+// let req: any, res: any, next: any;
 
-const newRole = { roleName: 'testRole' };
+// const newRole = { roleName: 'testRole' };
 
-const id: number = 9;
+// const id: number = 9;
 
-beforeEach(() => {
-  // jest.resetAllMocks();
-  req = httpMock.createRequest({
-    params: {
-      id: 9
-    },
-    body: newRole
-  });
-  res = httpMock.createResponse({});
-  next = () => {};
-});
+// beforeEach(() => {
+//   // jest.resetAllMocks();
+//   req = httpMock.createRequest({
+//     params: {
+//       id: 9
+//     },
+//     body: newRole
+//   });
+//   res = httpMock.createResponse({});
+//   next = () => {};
+// });
 
-let roleRepository = new RoleRepository();
+// let roleRepository = new RoleRepository();
 
-let roleService = new RoleService(roleRepository);
+// let roleService = new RoleService(roleRepository);
 
-describe('unit tests for employee service module', () => {
-  it('when given a service method addrole it should return type of method to be function', async () => {
-    expect(typeof roleService.addRole).toBe('function');
-  });
+// describe('unit tests for employee service module', () => {
+//   it('when given a service method addrole it should return type of method to be function', async () => {
+//     expect(typeof roleService.addRole).toBe('function');
+//   });
 
-  it('when given a service method addrole it should be defined', async () => {
-    expect(roleService.addRole).toBeDefined();
-  });
+//   it('when given a service method addrole it should be defined', async () => {
+//     expect(roleService.addRole).toBeDefined();
+//   });
 
-  it('when a give service method addrole is called it should call corresponding service method', async () => {
-    roleRepository.add = jest.fn();
-    await roleService.addRole(newRole);
+//   it('when a give service method addrole is called it should call corresponding service method', async () => {
+//     roleRepository.add = jest.fn();
+//     await roleService.addRole(newRole);
 
-    expect(roleRepository.add).toHaveBeenCalled();
-  });
+//     expect(roleRepository.add).toHaveBeenCalled();
+//   });
 
-  it('when given a service method getAllrole it should return type of method to be function', async () => {
-    expect(typeof roleService.getAllRole).toBe('function');
-  });
+//   it('when given a service method getAllrole it should return type of method to be function', async () => {
+//     expect(typeof roleService.getAllRole).toBe('function');
+//   });
 
-  it('when given a service method getAllrole it should be defined', async () => {
-    expect(roleService.getAllRole).toBeDefined();
-  });
+//   it('when given a service method getAllrole it should be defined', async () => {
+//     expect(roleService.getAllRole).toBeDefined();
+//   });
 
-  it('when a give service method getAllroleis called it should call corresponding service method', async () => {
-    roleRepository.getAll = jest.fn(async () => {
-      return [];
-    });
-    await roleService.getAllRole();
+//   it('when a give service method getAllroleis called it should call corresponding service method', async () => {
+//     roleRepository.getAll = jest.fn(async () => {
+//       return [];
+//     });
+//     await roleService.getAllRole();
 
-    expect(roleRepository.getAll).toHaveBeenCalled();
-  });
+//     expect(roleRepository.getAll).toHaveBeenCalled();
+//   });
 
-  it('when given a service method getrole it should return type of method to be function', async () => {
-    expect(typeof roleService.getRole).toBe('function');
-  });
+//   it('when given a service method getrole it should return type of method to be function', async () => {
+//     expect(typeof roleService.getRole).toBe('function');
+//   });
 
-  it('when given a service method getrole it should be defined', async () => {
-    expect(roleService.getRole).toBeDefined();
-  });
+//   it('when given a service method getrole it should be defined', async () => {
+//     expect(roleService.getRole).toBeDefined();
+//   });
 
-  it('when a give service method getrole is called it should call corresponding service method', async () => {
-    roleRepository.get = jest.fn(async () => true);
-    await roleService.getRole(id);
+//   it('when a give service method getrole is called it should call corresponding service method', async () => {
+//     roleRepository.get = jest.fn(async () => true);
+//     await roleService.getRole(id);
 
-    expect(roleRepository.get).toHaveBeenCalled();
-  });
+//     expect(roleRepository.get).toHaveBeenCalled();
+//   });
 
-  it('when a give service method getrole is called it should call corresponding service method with parameters', async () => {
-    roleRepository.get = jest.fn(async () => true);
-    await roleService.getRole(id);
+//   it('when a give service method getrole is called it should call corresponding service method with parameters', async () => {
+//     roleRepository.get = jest.fn(async () => true);
+//     await roleService.getRole(id);
 
-    expect(roleRepository.get).toBeCalledWith({ id: id });
-  });
+//     expect(roleRepository.get).toBeCalledWith({ id: id });
+//   });
 
-  it('when given a service method deleterole it should return type of method to be function', async () => {
-    roleService.deleteRole = jest.fn();
+//   it('when given a service method deleterole it should return type of method to be function', async () => {
+//     roleService.deleteRole = jest.fn();
 
-    expect(typeof roleService.deleteRole).toBe('function');
-  });
+//     expect(typeof roleService.deleteRole).toBe('function');
+//   });
 
-  it('when given a service method deleterole it should be defined', async () => {
-    expect(roleService.deleteRole).toBeDefined();
-  });
+//   it('when given a service method deleterole it should be defined', async () => {
+//     expect(roleService.deleteRole).toBeDefined();
+//   });
 
-  it('when given a service method deleterole is called it should call corresponding service method', async () => {
-    roleRepository.get = jest.fn().mockResolvedValue(true);
+//   it('when given a service method deleterole is called it should call corresponding service method', async () => {
+//     roleRepository.get = jest.fn().mockResolvedValue(true);
 
-    let query = { id: id };
+//     let query = { id: id };
 
-    let result = await roleRepository.get(query);
+//     let result = await roleRepository.get(query);
 
-    // expect(result).toBe(true);
+//     // expect(result).toBe(true);
 
-    roleRepository.delete = jest.fn().mockResolvedValue(true);
+//     roleRepository.delete = jest.fn().mockResolvedValue(true);
 
-    await roleService.deleteRole(id);
+//     await roleService.deleteRole(id);
 
-    expect(roleRepository.delete).toBeCalled();
-  });
+//     expect(roleRepository.delete).toBeCalled();
+//   });
 
-  it('when given a service method deleterole is called it should call corresponding service method with parameters', async () => {
-    roleRepository.get = jest.fn(async () => true);
+//   it('when given a service method deleterole is called it should call corresponding service method with parameters', async () => {
+//     roleRepository.get = jest.fn(async () => true);
 
-    roleRepository.delete = jest.fn(async () => true);
+//     roleRepository.delete = jest.fn(async () => true);
 
-    await roleService.deleteRole(id);
+//     await roleService.deleteRole(id);
 
-    expect(roleRepository.delete).toBeCalledWith(req.params.id);
-  });
+//     expect(roleRepository.delete).toBeCalledWith(req.params.id);
+//   });
 
-  it('when given a service method updaterole it should return type of method to be function', async () => {
-    roleService.updateRole = jest.fn();
+//   it('when given a service method updaterole it should return type of method to be function', async () => {
+//     roleService.updateRole = jest.fn();
 
-    expect(typeof roleService.updateRole).toBe('function');
-  });
+//     expect(typeof roleService.updateRole).toBe('function');
+//   });
 
-  it('when given a service method updaterole it should be defined', async () => {
-    expect(roleService.updateRole).toBeDefined();
-  });
+//   it('when given a service method updaterole it should be defined', async () => {
+//     expect(roleService.updateRole).toBeDefined();
+//   });
 
-  it('when given a service method updaterole is called it should call corresponding service method', async () => {
-    roleRepository.get = jest.fn(async () => {
-      return { test: 'test' };
-    });
+//   it('when given a service method updaterole is called it should call corresponding service method', async () => {
+//     roleRepository.get = jest.fn(async () => {
+//       return { test: 'test' };
+//     });
 
-    roleRepository.update = jest.fn(async () => {
-      return [];
-    });
+//     roleRepository.update = jest.fn(async () => {
+//       return [];
+//     });
 
-    await roleService.updateRole(id, newRole);
+//     await roleService.updateRole(id, newRole);
 
-    expect(roleRepository.update).toHaveBeenCalled();
-  });
+//     expect(roleRepository.update).toHaveBeenCalled();
+//   });
 
-  it('when given a service method updateRole is called it should call corresponding service method with parameters', async () => {
-    let query = { id: id };
+//   it('when given a service method updateRole is called it should call corresponding service method with parameters', async () => {
+//     let query = { id: id };
 
-    roleRepository.get = jest.fn();
+//     roleRepository.get = jest.fn();
 
-    roleRepository.update = jest.fn();
+//     roleRepository.update = jest.fn();
 
-    await roleService.updateRole(id, req.body);
+//     await roleService.updateRole(id, req.body);
 
-    expect(roleRepository.update).toBeCalledWith(req.params.id, newRole);
-  });
-});
+//     expect(roleRepository.update).toBeCalledWith(req.params.id, newRole);
+//   });
+// });

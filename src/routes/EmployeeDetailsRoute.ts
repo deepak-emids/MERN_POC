@@ -5,6 +5,7 @@ import UserValidator from '../validators/UserValidator';
 
 class EmployeeDetailsRoute {
   private EmployeeDetailsController = new EmployeeDetailsController();
+
   private validator = new UserValidator();
 
   private router = express.Router();
