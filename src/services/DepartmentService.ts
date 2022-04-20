@@ -8,22 +8,22 @@ import Message from '../utils/DepartmentMessage.json';
 
 class DepartmentService {
   private departmentRepository;
+  private responseDTO;
   constructor(departmentRepository?: DepartmentRepository) {
     this.departmentRepository = departmentRepository
       ? departmentRepository
       : new DepartmentRepository();
+    this.responseDTO = new Response();
   }
 
   public addDepartment = async (body: DepartmentData): Promise<Response> => {
-    let responseDTO: Response;
-
     let query: { departmentName: string } = {
       departmentName: body.departmentName
     };
     let result = await this.departmentRepository.get(query);
 
     if (result) {
-      responseDTO = {
+      this.responseDTO = {
         data: {},
         message: Message.CONFLICT,
         status: HttpStatus.CONFLICT
@@ -35,69 +35,63 @@ class DepartmentService {
 
       let newDepartment = await this.departmentRepository.add(dept);
 
-      responseDTO = {
+      this.responseDTO = {
         data: newDepartment,
         message: Message.CREATED,
         status: HttpStatus.CREATED
       };
     }
 
-    return responseDTO;
+    return this.responseDTO;
   };
 
   public getAllDepartment = async (): Promise<Response> => {
-    let responseDTO: Response;
-
     let result: [] = await this.departmentRepository.getAll();
 
     if (result.length > 0) {
-      responseDTO = {
+      this.responseDTO = {
         data: result,
         message: Message.FETCHED,
         status: HttpStatus.OK
       };
 
-      return responseDTO;
+      return this.responseDTO;
     } else {
-      responseDTO = {
+      this.responseDTO = {
         data: {},
         message: Message.NOT_FOUND,
         status: HttpStatus.NOT_FOUND
       };
 
-      return responseDTO;
+      return this.responseDTO;
     }
   };
 
   public getDepartment = async (id: number): Promise<Response> => {
-    let responseDTO: Response;
-
     let query = { id: id };
 
     let result = await this.departmentRepository.get(query);
 
     if (result) {
-      responseDTO = {
+      this.responseDTO = {
         data: result,
         message: Message.FETCHED,
         status: HttpStatus.OK
       };
 
-      return responseDTO;
+      return this.responseDTO;
     } else {
-      responseDTO = {
+      this.responseDTO = {
         data: {},
         message: Message.NOT_FOUND,
         status: HttpStatus.NOT_FOUND
       };
 
-      return responseDTO;
+      return this.responseDTO;
     }
   };
 
   public updateDepartment = async (id: number, body: DepartmentData) => {
-    let responseDTO: Response;
-
     let newData = { ...body };
 
     let query: { id: number } = {
@@ -109,27 +103,25 @@ class DepartmentService {
     if (result) {
       let update = await this.departmentRepository.update(id, newData);
 
-      responseDTO = {
+      this.responseDTO = {
         data: update,
         message: Message.UPDATED,
         status: HttpStatus.OK
       };
 
-      return responseDTO;
+      return this.responseDTO;
     } else {
-      responseDTO = {
+      this.responseDTO = {
         data: {},
         message: Message.NOT_FOUND,
         status: HttpStatus.NOT_FOUND
       };
 
-      return responseDTO;
+      return this.responseDTO;
     }
   };
 
   public deleteDepartment = async (id: number) => {
-    let responseDTO: Response;
-
     let query: { id: number } = {
       id: id
     };
@@ -140,22 +132,22 @@ class DepartmentService {
       let update = await this.departmentRepository.delete(result);
 
       if (update) {
-        responseDTO = {
+        this.responseDTO = {
           data: {},
           message: Message.DELETED,
           status: HttpStatus.OK
         };
 
-        return responseDTO;
+        return this.responseDTO;
       }
     } else {
-      responseDTO = {
+      this.responseDTO = {
         data: {},
         message: Message.NOT_FOUND,
         status: HttpStatus.NOT_FOUND
       };
 
-      return responseDTO;
+      return this.responseDTO;
     }
   };
 }

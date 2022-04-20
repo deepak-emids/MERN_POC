@@ -9,6 +9,7 @@ const newRole = { roleName: 'testRole' };
 const id: number = 9;
 
 beforeEach(() => {
+  // jest.resetAllMocks();
   req = httpMock.createRequest({
     params: {
       id: 9
@@ -65,14 +66,14 @@ describe('unit tests for employee service module', () => {
   });
 
   it('when a give service method getrole is called it should call corresponding service method', async () => {
-    roleRepository.get = jest.fn();
+    roleRepository.get = jest.fn(async () => true);
     await roleService.getRole(id);
 
     expect(roleRepository.get).toHaveBeenCalled();
   });
 
   it('when a give service method getrole is called it should call corresponding service method with parameters', async () => {
-    roleRepository.get = jest.fn();
+    roleRepository.get = jest.fn(async () => true);
     await roleService.getRole(id);
 
     expect(roleRepository.get).toBeCalledWith({ id: id });
@@ -89,21 +90,23 @@ describe('unit tests for employee service module', () => {
   });
 
   it('when given a service method deleterole is called it should call corresponding service method', async () => {
-    roleRepository.get = jest.fn(async () => {
-      return { test: 'test' };
-    });
+    roleRepository.get = jest.fn().mockResolvedValue(true);
 
-    roleRepository.delete = jest.fn(async () => true);
+    let query = { id: id };
+
+    let result = await roleRepository.get(query);
+
+    // expect(result).toBe(true);
+
+    roleRepository.delete = jest.fn().mockResolvedValue(true);
 
     await roleService.deleteRole(id);
 
-    expect(roleRepository.delete).toHaveBeenCalled();
+    expect(roleRepository.delete).toBeCalled();
   });
 
   it('when given a service method deleterole is called it should call corresponding service method with parameters', async () => {
-    roleRepository.get = jest.fn(async () => {
-      return { test: 'test' };
-    });
+    roleRepository.get = jest.fn(async () => true);
 
     roleRepository.delete = jest.fn(async () => true);
 
@@ -139,9 +142,9 @@ describe('unit tests for employee service module', () => {
   it('when given a service method updateRole is called it should call corresponding service method with parameters', async () => {
     let query = { id: id };
 
-    roleRepository.get = jest.fn(async (query) => true);
+    roleRepository.get = jest.fn();
 
-    roleRepository.update = jest.fn(async () => true);
+    roleRepository.update = jest.fn();
 
     await roleService.updateRole(id, req.body);
 
