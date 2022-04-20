@@ -8,16 +8,12 @@ class EmployeeDetailsRoute {
   private validator = new UserValidator();
 
   private router = express.Router();
-  //   private UserValidator = new userValidator();
 
   constructor() {
     this.routes();
   }
 
   private routes = () => {
-    /*
-    route to add all EmployeeDetails
-    */
     this.router.post(
       '/',
       userAuth,

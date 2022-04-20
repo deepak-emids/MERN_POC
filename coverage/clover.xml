@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1650428985379" clover="3.2.0">
-  <project timestamp="1650428985379" name="All files">
-    <metrics statements="129" coveredstatements="70" conditionals="15" coveredconditionals="4" methods="34" coveredmethods="15" elements="178" coveredelements="89" complexity="0" loc="129" ncloc="129" packages="3" files="5" classes="5"/>
+<coverage generated="1650433506700" clover="3.2.0">
+  <project timestamp="1650433506700" name="All files">
+    <metrics statements="125" coveredstatements="70" conditionals="13" coveredconditionals="4" methods="34" coveredmethods="15" elements="172" coveredelements="89" complexity="0" loc="125" ncloc="125" packages="3" files="5" classes="5"/>
     <package name="entity">
       <metrics statements="28" coveredstatements="28" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
       <file name="Department.ts" path="C:\Users\deepak.kumbhar\Desktop\Projects\crm_backend\src\entity\Department.ts">
@@ -43,9 +43,9 @@
       </file>
     </package>
     <package name="repository">
-      <metrics statements="49" coveredstatements="13" conditionals="2" coveredconditionals="0" methods="20" coveredmethods="5"/>
+      <metrics statements="45" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="20" coveredmethods="5"/>
       <file name="DepartmentRepository.ts" path="C:\Users\deepak.kumbhar\Desktop\Projects\crm_backend\src\repository\DepartmentRepository.ts">
-        <metrics statements="49" coveredstatements="13" conditionals="2" coveredconditionals="0" methods="20" coveredmethods="5"/>
+        <metrics statements="45" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="20" coveredmethods="5"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
@@ -79,22 +79,18 @@
         <line num="60" count="0" type="stmt"/>
         <line num="61" count="0" type="stmt"/>
         <line num="63" count="0" type="stmt"/>
-        <line num="65" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="66" count="0" type="stmt"/>
-        <line num="68" count="0" type="stmt"/>
+        <line num="65" count="0" type="stmt"/>
+        <line num="67" count="0" type="stmt"/>
         <line num="70" count="0" type="stmt"/>
-        <line num="72" count="0" type="stmt"/>
-        <line num="74" count="0" type="stmt"/>
-        <line num="78" count="0" type="stmt"/>
-        <line num="82" count="1" type="stmt"/>
+        <line num="74" count="1" type="stmt"/>
+        <line num="75" count="0" type="stmt"/>
+        <line num="76" count="0" type="stmt"/>
+        <line num="77" count="0" type="stmt"/>
+        <line num="79" count="0" type="stmt"/>
+        <line num="81" count="0" type="stmt"/>
         <line num="83" count="0" type="stmt"/>
-        <line num="84" count="0" type="stmt"/>
         <line num="85" count="0" type="stmt"/>
-        <line num="87" count="0" type="stmt"/>
-        <line num="89" count="0" type="stmt"/>
-        <line num="91" count="0" type="stmt"/>
-        <line num="93" count="0" type="stmt"/>
-        <line num="96" count="0" type="stmt"/>
+        <line num="88" count="0" type="stmt"/>
       </file>
     </package>
     <package name="services">

@@ -88,11 +88,17 @@ describe('unit tests for employee service module', () => {
   });
 
   it('when given a service method deleteDepartment is called it should call corresponding service method', async () => {
-    departmentRepository.get = jest.fn(async () => true);
+    departmentRepository.get = jest
+      .fn()
+      .mockImplementationOnce(async () => true);
 
-    departmentRepository.delete = jest.fn();
+    departmentRepository.delete = jest
+      .fn()
+      .mockImplementationOnce(async () => true);
 
     await departmentService.deleteDepartment(id);
+
+    expect(departmentRepository.get).toHaveBeenCalled();
 
     expect(departmentRepository.delete).toHaveBeenCalled();
   });
@@ -127,7 +133,7 @@ describe('unit tests for employee service module', () => {
     expect(departmentRepository.update).toHaveBeenCalled();
   });
 
-  it('when given a service method deleteDepartment is called it should call corresponding service method with parameters', async () => {
+  it('when given a service method updateDepartment is called it should call corresponding service method with parameters', async () => {
     departmentRepository.get = jest.fn(async () => true);
 
     departmentRepository.update = jest.fn();

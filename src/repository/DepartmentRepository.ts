@@ -55,24 +55,16 @@ export default class DepartmentRepository {
     }
   };
 
-  public delete = async (id: number) => {
+  public delete = async (department) => {
     try {
       return await createConnection().then(async (connection) => {
         let repo = connection.getRepository(Department);
 
-        let foundEmp = await repo.find({ id: id });
+        await repo.remove(department);
 
-        if (foundEmp.length > 0) {
-          await repo.remove(foundEmp[0]);
+        await connection.close();
 
-          await connection.close();
-
-          return true;
-        } else {
-          await connection.close();
-
-          return false;
-        }
+        return true;
       });
     } catch (error) {
       return error;
