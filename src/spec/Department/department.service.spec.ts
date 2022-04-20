@@ -48,7 +48,8 @@ describe('unit tests for employee service module', () => {
   });
 
   it('when a give service method getAllDepartmentis called it should call corresponding service method', async () => {
-    departmentRepository.getAll = jest.fn();
+    departmentRepository.getAll = jest.fn(async () => [{ employee: 'test' }]);
+
     await departmentService.getAllDepartment();
 
     expect(departmentRepository.getAll).toHaveBeenCalled();
@@ -87,17 +88,23 @@ describe('unit tests for employee service module', () => {
   });
 
   it('when given a service method deleteDepartment is called it should call corresponding service method', async () => {
+    departmentRepository.get = jest.fn(async () => true);
+
     departmentRepository.delete = jest.fn();
+
     await departmentService.deleteDepartment(id);
 
     expect(departmentRepository.delete).toHaveBeenCalled();
   });
 
   it('when given a service method deleteDepartment is called it should call corresponding service method with parameters', async () => {
+    departmentRepository.get = jest.fn(async () => true);
+
     departmentRepository.delete = jest.fn();
+
     await departmentService.deleteDepartment(id);
 
-    expect(departmentRepository.delete).toBeCalledWith(req.params.id);
+    expect(departmentRepository.delete).toBeCalledWith(id);
   });
 
   it('when given a service method updateDepartment it should return type of method to be function', async () => {
@@ -111,16 +118,22 @@ describe('unit tests for employee service module', () => {
   });
 
   it('when given a service method updateDepartment is called it should call corresponding service method', async () => {
+    departmentRepository.get = jest.fn(async () => true);
+
     departmentRepository.update = jest.fn();
+
     await departmentService.updateDepartment(id, req.body);
 
     expect(departmentRepository.update).toHaveBeenCalled();
   });
 
   it('when given a service method deleteDepartment is called it should call corresponding service method with parameters', async () => {
+    departmentRepository.get = jest.fn(async () => true);
+
     departmentRepository.update = jest.fn();
+
     await departmentService.updateDepartment(id, req.body);
 
-    expect(departmentRepository.update).toBeCalledWith(req.params.id, req.body);
+    expect(departmentRepository.update).toBeCalledWith(id, req.body);
   });
 });

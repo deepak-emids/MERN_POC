@@ -2,5 +2,5 @@ projectKey=crm_backend
 serverUrl=http://localhost:9050
 serverVersion=9.3.0.51899
 dashboardUrl=http://localhost:9050/dashboard?id=crm_backend
-ceTaskId=AYBC9Pa8cP08n4oTaM3u
-ceTaskUrl=http://localhost:9050/api/ce/task?id=AYBC9Pa8cP08n4oTaM3u
+ceTaskId=AYBFGu126zkAitgBzmZA
+ceTaskUrl=http://localhost:9050/api/ce/task?id=AYBFGu126zkAitgBzmZA

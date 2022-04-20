@@ -38,7 +38,6 @@ class UserValidator {
     res: Response,
     next: NextFunction
   ): void => {
-    console.log('first');
     const schema = Joi.object({
       firstName: Joi.string().alphanum().min(2).max(20),
       lastName: Joi.string().alphanum().min(2).max(20),

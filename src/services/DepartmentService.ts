@@ -139,13 +139,15 @@ class DepartmentService {
     if (result) {
       let update = await this.departmentRepository.delete(id);
 
-      responseDTO = {
-        data: update,
-        message: Message.DELETED,
-        status: HttpStatus.OK
-      };
+      if (update) {
+        responseDTO = {
+          data: {},
+          message: Message.DELETED,
+          status: HttpStatus.OK
+        };
 
-      return responseDTO;
+        return responseDTO;
+      }
     } else {
       responseDTO = {
         data: {},
