@@ -14,9 +14,6 @@ class DepartmentControllerRoute {
   }
 
   private routes = () => {
-    /*
-    route to add all DepartmentController
-    */
     this.router.post(
       '/',
       userAuth,
