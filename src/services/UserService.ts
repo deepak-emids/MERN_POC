@@ -3,6 +3,8 @@ import bcrypt from 'bcrypt';
 import Response from '../models/Response';
 import LoginRequest from '../models/LoginRequest';
 import UserRepository from '../repository/UserRepository';
+import HttpStatus from 'http-status-codes';
+import Message from '../utils/UserMessage.json';
 
 let response = new Response();
 class UserService {
@@ -37,24 +39,24 @@ class UserService {
             role_Id: find.role_Id,
             token: token
           },
-          message: 'Login success',
-          status: 200
+          message: Message.SUCCESS,
+          status: HttpStatus.OK
         };
 
         return response;
       } else {
         response = {
           data: {},
-          message: 'Incorrect Password',
-          status: 401
+          message: Message.UNAUTHORIZED,
+          status: HttpStatus.UNAUTHORIZED
         };
         return response;
       }
     } else {
       response = {
         data: {},
-        message: 'User Not Found',
-        status: 404
+        message: Message.NOT_FOUND,
+        status: HttpStatus.NOT_FOUND
       };
 
       return response;

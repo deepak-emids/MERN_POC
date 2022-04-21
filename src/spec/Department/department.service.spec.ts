@@ -63,14 +63,14 @@
 //   });
 
 //   it('when a give service method getDepartment is called it should call corresponding service method', async () => {
-//     departmentRepository.get = jest.fn();
+//     departmentRepository.get = jest.fn(async () => true);
 //     await departmentService.getDepartment(id);
 
 //     expect(departmentRepository.get).toHaveBeenCalled();
 //   });
 
 //   it('when a give service method getDepartment is called it should call corresponding service method with parameters', async () => {
-//     departmentRepository.get = jest.fn();
+//     departmentRepository.get = jest.fn(async () => true);
 //     await departmentService.getDepartment(id);
 
 //     expect(departmentRepository.get).toBeCalledWith({ id: id });

@@ -1,0 +1,10 @@
+{
+  "NOT_FOUND": "User Not Found",
+  "CREATED": "User Details  Added",
+  "CONFLICT": "User Already Exists",
+  "FETCHED": "Users Fetched",
+  "UPDATED": "User Details updated",
+  "DELETED": "User Details deleted",
+  "SUCCESS": "Login Successful",
+  "UNAUTHORIZED": "Incorrect Password"
+}
