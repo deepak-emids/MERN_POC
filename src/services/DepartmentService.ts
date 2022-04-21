@@ -2,166 +2,150 @@ import 'reflect-metadata';
 import { Department } from '../entity/Department';
 import DepartmentData from '../models/DepartmentDetails';
 import DepartmentRepository from '../repository/DepartmentRepository';
-import Response from '../models/Response.model';
-
-let repo = new DepartmentRepository();
+import Response from '../models/Response';
+import HttpStatus from 'http-status-codes';
+import Message from '../utils/DepartmentMessage.json';
 
 class DepartmentService {
-  /*
-  add emp
-  */
-  public addDepartment = async (body: DepartmentData): Promise<Response> => {
-    let response = new Response();
+  private departmentRepository;
+  private responseDTO;
+  constructor(departmentRepository?: DepartmentRepository) {
+    this.departmentRepository = departmentRepository
+      ? departmentRepository
+      : new DepartmentRepository();
+    this.responseDTO = new Response();
+  }
 
+  public addDepartment = async (body: DepartmentData): Promise<Response> => {
     let query: { departmentName: string } = {
       departmentName: body.departmentName
     };
-    let result = await repo.get(query);
+    let result = await this.departmentRepository.get(query);
 
     if (result) {
-      response = {
+      this.responseDTO = {
         data: {},
-        message: 'Department Already Exists',
-        status: 409
+        message: Message.CONFLICT,
+        status: HttpStatus.CONFLICT
       };
     } else {
       const dept = new Department();
 
       dept.departmentName = body.departmentName;
 
-      let newDepartment = await repo.add(dept);
+      let newDepartment = await this.departmentRepository.add(dept);
 
-      response = {
+      this.responseDTO = {
         data: newDepartment,
-        message: 'Department Added',
-        status: 201
+        message: Message.CREATED,
+        status: HttpStatus.CREATED
       };
     }
 
-    return response;
+    return this.responseDTO;
   };
 
-  /*
-  get Departments
-  */
   public getAllDepartment = async (): Promise<Response> => {
-    let response = new Response();
-
-    let result = await repo.getAll();
+    let result: [] = await this.departmentRepository.getAll();
 
     if (result.length > 0) {
-      response = {
+      this.responseDTO = {
         data: result,
-        message: 'Departments Fetched',
-        status: 200
+        message: Message.FETCHED,
+        status: HttpStatus.OK
       };
 
-      return response;
+      return this.responseDTO;
     } else {
-      response = {
+      this.responseDTO = {
         data: {},
-        message: 'Department Not Found',
-        status: 404
+        message: Message.NOT_FOUND,
+        status: HttpStatus.NOT_FOUND
       };
 
-      return response;
+      return this.responseDTO;
     }
   };
 
-  /*
-  get Departments
-  */
   public getDepartment = async (id: number): Promise<Response> => {
-    let response = new Response();
-
     let query = { id: id };
 
-    let result = await repo.get(query);
+    let result = await this.departmentRepository.get(query);
 
     if (result) {
-      response = {
+      this.responseDTO = {
         data: result,
-        message: 'Department Fetched',
-        status: 200
+        message: Message.FETCHED,
+        status: HttpStatus.OK
       };
 
-      return response;
+      return this.responseDTO;
     } else {
-      response = {
+      this.responseDTO = {
         data: {},
-        message: 'Department Not Found',
-        status: 404
+        message: Message.NOT_FOUND,
+        status: HttpStatus.NOT_FOUND
       };
 
-      return response;
+      return this.responseDTO;
     }
   };
 
-  /*
-  update Department
-  */
   public updateDepartment = async (id: number, body: DepartmentData) => {
-    let response = new Response();
-
     let newData = { ...body };
 
     let query: { id: number } = {
       id: id
     };
 
-    let result = await repo.get(query);
+    let result = await this.departmentRepository.get(query);
 
     if (result) {
-      let update = await repo.update(id, newData);
+      let update = await this.departmentRepository.update(id, newData);
 
-      response = {
+      this.responseDTO = {
         data: update,
-        message: 'Department Updated',
-        status: 200
+        message: Message.UPDATED,
+        status: HttpStatus.OK
       };
 
-      return response;
+      return this.responseDTO;
     } else {
-      response = {
+      this.responseDTO = {
         data: {},
-        message: 'Department Not Found',
-        status: 404
+        message: Message.NOT_FOUND,
+        status: HttpStatus.NOT_FOUND
       };
 
-      return response;
+      return this.responseDTO;
     }
   };
 
-  /*
-  delete Department work details
-  */
   public deleteDepartment = async (id: number) => {
-    let response = new Response();
-
     let query: { id: number } = {
       id: id
     };
 
-    let result = await repo.get(query);
+    let result = await this.departmentRepository.get(query);
 
     if (result) {
-      let update = await repo.delete(id);
+      let update = await this.departmentRepository.delete(result);
 
-      response = {
-        data: update,
-        message: 'Department deleted',
-        status: 200
-      };
-
-      return response;
-    } else {
-      response = {
+      this.responseDTO = {
         data: {},
-        message: 'Department Not Found',
-        status: 404
+        message: Message.DELETED,
+        status: HttpStatus.OK
       };
 
-      return response;
+      return this.responseDTO;
+    } else {
+      this.responseDTO = {
+        data: {},
+        message: Message.NOT_FOUND,
+        status: HttpStatus.NOT_FOUND
+      };
+
+      return this.responseDTO;
     }
   };
 }

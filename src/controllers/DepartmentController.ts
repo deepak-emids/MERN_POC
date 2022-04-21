@@ -1,22 +1,22 @@
 import { Request, Response, NextFunction } from 'express';
 import DepartmentService from '../services/DepartmentService';
 import logger from '../config/logger';
-import ResponseModel from '../models/Response.model';
+import ResponseModel from '../models/Response';
 
 class DepartmentController {
-  // public DepartmentService = new DepartmentService();
-  private DepartmentService;
-  constructor() {
-    this.DepartmentService = new DepartmentService();
+  private departmentService;
+  constructor(departmentService?: DepartmentService) {
+    this.departmentService = departmentService
+      ? departmentService
+      : new DepartmentService();
   }
-
   public addDepartment = async (
     req: Request,
     res: Response,
     next: NextFunction
   ): Promise<any> => {
     try {
-      const data: ResponseModel = await this.DepartmentService.addDepartment(
+      const data: ResponseModel = await this.departmentService.addDepartment(
         req.body
       );
       res.status(data.status).send(data);
@@ -33,7 +33,7 @@ class DepartmentController {
   ): Promise<any> => {
     try {
       const data: ResponseModel =
-        await this.DepartmentService.getAllDepartment();
+        await this.departmentService.getAllDepartment();
 
       res.status(data.status).send(data);
     } catch (error) {
@@ -48,7 +48,7 @@ class DepartmentController {
     next: NextFunction
   ): Promise<any> => {
     try {
-      const data: ResponseModel = await this.DepartmentService.getDepartment(
+      const data: ResponseModel = await this.departmentService.getDepartment(
         req.params.id
       );
       res.status(data.status).send(data);
@@ -64,7 +64,7 @@ class DepartmentController {
     next: NextFunction
   ): Promise<any> => {
     try {
-      const data: ResponseModel = await this.DepartmentService.deleteDepartment(
+      const data: ResponseModel = await this.departmentService.deleteDepartment(
         req.params.id
       );
       res.status(data.status).send(data);
@@ -80,7 +80,7 @@ class DepartmentController {
     next: NextFunction
   ): Promise<any> => {
     try {
-      const data: ResponseModel = await this.DepartmentService.updateDepartment(
+      const data: ResponseModel = await this.departmentService.updateDepartment(
         req.params.id,
         req.body
       );

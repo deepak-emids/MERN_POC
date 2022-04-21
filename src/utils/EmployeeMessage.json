@@ -1,0 +1,8 @@
+{
+  "NOT_FOUND": "Employee Not Found",
+  "CREATED": "Employee Details  Added",
+  "CONFLICT": "Employee Already Exists",
+  "FETCHED": "Employees Fetched",
+  "UPDATED": "Employee Details updated",
+  "DELETED": "Employee Details deleted"
+}

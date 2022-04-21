@@ -8,8 +8,9 @@
     "rootDir": "./src",
     "esModuleInterop": true,
     "noImplicitAny": false,
-    "allowSyntheticDefaultImports": true,
-    "moduleResolution": "Node"
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true
   },
   "include": ["src/**/*", "../tes.controller.spec.ts"],
   "exclude": ["node_modules", "src/tests"]

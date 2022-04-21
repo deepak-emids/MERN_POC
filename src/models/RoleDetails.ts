@@ -1,5 +1,4 @@
 class RoleDetails {
-  id: number;
   roleName: string;
 }
 

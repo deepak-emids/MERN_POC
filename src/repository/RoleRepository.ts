@@ -55,23 +55,16 @@ export default class RoleRepository {
     }
   };
 
-  public delete = async (id: number) => {
+  public delete = async (object) => {
     try {
       return await createConnection().then(async (connection) => {
         let repo = connection.getRepository(Role);
 
-        let foundEmp = await repo.find({ id: id });
+        await repo.remove(object);
 
-        if (foundEmp.length > 0) {
-          await repo.remove(foundEmp[0]);
+        await connection.close();
 
-          let Emp = await repo.findOne({ id: id });
-
-          await connection.close();
-
-          if (Emp) return false;
-          else return true;
-        }
+        return true;
       });
     } catch (error) {
       return error;

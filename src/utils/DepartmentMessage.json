@@ -1,0 +1,8 @@
+{
+  "NOT_FOUND": "Department Not Found",
+  "CREATED": "Department Details  Added",
+  "CONFLICT": "Department Already Exists",
+  "FETCHED": "Departments Fetched",
+  "UPDATED": "Department Details updated",
+  "DELETED": "Department Details deleted"
+}

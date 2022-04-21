@@ -8,13 +8,13 @@ import roleRoute from './RoleControllerRoute';
 
 /**
  * Function contains Application routes
- *
- * @returns router
+ *@returns router
  */
 const routes = (): IRouter => {
   router.get('/', (req, res) => {
     res.json('Welcome to CRM app');
   });
+
   router.use('/users', new userRoute().getRoutes());
   router.use('/employee', new EmployeeRoute().getRoutes());
   router.use('/department', new deptRoute().getRoutes());

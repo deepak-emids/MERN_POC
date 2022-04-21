@@ -1,18 +1,20 @@
 import { Request, Response, NextFunction } from 'express';
 import RoleService from '../services/RoleService';
 import logger from '../config/logger';
-import ResponseModel from '../models/Response.model';
+import ResponseModel from '../models/Response';
 
 class RoleController {
-  public RoleService = new RoleService();
-
+  private roleService;
+  constructor(roleService?: RoleService) {
+    this.roleService = roleService ? roleService : new RoleService();
+  }
   public addRole = async (
     req: Request,
     res: Response,
     next: NextFunction
   ): Promise<any> => {
     try {
-      const data: ResponseModel = await this.RoleService.addRole(req.body);
+      const data: ResponseModel = await this.roleService.addRole(req.body);
       res.status(data.status).send(data);
     } catch (error) {
       logger.logger.error(error);
@@ -26,7 +28,7 @@ class RoleController {
     next: NextFunction
   ): Promise<any> => {
     try {
-      const data: ResponseModel = await this.RoleService.getAllRole();
+      const data: ResponseModel = await this.roleService.getAllRole();
       res.status(data.status).send(data);
     } catch (error) {
       logger.logger.error(error);
@@ -40,7 +42,7 @@ class RoleController {
     next: NextFunction
   ): Promise<any> => {
     try {
-      const data: ResponseModel = await this.RoleService.getRole(req.params.id);
+      const data: ResponseModel = await this.roleService.getRole(req.params.id);
       res.status(data.status).send(data);
     } catch (error) {
       logger.logger.error(error);
@@ -54,7 +56,7 @@ class RoleController {
     next: NextFunction
   ): Promise<any> => {
     try {
-      const data: ResponseModel = await this.RoleService.deleteRole(
+      const data: ResponseModel = await this.roleService.deleteRole(
         req.params.id
       );
       res.status(data.status).send(data);
@@ -70,7 +72,7 @@ class RoleController {
     next: NextFunction
   ): Promise<any> => {
     try {
-      const data: ResponseModel = await this.RoleService.updateRole(
+      const data: ResponseModel = await this.roleService.updateRole(
         req.params.id,
         req.body
       );

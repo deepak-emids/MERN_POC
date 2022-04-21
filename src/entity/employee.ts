@@ -7,7 +7,7 @@ import {
 } from 'typeorm';
 
 @Entity()
-export class EmployeeDetails {
+export class Employee {
   @PrimaryGeneratedColumn()
   id: number;
   @Column({ type: 'varchar', length: 80 })
@@ -28,7 +28,10 @@ export class EmployeeDetails {
   mobileNo: number;
   @Column({ type: 'int' })
   aadharId: number;
-  @Column({ type: 'date' })
+  @CreateDateColumn({
+    type: 'timestamp',
+    default: () => 'CURRENT_TIMESTAMP(6)'
+  })
   date_Of_Joining: Date;
   @Column({ type: 'boolean', default: true })
   isActive: boolean;
