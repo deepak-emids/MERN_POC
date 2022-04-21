@@ -1,50 +1,45 @@
-import EmployeeDetailsController from '../controllers/EmployeeController';
+import EmployeeController from '../controllers/employeeController';
 import express, { IRouter } from 'express';
 import { userAuth } from '../middlewares/auth.middleware';
 import UserValidator from '../validators/UserValidator';
 
 class EmployeeDetailsRoute {
-  private EmployeeDetailsController = new EmployeeDetailsController();
+  private employeeController;
+
+  constructor(employeeController?: EmployeeController) {
+    this.employeeController = employeeController
+      ? employeeController
+      : new EmployeeController();
+    this.routes();
+  }
 
   private validator = new UserValidator();
 
   private router = express.Router();
-
-  constructor() {
-    this.routes();
-  }
 
   private routes = () => {
     this.router.post(
       '/',
       userAuth,
       this.validator.newEmployee,
-      this.EmployeeDetailsController.addEmployee
+      this.employeeController.addEmployee
     );
 
-    this.router.get(
-      '/',
-      userAuth,
-      this.EmployeeDetailsController.getAllEmployee
-    );
+    this.router.get('/', userAuth, this.employeeController.getAllEmployee);
 
-    this.router.get(
-      '/:id',
-      userAuth,
-      this.EmployeeDetailsController.getEmployee
-    );
+    this.router.get('/:id', userAuth, this.employeeController.getEmployee);
 
     this.router.delete(
       '/:id',
       userAuth,
-      this.EmployeeDetailsController.deleteEmployee
+      this.employeeController.deleteEmployee
     );
 
     this.router.put(
       '/:id',
       userAuth,
       this.validator.updateEmployee,
-      this.EmployeeDetailsController.updateEmployee
+      this.employeeController.updateEmployee
     );
   };
 
