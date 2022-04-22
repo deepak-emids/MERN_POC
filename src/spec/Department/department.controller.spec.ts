@@ -102,7 +102,7 @@ describe('testing Department controller', () => {
     expect(typeof departmentController.updateDepartment).toBe('function');
   });
 
-  it('when given a controller method updateDepartment it should be defined', async () => {
+  it('when given a controller method updateDepartment it should be defined', () => {
     expect(departmentController.updateDepartment).toBeDefined();
   });
 
