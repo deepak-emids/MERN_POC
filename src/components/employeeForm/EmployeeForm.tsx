@@ -11,7 +11,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { useSelector, useDispatch } from "react-redux";
-import Snackbar from "../snackbar/Snackbar";
+// import Snackbar from "../snackbar/Snackbar";
 import DatePicker from "../date/DatePicker";
 import { addEmployee, getEmployees } from "../../store/actions/EmployeeActions";
 
@@ -44,7 +44,6 @@ let value = {
 export default function EmployeeForm() {
   const dispatch = useDispatch();
 
-  const [snackbar, setSnackbar] = React.useState(false);
   const [disableSave, setDisableSave] = React.useState(false);
 
   let departmentList: [{ id: number; departmentName: string }] = useSelector(
@@ -136,24 +135,11 @@ export default function EmployeeForm() {
     navigate("/employee");
   };
 
-  const showSnackbar = () => {
-    let show: any = "";
-    if (snackbar) {
-      show = <Snackbar message="Employee Added Successfully" />;
-      setTimeout(() => {
-        setSnackbar(false);
-      }, 2000);
-    }
-
-    return show;
-  };
-
   return (
     <div className="emp-details">
       <form className="emp-form">
         <div>Enter Employee Details</div>
         <br></br>
-        <div>{showSnackbar()}</div>
 
         <div
           className="name"

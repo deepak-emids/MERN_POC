@@ -3,7 +3,7 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import back from "../../assets/back.jpg";
 import { useSelector, useDispatch } from "react-redux";
-import Snackbar from "../../components/snackbar/Snackbar";
+// import Snackbar from "../../components/snackbar/Snackbar";
 import { updateEmployee } from "../../store/actions/EmployeeActions";
 import { getEmployee } from "../../store/actions/EmployeeActions";
 import "./profile.scss";
@@ -11,7 +11,6 @@ import "./profile.scss";
 export default function Profile() {
   let employeeId: any = localStorage.getItem("employeeId");
 
-  const [snackbar, setSnackbar] = React.useState(false);
   const [disableSave, setDisableSave] = React.useState(true);
 
   const handleDisableSave = () => {
@@ -59,18 +58,6 @@ export default function Profile() {
 
     dispatch(updateEmployee(emp.id, data));
     dispatch(getEmployee(emp.id));
-  };
-
-  const showSnackbar = () => {
-    let show: any = "";
-    if (snackbar) {
-      show = <Snackbar message="Profile Updated Successfully" />;
-      setTimeout(() => {
-        setSnackbar(false);
-      }, 2000);
-    }
-
-    return show;
   };
 
   return (
@@ -216,7 +203,6 @@ export default function Profile() {
           SAVE
         </Button>
       </form>
-      <div>{showSnackbar()}</div>
       <img
         className="backp"
         src={back}

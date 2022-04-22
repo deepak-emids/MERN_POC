@@ -74,15 +74,6 @@ function Navbar() {
               Contact Us
             </Link>
           </li>
-          <li>
-            <Link
-              onClick={handleLogout}
-              to="/login"
-              className="nav-links-mobile"
-            >
-              Logout
-            </Link>
-          </li>
         </ul>
         <Button />
       </nav>

@@ -17,18 +17,36 @@ import { getEmployee } from "../../store/actions/EmployeeActions";
 import { getDepartments } from "../../store/actions/DepartmentActions";
 import { getRoles } from "../../store/actions/RoleActions";
 import { useSelector, useDispatch } from "react-redux";
-import Snackbar from "../../components/snackbar/Snackbar";
 import AccessDenied from "../../components/accessDenied/AccessDenied";
 import BasicModal from "../../components/Modal/Modal";
+
+import Stack from "@mui/material/Stack";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert, { AlertProps } from "@mui/material/Alert";
+import Snackbar2 from "../../store/reducer/Snackbar";
 
 //css
 import "./dashboard.scss";
 
 export default function Dashboard() {
+  const dispatch = useDispatch();
+
+  const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
+    props,
+    ref
+  ) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
+
+  const snackbar: boolean = useSelector((state: any) => state.Snackbar.open);
+  const [snack, setSnack] = React.useState(snackbar);
+  const [open, setOpen] = React.useState(snackbar);
+
+  React.useCallback(() => {}, [snackbar]);
+
   let employeeId: any = localStorage.getItem("employeeId");
 
   let navigate = useNavigate();
-  const dispatch = useDispatch();
 
   React.useEffect(() => {
     dispatch(getEmployees());
@@ -37,11 +55,34 @@ export default function Dashboard() {
     dispatch(getRoles());
   }, []);
 
+  const handleClose = (
+    event?: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
+
   return (
     <div className="main-dashboard">
       <Navbar />
       <div className="modal-content">
         <BasicModal />
+
+        <Stack spacing={2} sx={{ width: "100%" }}>
+          <Snackbar open={open} onClose={handleClose}>
+            <Alert
+              onClose={handleClose}
+              severity="success"
+              sx={{ width: "100%" }}
+            >
+              This is a success message!
+            </Alert>
+          </Snackbar>
+        </Stack>
 
         <div className="page-content">
           <div className="pages">

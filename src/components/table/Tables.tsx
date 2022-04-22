@@ -1,7 +1,7 @@
 import Button from "@mui/material/Button";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import { useNavigate } from "react-router-dom";
-import Snackbar from "../../components/snackbar/Snackbar";
+// import Snackbar from "../../components/snackbar/Snackbar";
 import { employee_fields } from "../tablefields/Employee";
 import { department_fields } from "../tablefields/Department";
 import { role_fields } from "../tablefields/Role";
@@ -24,7 +24,6 @@ import { useSelector, useDispatch } from "react-redux";
 
 import "./tables.scss";
 
-import * as React from "react";
 import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
 
 const useStyles = makeStyles((theme) =>
@@ -44,8 +43,6 @@ const handleRowClick = (param: any, event: any) => {
 
 export default function DataGridDemo(props: any) {
   const dispatch = useDispatch();
-
-  const [snackbar, setSnackbar] = React.useState(false);
 
   const classes = useStyles();
 
@@ -97,6 +94,10 @@ export default function DataGridDemo(props: any) {
     }
   };
 
+  const handleBack = () => {
+    navigate("/");
+  };
+
   let tableField: { field: string; headerName: string }[];
 
   if (props.mode == "employee") {
@@ -142,18 +143,6 @@ export default function DataGridDemo(props: any) {
     },
   });
 
-  const showSnackbar = () => {
-    let show: any = "";
-    if (snackbar) {
-      show = <Snackbar message="Details Updated Sucessfully" />;
-      setTimeout(() => {
-        setSnackbar(false);
-      }, 2000);
-    }
-
-    return show;
-  };
-
   return (
     <div className="grid">
       <div className="table-button">
@@ -169,8 +158,20 @@ export default function DataGridDemo(props: any) {
         >
           ADD
         </Button>
+
+        <Button
+          className="table-button1"
+          variant="outlined"
+          color="primary"
+          onClick={() => handleBack()}
+          // style={{
+          //   color: "white",
+          //   background: "#5cdb5c",
+          // }}
+        >
+          Back
+        </Button>
       </div>
-      <div>{showSnackbar()}</div>
 
       <DataGrid
         style={{ backgroundColor: "white", height: 550 }}

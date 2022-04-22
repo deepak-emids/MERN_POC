@@ -3,7 +3,7 @@ import Button from "@mui/material/Button";
 import service from "../../services/roleService/roleService";
 import TextField from "@mui/material/TextField";
 import back from "../../assets/back.jpg";
-import Snackbar from "../../components/snackbar/Snackbar";
+// import Snackbar from "../../components/snackbar/Snackbar";
 import { useNavigate } from "react-router-dom";
 import { addRole, getRoles } from "../../store/actions/RoleActions";
 import { useSelector, useDispatch } from "react-redux";
@@ -16,8 +16,6 @@ export default function RoleForm() {
 
   const navigate = useNavigate();
   const [disableSave, setDisableSave] = React.useState(false);
-
-  const [snackbar, setSnackbar] = React.useState(false);
 
   const [field, setField] = React.useState({
     roleName: "",
@@ -59,18 +57,6 @@ export default function RoleForm() {
     navigate("/role");
   };
 
-  const showSnackbar = () => {
-    let show: any = "";
-    if (snackbar) {
-      show = <Snackbar message="Role Added Successfully" />;
-      setTimeout(() => {
-        setSnackbar(false);
-      }, 2000);
-    }
-
-    return show;
-  };
-
   return (
     <div className="role-details">
       <form className="role-form">
@@ -100,7 +86,6 @@ export default function RoleForm() {
           </Button>
         </div>
       </form>
-      <div>{showSnackbar()}</div>
 
       <img
         className="back"

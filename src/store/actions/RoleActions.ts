@@ -1,7 +1,6 @@
 import { ActionTypes } from "../types/RoleActionTypes";
 import service from "../../services/roleService/roleService";
 
-// get all posts
 export const getRoles = () => async (dispatch: any) => {
   const result = await service.getAllRole();
   dispatch({
@@ -19,7 +18,6 @@ export const addRole = (post: any) => async (dispatch: any) => {
   });
 };
 
-// update a post
 export const updateRole = (id: number, post: any) => async (dispatch: any) => {
   const result = await service.updateRole(id, post);
 
@@ -29,7 +27,6 @@ export const updateRole = (id: number, post: any) => async (dispatch: any) => {
   });
 };
 
-// delete a post
 export const deleteRole = (id: any) => async (dispatch: any) => {
   const result = await service.deleteRole(id);
 

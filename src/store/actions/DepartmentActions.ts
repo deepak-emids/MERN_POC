@@ -1,7 +1,6 @@
 import { ActionTypes } from "../types/DeptActionTypes";
 import service from "../../services/depertmentService/departmentService";
 
-// get all posts
 export const getDepartments = () => async (dispatch: any) => {
   const result = await service.getAllDepartment();
   dispatch({
@@ -12,14 +11,14 @@ export const getDepartments = () => async (dispatch: any) => {
 
 export const addDepartment = (post: any) => async (dispatch: any) => {
   const result = await service.addDepartment(post);
-
   dispatch({
     type: ActionTypes.ADD_DEPARTMENT,
     payload: result.data.data,
   });
+
+  if (result.status == 201) dispatch({ type: "SNACKBAR", payload: true });
 };
 
-// update a post
 export const updateDepartment =
   (id: number, post: any) => async (dispatch: any) => {
     const result = await service.updateDepartment(id, post);
@@ -30,7 +29,6 @@ export const updateDepartment =
     });
   };
 
-// delete a post
 export const deleteDepartment = (id: any) => async (dispatch: any) => {
   const result = await service.deleteDepartment(id);
 

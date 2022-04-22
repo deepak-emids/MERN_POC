@@ -4,7 +4,7 @@ import service from "../../services/depertmentService/departmentService";
 import TextField from "@mui/material/TextField";
 import back from "../../assets/back.jpg";
 import { useNavigate } from "react-router-dom";
-import Snackbar from "../../components/snackbar/Snackbar";
+// import Snackbar from "../../components/snackbar/Snackbar";
 import { useSelector, useDispatch } from "react-redux";
 import {
   addDepartment,
@@ -17,8 +17,6 @@ export default function DepartmentForm() {
 
   const navigate = useNavigate();
   const [disableSave, setDisableSave] = React.useState(false);
-
-  const [snackbar, setSnackbar] = React.useState(false);
 
   const [field, setField] = React.useState({
     departmentName: "",
@@ -60,17 +58,6 @@ export default function DepartmentForm() {
   const handelCancel = () => {
     navigate("/department");
   };
-  const showSnackbar = () => {
-    let show: any = "";
-    if (snackbar) {
-      show = <Snackbar message="Department Added Successfully" />;
-      setTimeout(() => {
-        setSnackbar(false);
-      }, 2000);
-    }
-
-    return show;
-  };
 
   return (
     <div className="dept-details">
@@ -103,7 +90,6 @@ export default function DepartmentForm() {
           </Button>
         </div>
       </form>
-      <div>{showSnackbar()}</div>
 
       <img
         className="back"

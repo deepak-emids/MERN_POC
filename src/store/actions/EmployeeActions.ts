@@ -1,7 +1,6 @@
 import { ActionTypes } from "../types/EmpActionTypes";
 import service from "../../services/employeeService/employeeService";
 
-// get all posts
 export const getEmployees = () => async (dispatch: any) => {
   const result = await service.getAllEmployee();
   dispatch({
@@ -10,7 +9,6 @@ export const getEmployees = () => async (dispatch: any) => {
   });
 };
 
-// get a post
 export const getEmployee = (id: number) => async (dispatch: any) => {
   const result = await service.getEmployee(id);
 
@@ -29,7 +27,6 @@ export const addEmployee = (post: any) => async (dispatch: any) => {
   });
 };
 
-// update a post
 export const updateEmployee =
   (id: number, post: any) => async (dispatch: any) => {
     const result = await service.updateEmployee(id, post);
@@ -40,7 +37,6 @@ export const updateEmployee =
     });
   };
 
-// delete a post
 export const deleteEmployee = (id: any) => async (dispatch: any) => {
   const result = await service.deleteEmployee(id);
 
