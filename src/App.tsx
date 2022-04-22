@@ -39,23 +39,6 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/profile" element={<Profile />} />
-          {/* <Route
-            path="/employee"
-            element={
-              <ProtectedRoute
-                isAuthenticated={auth}
-                role_Id={role_Id}
-                authenticationPath="/accessdenied"
-                outlet={<Employee />}
-              />
-            }
-          /> */}
-          {/* <Route path="/employee" element={<Employee />} /> */}
-          {/* <Route path="/addEmployee" element={<EmployeeForm />} /> */}
-          {/* <Route path="/department" element={<Department />} /> */}
-          {/* <Route path="/departmentForm" element={<DepartmentForm />} /> */}
-          {/* <Route path="/role" element={<Role />} /> */}
-          {/* <Route path="/roleForm" element={<RoleForm />} /> */}
           <Route path="/accessdenied" element={<AccessDenied />} />
         </Route>
         <Route
