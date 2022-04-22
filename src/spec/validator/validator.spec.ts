@@ -1,65 +1,65 @@
-// import { userAuth } from '../../middlewares/auth.middleware';
-// import Validator from '../../validators/UserValidator';
-// import httpMock from 'node-mocks-http';
+import { userAuth } from '../../middlewares/auth.middleware';
+import Validator from '../../validators/UserValidator';
+import httpMock from 'node-mocks-http';
 
-// let req: any, res: any, next: any;
+let req: any, res: any, next: any;
 
-// let validator = new Validator();
+let validator = new Validator();
 
-// beforeEach(() => {
-//   req = httpMock.createRequest({
-//     params: {
-//       id: 9
-//     }
-//   });
-//   res = httpMock.createResponse({});
-//   next = () => {};
-// });
+beforeEach(() => {
+  req = httpMock.createRequest({
+    params: {
+      id: 9
+    }
+  });
+  res = httpMock.createResponse({});
+  next = () => {};
+});
 
-// it.only('should set the todo item to completed', () => {
-//   let next = jest.fn();
+it.only('should set the todo item to completed', () => {
+  let next = jest.fn();
 
-//   validator.newEmployee(req, res, next);
+  validator.newEmployee(req, res, next);
 
-//   expect(next).toHaveBeenCalled();
-// });
+  expect(next).toHaveBeenCalled();
+});
 
-// it.only('should set the todo item to completed', () => {
-//   let next = jest.fn();
+it.only('should set the todo item to completed', () => {
+  let next = jest.fn();
 
-//   validator.updateEmployee(req, res, next);
+  validator.updateEmployee(req, res, next);
 
-//   expect(next).toHaveBeenCalled();
-// });
+  expect(next).toHaveBeenCalled();
+});
 
-// it.only('should set the todo item to completed', () => {
-//   let next = jest.fn();
+it.only('should set the todo item to completed', () => {
+  let next = jest.fn();
 
-//   validator.loginUser(req, res, next);
+  validator.loginUser(req, res, next);
 
-//   expect(next).toHaveBeenCalled();
-// });
+  expect(next).toHaveBeenCalled();
+});
 
-// it.only('should set the todo item to completed', () => {
-//   let next = jest.fn();
+it.only('should set the todo item to completed', () => {
+  let next = jest.fn();
 
-//   validator.roleValidator(req, res, next);
+  validator.roleValidator(req, res, next);
 
-//   expect(next).toHaveBeenCalled();
-// });
+  expect(next).toHaveBeenCalled();
+});
 
-// it.only('should set the todo item to completed', () => {
-//   let next = jest.fn();
+it.only('should set the todo item to completed', () => {
+  let next = jest.fn();
 
-//   validator.updateRole(req, res, next);
+  validator.updateRole(req, res, next);
 
-//   expect(next).toHaveBeenCalled();
-// });
+  expect(next).toHaveBeenCalled();
+});
 
-// it.only('should set the todo item to completed', () => {
-//   let next = jest.fn();
+it.only('should set the todo item to completed', () => {
+  let next = jest.fn();
 
-//   validator.updateDepartment(req, res, next);
+  validator.updateDepartment(req, res, next);
 
-//   expect(next).toHaveBeenCalled();
-// });
+  expect(next).toHaveBeenCalled();
+});
