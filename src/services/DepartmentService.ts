@@ -129,7 +129,7 @@ class DepartmentService {
     let result = await this.departmentRepository.get(query);
 
     if (result) {
-      let update = await this.departmentRepository.delete(result);
+      await this.departmentRepository.delete(result);
 
       this.responseDTO = {
         data: {},

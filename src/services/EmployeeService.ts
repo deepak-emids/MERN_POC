@@ -6,6 +6,7 @@ import Response from '../models/Response';
 import EmployeeRepository from '../repository/EmployeeRepository';
 import Message from '../utils/EmployeeMessage.json';
 import HttpStatus from 'http-status-codes';
+import { getConnection } from 'typeorm';
 
 class EmployeeService {
   private employeeRepository;
