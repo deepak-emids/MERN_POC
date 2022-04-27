@@ -1,5 +1,4 @@
 import { ActionTypes } from "../types/DeptActionTypes";
-import service from "../../services/depertmentService/departmentService";
 
 const initialState = {
   departments: [],

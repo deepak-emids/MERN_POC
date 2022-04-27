@@ -11,7 +11,6 @@ import Profile from "./pages/profile/Profile";
 import EmployeeForm from "./components/employeeForm/EmployeeForm";
 import DepartmentForm from "./components/departmentForm/DepartmentForm";
 import RoleForm from "./components/roleForm/RoleForm";
-import IsAuth from "./components/protected/isAuth";
 import ProtectedRoute from "./components/protected/ProtectedRoute";
 import AccessDenied from "./components/accessDenied/AccessDenied";
 

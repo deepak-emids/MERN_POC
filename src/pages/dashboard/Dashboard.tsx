@@ -39,10 +39,14 @@ export default function Dashboard() {
   });
 
   const snackbar: boolean = useSelector((state: any) => state.Snackbar.open);
-  const [snack, setSnack] = React.useState(snackbar);
+
+  // const [snack, setSnack] = React.useState(snackbar);
+
   const [open, setOpen] = React.useState(snackbar);
 
-  React.useCallback(() => {}, [snackbar]);
+  console.log(open, "open");
+
+  React.useCallback(() => {}, [open]);
 
   let employeeId: any = localStorage.getItem("employeeId");
 

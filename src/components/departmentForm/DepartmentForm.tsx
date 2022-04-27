@@ -16,7 +16,14 @@ export default function DepartmentForm() {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
-  const [disableSave, setDisableSave] = React.useState(false);
+
+  const snackbar: boolean = useSelector((state: any) => state.Snackbar.open);
+
+  const [disableSave, setDisableSave] = React.useState(snackbar);
+
+  React.useEffect(() => {
+    console.log(disableSave);
+  }, [disableSave]);
 
   const [field, setField] = React.useState({
     departmentName: "",

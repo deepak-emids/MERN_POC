@@ -16,7 +16,10 @@ export const addDepartment = (post: any) => async (dispatch: any) => {
     payload: result.data.data,
   });
 
-  if (result.status == 201) dispatch({ type: "SNACKBAR", payload: true });
+  if (result.status == 201) {
+    console.log("dispatching");
+    dispatch({ type: "SNACKBAR", payload: true });
+  }
 };
 
 export const updateDepartment =
